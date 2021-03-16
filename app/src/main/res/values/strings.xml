@@ -16,5 +16,7 @@
     <string name="login">Login</string>
     <string name="user">User</string>
     <string name="password">Password</string>
+    <string name="sign_up">Sign up</string>
+    <string name="no_tens_compte">No tens compte?</string>
 
 </resources>
