@@ -38,7 +38,6 @@ public class MainActivity extends AppCompatActivity{
         LoginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 //Validate inputs
                 String useri = String.valueOf(user.getText());
                 String passwordi = String.valueOf(password.getText());
