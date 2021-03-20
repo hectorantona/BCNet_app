@@ -13,9 +13,13 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.RequestBuilder;
+import com.bumptech.glide.request.RequestOptions;
 import com.example.bcnet_app.R;
+import com.example.bcnet_app.models.Localitzacio;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Logger;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -24,15 +28,11 @@ import jp.wasabeef.recyclerview.internal.ViewHelper;
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
     private static final String TAG = "RecyclerViewAdapter";
 
-    private ArrayList<String> mImageName = new ArrayList<>();
-    private ArrayList<String> mImageUrl = new ArrayList<>();
-    private ArrayList<String> mImage = new ArrayList<>();
+    private List<Localitzacio> mLocalitzacions = new ArrayList<>();
     private Context mContext;
 
-    public RecyclerViewAdapter(Context context, ArrayList<String> mImageName, ArrayList<String> mImage,  ArrayList<String> mImageUrl) {
-        this.mImageName = mImageName;
-        this.mImage = mImage;
-        this.mImageUrl = mImageUrl;
+    public RecyclerViewAdapter(Context context, List<Localitzacio> localitzacions) {
+        mLocalitzacions = localitzacions;
         this. mContext = context;
     }
 
@@ -45,41 +45,38 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, int i) {
         Log.d(TAG, "onBindViewHolder: called.");
+        //Set name de localitzacio
+        ((ViewHolder)holder).mName.setText(mLocalitzacions.get(i).getTitle());
 
+        //Set the image
+        RequestOptions defaultOptions = new RequestOptions()
+                .error(R.drawable.ic_launcher_background);
         Glide.with(mContext)
-                .asBitmap()
+                .setDefaultRequestOptions(defaultOptions)
                 //imatge que estem carregant
-                .load(mImage.get(position))
-                .into(holder.image);
-        holder.imagename.setText(mImageName.get(position));
-        holder.imageurl.setText(mImageUrl.get(position));
-        holder.parentLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.d(TAG, "onClick: clicked on:" + mImageName.get(position));
-                Toast.makeText(mContext, mImageName.get(position), Toast.LENGTH_LONG).show();
-            }
-        });
+                .load(mLocalitzacions.get(i).getImageUrl())
+                .into(((ViewHolder)holder).image);
+        holder.imageurl.setText(mLocalitzacions.get(i).getImageUrl());
     }
 
     @Override
     public int getItemCount() {
-        return mImageName.size();
+        return mLocalitzacions.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         CircleImageView image;
-        TextView imagename;
+        TextView mName;
         TextView imageurl;
         RelativeLayout parentLayout;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             image = itemView.findViewById(R.id.image);
-            imagename = itemView.findViewById(R.id.image_name);
+            mName = itemView.findViewById(R.id.image_name);
             imageurl = itemView.findViewById(R.id.image_url);
             parentLayout = itemView.findViewById(R.id.parent_layout);
         }

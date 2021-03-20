@@ -2,6 +2,9 @@ package com.example.bcnet_app;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -14,18 +17,19 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import com.example.bcnet_app.adapter.RecyclerViewAdapter;
+import com.example.bcnet_app.models.Localitzacio;
+import com.example.bcnet_app.viewmodels.MainActivity2ViewModel;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity2 extends AppCompatActivity {
 
     private static final String TAG = "MainActivity2";
 
-    //vars
-    private ArrayList<String> mNames = new ArrayList<>();
-    private ArrayList<String> mImageUrls = new ArrayList<>();
-    private ArrayList<String> mWebUrl = new ArrayList<>();
-    private Context mContext;
+    private RecyclerView mRecyclerView;
+    private RecyclerViewAdapter mAdapter;
+    private MainActivity2ViewModel mMainActivity2ViewModel;
 
 
     @Override
@@ -33,48 +37,27 @@ public class MainActivity2 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
 
-        Log.d(TAG, "onCreate: started.");
+        mRecyclerView = findViewById(R.id.recycler_view);
+        mMainActivity2ViewModel = ViewModelProviders.of(this).get(MainActivity2ViewModel.class);
 
-        initImagesBitmap();
+        mMainActivity2ViewModel.init();
 
-    }
+        mMainActivity2ViewModel.getLocalitzacions().observe(this, new Observer<List<Localitzacio>>() {
+            @Override
+            public void onChanged(List<Localitzacio> localitzacios) {
+                mAdapter.notifyDataSetChanged();
+            }
+        });
 
-    private void initImagesBitmap () {
-        Log.d(TAG, "initImagesBitmap: preparing bitmaps.");
-
-        mImageUrls.add("https://www.4webs.es/blog/wp-content/uploads/2019/02/urls-que-es.jpg");
-        mNames.add("Dos cuiners");
-        mWebUrl.add("url:https:www/7ssas./fnjsdjfsd.com");
-        mImageUrls.add("https://www.4webs.es/blog/wp-content/uploads/2019/02/urls-que-es.jpg");
-        mNames.add("McDonalds");
-        mWebUrl.add("url:https:www/7ssas./fnjsdjfsd.com");
-        mImageUrls.add("https://www.4webs.es/blog/wp-content/uploads/2019/02/urls-que-es.jpg");
-        mNames.add("Burguer King");
-        mWebUrl.add("url:https:www/7ssas./fnjsdjfsd.com");
-        mImageUrls.add("https://www.4webs.es/blog/wp-content/uploads/2019/02/urls-que-es.jpg");
-        mNames.add("AutoMcDonalds");
-        mWebUrl.add("url:https:www/7ssas./fnjsdjfsd.com");
-        mImageUrls.add("https://www.4webs.es/blog/wp-content/uploads/2019/02/urls-que-es.jpg");
-        mNames.add("Aaaaaaaaaaaaaaaaaaa");
-        mWebUrl.add("url:https:www/7ssas./fnjsdjfsd.com");
-        mImageUrls.add("https://www.4webs.es/blog/wp-content/uploads/2019/02/urls-que-es.jpg");
-        mNames.add("sbsdhfbsd");
-        mWebUrl.add("url:https:www/7ssas./fnjsdjfsd.com");
-        mImageUrls.add("https://www.4webs.es/blog/wp-content/uploads/2019/02/urls-que-es.jpg");
-        mNames.add("7");
-        mWebUrl.add("url:https:www/7ssas./fnjsdjfsd.com");
-        mImageUrls.add("https://www.4webs.es/blog/wp-content/uploads/2019/02/urls-que-es.jpg");
-        mNames.add("8");
-        mWebUrl.add("url:https:www/7ssas./fnjsdjfsd.com");
         initRecycleView();
+
     }
 
     private void initRecycleView() {
-        Log.d(TAG, "initRecycleView: init recyclerview");
-        RecyclerView recyclerView = findViewById(R.id.recycler_view);
-        RecyclerViewAdapter adapter = new RecyclerViewAdapter(this, mNames, mImageUrls, mWebUrl);
-        recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        mAdapter = new RecyclerViewAdapter(this, mMainActivity2ViewModel.getLocalitzacions().getValue());
+        RecyclerView.LayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        mRecyclerView.setAdapter(mAdapter);
+        mRecyclerView.setLayoutManager(linearLayoutManager);
     }
 
     @Override
