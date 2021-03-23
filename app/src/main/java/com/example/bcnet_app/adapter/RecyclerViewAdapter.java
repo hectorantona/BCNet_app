@@ -5,50 +5,50 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.RequestBuilder;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.bcnet_app.R;
 import com.example.bcnet_app.models.Localitzacio;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Logger;
 
 import de.hdodenhof.circleimageview.CircleImageView;
-import jp.wasabeef.recyclerview.internal.ViewHelper;
 
-public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
+public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> implements Filterable {
     private static final String TAG = "RecyclerViewAdapter";
 
-    private List<Localitzacio> mLocalitzacions = new ArrayList<>();
-    private Context mContext;
+    private final List<Localitzacio> localitzacioList;
+    private final List<Localitzacio> localitzacioListFull;
+
+    private final Context mContext;
 
     public RecyclerViewAdapter(Context context, List<Localitzacio> localitzacions) {
-        mLocalitzacions = localitzacions;
-        this. mContext = context;
+        localitzacioList = localitzacions;
+        localitzacioListFull = new ArrayList<>(localitzacions);
+        this.mContext = context;
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_listitem, parent, false);
-        ViewHolder holder = new ViewHolder(view);
-        return holder;
+        return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int i) {
         Log.d(TAG, "onBindViewHolder: called.");
         //Set name de localitzacio
-        ((ViewHolder)holder).mName.setText(mLocalitzacions.get(i).getTitle());
+        ((ViewHolder)holder).mName.setText(localitzacioList.get(i).getTitle());
 
         //Set the image
         RequestOptions defaultOptions = new RequestOptions()
@@ -56,17 +56,52 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         Glide.with(mContext)
                 .setDefaultRequestOptions(defaultOptions)
                 //imatge que estem carregant
-                .load(mLocalitzacions.get(i).getImageUrl())
+                .load(localitzacioList.get(i).getImageUrl())
                 .into(((ViewHolder)holder).image);
-        holder.imagecontent.setText(mLocalitzacions.get(i).getContent());
+        holder.imagecontent.setText(localitzacioList.get(i).getContent());
     }
 
     @Override
     public int getItemCount() {
-        return mLocalitzacions.size();
+        return localitzacioList.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    @Override
+    public Filter getFilter() {
+        return FilterLocalitzacio;
+    }
+
+    private final Filter FilterLocalitzacio = new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+            List<Localitzacio> filteredList = new ArrayList<>();
+
+            if(constraint == null || constraint.length() == 0){
+                filteredList.addAll(localitzacioListFull);
+            } else {
+                String filterpattern = constraint.toString().toLowerCase().trim();
+                for(Localitzacio l : localitzacioListFull) {
+                    if(l.getTitle().toLowerCase().contains(filterpattern)){
+                        filteredList.add(l);
+                    }
+                }
+
+            }
+            FilterResults results = new FilterResults();
+            results.values = filteredList;
+
+            return results;
+        }
+
+        @Override
+        protected void publishResults(CharSequence constraint, FilterResults results) {
+            localitzacioList.clear();
+            localitzacioList.addAll((List)results.values);
+            notifyDataSetChanged();
+        }
+    };
+
+    public static class ViewHolder extends RecyclerView.ViewHolder {
 
         CircleImageView image;
         TextView mName;
