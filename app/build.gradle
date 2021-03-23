@@ -46,7 +46,8 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
     //recycleview
-    compile 'com.marshalchen.ultimaterecyclerview:library:0.9.0'
+    implementation 'com.marshalchen.ultimaterecyclerview:library:0.9.0'
+
     //glide
     implementation 'com.github.bumptech.glide:glide:4.12.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.12.0'

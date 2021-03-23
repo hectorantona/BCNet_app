@@ -38,7 +38,7 @@ public class MainActivity2 extends AppCompatActivity {
         setContentView(R.layout.activity_main2);
 
         mRecyclerView = findViewById(R.id.recycler_view);
-        mMainActivity2ViewModel = ViewModelProviders.of(this).get(MainActivity2ViewModel.class);
+        mMainActivity2ViewModel = new ViewModelProvider(this).get(MainActivity2ViewModel.class);
 
         mMainActivity2ViewModel.init();
 

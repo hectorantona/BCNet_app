@@ -31,6 +31,7 @@ public class LocalitzacioRespository {
         return data;
     }
 
+    //retrofit
     //Per fer un setting de les dades que rebem
     private void setLocalitzacions () {
         dataSet.add(
