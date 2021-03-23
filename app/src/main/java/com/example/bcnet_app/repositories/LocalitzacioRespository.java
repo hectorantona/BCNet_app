@@ -36,35 +36,35 @@ public class LocalitzacioRespository {
     private void setLocalitzacions () {
         dataSet.add(
                 new Localitzacio("https://cnnespanol.cnn.com/wp-content/uploads/2019/12/s_64a163f16ecbb099e52f2f8271f73cbbfcfc9034be4d646f7375e4db1ca6f3d7_1573501883482_ap_19001106049831-1.jpg?quality=100&strip=info&w=320&h=240&crop=1",
-                "Imatge 1")
+                "Imatge 1", "Descripció del contingut")
         );
         dataSet.add(
                 new Localitzacio("https://cnnespanol.cnn.com/wp-content/uploads/2019/12/s_64a163f16ecbb099e52f2f8271f73cbbfcfc9034be4d646f7375e4db1ca6f3d7_1573501883482_ap_19001106049831-1.jpg?quality=100&strip=info&w=320&h=240&crop=1",
-                        "Imatge 2")
+                        "Imatge 2", "Descripció del contingut")
         );
         dataSet.add(
                 new Localitzacio("https://cnnespanol.cnn.com/wp-content/uploads/2019/12/s_64a163f16ecbb099e52f2f8271f73cbbfcfc9034be4d646f7375e4db1ca6f3d7_1573501883482_ap_19001106049831-1.jpg?quality=100&strip=info&w=320&h=240&crop=1",
-                        "Imatge 3")
+                        "Imatge 3", "Descripció del contingut")
         );
         dataSet.add(
                 new Localitzacio("https://cnnespanol.cnn.com/wp-content/uploads/2019/12/s_64a163f16ecbb099e52f2f8271f73cbbfcfc9034be4d646f7375e4db1ca6f3d7_1573501883482_ap_19001106049831-1.jpg?quality=100&strip=info&w=320&h=240&crop=1",
-                        "Imatge 4")
+                        "Imatge 4", "Descripció del contingut")
         );
         dataSet.add(
                 new Localitzacio("https://cnnespanol.cnn.com/wp-content/uploads/2019/12/s_64a163f16ecbb099e52f2f8271f73cbbfcfc9034be4d646f7375e4db1ca6f3d7_1573501883482_ap_19001106049831-1.jpg?quality=100&strip=info&w=320&h=240&crop=1",
-                        "Imatge 5")
+                        "Imatge 5", "Descripció del contingut")
         );
         dataSet.add(
                 new Localitzacio("https://cnnespanol.cnn.com/wp-content/uploads/2019/12/s_64a163f16ecbb099e52f2f8271f73cbbfcfc9034be4d646f7375e4db1ca6f3d7_1573501883482_ap_19001106049831-1.jpg?quality=100&strip=info&w=320&h=240&crop=1",
-                        "Imatge 6")
+                        "Imatge 6", "Descripció del contingut")
         );
         dataSet.add(
                 new Localitzacio("https://cnnespanol.cnn.com/wp-content/uploads/2019/12/s_64a163f16ecbb099e52f2f8271f73cbbfcfc9034be4d646f7375e4db1ca6f3d7_1573501883482_ap_19001106049831-1.jpg?quality=100&strip=info&w=320&h=240&crop=1",
-                        "Imatge 7")
+                        "Imatge 7", "Descripció del contingut")
         );
         dataSet.add(
                 new Localitzacio("https://cnnespanol.cnn.com/wp-content/uploads/2019/12/s_64a163f16ecbb099e52f2f8271f73cbbfcfc9034be4d646f7375e4db1ca6f3d7_1573501883482_ap_19001106049831-1.jpg?quality=100&strip=info&w=320&h=240&crop=1",
-                        "Imatge 8")
+                        "Imatge 8", "Descripció del contingut")
         );
     }
 }

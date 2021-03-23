@@ -58,7 +58,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 //imatge que estem carregant
                 .load(mLocalitzacions.get(i).getImageUrl())
                 .into(((ViewHolder)holder).image);
-        holder.imageurl.setText(mLocalitzacions.get(i).getImageUrl());
+        holder.imagecontent.setText(mLocalitzacions.get(i).getContent());
     }
 
     @Override
@@ -70,14 +70,17 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
         CircleImageView image;
         TextView mName;
-        TextView imageurl;
+        TextView imagecontent;
         RelativeLayout parentLayout;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+            //imatge
             image = itemView.findViewById(R.id.image);
+            //Nom de la localitzacio
             mName = itemView.findViewById(R.id.image_name);
-            imageurl = itemView.findViewById(R.id.image_url);
+            //text
+            imagecontent = itemView.findViewById(R.id.image_content);
             parentLayout = itemView.findViewById(R.id.parent_layout);
         }
     }
