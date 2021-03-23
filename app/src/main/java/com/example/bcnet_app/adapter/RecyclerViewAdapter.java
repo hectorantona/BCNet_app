@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.Filterable;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -49,6 +50,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         Log.d(TAG, "onBindViewHolder: called.");
         //Set name de localitzacio
         ((ViewHolder)holder).mName.setText(localitzacioList.get(i).getTitle());
+        ((ViewHolder)holder).category.setText(localitzacioList.get(i).getCategory());
 
         //Set the image
         RequestOptions defaultOptions = new RequestOptions()
@@ -58,6 +60,15 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 //imatge que estem carregant
                 .load(localitzacioList.get(i).getImageUrl())
                 .into(((ViewHolder)holder).image);
+
+        defaultOptions = new RequestOptions()
+                .error(R.drawable.ic_launcher_background);
+        Glide.with(mContext)
+                .setDefaultRequestOptions(defaultOptions)
+                //Semafor
+                .load(localitzacioList.get(i).getSemaforUrl())
+                .into(((ViewHolder)holder).semafor);
+
         holder.imagecontent.setText(localitzacioList.get(i).getContent());
     }
 
@@ -84,6 +95,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                     if(l.getTitle().toLowerCase().contains(filterpattern)){
                         filteredList.add(l);
                     }
+                    else if(l.getCategory().toLowerCase().contains(filterpattern)){
+                        filteredList.add(l);
+                    }
                 }
 
             }
@@ -105,17 +119,23 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
         CircleImageView image;
         TextView mName;
+        TextView category;
         TextView imagecontent;
+        ImageView semafor;
         RelativeLayout parentLayout;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             //imatge
             image = itemView.findViewById(R.id.image);
+            //Category
+            category = itemView.findViewById(R.id.image_category);
             //Nom de la localitzacio
             mName = itemView.findViewById(R.id.image_name);
-            //text
+            //context
             imagecontent = itemView.findViewById(R.id.image_content);
+            //semafor
+            semafor = itemView.findViewById(R.id.semafor);
             parentLayout = itemView.findViewById(R.id.parent_layout);
         }
     }
