@@ -23,4 +23,6 @@ public class MainActivity2ViewModel extends ViewModel {
     }
 
     public LiveData<List<Localitzacio>> getLocalitzacions () { return mLocalitzacions;}
+
+
 }

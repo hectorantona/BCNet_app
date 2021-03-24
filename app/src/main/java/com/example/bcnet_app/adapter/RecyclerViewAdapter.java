@@ -1,6 +1,7 @@
 package com.example.bcnet_app.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -17,6 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.bcnet_app.R;
+import com.example.bcnet_app.ViewLocalitzacio;
 import com.example.bcnet_app.models.Localitzacio;
 
 import java.util.ArrayList;
@@ -70,6 +73,20 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 .into(((ViewHolder)holder).semafor);
 
         holder.imagecontent.setText(localitzacioList.get(i).getContent());
+        holder.parentLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d(TAG, "onClick: clicked on: " + localitzacioList.get(i).getContent());
+
+                Toast.makeText(mContext, localitzacioList.get(i).getContent(), Toast.LENGTH_SHORT).show();
+
+                Intent intent = new Intent(mContext, ViewLocalitzacio.class);
+                intent.putExtra("imatge", localitzacioList.get(i).getImageUrl());
+                intent.putExtra("nom_localitzacio", localitzacioList.get(i).getTitle());
+
+                mContext.startActivity(intent);
+            }
+        });
     }
 
     @Override
