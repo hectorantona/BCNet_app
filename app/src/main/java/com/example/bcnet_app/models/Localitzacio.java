@@ -1,5 +1,7 @@
 package com.example.bcnet_app.models;
 
+import com.google.gson.annotations.SerializedName;
+
 public class Localitzacio {
     private String title;
     private String imageUrl;
@@ -7,6 +9,14 @@ public class Localitzacio {
     String category;
     String semaforUrl;
 
+    //Exemple d'us de retrofit
+    @SerializedName("body")
+    private String text;
+
+    public String getText() {
+        return text;
+    }
+    //Fi exemple retrofit
     public Localitzacio(String imageUrl, String titol, String content, String category, String semaforUrl) {
         this.title = titol;
         this.imageUrl = imageUrl;
