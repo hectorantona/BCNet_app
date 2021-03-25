@@ -2,17 +2,10 @@ package com.example.bcnet_app.repositories;
 
 import androidx.lifecycle.MutableLiveData;
 
-import com.example.bcnet_app.JsonPlaceHolderAPI;
 import com.example.bcnet_app.models.Localitzacio;
-import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 //Singleton patern
 public class LocalitzacioRespository {
