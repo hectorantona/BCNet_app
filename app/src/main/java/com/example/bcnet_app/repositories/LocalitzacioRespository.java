@@ -47,11 +47,10 @@ public class LocalitzacioRespository {
     //Per fer un setting de les dades que rebem
     private void setLocalitzacions () {
         dataSet = new ArrayList<>();
-        dataSet.add(
-                new Localitzacio("https://media-cdn.tripadvisor.com/media/photo-s/14/84/ef/e9/best-napolitan-pizza.jpg",
+        Localitzacio l = new Localitzacio("https://media-cdn.tripadvisor.com/media/photo-s/14/84/ef/e9/best-napolitan-pizza.jpg",
                 "Pizzeria Da Nanni Barcelona", "Italiana, Pizza, Comida rápida, Mediterránea, Europea, Napolitana, De Campania, Del sur de Italia",
-                        "Restaurant", "https://i.pinimg.com/474x/8d/49/08/8d4908649aef4c34bd95e82b2e481841.jpg")
-        );
+                "Restaurant", "https://i.pinimg.com/474x/8d/49/08/8d4908649aef4c34bd95e82b2e481841.jpg");
+        dataSet.add(l);
         dataSet.add(
                 new Localitzacio("https://media-cdn.tripadvisor.com/media/photo-p/1a/dc/2b/ae/american-breakfast-served.jpg",
                         "La Desayuneria", "Americana, Café, Europea, Internacional", "Restaurant", "https://i.pinimg.com/474x/8d/49/08/8d4908649aef4c34bd95e82b2e481841.jpg")

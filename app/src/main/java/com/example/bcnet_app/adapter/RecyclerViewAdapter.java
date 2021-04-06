@@ -11,7 +11,6 @@ import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -72,17 +71,18 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 .load(localitzacioList.get(i).getSemaforUrl())
                 .into(((ViewHolder)holder).semafor);
 
-        holder.imagecontent.setText(localitzacioList.get(i).getContent());
+        holder.puntuacioGlobal.setText(localitzacioList.get(i).getPuntuacioGlobal());
         holder.parentLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Log.d(TAG, "onClick: clicked on: " + localitzacioList.get(i).getContent());
 
-                Toast.makeText(mContext, localitzacioList.get(i).getContent(), Toast.LENGTH_SHORT).show();
+                //Toast.makeText(mContext, localitzacioList.get(i).getContent(), Toast.LENGTH_SHORT).show();
 
                 Intent intent = new Intent(mContext, ViewLocalitzacio.class);
                 intent.putExtra("imatge", localitzacioList.get(i).getImageUrl());
                 intent.putExtra("nom_localitzacio", localitzacioList.get(i).getTitle());
+                intent.putExtra("content", localitzacioList.get(i).getContent());
 
                 mContext.startActivity(intent);
             }
@@ -137,7 +137,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         CircleImageView image;
         TextView mName;
         TextView category;
-        TextView imagecontent;
+        //TextView imagecontent;
+        TextView puntuacioGlobal;
         ImageView semafor;
         RelativeLayout parentLayout;
 
@@ -150,7 +151,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             //Nom de la localitzacio
             mName = itemView.findViewById(R.id.image_name);
             //context
-            imagecontent = itemView.findViewById(R.id.image_content);
+            //imagecontent = itemView.findViewById(R.id.image_content);
+            //puntuacioGlobal
+            puntuacioGlobal = itemView.findViewById(R.id.puntuacio_Global);
             //semafor
             semafor = itemView.findViewById(R.id.semafor);
             parentLayout = itemView.findViewById(R.id.parent_layout);

@@ -39,7 +39,7 @@
         android:textSize="17sp" />
 
     <TextView
-        android:id="@+id/image_content"
+        android:id="@+id/puntuacio_Global"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="text"
