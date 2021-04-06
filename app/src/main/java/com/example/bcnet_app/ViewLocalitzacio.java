@@ -31,11 +31,12 @@ public class ViewLocalitzacio extends AppCompatActivity {
             String imageUrl = getIntent().getStringExtra("imatge");
             String nom_localitzacio = getIntent().getStringExtra("nom_localitzacio");
             String content = getIntent().getStringExtra("content");
+            String puntuacio_global = getIntent().getStringExtra("puntuacio_global");
 
-            setImage(imageUrl, nom_localitzacio, content);
+            setImage(imageUrl, nom_localitzacio, content, puntuacio_global);
         }
     }
-    private void setImage (String imageUrl, String nom_localitzacio, String content){
+    private void setImage (String imageUrl, String nom_localitzacio, String content, String puntuacio_global){
         Log.d(TAG, "setImage: setting nom i imatge als widgets");
 
         TextView name = findViewById(R.id.Nom_Localitzacio);
@@ -43,6 +44,9 @@ public class ViewLocalitzacio extends AppCompatActivity {
 
         TextView descripcio = findViewById(R.id.descripcio);
         descripcio.setText(content);
+
+        TextView puntuacioGlobal = findViewById(R.id.puntuacioGlobal);
+        puntuacioGlobal.setText(puntuacio_global);
 
         ImageView imatge = findViewById(R.id.imatge);
         RequestOptions defaultOptions = new RequestOptions()

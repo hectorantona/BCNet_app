@@ -12,13 +12,13 @@ public class Localitzacio {
     "category" : "restaurant"
     }
     */
-
+/*
     @SerializedName("name")
-    @Expose
+    @Expose */
     private String name;
-
+    /*
     @SerializedName("categoria")
-    @Expose
+    @Expose */
     private String category;
 
     private String imageUrl;
