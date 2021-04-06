@@ -1,26 +1,41 @@
 package com.example.bcnet_app.models;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 import java.util.ArrayList;
 
 public class Localitzacio {
-    private String title;
+    /*Per fer la prova en retornaran el name i la categoria
+    {
+    "name" : "Bar Paco",
+    "category" : "restaurant"
+    }
+    */
+
+    @SerializedName("name")
+    @Expose
+    private String name;
+
+    @SerializedName("categoria")
+    @Expose
+    private String category;
+
     private String imageUrl;
     private String content;
     private String puntuacioGlobal;
     private ArrayList<Valoracio> valoracions;
-    String category;
-    String semaforUrl;
 
-    //Exemple d'us de retrofit
-    //@SerializedName("body")
-    //private String text;
+    private String semaforUrl;
+
+
 
     //public String getText() {
     //    return text;
     //}
     //Fi exemple retrofit
-    public Localitzacio(String imageUrl, String titol, String content, String category, String semaforUrl) {
-        this.title = titol;
+    public Localitzacio(String imageUrl, String name, String content, String category, String semaforUrl) {
+        this.name = name;
         this.imageUrl = imageUrl;
         this.content = content;
         this.category = category;
@@ -41,8 +56,8 @@ public class Localitzacio {
 
     public Localitzacio() {
     }
-    public String getTitle() {return title;}
-    public void setTitle(String title) {this.title=title;}
+    public String getName() {return name;}
+    public void setName(String title) {this.name=title;}
     public String getImageUrl () { return imageUrl;}
     public void setImageUrl (String imageUrl) {this.imageUrl = imageUrl;}
     public String getContent () { return content;}

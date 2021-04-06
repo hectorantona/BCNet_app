@@ -29,7 +29,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> implements Filterable {
     private static final String TAG = "RecyclerViewAdapter";
 
-    private final List<Localitzacio> localitzacioList;
+    private List <Localitzacio> localitzacioList = new ArrayList<>();
     private final List<Localitzacio> localitzacioListFull;
 
     private final Context mContext;
@@ -50,9 +50,10 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int i) {
         Log.d(TAG, "onBindViewHolder: called.");
+
         //Set name de localitzacio
-        ((ViewHolder)holder).mName.setText(localitzacioList.get(i).getTitle());
-        ((ViewHolder)holder).category.setText(localitzacioList.get(i).getCategory());
+        holder.mName.setText(localitzacioList.get(i).getName());
+        holder.category.setText(localitzacioList.get(i).getCategory());
 
         //Set the image
         RequestOptions defaultOptions = new RequestOptions()
@@ -61,7 +62,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 .setDefaultRequestOptions(defaultOptions)
                 //imatge que estem carregant
                 .load(localitzacioList.get(i).getImageUrl())
-                .into(((ViewHolder)holder).image);
+                .into((holder).image);
 
         defaultOptions = new RequestOptions()
                 .error(R.drawable.ic_launcher_background);
@@ -69,10 +70,11 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 .setDefaultRequestOptions(defaultOptions)
                 //Semafor
                 .load(localitzacioList.get(i).getSemaforUrl())
-                .into(((ViewHolder)holder).semafor);
+                .into((holder).semafor);
 
         holder.puntuacioGlobal.setText(localitzacioList.get(i).getPuntuacioGlobal());
         holder.parentLayout.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
                 Log.d(TAG, "onClick: clicked on: " + localitzacioList.get(i).getContent());
@@ -81,7 +83,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
                 Intent intent = new Intent(mContext, ViewLocalitzacio.class);
                 intent.putExtra("imatge", localitzacioList.get(i).getImageUrl());
-                intent.putExtra("nom_localitzacio", localitzacioList.get(i).getTitle());
+                intent.putExtra("nom_localitzacio", localitzacioList.get(i).getName());
                 intent.putExtra("content", localitzacioList.get(i).getContent());
 
                 mContext.startActivity(intent);
@@ -109,7 +111,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             } else {
                 String filterpattern = constraint.toString().toLowerCase().trim();
                 for(Localitzacio l : localitzacioListFull) {
-                    if(l.getTitle().toLowerCase().contains(filterpattern)){
+                    if(l.getName().toLowerCase().contains(filterpattern)){
                         filteredList.add(l);
                     }
                     else if(l.getCategory().toLowerCase().contains(filterpattern)){

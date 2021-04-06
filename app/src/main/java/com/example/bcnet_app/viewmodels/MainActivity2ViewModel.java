@@ -11,18 +11,37 @@ import java.util.List;
 
 public class MainActivity2ViewModel extends ViewModel {
     //es mutable perque es pugui modificar, sino nomes es podria mirar pero no canviar
+    //private LiveData<Localitzacio> localitzacioLiveData;
+
     private MutableLiveData<List<Localitzacio>> mLocalitzacions;
-    private LocalitzacioRespository mRepo;
+    private LocalitzacioRespository Repo;
+
+    /*public MainActivity2ViewModel(@NonNull Application application) {
+        super(application);
+    }*/
 
     public void init () {
+       /* if (localitzacioLiveData != null) {
+            return;
+        }*/
         if (mLocalitzacions != null) {
             return;
         }
-        mRepo = LocalitzacioRespository.getInstance();
-        mLocalitzacions = mRepo.getLocalitzacions();
+
+        Repo = new LocalitzacioRespository();
+        //localitzacioLiveData = Repo.getLocalitzacioLiveData();
+        mLocalitzacions = Repo.getLocalitzacions();
     }
 
     public LiveData<List<Localitzacio>> getLocalitzacions () { return mLocalitzacions;}
 
+    /*
+    public void searchLocalitzacions (String keyword, String name) {
+        //Aixo es per agafar la apikey
+        //Dotenv dotenv = Dotenv.configure().directory("/assets").filename("env").load();
+        Repo.SearchLocalitzacio(keyword, name, "aaaaa");
+
+    }
+  */
 
 }
