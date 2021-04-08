@@ -3,10 +3,10 @@ package com.example.bcnet_app.models;
 public class Valoracio {
     private String usuari;
     private String comentari;
-    private Integer puntuacio;
+    private Float puntuacio;
     private Integer likes;
 
-    public Valoracio(String usuari, String comentari, Integer puntuacio) {
+    public Valoracio(String usuari, String comentari, Float puntuacio) {
         this.usuari = usuari;
         this.comentari = comentari;
         this.puntuacio = puntuacio;
@@ -21,7 +21,7 @@ public class Valoracio {
         this.comentari = comentari;
     }
 
-    public void setPuntuacio(Integer puntuacio) {
+    public void setPuntuacio(Float puntuacio) {
         this.puntuacio = puntuacio;
     }
 
@@ -37,7 +37,7 @@ public class Valoracio {
         return comentari;
     }
 
-    public Integer getPuntuacio() {
+    public Float getPuntuacio() {
         return puntuacio;
     }
 

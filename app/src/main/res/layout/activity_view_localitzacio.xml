@@ -28,28 +28,20 @@
         android:textSize="20sp"
         android:layout_marginStart="15dp" />
 
-    <TextView
+    <RatingBar
         android:id="@+id/puntuacioGlobal"
-        android:layout_width="97dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/Nom_Localitzacio"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="16dp"
-        android:text="@string/_5_estrelles"
-        android:textSize="18sp"
-        android:textColor="@color/black"/>
-
-    <ImageView
-        android:id="@+id/star"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/imatge"
-        android:layout_marginStart="14dp"
-        android:layout_marginLeft="14dp"
-        android:layout_marginTop="57dp"
-        android:layout_toEndOf="@+id/puntuacioGlobal"
-        android:layout_toRightOf="@+id/puntuacioGlobal"
-        app:srcCompat="@drawable/baseline_star_rate_black_24" />
+        android:numStars="5"
+        android:rating="3"
+        android:stepSize="0.5"
+        android:isIndicator="true"
+        android:layout_below="@+id/Nom_Localitzacio"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="16dp"
+        android:progressTint="@color/app_color" />
+
+
 
     <TextView
         android:id="@+id/descripcio"

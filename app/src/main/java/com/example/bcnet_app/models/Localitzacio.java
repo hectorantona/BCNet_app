@@ -1,8 +1,5 @@
 package com.example.bcnet_app.models;
 
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
-
 import java.util.ArrayList;
 
 public class Localitzacio {
@@ -23,7 +20,7 @@ public class Localitzacio {
 
     private String imageUrl;
     private String content;
-    private String puntuacioGlobal;
+    private Float puntuacioGlobal;
     private ArrayList<Valoracio> valoracions;
 
     private String semaforUrl;
@@ -42,12 +39,12 @@ public class Localitzacio {
         this.semaforUrl = semaforUrl;
     }
 
-    private Integer calcularPuntuacioGlobal() {
-        Integer suma = 0;
+    private Float calcularPuntuacioGlobal() {
+        Float suma = (float)0;
         for (Valoracio v : valoracions) {
             suma += v.getPuntuacio();
         }
-        Integer avg = -1;
+        Float avg = (float)-1;
         if (valoracions.size() > 0) {
             avg = suma / valoracions.size();
         }
@@ -68,7 +65,7 @@ public class Localitzacio {
     public void setSemaforUrl (String content) {this.semaforUrl = semaforUrl;}
     public String getPuntuacioGlobal () {
         //return calcularPuntuacioGlobal().toString();
-        return "3";
+        return "4.2";
     }
 }
 
