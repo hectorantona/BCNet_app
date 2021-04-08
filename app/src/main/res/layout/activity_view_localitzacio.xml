@@ -32,16 +32,27 @@
         android:id="@+id/puntuacioGlobal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:numStars="5"
-        android:rating="3"
-        android:stepSize="0.5"
-        android:isIndicator="true"
         android:layout_below="@+id/Nom_Localitzacio"
         android:layout_marginLeft="15dp"
         android:layout_marginTop="16dp"
-        android:progressTint="@color/app_color" />
+        android:isIndicator="true"
+        android:numStars="5"
+        android:progressTint="@color/app_color"
+        android:rating="3"
+        android:stepSize="0.5" />
 
 
+    <Button
+        android:id="@+id/BtnValorar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imatge"
+        android:layout_marginStart="28dp"
+        android:layout_marginLeft="28dp"
+        android:layout_marginTop="64dp"
+        android:layout_toEndOf="@+id/puntuacioGlobal"
+        android:layout_toRightOf="@+id/puntuacioGlobal"
+        android:text="Valora" />
 
     <TextView
         android:id="@+id/descripcio"

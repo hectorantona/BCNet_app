@@ -1,7 +1,10 @@
 package com.example.bcnet_app;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -22,6 +25,16 @@ public class ViewLocalitzacio extends AppCompatActivity {
         Log.d(TAG, "onCreate: started. ");
 
         getIncomingIntent();
+
+        Button BtnValorar = (Button)findViewById(R.id.BtnValorar);
+        BtnValorar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent startIntent = new Intent(getApplicationContext(), FormValoracio.class);
+                //
+                startActivity(startIntent);
+            }
+        });
     }
 
     private void getIncomingIntent (){
