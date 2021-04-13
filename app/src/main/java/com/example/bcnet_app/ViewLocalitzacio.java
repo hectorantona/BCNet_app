@@ -11,18 +11,43 @@ import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.example.bcnet_app.adapter.CommentAdapter;
+import com.example.bcnet_app.models.Comentari;
+import com.example.bcnet_app.viewmodels.CommentViewModel;
+
+import java.util.List;
 
 public class ViewLocalitzacio extends AppCompatActivity {
     private static final String TAG = "ViewLocalitzacio";
+
+    private RecyclerView mRecyclerView;
+    private CommentAdapter mAdapter;
+    private CommentViewModel commentViewModel;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_localitzacio);
         Log.d(TAG, "onCreate: started. ");
+
+        mRecyclerView = findViewById(R.id.llista_comentari);
+        commentViewModel = new ViewModelProvider(this).get(CommentViewModel.class);
+        commentViewModel.init();
+
+        commentViewModel.getComentaris().observe(this, new Observer<List<Comentari>>() {
+            @Override
+            public void onChanged(List<Comentari> comentaris) {
+                mAdapter.notifyDataSetChanged();
+            }
+        });
+
+        initRecycleView();
 
         getIncomingIntent();
 
@@ -35,6 +60,13 @@ public class ViewLocalitzacio extends AppCompatActivity {
                 startActivity(startIntent);
             }
         });
+    }
+
+    private void initRecycleView() {
+        mAdapter = new CommentAdapter(this, commentViewModel.getComentaris().getValue());
+        RecyclerView.LayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        mRecyclerView.setAdapter(mAdapter);
+        mRecyclerView.setLayoutManager(linearLayoutManager);
     }
 
     private void getIncomingIntent (){
