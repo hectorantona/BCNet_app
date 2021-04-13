@@ -21,7 +21,8 @@ public class Localitzacio {
     private String imageUrl;
     private String content;
     private Float puntuacioGlobal;
-    private ArrayList<Valoracio> valoracions;
+    private ArrayList<Comentari> valoracions;
+    private Float puntuacioCOVID;
 
     private String semaforUrl;
 
@@ -41,8 +42,8 @@ public class Localitzacio {
 
     private Float calcularPuntuacioGlobal() {
         Float suma = (float)0;
-        for (Valoracio v : valoracions) {
-            suma += v.getPuntuacio();
+        for (Comentari c : valoracions) {
+            suma += c.getPuntuacio();
         }
         Float avg = (float)-1;
         if (valoracions.size() > 0) {

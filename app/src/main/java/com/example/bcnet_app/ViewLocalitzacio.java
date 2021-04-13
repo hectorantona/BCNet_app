@@ -46,15 +46,19 @@ public class ViewLocalitzacio extends AppCompatActivity {
             String nom_localitzacio = getIntent().getStringExtra("nom_localitzacio");
             String content = getIntent().getStringExtra("content");
             Float puntuacio_global = Float.parseFloat(getIntent().getStringExtra("puntuacio_global"));
+            String puntuacio_Covid = getIntent().getStringExtra("puntuacioCovid");
 
             setImage(imageUrl, nom_localitzacio, content);
 
             RatingBar puntuacioGlobal = findViewById(R.id.puntuacioGlobal);
             puntuacioGlobal.setRating(puntuacio_global);
+
+            TextView puntuacioCovid = findViewById(R.id.puntuacioCovid);
+            puntuacioCovid.setText(puntuacio_Covid);
         }
     }
     private void setImage (String imageUrl, String nom_localitzacio, String content){
-        Log.d(TAG, "setImage: setting nom i imatge als widgets");
+        Log.d(TAG, "setImage: setting nom, descripcio i imatge als widgets");
 
         TextView name = findViewById(R.id.Nom_Localitzacio);
         name.setText(nom_localitzacio);
