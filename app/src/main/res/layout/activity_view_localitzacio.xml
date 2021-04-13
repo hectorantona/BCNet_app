@@ -64,4 +64,10 @@
         android:layout_marginRight="20dp"
         android:text="Descripcio" />
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/descripcio"
+        android:id="@+id/recycler_view"></androidx.recyclerview.widget.RecyclerView>
+
 </RelativeLayout>
