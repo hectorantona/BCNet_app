@@ -1,24 +1,39 @@
 package com.example.bcnet_app.models;
 
 public class DadesCovid {
-    private Integer puntuacioCovid;
+    private String puntuacioCovid;
     private String comentaris;
     private boolean gelHidroalcoholic;
     private boolean distanciaSeguretat;
     private boolean termometre;
+    private boolean mascareta;
 
-    public DadesCovid(Integer puntuacioCovid, String comentaris, boolean gelHidroalcoholic, boolean distanciaSeguretat, boolean termometre) {
+    public DadesCovid(String puntuacioCovid, String comentaris, boolean gelHidroalcoholic, boolean distanciaSeguretat, boolean termometre, boolean mascareta) {
         this.puntuacioCovid = puntuacioCovid;
         this.comentaris = comentaris;
         this.gelHidroalcoholic = gelHidroalcoholic;
         this.distanciaSeguretat = distanciaSeguretat;
         this.termometre = termometre;
+        this.mascareta = mascareta;
     }
 
-    public Integer getPuntuacioCovid() {
-        return 3; //CANVIAR AIXO HARDCODED
+    private Float calcularPuntuacioCovid(){
+        Float aux = (float)0;
+
+        if (isTermometre()) aux = aux + 1;
+        if (isDistanciaSeguretat()) aux = aux + 1;
+        if (isGelHidroalcoholic()) aux = aux + 1;
+        if (isMascareta()) aux = aux + 1;
+
+        aux = (aux * 10)/4;
+        return aux;
     }
-    public void setPuntuacioCovid(Integer puntuacioCovid) {
+
+    public String getPuntuacioGlobal () {
+        return calcularPuntuacioCovid().toString();
+        //return "6.3";
+    }
+    public void setPuntuacioCovid(String puntuacioCovid) {
         this.puntuacioCovid = puntuacioCovid;
     }
 
@@ -43,5 +58,10 @@ public class DadesCovid {
         this.termometre = termometre;
     }
 
-
+    public boolean isMascareta() {
+        return mascareta;
+    }
+    public void setMascareta(boolean mascareta) {
+        this.mascareta = mascareta;
+    }
 }

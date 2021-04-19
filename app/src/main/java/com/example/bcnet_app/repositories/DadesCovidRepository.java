@@ -3,25 +3,26 @@ package com.example.bcnet_app.repositories;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.bcnet_app.models.Comentari;
+import com.example.bcnet_app.models.DadesCovid;
+import com.example.bcnet_app.models.Localitzacio;
 
 import java.util.ArrayList;
 import java.util.List;
 
-
-public class ComentariRepository {
-   // private static final String LOCALITZACIO_SEARCH_SERVICE_BASE_URL = "https://www.googleapis.com/";
+public class DadesCovidRepository {
+    private static final String DADES_COVID_SEARCH_SERVICE_BASE_URL = "https://www.googleapis.com/";
     //URL de la API, aquesta es un exemple
 
     //Singleton patern
-    private static ComentariRepository instance;
+    private static DadesCovidRepository instance;
 
-    public static ComentariRepository getInstance() {
+    public static DadesCovidRepository getInstance() {
         if (instance == null) {
-            instance = new ComentariRepository();
+            instance = new DadesCovidRepository();
         }
         return instance;
     }
-/*
+    /*
     private LocalitzacioSearchService localitzacioSearchService;
     private MutableLiveData<Localitzacio> localitzacioLiveData;
 
@@ -63,21 +64,24 @@ public class ComentariRepository {
         return localitzacioLiveData;
     }*/
 
-    private ArrayList<Comentari> dataSet = new ArrayList<>();
+    private ArrayList<DadesCovid> dataSet = new ArrayList<>();
 
-    public MutableLiveData<List<Comentari>> getComentaris () {
-        setComentaris();
+    public MutableLiveData<List<DadesCovid>> getDadesCovid () {
+        setDadesCovid();
 
-        MutableLiveData<List<Comentari>> data  = new MutableLiveData<>();
+        MutableLiveData<List<DadesCovid>> data = new MutableLiveData<>();
         data.setValue(dataSet);
         return data;
     }
 
-
-
-    private void setComentaris () {
+    private void setDadesCovid() {
         dataSet = new ArrayList<>();
-        Comentari c = new Comentari("Adrià", "comenari 1", (float) 4.0, "1");
-        dataSet.add(c);
+        DadesCovid d = new DadesCovid("2", "Molt Higiènic ;), M'he sentit molt segur", true, true ,true, true);
+        dataSet.add(d);
     }
+
 }
+
+
+
+
