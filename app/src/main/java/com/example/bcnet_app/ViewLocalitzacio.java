@@ -29,6 +29,8 @@ public class ViewLocalitzacio extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     private CommentAdapter mAdapter;
     private CommentViewModel commentViewModel;
+    private String nom_localitzacio;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -57,6 +59,8 @@ public class ViewLocalitzacio extends AppCompatActivity {
             public void onClick(View v) {
                 Intent startIntent = new Intent(getApplicationContext(), FormValoracio.class);
                 //
+
+                startIntent.putExtra("nom_localitzacio", getIntent().getStringExtra("nom_localitzacio"));
                 startActivity(startIntent);
             }
         });

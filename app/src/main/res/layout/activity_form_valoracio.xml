@@ -18,6 +18,16 @@
             android:orientation="vertical"
             android:padding="10dp">
 
+            <TextView
+                android:id="@+id/Nom_Localitzacio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="8dp"
+                android:textSize="20sp"
+                android:textColor="@color/black"
+                android:text="Addis Abeba" />
+
             <RatingBar
                 android:id="@+id/puntuacioIndividual"
                 android:layout_width="wrap_content"
