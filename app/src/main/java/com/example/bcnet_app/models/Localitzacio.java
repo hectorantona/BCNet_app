@@ -1,5 +1,8 @@
 package com.example.bcnet_app.models;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 import java.util.ArrayList;
 
 public class Localitzacio {
@@ -9,9 +12,9 @@ public class Localitzacio {
     "category" : "restaurant"
     }
     */
-/*
-    @SerializedName("name")
-    @Expose */
+
+    @SerializedName("nom")
+    @Expose
     private String name;
     /*
     @SerializedName("categoria")

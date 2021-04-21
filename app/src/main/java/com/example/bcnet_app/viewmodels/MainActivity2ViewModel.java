@@ -34,8 +34,6 @@ public class MainActivity2ViewModel extends ViewModel {
 
 
     public void searchLocalitzacions (String name) {
-        //Aixo es per agafar la apikey
-        //Dotenv dotenv = Dotenv.configure().directory("/assets").filename("env").load();
         Repo.searchLocalitzacio(name);
 
     }

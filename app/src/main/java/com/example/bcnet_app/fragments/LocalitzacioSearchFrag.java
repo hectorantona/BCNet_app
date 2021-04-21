@@ -5,12 +5,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -18,13 +19,12 @@ import com.example.bcnet_app.R;
 import com.example.bcnet_app.adapter.RecyclerViewAdapter;
 import com.example.bcnet_app.models.LocalitzacioResponse;
 import com.example.bcnet_app.viewmodels.MainActivity2ViewModel;
-import com.google.android.material.textfield.TextInputEditText;
 
 public class LocalitzacioSearchFrag extends Fragment {
     private MainActivity2ViewModel viewModel;
     private RecyclerViewAdapter adapter;
 
-    private TextInputEditText nameEditText;
+    private EditText nameEditText;
     private Button searchButton;
 
     @Override
@@ -33,7 +33,8 @@ public class LocalitzacioSearchFrag extends Fragment {
 
         adapter = new RecyclerViewAdapter();
 
-        viewModel = ViewModelProviders.of(this).get(MainActivity2ViewModel.class);
+
+        viewModel = new ViewModelProvider(this).get(MainActivity2ViewModel.class);
         viewModel.init();
         viewModel.getLocalitzacionsResponse().observe(this, new Observer<LocalitzacioResponse>() {
             @Override
@@ -63,12 +64,11 @@ public class LocalitzacioSearchFrag extends Fragment {
                 performSearch();
             }
         });
-
         return view;
     }
 
     public void performSearch() {
-        String name = nameEditText.getEditableText().toString();
+        String name = nameEditText.getText().toString();
 
         viewModel.searchLocalitzacions(name);
     }

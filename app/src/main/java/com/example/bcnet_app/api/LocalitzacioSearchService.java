@@ -6,7 +6,7 @@ import retrofit2.http.GET;
 import retrofit2.http.Query;
 
 public interface LocalitzacioSearchService {
-    @GET("/existsEstablimentDB")
+    @GET("existsEstablimentDB")
     Call<LocalitzacioResponse> searchLocalitzacio(
             //Aqui hem de posar el que farem servir a les crides, a l'exemple era una key word, l'autor i l'Apikey
            // @Query("q") String query, //keyword

@@ -2,11 +2,10 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:layout_margin="8dp">
 
-
-   <com.google.android.material.textfield.TextInputLayout
+   <EditText
        android:layout_width="match_parent"
        android:layout_height="wrap_content"
        android:hint="Nom Localització"
@@ -20,7 +19,7 @@
         android:text="Search"
         android:id="@+id/fragment_localitzacio_search" />
 
-    <androidx.recyclerview.widget.RecyclerView
+   <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/recycler_view" />
