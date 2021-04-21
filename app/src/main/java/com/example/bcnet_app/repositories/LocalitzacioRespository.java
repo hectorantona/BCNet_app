@@ -1,15 +1,22 @@
 package com.example.bcnet_app.repositories;
 
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import com.example.bcnet_app.models.Localitzacio;
+import com.example.bcnet_app.api.LocalitzacioSearchService;
+import com.example.bcnet_app.models.LocalitzacioResponse;
 
-import java.util.ArrayList;
-import java.util.List;
+import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 
 public class LocalitzacioRespository {
-    private static final String LOCALITZACIO_SEARCH_SERVICE_BASE_URL = "https://www.googleapis.com/";
+    private static final String LOCALITZACIO_SEARCH_SERVICE_BASE_URL = "https://us-central1-bcnet-backend.cloudfunctions.net/";
     //URL de la API, aquesta es un exemple
 
     //Singleton patern
@@ -21,12 +28,12 @@ public class LocalitzacioRespository {
         }
         return instance;
     }
-/*
-    private LocalitzacioSearchService localitzacioSearchService;
-    private MutableLiveData<Localitzacio> localitzacioLiveData;
 
-    public LocalitzacioRespository () {
-        localitzacioLiveData = new MutableLiveData<>();
+    private LocalitzacioSearchService localitzacioSearchService;
+    private MutableLiveData<LocalitzacioResponse> localitzacioResponseLiveData;
+
+    public LocalitzacioRespository() {
+        localitzacioResponseLiveData = new MutableLiveData<>();
 
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         //per fer debug
@@ -42,27 +49,27 @@ public class LocalitzacioRespository {
     }
 
     //crida a l'api
-    public void SearchLocalitzacio(String keyword, String name, String apiKey) {
-        localitzacioSearchService.searchLocalitzacio(keyword, name, apiKey)
-                .enqueue(new Callback<Localitzacio>() {
+    public void searchLocalitzacio(String name) {
+        localitzacioSearchService.searchLocalitzacio(name)
+                .enqueue(new Callback<LocalitzacioResponse>() {
                     @Override
-                    public void onResponse(Call<Localitzacio> call, Response<Localitzacio> response) {
+                    public void onResponse(Call<LocalitzacioResponse> call, Response<LocalitzacioResponse> response) {
                         if (response.body() != null) {
-                            localitzacioLiveData.postValue(response.body());
+                            localitzacioResponseLiveData.postValue(response.body());
                         }
                     }
 
                     @Override
-                    public void onFailure(Call<Localitzacio> call, Throwable t) {
-                        localitzacioLiveData.postValue(null);
+                    public void onFailure(Call<LocalitzacioResponse> call, Throwable t) {
+                        localitzacioResponseLiveData.postValue(null);
                     }
                 });
     }
 
-    public LiveData<Localitzacio> getLocalitzacioLiveData() {
-        return localitzacioLiveData;
-    }*/
-
+    public LiveData<LocalitzacioResponse> getLocalitzacioResponseLiveData() {
+        return localitzacioResponseLiveData;
+    }
+/*
     private ArrayList<Localitzacio> dataSet = new ArrayList<>();
 
     public MutableLiveData<List<Localitzacio>> getLocalitzacions () {
@@ -118,6 +125,8 @@ public class LocalitzacioRespository {
                         "divendres\t13:00–15:30\n" +
                         "dissabte\t13:00–15:30\n" +
                         "diumenge\t13:00–15:30\n" , "Restaurant","https://i.pinimg.com/474x/8d/49/08/8d4908649aef4c34bd95e82b2e481841.jpg" )
-        );*/
+        );
     }
+    }*/
 }
+

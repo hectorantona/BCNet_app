@@ -1,13 +1,8 @@
 package com.example.bcnet_app.adapter;
 
-import android.content.Context;
-import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Filter;
-import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -16,9 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.RequestOptions;
 import com.example.bcnet_app.R;
-import com.example.bcnet_app.ViewLocalitzacio;
 import com.example.bcnet_app.models.Localitzacio;
 
 import java.util.ArrayList;
@@ -26,78 +19,62 @@ import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> implements Filterable {
-    private static final String TAG = "RecyclerViewAdapter";
+public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> /*implements Filterable*/ {
 
-    private List <Localitzacio> localitzacioList = new ArrayList<>();
-    private final List<Localitzacio> localitzacioListFull;
+    private List<Localitzacio> result = new ArrayList<>();
+    // private List <Localitzacio> localitzacioList = new ArrayList<>();
+    //private final List<Localitzacio> localitzacioListFull;
 
-    private final Context mContext;
-
-    public RecyclerViewAdapter(Context context, List<Localitzacio> localitzacions) {
-        localitzacioList = localitzacions;
-        localitzacioListFull = new ArrayList<>(localitzacions);
-        this.mContext = context;
-    }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_listitem, parent, false);
-        return new ViewHolder(view);
+        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_listitem, parent, false);
+        return new ViewHolder(itemView);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int i) {
-        Log.d(TAG, "onBindViewHolder: called.");
+        Localitzacio localitzacio = result.get(i);
 
         //Set name de localitzacio
-        holder.mName.setText(localitzacioList.get(i).getName());
-        holder.category.setText(localitzacioList.get(i).getCategory());
+        holder.mName.setText(localitzacio.getName());
+        holder.category.setText(localitzacio.getCategory());
 
-        //Set the image
-        RequestOptions defaultOptions = new RequestOptions()
-                .error(R.drawable.ic_launcher_background);
-        Glide.with(mContext)
-                .setDefaultRequestOptions(defaultOptions)
-                //imatge que estem carregant
-                .load(localitzacioList.get(i).getImageUrl())
+        Glide.with(holder.itemView)
+                .load(localitzacio.getImageUrl())
                 .into((holder).image);
 
-        defaultOptions = new RequestOptions()
-                .error(R.drawable.ic_launcher_background);
-        Glide.with(mContext)
-                .setDefaultRequestOptions(defaultOptions)
-                //Semafor
-                .load(localitzacioList.get(i).getSemaforUrl())
+        Glide.with(holder.itemView)
+                .load(localitzacio.getSemaforUrl())
                 .into((holder).semafor);
 
-        holder.puntuacioGlobal.setText(localitzacioList.get(i).getPuntuacioGlobal());
-        holder.parentLayout.setOnClickListener(new View.OnClickListener() {
-
+        //holder.puntuacioGlobal.setText(localitzacio.getPuntuacioGlobal());
+        //holder.parentLayout.setOnClickListener(new View.OnClickListener() {
+/*
             @Override
             public void onClick(View v) {
-                Log.d(TAG, "onClick: clicked on: " + localitzacioList.get(i).getContent());
+                //Log.d(TAG, "onClick: clicked on: " + localitzacioList.get(i).getContent());
 
                 //Toast.makeText(mContext, localitzacioList.get(i).getContent(), Toast.LENGTH_SHORT).show();
 
                 Intent intent = new Intent(mContext, ViewLocalitzacio.class);
-                intent.putExtra("imatge", localitzacioList.get(i).getImageUrl());
-                intent.putExtra("nom_localitzacio", localitzacioList.get(i).getName());
-                intent.putExtra("content", localitzacioList.get(i).getContent());
-                intent.putExtra("puntuacio_global", localitzacioList.get(i).getPuntuacioGlobal());
+                intent.putExtra("imatge", localitzacio.getImageUrl());
+                intent.putExtra("nom_localitzacio", localitzacio.getName());
+                intent.putExtra("content", localitzacio.getContent());
+                intent.putExtra("puntuacio_global", localitzacio.getPuntuacioGlobal());
 
                 mContext.startActivity(intent);
-            }
-        });
+            }*/
+        //});
     }
 
     @Override
     public int getItemCount() {
-        return localitzacioList.size();
+        return result.size();
     }
 
-    @Override
+    /*@Override
     public Filter getFilter() {
         return FilterLocalitzacio;
     }
@@ -108,10 +85,10 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             List<Localitzacio> filteredList = new ArrayList<>();
 
             if(constraint == null || constraint.length() == 0){
-                filteredList.addAll(localitzacioListFull);
+                filteredList.addAll(result);
             } else {
                 String filterpattern = constraint.toString().toLowerCase().trim();
-                for(Localitzacio l : localitzacioListFull) {
+                for(Localitzacio l : result) {
                     if(l.getName().toLowerCase().contains(filterpattern)){
                         filteredList.add(l);
                     }
@@ -128,12 +105,17 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         }
 
         @Override
-        protected void publishResults(CharSequence constraint, FilterResults results) {
+        public void publishResults(CharSequence constraint, FilterResults results) {
             localitzacioList.clear();
             localitzacioList.addAll((List)results.values);
             notifyDataSetChanged();
         }
-    };
+    };*/
+
+    public void setResults(List<Localitzacio> results) {
+        this.result = results;
+        notifyDataSetChanged();
+    }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
 

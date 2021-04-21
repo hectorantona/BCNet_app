@@ -19,5 +19,7 @@
     <string name="sign_up">Sign up</string>
     <string name="no_tens_compte">No tens compte?</string>
     <string name="_5_estrelles">5 estrelles</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

@@ -1,45 +1,22 @@
 package com.example.bcnet_app;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.widget.SearchView;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-import com.example.bcnet_app.adapter.RecyclerViewAdapter;
-import com.example.bcnet_app.models.Localitzacio;
-import com.example.bcnet_app.viewmodels.MainActivity2ViewModel;
-
-import java.util.List;
 
 public class MainActivity2 extends AppCompatActivity {
-
-    private static final String TAG = "MainActivity2";
-
-    private RecyclerView mRecyclerView;
-    private RecyclerViewAdapter mAdapter;
-    private MainActivity2ViewModel mMainActivity2ViewModel;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
 
-        mRecyclerView = findViewById(R.id.recycler_view);
+       /* mRecyclerView = findViewById(R.id.recycler_view);
         mMainActivity2ViewModel = new ViewModelProvider(this).get(MainActivity2ViewModel.class);
 
         mMainActivity2ViewModel.init();
 
-        mMainActivity2ViewModel.getLocalitzacions().observe(this, new Observer<List<Localitzacio>>() {
+        mMainActivity2ViewModel.getLocalitzacions().observe(this, new Observer<Localitzacio>() {
             @Override
             public void onChanged(List<Localitzacio> localitzacios) {
                 mAdapter.notifyDataSetChanged();
@@ -56,8 +33,8 @@ public class MainActivity2 extends AppCompatActivity {
         mRecyclerView.setAdapter(mAdapter);
         mRecyclerView.setLayoutManager(linearLayoutManager);
     }
-
-    @Override
+*/
+   /* @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.search_menu, menu);
@@ -78,8 +55,8 @@ public class MainActivity2 extends AppCompatActivity {
             }
         });
         return true;
-    }
-
+    }*/
+/*
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
@@ -93,5 +70,6 @@ public class MainActivity2 extends AppCompatActivity {
                 return true;
         }
         return super.onOptionsItemSelected(item);
+    }*/
     }
 }
