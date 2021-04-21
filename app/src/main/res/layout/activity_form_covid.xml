@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F7ECFF"
+    tools:context=".FormCovid">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#F7ECFF"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="12dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="10dp"
+            android:background="#F7ECFF"
+            >
+
+            <TextView
+                android:id="@+id/Nom_Localitzacio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
+                android:textSize="20sp"
+                android:textColor="@color/black"
+                android:text="Addis Abeba" />
+
+
+            <TextView
+                android:id="@+id/Instruccions"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="1dp"
+                android:layout_marginLeft="32dp"
+                android:layout_marginRight="32dp"
+                android:textColor="@color/black"
+                android:text="Marca quines mesures de seguretat hi ha a l'establiment:" />
+
+            <CheckBox
+                android:id="@+id/checkBox_gelHidroalcoholic"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="left"
+                android:layout_margin="6dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:button="@drawable/btn_checkbox_gel_hidro"
+                android:text="Gel Hidroalcohòlic"
+                android:textSize="18sp" />
+
+            <CheckBox
+                android:id="@+id/checkBox_distanciaSeguretat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_margin="6dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:button="@drawable/btn_checkbox_distancia"
+                android:text="Distància de Seguretat"
+                android:textSize="18sp" />
+
+            <CheckBox
+                android:id="@+id/checkBox_termometre"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_margin="6dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:button="@drawable/btn_checkbox_termometre"
+                android:text="Termòmetre"
+                android:textSize="18sp" />
+
+            <CheckBox
+                android:id="@+id/checkBox_mascareta"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_margin="6dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:button="@drawable/btn_checkbox_mask"
+                android:text="Mascareta"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/editTextComentari"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_margin="8dp"
+                android:background="@drawable/edit_back"
+                android:ems="10"
+                android:gravity="start|top"
+                android:hint="Introdueix un comentari"
+                android:inputType="textMultiLine"
+                android:padding="8dp" />
+
+            <Button
+
+                android:id="@+id/BtnComentar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:background="@drawable/btn_back"
+                android:text="Comenta"
+                android:textColor="@color/white" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

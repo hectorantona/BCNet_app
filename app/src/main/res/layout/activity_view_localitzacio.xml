@@ -63,6 +63,19 @@
         android:layout_marginLeft="20dp"
         android:text="PuntuacióCovid [1-3]" />
 
+    <Button
+        android:id="@+id/BtnCovid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/BtnValorar"
+        android:layout_marginStart="137dp"
+        android:layout_marginLeft="133dp"
+        android:layout_marginTop="3dp"
+        android:layout_toEndOf="@+id/puntuacioCovid"
+        android:layout_toRightOf="@+id/puntuacioCovid"
+        android:text="Covid"
+        app:backgroundTint="#81D4FA" />
+
     <TextView
         android:id="@+id/descripcio"
         android:layout_width="match_parent"

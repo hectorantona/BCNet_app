@@ -64,6 +64,17 @@ public class ViewLocalitzacio extends AppCompatActivity {
                 startActivity(startIntent);
             }
         });
+        Button BtnCovid = (Button)findViewById(R.id.BtnCovid);
+        BtnCovid.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent startIntent = new Intent(getApplicationContext(), FormCovid.class);
+                //
+
+                startIntent.putExtra("nom_localitzacio", getIntent().getStringExtra("nom_localitzacio"));
+                startActivity(startIntent);
+            }
+        });
     }
 
     private void initRecycleView() {

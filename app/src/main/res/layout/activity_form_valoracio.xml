@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#F7ECFF"
     tools:context=".FormValoracio">
 
     <androidx.cardview.widget.CardView
@@ -16,7 +17,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:padding="10dp">
+            android:padding="10dp"
+            android:background="#F7ECFF">
 
             <TextView
                 android:id="@+id/Nom_Localitzacio"
