@@ -1,5 +1,7 @@
 package com.example.bcnet_app.repositories;
 
+import android.util.Log;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
@@ -17,6 +19,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class LocalitzacioRespository {
     private static final String LOCALITZACIO_SEARCH_SERVICE_BASE_URL = "https://us-central1-bcnet-backend.cloudfunctions.net/";
+    private static final String TAG = "REPO";
     //URL de la API, aquesta es un exemple
 
     //Singleton patern
@@ -55,18 +58,23 @@ public class LocalitzacioRespository {
                     @Override
                     public void onResponse(Call<LocalitzacioResponse> call, Response<LocalitzacioResponse> response) {
                         if (response.body() != null) {
+                            Log.d(TAG, "CORRECTE: " + response.body());
+
                             localitzacioResponseLiveData.postValue(response.body());
                         }
                     }
 
                     @Override
                     public void onFailure(Call<LocalitzacioResponse> call, Throwable t) {
+                        Log.d(TAG, "HOLA: " + localitzacioResponseLiveData.getValue());
                         localitzacioResponseLiveData.postValue(null);
                     }
                 });
     }
 
     public LiveData<LocalitzacioResponse> getLocalitzacioResponseLiveData() {
+        Log.d(TAG, "onClick: clicked on: " + localitzacioResponseLiveData.getValue());
+
         return localitzacioResponseLiveData;
     }
 /*

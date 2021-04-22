@@ -1,5 +1,6 @@
 package com.example.bcnet_app.adapter;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +22,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> /*implements Filterable*/ {
 
+    private static final String TAG = "CERCA";
     private List<Localitzacio> result = new ArrayList<>();
     // private List <Localitzacio> localitzacioList = new ArrayList<>();
     //private final List<Localitzacio> localitzacioListFull;
@@ -113,7 +115,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     };*/
 
     public void setResults(List<Localitzacio> results) {
+        //Log.d(TAG, "onClick: clicked on: " + result.get(0).getContent());
         this.result = results;
+
         notifyDataSetChanged();
     }
 

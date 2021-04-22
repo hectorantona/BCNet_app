@@ -10,6 +10,6 @@ public interface LocalitzacioSearchService {
     Call<LocalitzacioResponse> searchLocalitzacio(
             //Aqui hem de posar el que farem servir a les crides, a l'exemple era una key word, l'autor i l'Apikey
            // @Query("q") String query, //keyword
-            @Query("name") String name
+            @Query("nom") String name
     );
 }
