@@ -6,6 +6,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.bcnet_app.api.LocalitzacioSearchService;
+import com.example.bcnet_app.models.Localitzacio;
 import com.example.bcnet_app.models.LocalitzacioResponse;
 
 import okhttp3.OkHttpClient;
@@ -20,8 +21,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class LocalitzacioRespository {
     private static final String LOCALITZACIO_SEARCH_SERVICE_BASE_URL = "https://us-central1-bcnet-backend.cloudfunctions.net/";
     private static final String TAG = "REPO";
-    //URL de la API, aquesta es un exemple
-
     //Singleton patern
     private static LocalitzacioRespository instance;
 
@@ -34,9 +33,13 @@ public class LocalitzacioRespository {
 
     private LocalitzacioSearchService localitzacioSearchService;
     private MutableLiveData<LocalitzacioResponse> localitzacioResponseLiveData;
+    private MutableLiveData<Localitzacio> localitzacioLiveData;
+
 
     public LocalitzacioRespository() {
         localitzacioResponseLiveData = new MutableLiveData<>();
+        localitzacioLiveData = new MutableLiveData<>();
+
 
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         //per fer debug
@@ -54,20 +57,20 @@ public class LocalitzacioRespository {
     //crida a l'api
     public void searchLocalitzacio(String name) {
         localitzacioSearchService.searchLocalitzacio(name)
-                .enqueue(new Callback<LocalitzacioResponse>() {
+                .enqueue(new Callback<Localitzacio>() {
                     @Override
-                    public void onResponse(Call<LocalitzacioResponse> call, Response<LocalitzacioResponse> response) {
+                    public void onResponse(Call<Localitzacio> call, Response<Localitzacio> response) {
                         if (response.body() != null) {
                             Log.d(TAG, "CORRECTE: " + response.body());
 
-                            localitzacioResponseLiveData.postValue(response.body());
+                            localitzacioLiveData.setValue(response.body());
                         }
                     }
 
                     @Override
-                    public void onFailure(Call<LocalitzacioResponse> call, Throwable t) {
-                        Log.d(TAG, "HOLA: " + localitzacioResponseLiveData.getValue());
-                        localitzacioResponseLiveData.postValue(null);
+                    public void onFailure(Call<Localitzacio> call, Throwable t) {
+                        Log.d(TAG, "Fail: " + localitzacioLiveData.getValue());
+                        localitzacioLiveData.postValue(null);
                     }
                 });
     }
@@ -76,6 +79,12 @@ public class LocalitzacioRespository {
         Log.d(TAG, "onClick: clicked on: " + localitzacioResponseLiveData.getValue());
 
         return localitzacioResponseLiveData;
+    }
+
+    public LiveData<Localitzacio> getLocalitzacioLiveData() {
+        Log.d(TAG, "onClick: clicked on: " + localitzacioLiveData.getValue());
+
+        return localitzacioLiveData;
     }
 /*
     private ArrayList<Localitzacio> dataSet = new ArrayList<>();

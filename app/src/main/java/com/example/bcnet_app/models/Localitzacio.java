@@ -15,7 +15,7 @@ public class Localitzacio {
 
     @SerializedName("nom")
     @Expose
-    private String name;
+    private String nom;
     /*
     @SerializedName("categoria")
     @Expose */
@@ -36,7 +36,7 @@ public class Localitzacio {
     //}
     //Fi exemple retrofit
     public Localitzacio(String imageUrl, String name, String content, String category, String semaforUrl) {
-        this.name = name;
+        this.nom = name;
         this.imageUrl = imageUrl;
         this.content = content;
         this.category = category;
@@ -58,8 +58,8 @@ public class Localitzacio {
 
     public Localitzacio() {
     }
-    public String getName() {return name;}
-    public void setName(String title) {this.name=title;}
+    public String getName() {return nom;}
+    public void setName(String title) {this.nom=title;}
 
     public String getImageUrl () { return imageUrl;}
     public void setImageUrl (String imageUrl) {this.imageUrl = imageUrl;}

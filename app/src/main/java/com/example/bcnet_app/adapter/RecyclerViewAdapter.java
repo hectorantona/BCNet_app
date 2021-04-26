@@ -1,6 +1,5 @@
 package com.example.bcnet_app.adapter;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -71,6 +70,21 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         //});
     }
 
+    //Canviar el nom d'aquesta
+   /* public void setResults(List<Localitzacio> results) {
+        //Log.d(TAG, "onClick: clicked on: " + result.get(0).getContent());
+        this.result = results;
+
+        notifyDataSetChanged();
+    }*/
+
+    public void setResults(Localitzacio l) {
+        //Log.d(TAG, "onClick: clicked on: " + result.get(0).getContent());
+        result.add(l);
+
+        notifyDataSetChanged();
+    }
+
     @Override
     public int getItemCount() {
         return result.size();
@@ -114,12 +128,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         }
     };*/
 
-    public void setResults(List<Localitzacio> results) {
-        //Log.d(TAG, "onClick: clicked on: " + result.get(0).getContent());
-        this.result = results;
 
-        notifyDataSetChanged();
-    }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
