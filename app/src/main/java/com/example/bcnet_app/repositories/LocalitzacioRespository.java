@@ -75,6 +75,25 @@ public class LocalitzacioRespository {
                 });
     }
 
+    public void searchAllLocalitzacio() {
+        localitzacioSearchService.allLocalitzacions()
+                .enqueue(new Callback<Localitzacio>() {
+                    @Override
+                    public void onResponse(Call<Localitzacio> call, Response<Localitzacio> response) {
+                        if (response.body() != null) {
+                            Log.d(TAG, "CORRECTE: " + response.body());
+                            localitzacioLiveData.setValue(response.body());
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<Localitzacio> call, Throwable t) {
+                        Log.d(TAG, "Fail: " + localitzacioLiveData.getValue());
+                        localitzacioLiveData.postValue(null);
+                    }
+                });
+    }
+
     public LiveData<LocalitzacioResponse> getLocalitzacioResponseLiveData() {
         Log.d(TAG, "onClick: clicked on: " + localitzacioResponseLiveData.getValue());
 
@@ -83,7 +102,8 @@ public class LocalitzacioRespository {
 
     public LiveData<Localitzacio> getLocalitzacioLiveData() {
         Log.d(TAG, "onClick: clicked on: " + localitzacioLiveData.getValue());
-
+        //Localitzacio l = new Localitzacio("a", "Museu", "aa", "a", "a");
+        //localitzacioLiveData.postValue(l);
         return localitzacioLiveData;
     }
 /*

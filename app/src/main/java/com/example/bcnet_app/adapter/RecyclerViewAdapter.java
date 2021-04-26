@@ -50,9 +50,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 .load(localitzacio.getSemaforUrl())
                 .into((holder).semafor);
 
-        //holder.puntuacioGlobal.setText(localitzacio.getPuntuacioGlobal());
-        //holder.parentLayout.setOnClickListener(new View.OnClickListener() {
-/*
+        holder.puntuacioGlobal.setText(localitzacio.getPuntuacioGlobal());
+     /*   holder.parentLayout.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
                 //Log.d(TAG, "onClick: clicked on: " + localitzacioList.get(i).getContent());
@@ -66,8 +66,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 intent.putExtra("puntuacio_global", localitzacio.getPuntuacioGlobal());
 
                 mContext.startActivity(intent);
-            }*/
-        //});
+            }
+        //});*/
     }
 
     //Canviar el nom d'aquesta

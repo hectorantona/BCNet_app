@@ -16,9 +16,9 @@ public class Localitzacio {
     @SerializedName("nom")
     @Expose
     private String nom;
-    /*
+
     @SerializedName("categoria")
-    @Expose */
+    @Expose
     private String category;
 
     private String imageUrl;

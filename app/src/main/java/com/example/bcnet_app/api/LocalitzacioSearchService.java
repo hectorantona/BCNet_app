@@ -13,4 +13,9 @@ public interface LocalitzacioSearchService {
            // @Query("q") String query, //keyword
             @Query("nom") String name
     );
+
+    @GET("allEstablimentsDB")
+    Call<Localitzacio> allLocalitzacions(
+            //Aqui hem de posar el que farem servir a les crides, a l'exemple era una key word, l'autor i l'Apikey
+    );
 }

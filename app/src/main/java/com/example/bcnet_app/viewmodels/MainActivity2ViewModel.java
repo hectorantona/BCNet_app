@@ -45,8 +45,12 @@ public class MainActivity2ViewModel extends ViewModel {
         return localitzacioLiveData;}
 
 
+
     public void searchLocalitzacions (String name) {
         Repo.searchLocalitzacio(name);
+    }
+    public void searchAllLocalitzacions () {
+        Repo.searchAllLocalitzacio();
     }
 
 }

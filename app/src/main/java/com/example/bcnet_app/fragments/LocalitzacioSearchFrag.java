@@ -44,6 +44,7 @@ public class LocalitzacioSearchFrag extends Fragment {
                 }
             }
         });
+
     }
 
     @Nullable
@@ -57,6 +58,8 @@ public class LocalitzacioSearchFrag extends Fragment {
 
         nameEditText = view.findViewById(R.id.fragment_localitzacio_name);
         searchButton = view.findViewById(R.id.fragment_localitzacio_search);
+
+        viewModel.searchAllLocalitzacions();
 
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
