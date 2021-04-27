@@ -31,7 +31,7 @@ public class LocalitzacioSearchFrag extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        adapter = new RecyclerViewAdapter();
+        adapter = new RecyclerViewAdapter(getActivity());
 
         viewModel = new ViewModelProvider(this).get(MainActivity2ViewModel.class);
         viewModel.init();

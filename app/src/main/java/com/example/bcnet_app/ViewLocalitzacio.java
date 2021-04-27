@@ -51,7 +51,7 @@ public class ViewLocalitzacio extends AppCompatActivity {
 
         initRecycleView();
 
-        getIncomingIntent();
+        Intent intent = getIntent();
 
         Button BtnValorar = (Button)findViewById(R.id.BtnValorar);
         BtnValorar.setOnClickListener(new View.OnClickListener() {

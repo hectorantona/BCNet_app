@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.bcnet_app.models.Localitzacio;
-import com.example.bcnet_app.models.LocalitzacioResponse;
 import com.example.bcnet_app.repositories.LocalitzacioRespository;
 
 public class MainActivity2ViewModel extends ViewModel {

@@ -1,5 +1,7 @@
 package com.example.bcnet_app.adapter;
 
+import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.bcnet_app.R;
+import com.example.bcnet_app.ViewLocalitzacio;
 import com.example.bcnet_app.models.Localitzacio;
 
 import java.util.ArrayList;
@@ -23,9 +26,14 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     private static final String TAG = "CERCA";
     private List<Localitzacio> result = new ArrayList<>();
+    private Context context;
     // private List <Localitzacio> localitzacioList = new ArrayList<>();
     //private final List<Localitzacio> localitzacioListFull;
 
+
+    public RecyclerViewAdapter(Context context) {
+        this.context = context;
+    }
 
     @NonNull
     @Override
@@ -51,23 +59,25 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 .into((holder).semafor);
 
         holder.puntuacioGlobal.setText(localitzacio.getPuntuacioGlobal());
-     /*   holder.parentLayout.setOnClickListener(new View.OnClickListener() {
+        holder.parentLayout.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
                 //Log.d(TAG, "onClick: clicked on: " + localitzacioList.get(i).getContent());
-
                 //Toast.makeText(mContext, localitzacioList.get(i).getContent(), Toast.LENGTH_SHORT).show();
-
-                Intent intent = new Intent(mContext, ViewLocalitzacio.class);
-                intent.putExtra("imatge", localitzacio.getImageUrl());
-                intent.putExtra("nom_localitzacio", localitzacio.getName());
-                intent.putExtra("content", localitzacio.getContent());
-                intent.putExtra("puntuacio_global", localitzacio.getPuntuacioGlobal());
-
-                mContext.startActivity(intent);
+                viewlocalitzacio(localitzacio);
             }
-        //});*/
+        });
+    }
+
+    private void viewlocalitzacio (Localitzacio localitzacio) {
+        Intent intent = new Intent(context, ViewLocalitzacio.class);
+        intent.putExtra("imatge", localitzacio.getImageUrl());
+        intent.putExtra("nom_localitzacio", localitzacio.getName());
+        intent.putExtra("content", localitzacio.getContent());
+        intent.putExtra("puntuacio_global", localitzacio.getPuntuacioGlobal());
+
+        context.startActivity(intent);
     }
 
     //Canviar el nom d'aquesta

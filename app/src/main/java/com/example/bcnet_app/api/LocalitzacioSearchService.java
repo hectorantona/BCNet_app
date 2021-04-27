@@ -1,6 +1,7 @@
 package com.example.bcnet_app.api;
 
 import com.example.bcnet_app.models.Localitzacio;
+import com.example.bcnet_app.models.LocalitzacionsSearch;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
@@ -15,7 +16,7 @@ public interface LocalitzacioSearchService {
     );
 
     @GET("allEstablimentsDB")
-    Call<Localitzacio> allLocalitzacions(
+    Call<LocalitzacionsSearch> allLocalitzacions(
             //Aqui hem de posar el que farem servir a les crides, a l'exemple era una key word, l'autor i l'Apikey
     );
 }

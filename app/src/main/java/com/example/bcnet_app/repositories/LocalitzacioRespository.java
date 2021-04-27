@@ -7,7 +7,7 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.example.bcnet_app.api.LocalitzacioSearchService;
 import com.example.bcnet_app.models.Localitzacio;
-import com.example.bcnet_app.models.LocalitzacioResponse;
+import com.example.bcnet_app.models.LocalitzacionsSearch;
 
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -32,8 +32,9 @@ public class LocalitzacioRespository {
     }
 
     private LocalitzacioSearchService localitzacioSearchService;
-    private MutableLiveData<LocalitzacioResponse> localitzacioResponseLiveData;
+    private MutableLiveData<LocalitzacionsSearch> localitzacioResponseLiveData;
     private MutableLiveData<Localitzacio> localitzacioLiveData;
+
 
 
     public LocalitzacioRespository() {
@@ -61,8 +62,10 @@ public class LocalitzacioRespository {
                     @Override
                     public void onResponse(Call<Localitzacio> call, Response<Localitzacio> response) {
                         if (response.body() != null) {
-                            Log.d(TAG, "CORRECTE: " + response.body());
+                            Localitzacio l = response.body();
 
+                            Log.d(TAG, "CORRECTE: " + response.body());
+                            Log.d(TAG, "Localitzacio: " + l.getName());
                             localitzacioLiveData.setValue(response.body());
                         }
                     }
@@ -77,24 +80,27 @@ public class LocalitzacioRespository {
 
     public void searchAllLocalitzacio() {
         localitzacioSearchService.allLocalitzacions()
-                .enqueue(new Callback<Localitzacio>() {
+                .enqueue(new Callback<LocalitzacionsSearch>() {
                     @Override
-                    public void onResponse(Call<Localitzacio> call, Response<Localitzacio> response) {
+                    public void onResponse(Call<LocalitzacionsSearch> call, Response<LocalitzacionsSearch> response) {
                         if (response.body() != null) {
+                            //LocalitzacioResponse l = response.body();
+                            //Log.d(TAG, "CORRECTE: " + l.getTotalItems());
                             Log.d(TAG, "CORRECTE: " + response.body());
-                            localitzacioLiveData.setValue(response.body());
+                            localitzacioResponseLiveData.postValue(response.body());
+
                         }
                     }
 
                     @Override
-                    public void onFailure(Call<Localitzacio> call, Throwable t) {
+                    public void onFailure(Call<LocalitzacionsSearch> call, Throwable t) {
                         Log.d(TAG, "Fail: " + localitzacioLiveData.getValue());
                         localitzacioLiveData.postValue(null);
                     }
                 });
     }
 
-    public LiveData<LocalitzacioResponse> getLocalitzacioResponseLiveData() {
+    public LiveData<LocalitzacionsSearch> getLocalitzacioResponseLiveData() {
         Log.d(TAG, "onClick: clicked on: " + localitzacioResponseLiveData.getValue());
 
         return localitzacioResponseLiveData;
