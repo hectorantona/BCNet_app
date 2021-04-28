@@ -16,6 +16,7 @@ import com.bumptech.glide.Glide;
 import com.example.bcnet_app.R;
 import com.example.bcnet_app.ViewLocalitzacio;
 import com.example.bcnet_app.models.Localitzacio;
+import com.example.bcnet_app.models.LocalitzacionsSearch;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -88,9 +89,11 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         notifyDataSetChanged();
     }*/
 
-    public void setResults(Localitzacio l) {
+    public void setResults(LocalitzacionsSearch l) {
         //Log.d(TAG, "onClick: clicked on: " + result.get(0).getContent());
-        result.add(l);
+        for (int i = 0; i < l.getnumelements(); ++i) {
+            result.add(l.getelemi(i));
+        }
 
         notifyDataSetChanged();
     }

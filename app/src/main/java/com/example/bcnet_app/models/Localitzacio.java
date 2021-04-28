@@ -21,7 +21,10 @@ public class Localitzacio {
     @Expose
     private String category;
 
+    @SerializedName("fotografia")
+    @Expose
     private String imageUrl;
+
     private String content;
     private Float puntuacioGlobal;
     private ArrayList<Comentari> valoracions;

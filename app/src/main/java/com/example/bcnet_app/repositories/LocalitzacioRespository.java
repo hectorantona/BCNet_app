@@ -32,13 +32,13 @@ public class LocalitzacioRespository {
     }
 
     private LocalitzacioSearchService localitzacioSearchService;
-    private MutableLiveData<LocalitzacionsSearch> localitzacioResponseLiveData;
+    private MutableLiveData<LocalitzacionsSearch> localitzacionsSearchLiveData;
     private MutableLiveData<Localitzacio> localitzacioLiveData;
 
 
 
     public LocalitzacioRespository() {
-        localitzacioResponseLiveData = new MutableLiveData<>();
+        localitzacionsSearchLiveData = new MutableLiveData<>();
         localitzacioLiveData = new MutableLiveData<>();
 
 
@@ -86,8 +86,12 @@ public class LocalitzacioRespository {
                         if (response.body() != null) {
                             //LocalitzacioResponse l = response.body();
                             //Log.d(TAG, "CORRECTE: " + l.getTotalItems());
+                            LocalitzacionsSearch ls = new LocalitzacionsSearch();
+                            ls = response.body();
                             Log.d(TAG, "CORRECTE: " + response.body());
-                            localitzacioResponseLiveData.postValue(response.body());
+                            Log.d(TAG, "Num elements: " + ls.getnumelements());
+                            localitzacionsSearchLiveData.postValue(response.body());
+
 
                         }
                     }
@@ -95,15 +99,15 @@ public class LocalitzacioRespository {
                     @Override
                     public void onFailure(Call<LocalitzacionsSearch> call, Throwable t) {
                         Log.d(TAG, "Fail: " + localitzacioLiveData.getValue());
-                        localitzacioLiveData.postValue(null);
+                        localitzacionsSearchLiveData.postValue(null);
                     }
                 });
     }
 
-    public LiveData<LocalitzacionsSearch> getLocalitzacioResponseLiveData() {
-        Log.d(TAG, "onClick: clicked on: " + localitzacioResponseLiveData.getValue());
+    public LiveData<LocalitzacionsSearch> getlocalitzacions() {
+        Log.d(TAG, "onClick: clicked on: " + localitzacionsSearchLiveData.getValue());
 
-        return localitzacioResponseLiveData;
+        return localitzacionsSearchLiveData;
     }
 
     public LiveData<Localitzacio> getLocalitzacioLiveData() {

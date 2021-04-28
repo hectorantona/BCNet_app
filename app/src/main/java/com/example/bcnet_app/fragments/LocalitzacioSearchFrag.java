@@ -17,7 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bcnet_app.R;
 import com.example.bcnet_app.adapter.RecyclerViewAdapter;
-import com.example.bcnet_app.models.Localitzacio;
+import com.example.bcnet_app.models.LocalitzacionsSearch;
 import com.example.bcnet_app.viewmodels.MainActivity2ViewModel;
 
 public class LocalitzacioSearchFrag extends Fragment {
@@ -36,9 +36,9 @@ public class LocalitzacioSearchFrag extends Fragment {
         viewModel = new ViewModelProvider(this).get(MainActivity2ViewModel.class);
         viewModel.init();
         //fero tmb per el response per ara no esta
-        viewModel.getLocalitzacions().observe(this, new Observer<Localitzacio>() {
+        viewModel.getLocalitzacions().observe(this, new Observer<LocalitzacionsSearch>() {
             @Override
-            public void onChanged(Localitzacio l) {
+            public void onChanged(LocalitzacionsSearch l) {
                 if (l != null) {
                     adapter.setResults(l);
                 }
