@@ -36,7 +36,7 @@ public class LocalitzacioRespository {
     private MutableLiveData<Localitzacio> localitzacioLiveData;
 
 
-
+//ha de ser privat
     public LocalitzacioRespository() {
         localitzacionsSearchLiveData = new MutableLiveData<>();
         localitzacioLiveData = new MutableLiveData<>();
@@ -86,10 +86,6 @@ public class LocalitzacioRespository {
                         if (response.body() != null) {
                             //LocalitzacioResponse l = response.body();
                             //Log.d(TAG, "CORRECTE: " + l.getTotalItems());
-                            LocalitzacionsSearch ls = new LocalitzacionsSearch();
-                            ls = response.body();
-                            Log.d(TAG, "CORRECTE: " + response.body());
-                            Log.d(TAG, "Num elements: " + ls.getnumelements());
                             localitzacionsSearchLiveData.postValue(response.body());
 
 

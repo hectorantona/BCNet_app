@@ -3,7 +3,6 @@ package com.example.bcnet_app.viewmodels;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.example.bcnet_app.models.Localitzacio;
 import com.example.bcnet_app.models.LocalitzacionsSearch;
 import com.example.bcnet_app.repositories.LocalitzacioRespository;
 
@@ -11,7 +10,7 @@ public class MainActivity2ViewModel extends ViewModel {
 
     private static final String TAG = "MainActivity2ViewModel";
     private LiveData<LocalitzacionsSearch> localitzacionsSearchLiveData;
-    private LiveData<Localitzacio> localitzacioLiveData;
+
 
     //private MutableLiveData<List<Localitzacio>> mLocalitzacions;
     private LocalitzacioRespository Repo;
