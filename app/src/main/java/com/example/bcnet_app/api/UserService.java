@@ -17,4 +17,7 @@ public interface UserService {
             @Query("password") String qpassword
     );
 
+    //@POST("LoginUserDB")
+    //Call<User>
+
 }

@@ -2,48 +2,51 @@ package com.example.bcnet_app;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.TextPaint;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
-
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
+
+import com.google.android.material.textfield.TextInputLayout;
 
 public class MainActivity extends AppCompatActivity{
 
+    //private UserLoginTask mAuthTask = null;
 
+    private EditText user;
+    private EditText password;
 
-    EditText user, password;
-    Button LoginBtn, SignupBtn;
+    private Button LoginBtn;
+    private Button SignupBtn;
+
+    private TextInputLayout mFloatLabelUserId;
+    private TextInputLayout mFloatLabelPassword;
+    private View mLoginFormView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        password = findViewById(R.id.password);
         user = findViewById(R.id.user);
-        SignupBtn = (Button)findViewById(R.id.SignupBtn);
+        password = findViewById(R.id.password);
+
+        mFloatLabelUserId = (TextInputLayout) findViewById(R.id.float_label_user);
+        mFloatLabelPassword = (TextInputLayout) findViewById(R.id.float_label_password);
+
+        mLoginFormView = findViewById(R.id.login_form);
+
         LoginBtn = (Button)findViewById(R.id.LoginBtn);
+        SignupBtn = (Button)findViewById(R.id.SignupBtn);
+
 
         //click login
         LoginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Validate inputs
-                String useri = String.valueOf(user.getText());
-                String passwordi = String.valueOf(password.getText());
-
-                Intent startIntent = new Intent(getApplicationContext(), MainActivity2.class);
-                startActivity(startIntent);
+                attemptLogin();
             }
         });
 
@@ -56,4 +59,83 @@ public class MainActivity extends AppCompatActivity{
             }
         });
     }
+
+    private boolean isUserIdValid (String u) {
+        return u.length() > 0;
+    }
+
+    private boolean isPasswordValid(String p) {
+        return p.length() > 4;
+    }
+
+    private void attemptLogin() {
+
+        /*if (mAuthTask != null) {
+            return;
+        }*/
+
+        // Reset errors.
+        mFloatLabelUserId.setError(null);
+        mFloatLabelPassword.setError(null);
+
+        // Store values at the time of the login attempt.
+        String useri = user.getText().toString();
+        String passwordi = password.getText().toString();
+
+        boolean cancel = false;
+        View focusView = null;
+
+        // Check for a valid password, if the user entered one.
+        if (TextUtils.isEmpty(passwordi)) {
+            mFloatLabelPassword.setError(getString(R.string.error_field_required));
+            focusView = mFloatLabelPassword;
+            cancel = true;
+        } else if (!isPasswordValid(passwordi)) {
+            mFloatLabelPassword.setError(getString(R.string.error_invalid_password));
+            focusView = mFloatLabelPassword;
+            cancel = true;
+        }
+
+        // Verificar si el ID tiene contenido.
+        if (TextUtils.isEmpty(useri)) {
+            mFloatLabelUserId.setError(getString(R.string.error_field_required));
+            focusView = mFloatLabelUserId;
+            cancel = true;
+        } else if (!isUserIdValid(useri)) {
+            mFloatLabelUserId.setError(getString(R.string.error_invalid_user));
+            focusView = mFloatLabelUserId;
+            cancel = true;
+        }
+
+        if (cancel) {
+            // There was an error; don't attempt login and focus the first
+            // form field with an error.
+            focusView.requestFocus();
+        } else {
+            //Login
+            Intent startIntent = new Intent(getApplicationContext(), MainActivity2.class);
+            startActivity(startIntent);
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

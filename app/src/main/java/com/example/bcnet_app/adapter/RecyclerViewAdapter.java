@@ -29,7 +29,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     private List<Localitzacio> result = new ArrayList<>();
     private Context context;
     // private List <Localitzacio> localitzacioList = new ArrayList<>();
-    //private final List<Localitzacio> localitzacioListFull;
+    // private final List<Localitzacio> localitzacioListFull;
 
 
     public RecyclerViewAdapter(Context context) {
