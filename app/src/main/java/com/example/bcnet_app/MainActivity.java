@@ -8,7 +8,9 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 
+import com.example.bcnet_app.viewmodels.LoginViewModel;
 import com.google.android.material.textfield.TextInputLayout;
 
 public class MainActivity extends AppCompatActivity{
@@ -25,6 +27,8 @@ public class MainActivity extends AppCompatActivity{
     private TextInputLayout mFloatLabelPassword;
     private View mLoginFormView;
 
+    private LoginViewModel loginViewModel;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +44,9 @@ public class MainActivity extends AppCompatActivity{
 
         LoginBtn = (Button)findViewById(R.id.LoginBtn);
         SignupBtn = (Button)findViewById(R.id.SignupBtn);
+
+        loginViewModel = new ViewModelProvider(this).get(LoginViewModel.class);
+        loginViewModel.init();
 
 
         //click login
@@ -69,10 +76,6 @@ public class MainActivity extends AppCompatActivity{
     }
 
     private void attemptLogin() {
-
-        /*if (mAuthTask != null) {
-            return;
-        }*/
 
         // Reset errors.
         mFloatLabelUserId.setError(null);
@@ -113,6 +116,7 @@ public class MainActivity extends AppCompatActivity{
             focusView.requestFocus();
         } else {
             //Login
+            loginViewModel.login(useri, passwordi);
             Intent startIntent = new Intent(getApplicationContext(), MainActivity2.class);
             startActivity(startIntent);
         }
