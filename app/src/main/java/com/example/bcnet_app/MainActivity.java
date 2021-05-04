@@ -158,7 +158,5 @@ public class MainActivity extends AppCompatActivity{
             });
 
         }
-            //SharedPreferences sharedpreferences = getSharedPreferences(UserRepository.MyPREFERENCES, Context.MODE_PRIVATE);//Commit de dades de l'user
-
     }
 }

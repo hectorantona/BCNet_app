@@ -2,9 +2,7 @@ package com.example.bcnet_app.repositories;
 
 import androidx.lifecycle.MutableLiveData;
 
-import com.example.bcnet_app.models.Comentari;
 import com.example.bcnet_app.models.DadesCovid;
-import com.example.bcnet_app.models.Localitzacio;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -27,7 +27,7 @@ public class Localitzacio {
 
     private String content;
     private Float puntuacioGlobal;
-    private ArrayList<Comentari> valoracions;
+    private ArrayList<Comment> valoracions;
     private Float puntuacioCOVID;
 
     private String semaforUrl;
@@ -49,7 +49,7 @@ public class Localitzacio {
 
     private Float calcularPuntuacioGlobal() {
         Float suma = (float)0;
-        for (Comentari c : valoracions) {
+        for (Comment c : valoracions) {
             suma += c.getPuntuacio();
         }
         Float avg = (float)-1;

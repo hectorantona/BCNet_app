@@ -1,7 +1,7 @@
 package com.example.bcnet_app.models;
 //import com.google.firebase.database.ServerValue;
 
-public class Comentari {
+public class Comment {
     private String usuari;
     private String comentari;
     private Float puntuacio;
@@ -9,7 +9,7 @@ public class Comentari {
     private String id;
     private Object timestamp;
 
-    public Comentari(String usuari, String comentari, Float puntuacio, String id) {
+    public Comment(String usuari, String comentari, Float puntuacio, String id) {
         this.usuari = usuari;
         this.comentari = comentari;
         this.puntuacio = puntuacio;
@@ -18,7 +18,7 @@ public class Comentari {
         //this.timestamp = ServerValue.TIMESTAMP;
     }
 
-    public Comentari(String usuari, String comentari, Float puntuacio, String id, Object timestamp) {
+    public Comment(String usuari, String comentari, Float puntuacio, String id, Object timestamp) {
         this.usuari = usuari;
         this.comentari = comentari;
         this.puntuacio = puntuacio;

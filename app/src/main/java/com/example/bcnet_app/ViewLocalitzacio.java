@@ -11,17 +11,17 @@ import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.Observer;import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.example.bcnet_app.Factory.MyViewModelFactory;
 import com.example.bcnet_app.adapter.CommentAdapter;
-import com.example.bcnet_app.models.Comentari;
+import com.example.bcnet_app.models.CommentResponse;
 import com.example.bcnet_app.viewmodels.CommentViewModel;
-
-import java.util.List;
 
 public class ViewLocalitzacio extends AppCompatActivity {
     private static final String TAG = "ViewLocalitzacio";
@@ -38,20 +38,22 @@ public class ViewLocalitzacio extends AppCompatActivity {
         setContentView(R.layout.activity_view_localitzacio);
         Log.d(TAG, "onCreate: started. ");
 
+        //initRecycleView();
+
+        getIncomingIntent();
+
         mRecyclerView = findViewById(R.id.llista_comentari);
-        commentViewModel = new ViewModelProvider(this).get(CommentViewModel.class);
+        commentViewModel = new ViewModelProvider(this, new MyViewModelFactory(nom_localitzacio)).get(CommentViewModel.class);
         commentViewModel.init();
 
-        commentViewModel.getComentaris().observe(this, new Observer<List<Comentari>>() {
+        commentViewModel.getComentaris().observe(this, new Observer<CommentResponse>() {
             @Override
-            public void onChanged(List<Comentari> comentaris) {
+            public void onChanged(CommentResponse comentaris) {
                 mAdapter.notifyDataSetChanged();
             }
         });
 
-        initRecycleView();
-
-        getIncomingIntent();
+        //commentViewModel.searchComments(nom_localitzacio);
 
         Button BtnValorar = (Button)findViewById(R.id.BtnValorar);
         BtnValorar.setOnClickListener(new View.OnClickListener() {
@@ -59,7 +61,7 @@ public class ViewLocalitzacio extends AppCompatActivity {
             public void onClick(View v) {
                 Intent startIntent = new Intent(getApplicationContext(), FormValoracio.class);
                 //
-
+                Log.d(TAG, "Anem a valorar" + nom_localitzacio);
                 startIntent.putExtra("nom_localitzacio", getIntent().getStringExtra("nom_localitzacio"));
                 startActivity(startIntent);
             }
@@ -75,10 +77,11 @@ public class ViewLocalitzacio extends AppCompatActivity {
                 startActivity(startIntent);
             }
         });
+
     }
 
     private void initRecycleView() {
-        mAdapter = new CommentAdapter(this, commentViewModel.getComentaris().getValue());
+        mAdapter = new CommentAdapter(this);
         RecyclerView.LayoutManager linearLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setAdapter(mAdapter);
         mRecyclerView.setLayoutManager(linearLayoutManager);
@@ -90,7 +93,7 @@ public class ViewLocalitzacio extends AppCompatActivity {
             Log.d(TAG, "getIncomingIntent: ha trobat tots els extres");
 
             String imageUrl = getIntent().getStringExtra("imatge");
-            String nom_localitzacio = getIntent().getStringExtra("nom_localitzacio");
+            nom_localitzacio = getIntent().getStringExtra("nom_localitzacio");
             String content = getIntent().getStringExtra("content");
             Float puntuacio_global = Float.parseFloat(getIntent().getStringExtra("puntuacio_global"));
             String puntuacio_Covid = getIntent().getStringExtra("puntuacioCovid");
