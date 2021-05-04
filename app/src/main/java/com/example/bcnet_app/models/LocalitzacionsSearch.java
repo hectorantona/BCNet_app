@@ -8,10 +8,10 @@ import java.util.ArrayList;
 public class LocalitzacionsSearch {
     @SerializedName("result")
     @Expose
-    public boolean error;
+    private boolean error;
     @SerializedName("valor")
     @Expose
-    public ArrayList<Localitzacio> localitzacions;
+    private ArrayList<Localitzacio> localitzacions;
 
     public LocalitzacionsSearch (){
         localitzacions = new ArrayList<>();
@@ -20,6 +20,7 @@ public class LocalitzacionsSearch {
         return localitzacions;
     }
 
+    //search/sorting
     public Localitzacio getelemi (Integer i) {
        return localitzacions.get(i);
     }

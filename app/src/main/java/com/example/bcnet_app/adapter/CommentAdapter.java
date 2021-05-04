@@ -12,20 +12,21 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bcnet_app.R;
-import com.example.bcnet_app.models.Comentari;
+import com.example.bcnet_app.models.Comment;
+import com.example.bcnet_app.models.CommentResponse;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 
 public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.CommentViewHolder> {
     private Context mContext;
-    private List<Comentari> mData;
+    private List<Comment> result = new ArrayList<>();
 
 
-    public CommentAdapter(Context mContext, List<Comentari> mData) {
+    public CommentAdapter(Context mContext) {
         this.mContext = mContext;
-        this.mData = mData;
     }
 
     @NonNull
@@ -39,15 +40,24 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.CommentV
     public void onBindViewHolder(@NonNull CommentViewHolder holder, int position) {
 
         //Glide.with(mContext).load(mData.get(position).getUimg()).into(holder.img_user);
-        holder.name.setText(mData.get(position).getUsuari());
-        holder.content.setText(mData.get(position).getComentari());
+        holder.name.setText(result.get(position).getUsuari());
+        holder.content.setText(result.get(position).getComentari());
         //holder.date.setText(timestampToString((Long)mData.get(position).getTimestamp()));
 
     }
 
     @Override
     public int getItemCount() {
-        return mData.size();
+        return result.size();
+    }
+
+    public void setResults(CommentResponse c) {
+        //Log.d(TAG, "onClick: clicked on: " + result.get(0).getContent());
+        for (int i = 0; i < c.getnumelements(); ++i) {
+            result.add(c.getelemi(i));
+        }
+
+        notifyDataSetChanged();
     }
 
     public class CommentViewHolder extends RecyclerView.ViewHolder{
