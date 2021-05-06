@@ -71,40 +71,6 @@ public class UserRepository {
                     }
                 });
     }
-    /*
-    public void searchAllLocalitzacio() {
-        localitzacioSearchService.allLocalitzacions()
-                .enqueue(new Callback<LocalitzacionsSearch>() {
-                    @Override
-                    public void onResponse(Call<LocalitzacionsSearch> call, Response<LocalitzacionsSearch> response) {
-                        if (response.body() != null) {
-                            //LocalitzacioResponse l = response.body();
-                            //Log.d(TAG, "CORRECTE: " + l.getTotalItems());
-                            localitzacionsSearchLiveData.postValue(response.body());
 
-
-                        }
-                    }
-
-                    @Override
-                    public void onFailure(Call<LocalitzacionsSearch> call, Throwable t) {
-                        Log.d(TAG, "Fail: " + localitzacioLiveData.getValue());
-                        localitzacionsSearchLiveData.postValue(null);
-                    }
-                });
-    }
-
-
-    public LiveData<LocalitzacionsSearch> getlocalitzacions() {
-        Log.d(TAG, "onClick: clicked on: " + localitzacionsSearchLiveData.getValue());
-
-        return localitzacionsSearchLiveData;
-    }
-
-    public LiveData<Localitzacio> getLocalitzacioLiveData() {
-        Log.d(TAG, "onClick: clicked on: " + localitzacioLiveData.getValue());
-        //Localitzacio l = new Localitzacio("a", "Museu", "aa", "a", "a");
-        //localitzacioLiveData.postValue(l);
-        return localitzacioLiveData;
-    */
+    //Crida de l'usuari
 }

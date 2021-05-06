@@ -2,11 +2,14 @@ package com.example.bcnet_app;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.material.textfield.TextInputLayout;
 
 public class SignUpActivity extends AppCompatActivity {
 
@@ -15,86 +18,117 @@ public class SignUpActivity extends AppCompatActivity {
     private EditText pass;
     private EditText reppass;
 
+    private Button BtnSignUp;
+
+    private TextInputLayout mFloatLabelNewUser;
+    private TextInputLayout mFloatLabelNewEmail;
+    private TextInputLayout mFloatLabelNewPassword;
+    private TextInputLayout mFloatLabelRepPassword;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
 
-        username = (EditText) findViewById(R.id.editText_username);
-        email = (EditText) findViewById(R.id.editText_mail);
-        pass = (EditText) findViewById(R.id.editText_pswd1);
-        reppass = (EditText) findViewById(R.id.editText_pswd2);
+        username = (EditText) findViewById(R.id.new_user);
+        email = (EditText) findViewById(R.id.new_email);
+        pass = (EditText) findViewById(R.id.new_password);
+        reppass = (EditText) findViewById(R.id.rep_password);
 
-        Button BtnSignUpContinue = (Button)findViewById(R.id.BtnContinue);
-        BtnSignUpContinue.setOnClickListener(new View.OnClickListener() {
+        mFloatLabelNewUser = (TextInputLayout) findViewById(R.id.float_label_new_user);
+        mFloatLabelNewEmail = (TextInputLayout) findViewById(R.id.float_label_new_email);
+        mFloatLabelNewPassword = (TextInputLayout) findViewById(R.id.float_label_new_password);
+        mFloatLabelRepPassword = (TextInputLayout) findViewById(R.id.float_label_rep_password);
+
+        BtnSignUp = (Button)findViewById(R.id.SignUpBtn);
+        BtnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent startIntent = new Intent(getApplicationContext(), MainActivity2.class);
-                //attemptloggin();
-                startActivity(startIntent);
+                attemptCreateAccount();
             }
         });
     }
 
-    private boolean isUserValid(String userID) {
-       // return userID.length() == 10;
-        return true;
-    }
+    private boolean isUserValid(String userID) { return userID.length() > 0; }
+
+    private boolean isEmailValid(String email) { return email.length() > 0; }
 
     private boolean isPasswordValid(String password) {
-        return password.length() > 4;
+        return password.length() >= 4;
     }
-/*
-    private void attemptLogin() {
-       /* if (mAuthTask != null) {
-            return;
-        }
+
+    private boolean doPasswordMatch(String pass, String rep_pass) { return pass.equals(rep_pass); }
+
+    private void attemptCreateAccount() {
 
         // Reset errors.
-        mFloatLabelUserId.setError(null);
-        mFloatLabelPassword.setError(null);
+        mFloatLabelNewUser.setError(null);
+        mFloatLabelNewEmail.setError(null);
+        mFloatLabelNewPassword.setError(null);
+        mFloatLabelRepPassword.setError(null);
 
         // Store values at the time of the login attempt.
-        String userId = username.getText().toString();
-        String password = pass.getText().toString();
-        String reppassword = reppass.getText().toString();
+        String useri = username.getText().toString();
+        String emaili = email.getText().toString();
+        String passi = pass.getText().toString();
+        String reppassi = reppass.getText().toString();
 
         boolean cancel = false;
         View focusView = null;
 
-
-        // Check for a valid password, if the user entered one.
-        if (TextUtils.isEmpty(password)) {
-            mFloatLabelPassword.setError(getString(R.string.error_field_required));
-            focusView = mFloatLabelPassword;
-            cancel = true;
-        } else if (!isPasswordValid(password)) {
-            mFloatLabelPassword.setError(getString(R.string.error_invalid_password));
-            focusView = mFloatLabelPassword;
-            cancel = true;
-        }*/
-/*
         // Verificar si el ID tiene contenido.
-        if (TextUtils.isEmpty(userId)) {
-            mFloatLabelUserId.setError(getString(R.string.error_field_required));
-            focusView = mFloatLabelUserId;
+        if (TextUtils.isEmpty(useri)) {
+            mFloatLabelNewUser.setError(getString(R.string.error_field_required));
+            focusView = mFloatLabelNewUser;
             cancel = true;
-        } else if (!isUserIdValid(userId)) {
-            mFloatLabelUserId.setError(getString(R.string.error_invalid_user_id));
-            focusView = mFloatLabelUserId;
+        } else if (!isUserValid(useri)) {
+            mFloatLabelNewUser.setError(getString(R.string.error_invalid_user));
+            focusView = mFloatLabelNewUser;
             cancel = true;
         }
+
+        // Verificar si el ID tiene contenido.
+        if (TextUtils.isEmpty(emaili)) {
+            mFloatLabelNewEmail.setError(getString(R.string.error_field_required));
+            focusView = mFloatLabelNewEmail;
+            cancel = true;
+        } else if (!isEmailValid(emaili)) {
+            mFloatLabelNewEmail.setError(getString(R.string.error_invalid_email));
+            focusView = mFloatLabelNewEmail;
+            cancel = true;
+        }
+
+        // Check for a valid password, if the user entered one.
+        if (TextUtils.isEmpty(passi)) {
+            mFloatLabelNewPassword.setError(getString(R.string.error_field_required));
+            focusView = mFloatLabelNewPassword;
+            cancel = true;
+        } else if (!isPasswordValid(passi)) {
+            mFloatLabelNewPassword.setError(getString(R.string.error_invalid_password));
+            focusView = mFloatLabelNewPassword;
+            cancel = true;
+        }
+
+        if (TextUtils.isEmpty(reppassi)) {
+            mFloatLabelRepPassword.setError(getString(R.string.error_field_required));
+            focusView = mFloatLabelRepPassword;
+            cancel = true;
+        } else if (!doPasswordMatch(passi, reppassi)) {
+            mFloatLabelRepPassword.setError(getString(R.string.unmatched_passwords));
+            focusView = mFloatLabelRepPassword;
+            cancel = true;
+        }
+
 
         if (cancel) {
             // There was an error; don't attempt login and focus the first
             // form field with an error.
             focusView.requestFocus();
         } else {
-            // Show a progress spinner, and kick off a background task to
-            // perform the user login attempt.
-            showProgress(true);
-            mAuthTask = new UserLoginTask(userId, password);
-            mAuthTask.execute((Void) null);
+            //Login
+            //Create user : loginViewModel.login(useri, emaili, passwordi);
+            Intent startIntent = new Intent(getApplicationContext(), MainActivity2.class);
+            startActivity(startIntent);
         }
-    }*/
+    }
 }

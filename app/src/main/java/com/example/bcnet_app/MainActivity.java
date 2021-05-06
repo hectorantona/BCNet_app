@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity{
 
     private TextInputLayout mFloatLabelUserId;
     private TextInputLayout mFloatLabelPassword;
-    private View mLoginFormView;
+    //private View mLoginFormView;
 
     private LoginViewModel loginViewModel;
 
@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity{
         mFloatLabelUserId = (TextInputLayout) findViewById(R.id.float_label_user);
         mFloatLabelPassword = (TextInputLayout) findViewById(R.id.float_label_password);
 
-        mLoginFormView = findViewById(R.id.login_form);
+        //mLoginFormView = findViewById(R.id.login_form);
 
         LoginBtn = (Button)findViewById(R.id.LoginBtn);
         SignupBtn = (Button)findViewById(R.id.SignupBtn);
@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity{
     }
 
     private boolean isPasswordValid(String p) {
-        return p.length() > 4;
+        return p.length() >= 4;
     }
 
     private void attemptLogin() {
