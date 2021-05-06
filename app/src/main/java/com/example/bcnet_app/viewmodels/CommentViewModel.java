@@ -6,7 +6,9 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.bcnet_app.models.CommentResponse;
+import com.example.bcnet_app.models.LocalitzacionsSearch;
 import com.example.bcnet_app.repositories.ComentariRepository;
+import com.example.bcnet_app.repositories.LocalitzacioRespository;
 
 public class CommentViewModel extends ViewModel {
     //es mutable perque es pugui modificar, sino nomes es podria mirar pero no canviar
@@ -14,7 +16,6 @@ public class CommentViewModel extends ViewModel {
 
     private static final String TAG = "CommentViewModel";
     private LiveData<CommentResponse> mComentari;
-    private ComentariRepository Repo;
     private String nomlocalitzacio;
 
     public CommentViewModel(String nomloca) {
@@ -29,19 +30,23 @@ public class CommentViewModel extends ViewModel {
             return;
         }
 
-        Repo = new ComentariRepository();
         //localitzacioLiveData = Repo.getLocalitzacioLiveData();
-        mComentari = Repo.getcomments();
+        mComentari = ComentariRepository.getInstance().getcomments();
     }
 
     public LiveData<CommentResponse> getComentaris () { return mComentari;}
 
     public void searchComments (String nomlocalitzacio) {
-        Repo.searchComments(nomlocalitzacio);
+        ComentariRepository.getInstance().searchComments(nomlocalitzacio);
     }
     public void newComment (String nomlocalitzacio, String nomuser, String comment) {
-        Log.d(TAG, "Anem a crear el comment" + comment + nomlocalitzacio);
+        //apliquem el patró singleton
+        LiveData<LocalitzacionsSearch> l = LocalitzacioRespository.getInstance().getlocalitzacions();
 
-        Repo.newComment(nomlocalitzacio, nomuser, comment);
+        //Agafem l'id de la localització per crear el comment
+        String id = l.getValue().getelembyname(nomlocalitzacio).getId();
+        Log.d(TAG, "Anem a crear el comment" + comment + id);
+
+        ComentariRepository.getInstance().newComment(id, nomuser, comment);
     }
 }

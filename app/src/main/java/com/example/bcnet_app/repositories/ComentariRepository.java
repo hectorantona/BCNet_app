@@ -38,7 +38,7 @@ public class ComentariRepository {
 
 
     //ha de ser privat
-    public ComentariRepository() {
+    private ComentariRepository() {
         commentResponseLiveData = new MutableLiveData<>();
         commentLiveData = new MutableLiveData<>();
 
@@ -77,9 +77,9 @@ public class ComentariRepository {
                 });
     }
 
-    public void newComment (String nomlocalitzacio, String nomuser, String comment) {
+    public void newComment (String idlocalitzacio, String nomuser, String comment) {
         //Canviar establiment2 per nom localitzacio
-        commentService.newComment(nomuser, "Establiment5", comment)
+        commentService.newComment(nomuser, idlocalitzacio, comment)
                 .enqueue(new Callback<Comment>() {
                     @Override
                     public void onResponse(Call<Comment> call, Response<Comment> response) {

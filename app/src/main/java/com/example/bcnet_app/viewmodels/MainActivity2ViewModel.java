@@ -1,5 +1,7 @@
 package com.example.bcnet_app.viewmodels;
 
+import android.util.Log;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
@@ -10,10 +12,8 @@ public class MainActivity2ViewModel extends ViewModel {
 
     private static final String TAG = "MainActivity2ViewModel";
     private LiveData<LocalitzacionsSearch> localitzacionsSearchLiveData;
-
-
-    //private MutableLiveData<List<Localitzacio>> mLocalitzacions;
     private LocalitzacioRespository Repo;
+
 
     /*public MainActivity2ViewModel(@NonNull Application application) {
         super(application);
@@ -27,8 +27,9 @@ public class MainActivity2ViewModel extends ViewModel {
             return;
         }*/
 
-        Repo = new LocalitzacioRespository();
-        localitzacionsSearchLiveData = Repo.getlocalitzacions();
+        localitzacionsSearchLiveData = LocalitzacioRespository.getInstance().getlocalitzacions();
+        Log.d(TAG, "OKEYY: " );
+
     }
 
     public LiveData<LocalitzacionsSearch> getLocalitzacions () {
@@ -40,10 +41,10 @@ public class MainActivity2ViewModel extends ViewModel {
 
 
     public void searchLocalitzacions (String name) {
-        Repo.searchLocalitzacio(name);
+        LocalitzacioRespository.getInstance().searchLocalitzacio(name);
     }
     public void searchAllLocalitzacions () {
-        Repo.searchAllLocalitzacio();
+        LocalitzacioRespository.getInstance().searchAllLocalitzacio();
     }
 
 }
