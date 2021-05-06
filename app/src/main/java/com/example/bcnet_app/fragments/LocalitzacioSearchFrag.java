@@ -1,6 +1,7 @@
 package com.example.bcnet_app.fragments;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,7 +43,9 @@ public class LocalitzacioSearchFrag extends Fragment {
         viewModel.getLocalitzacions().observe(this, new Observer<LocalitzacionsSearch>() {
             @Override
             public void onChanged(LocalitzacionsSearch l) {
+                Log.d("Fragment", "Que esta passant" + l);
                 if (l != null) {
+                    Log.d("Fragment", "no null" + l.getnumelements());
                     adapter.setResults(l);
                 }
             }

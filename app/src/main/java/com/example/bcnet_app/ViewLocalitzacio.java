@@ -46,6 +46,8 @@ public class ViewLocalitzacio extends AppCompatActivity {
         commentViewModel = new ViewModelProvider(this, new MyViewModelFactory(nom_localitzacio)).get(CommentViewModel.class);
         commentViewModel.init();
 
+        commentViewModel.searchComments();
+
         commentViewModel.getComentaris().observe(this, new Observer<CommentResponse>() {
             @Override
             public void onChanged(CommentResponse comentaris) {
@@ -53,15 +55,12 @@ public class ViewLocalitzacio extends AppCompatActivity {
             }
         });
 
-        //commentViewModel.searchComments(nom_localitzacio);
-
         Button BtnValorar = (Button)findViewById(R.id.BtnValorar);
         BtnValorar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent startIntent = new Intent(getApplicationContext(), FormValoracio.class);
                 //
-                Log.d(TAG, "Anem a valorar" + nom_localitzacio);
                 startIntent.putExtra("nom_localitzacio", getIntent().getStringExtra("nom_localitzacio"));
                 startActivity(startIntent);
             }
@@ -88,9 +87,7 @@ public class ViewLocalitzacio extends AppCompatActivity {
     }
 
     private void getIncomingIntent (){
-        Log.d(TAG, "getIncomingIntent: check for incoming intents (Localitzacions)");
         if(getIntent().hasExtra("imatge")&& getIntent().hasExtra("nom_localitzacio")) {
-            Log.d(TAG, "getIncomingIntent: ha trobat tots els extres");
 
             String imageUrl = getIntent().getStringExtra("imatge");
             nom_localitzacio = getIntent().getStringExtra("nom_localitzacio");
@@ -108,7 +105,6 @@ public class ViewLocalitzacio extends AppCompatActivity {
         }
     }
     private void setImage (String imageUrl, String nom_localitzacio, String content){
-        Log.d(TAG, "setImage: setting nom, descripcio i imatge als widgets");
 
         TextView name = findViewById(R.id.Nom_Localitzacio);
         name.setText(nom_localitzacio);
