@@ -64,8 +64,6 @@ public class LocalitzacioRespository {
                         if (response.body() != null) {
                             Localitzacio l = response.body();
 
-                            Log.d(TAG, "CORRECTE: " + response.body());
-                            Log.d(TAG, "Localitzacio: " + l.getName());
                             localitzacioLiveData.setValue(response.body());
                         }
                     }
@@ -86,7 +84,7 @@ public class LocalitzacioRespository {
                         if (response.body() != null) {
                             //LocalitzacioResponse l = response.body();
                             localitzacionsSearchLiveData.postValue(response.body());
-                            Log.d(TAG, "CORRECTE: ha funcionat" + localitzacionsSearchLiveData.getValue().getnumelements());
+
 
 
                         }
@@ -101,13 +99,11 @@ public class LocalitzacioRespository {
     }
 
     public LiveData<LocalitzacionsSearch> getlocalitzacions() {
-        Log.d(TAG, "onClick: clicked on: " + localitzacionsSearchLiveData.getValue());
 
         return localitzacionsSearchLiveData;
     }
 
     public LiveData<Localitzacio> getLocalitzacioLiveData() {
-        Log.d(TAG, "onClick: clicked on: " + localitzacioLiveData.getValue());
         //Localitzacio l = new Localitzacio("a", "Museu", "aa", "a", "a");
         //localitzacioLiveData.postValue(l);
         return localitzacioLiveData;

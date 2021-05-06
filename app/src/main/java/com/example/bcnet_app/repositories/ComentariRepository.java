@@ -56,8 +56,8 @@ public class ComentariRepository {
                 .create(CommentService.class);
     }
 
-    public void searchComments(String nomlocalitzacio) {
-        commentService.searchcomments(nomlocalitzacio)
+    public void searchComments(String localitzaciokey) {
+        commentService.searchcomments(localitzaciokey)
                 .enqueue(new Callback<CommentResponse>() {
                     @Override
                     public void onResponse(Call<CommentResponse> call, Response<CommentResponse> response) {
@@ -65,8 +65,6 @@ public class ComentariRepository {
                             //LocalitzacioResponse l = response.body();
                             //Log.d(TAG, "CORRECTE: " + l.getTotalItems());
                             commentResponseLiveData.postValue(response.body());
-
-
                         }
                     }
 

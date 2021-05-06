@@ -18,9 +18,8 @@ public interface CommentService {
             @Query("comentari") String qcomentari
     );
 
-    @GET("")
+    @GET("allCommentsEstablimentDB")
     Call<CommentResponse> searchcomments(
-            @Query("") String qlocalitzacio
-
+            @Query("key") String qkey
     );
 }

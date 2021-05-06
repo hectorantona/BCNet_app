@@ -1,11 +1,18 @@
 package com.example.bcnet_app.models;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 import java.util.ArrayList;
 
 public class CommentResponse {
 
+    @SerializedName("result")
+    @Expose
     private boolean error;
 
+    @SerializedName("value")
+    @Expose
     private ArrayList<Comment> comentaris;
 
 

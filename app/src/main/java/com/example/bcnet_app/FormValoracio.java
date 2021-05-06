@@ -1,7 +1,6 @@
 package com.example.bcnet_app;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -26,7 +25,6 @@ public class FormValoracio extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_form_valoracio);
-        Log.d(TAG, "onCreate: started. ");
 
         getIncomingIntent();
 
@@ -47,13 +45,13 @@ public class FormValoracio extends AppCompatActivity {
 
     private void newcomment() {
         String comment = comentari.getText().toString();
-        Log.d(TAG, "Nou comentari" + comment);
         //Canviar Adria per userlogged.name()
         commentViewModel.newComment(nom_localitzacio, "Adria", comment);
+        finish();
     }
 
     private void getIncomingIntent (){
-        Log.d(TAG, "getIncomingIntent: check for incoming intents (Comment)");
+
         nom_localitzacio = getIntent().getStringExtra("nom_localitzacio");
 
         TextView name = findViewById(R.id.Nom_Localitzacio);

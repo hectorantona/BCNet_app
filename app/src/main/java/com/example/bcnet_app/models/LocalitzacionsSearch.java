@@ -1,5 +1,7 @@
 package com.example.bcnet_app.models;
 
+import android.util.Log;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -9,7 +11,7 @@ public class LocalitzacionsSearch {
     @SerializedName("result")
     @Expose
     private boolean error;
-    @SerializedName("valor")
+    @SerializedName("value")
     @Expose
     private ArrayList<Localitzacio> localitzacions;
 
@@ -24,12 +26,17 @@ public class LocalitzacionsSearch {
     public Localitzacio getelemi (Integer i) {
        return localitzacions.get(i);
     }
+
     public Localitzacio getelembyname (String name) {
         for (int i = 0; i < localitzacions.size(); ++i) {
-            if (localitzacions.get(i).getName() == name)
-                return localitzacions.get(i);
+            Log.d("Searchloc", "localitzacio" + i + " " + localitzacions.get(i).getName());
+            if (localitzacions.get(i).getName().equals(name)) {
 
+                return localitzacions.get(i);
             }
+
+        }
+        Log.d("Searchloc", "FAILL");
         return null;
     }
     public Integer getnumelements() {
