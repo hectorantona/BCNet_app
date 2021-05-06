@@ -25,6 +25,10 @@ public class Localitzacio {
     @Expose
     private String imageUrl;
 
+    @SerializedName("id")
+    @Expose
+    private String id;
+
     private String content;
     private Float puntuacioGlobal;
     private ArrayList<Comment> valoracions;
@@ -32,12 +36,6 @@ public class Localitzacio {
 
     private String semaforUrl;
 
-
-
-    //public String getText() {
-    //    return text;
-    //}
-    //Fi exemple retrofit
     public Localitzacio(String imageUrl, String name, String content, String category, String semaforUrl) {
         this.nom = name;
         this.imageUrl = imageUrl;
@@ -61,6 +59,15 @@ public class Localitzacio {
 
     public Localitzacio() {
     }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
     public String getName() {return nom;}
     public void setName(String title) {this.nom=title;}
 

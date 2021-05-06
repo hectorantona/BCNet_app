@@ -1,7 +1,17 @@
 package com.example.bcnet_app.models;
 //import com.google.firebase.database.ServerValue;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 public class Comment {
+    @SerializedName("result")
+    @Expose
+    private String correcte;
+    @SerializedName("error")
+    @Expose
+    private String msg;
+
     private String usuari;
     private String comentari;
     private Float puntuacio;
@@ -25,6 +35,14 @@ public class Comment {
         this.id = id;
         this.likes = 0;
         //this.timestamp = timestamp;
+    }
+
+    public String getCorrecte() {
+        return correcte;
+    }
+
+    public String getMsg() {
+        return msg;
     }
 
     public void setUsuari(String usuari) {

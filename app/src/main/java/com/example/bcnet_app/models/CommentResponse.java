@@ -8,6 +8,7 @@ public class CommentResponse {
 
     private ArrayList<Comment> comentaris;
 
+
     public CommentResponse (){
         comentaris = new ArrayList<>();
     }
