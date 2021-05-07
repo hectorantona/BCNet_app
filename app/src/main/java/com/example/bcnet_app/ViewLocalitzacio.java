@@ -33,16 +33,33 @@ public class ViewLocalitzacio extends AppCompatActivity {
 
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        Log.d(TAG, "Tornem a buscar els comentaris");
+        commentViewModel.searchComments();
+        /*commentViewModel.getComentaris().observe(this, new Observer<CommentResponse>() {
+            @Override
+            public void onChanged(CommentResponse comentaris) {
+                if (comentaris != null) {
+                    mAdapter.setResults(comentaris);
+                }
+
+            }
+        });*/
+    }
+
+
+    @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_view_localitzacio);
-        Log.d(TAG, "onCreate: started. ");
 
-        //initRecycleView();
+        setContentView(R.layout.activity_view_localitzacio);
+
+
+        initRecycleView();
 
         getIncomingIntent();
 
-        mRecyclerView = findViewById(R.id.llista_comentari);
         commentViewModel = new ViewModelProvider(this, new MyViewModelFactory(nom_localitzacio)).get(CommentViewModel.class);
         commentViewModel.init();
 
@@ -51,7 +68,10 @@ public class ViewLocalitzacio extends AppCompatActivity {
         commentViewModel.getComentaris().observe(this, new Observer<CommentResponse>() {
             @Override
             public void onChanged(CommentResponse comentaris) {
-                mAdapter.notifyDataSetChanged();
+                if (comentaris != null) {
+                    mAdapter.setResults(comentaris);
+                }
+
             }
         });
 
@@ -63,6 +83,7 @@ public class ViewLocalitzacio extends AppCompatActivity {
                 //
                 startIntent.putExtra("nom_localitzacio", getIntent().getStringExtra("nom_localitzacio"));
                 startActivity(startIntent);
+                onPause();
             }
         });
         Button BtnCovid = (Button)findViewById(R.id.BtnCovid);
@@ -74,6 +95,7 @@ public class ViewLocalitzacio extends AppCompatActivity {
 
                 startIntent.putExtra("nom_localitzacio", getIntent().getStringExtra("nom_localitzacio"));
                 startActivity(startIntent);
+                onPause();
             }
         });
 
@@ -81,9 +103,10 @@ public class ViewLocalitzacio extends AppCompatActivity {
 
     private void initRecycleView() {
         mAdapter = new CommentAdapter(this);
+        mRecyclerView = findViewById(R.id.llista_comentari);
         RecyclerView.LayoutManager linearLayoutManager = new LinearLayoutManager(this);
-        mRecyclerView.setAdapter(mAdapter);
         mRecyclerView.setLayoutManager(linearLayoutManager);
+        mRecyclerView.setAdapter(mAdapter);
     }
 
     private void getIncomingIntent (){

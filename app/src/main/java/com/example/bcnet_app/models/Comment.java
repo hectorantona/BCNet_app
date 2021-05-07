@@ -12,7 +12,11 @@ public class Comment {
     @Expose
     private String msg;
 
+    @SerializedName("user")
+    @Expose
     private String usuari;
+    @SerializedName("text")
+    @Expose
     private String comentari;
     private Float puntuacio;
     private Integer likes;

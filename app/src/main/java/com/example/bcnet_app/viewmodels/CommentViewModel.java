@@ -25,9 +25,6 @@ public class CommentViewModel extends ViewModel {
        /* if (localitzacioLiveData != null) {
             return;
         }*/
-        if (mComentari != null) {
-            return;
-        }
 
         LiveData<LocalitzacionsSearch> l = LocalitzacioRespository.getInstance().getlocalitzacions();
         //Agafem l'id de la localització per crear el comment
@@ -41,14 +38,16 @@ public class CommentViewModel extends ViewModel {
 
     public void searchComments () {
         ComentariRepository.getInstance().searchComments(idlocalitzacio);
+
     }
 
-    public void newComment (String nomlocalitzacio, String nomuser, String comment) {
+    public boolean newComment (String nomlocalitzacio, String nomuser, String comment) {
         //apliquem el patró singleton
 
         LiveData<LocalitzacionsSearch> l = LocalitzacioRespository.getInstance().getlocalitzacions();
         //Agafem l'id de la localització per crear el comment
         String id = l.getValue().getelembyname(nomlocalitzacio).getId();
         ComentariRepository.getInstance().newComment(id, nomuser, comment);
+        return ComentariRepository.getInstance().correcte();
     }
 }

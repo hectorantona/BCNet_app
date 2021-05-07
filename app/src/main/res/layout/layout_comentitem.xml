@@ -38,6 +38,7 @@
         android:layout_toRightOf="@id/comment_user_img"
         android:layout_margin="8dp"
         android:text="Text Comment Goes Here"
+        android:textSize="15dp"
         android:textColor="#969595" />
 
     <TextView
