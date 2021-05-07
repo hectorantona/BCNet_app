@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,6 +19,7 @@ public class FormValoracio extends AppCompatActivity {
     private String nom_localitzacio;
     private Button commentButton;
     private EditText comentari;
+    private RatingBar puntuacio;
 
 
 
@@ -31,13 +33,16 @@ public class FormValoracio extends AppCompatActivity {
         commentViewModel = new ViewModelProvider(this, new MyViewModelFactory(nom_localitzacio)).get(CommentViewModel.class);
         commentViewModel.init();
 
+        puntuacio = findViewById(R.id.puntuacioIndividual);
         comentari = findViewById(R.id.editTextComentari);
         commentButton = findViewById(R.id.BtnComentar);
+        puntuacio.setNumStars(5);
 
         commentButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 newcomment();
+                finish();
             }
         });
     }
@@ -47,12 +52,15 @@ public class FormValoracio extends AppCompatActivity {
         //PREGUNTAR AL PROFE COM FER QUE LA FUNCIO DE DEMANAR ERROR S'ESPERI A QUE RETRORIFT HAGI ACABAT
         String comment = comentari.getText().toString();
         //Canviar Adria per userlogged.name()
-        Boolean error = commentViewModel.newComment(nom_localitzacio, "Adria", comment);
+        Boolean error = commentViewModel.newComment(nom_localitzacio, "Maria", comment);
         //No s'ha pogut crear be. S'ha de fer perque l'user ho vegi
         if (!error)  {
            //Avisar de l'error
         }
-        else finish();
+    }
+
+    private void puntuacio() {
+
     }
 
     private void getIncomingIntent (){
