@@ -90,6 +90,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     }*/
 
     public void setResults(LocalitzacionsSearch l) {
+        result.clear();
         //Log.d(TAG, "onClick: clicked on: " + result.get(0).getContent());
         for (int i = 0; i < l.getnumelements(); ++i) {
             result.add(l.getelemi(i));

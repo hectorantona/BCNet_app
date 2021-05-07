@@ -44,10 +44,15 @@ public class FormValoracio extends AppCompatActivity {
 
 
     private void newcomment() {
+        //PREGUNTAR AL PROFE COM FER QUE LA FUNCIO DE DEMANAR ERROR S'ESPERI A QUE RETRORIFT HAGI ACABAT
         String comment = comentari.getText().toString();
         //Canviar Adria per userlogged.name()
-        commentViewModel.newComment(nom_localitzacio, "Adria", comment);
-        finish();
+        Boolean error = commentViewModel.newComment(nom_localitzacio, "Adria", comment);
+        //No s'ha pogut crear be. S'ha de fer perque l'user ho vegi
+        if (!error)  {
+           //Avisar de l'error
+        }
+        else finish();
     }
 
     private void getIncomingIntent (){

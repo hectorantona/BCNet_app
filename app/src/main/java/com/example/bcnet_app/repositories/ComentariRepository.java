@@ -8,8 +8,6 @@ import androidx.lifecycle.MutableLiveData;
 import com.example.bcnet_app.api.CommentService;
 import com.example.bcnet_app.models.CommentResponse;
 
-import org.w3c.dom.Comment;
-
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
@@ -33,8 +31,8 @@ public class ComentariRepository {
 
     private CommentService commentService;
     private MutableLiveData<CommentResponse> commentResponseLiveData;
-    private MutableLiveData<Comment> commentLiveData;
-    private String error;
+    private MutableLiveData<com.example.bcnet_app.models.Comment> commentLiveData;
+    private String error = "true";
 
 
     //ha de ser privat
@@ -78,27 +76,34 @@ public class ComentariRepository {
     public void newComment (String idlocalitzacio, String nomuser, String comment) {
         //Canviar establiment2 per nom localitzacio
         commentService.newComment(nomuser, idlocalitzacio, comment)
-                .enqueue(new Callback<Comment>() {
+                .enqueue(new Callback<com.example.bcnet_app.models.Comment>() {
                     @Override
-                    public void onResponse(Call<Comment> call, Response<Comment> response) {
+                    public void onResponse(Call<com.example.bcnet_app.models.Comment> call, Response<com.example.bcnet_app.models.Comment> response) {
                         if (response.body() != null) {
                             //LocalitzacioResponse l = response.body();
                             //Log.d(TAG, "CORRECTE: " + l.getTotalItems());
-                            //error = response.body();
+                            error = response.body().getCorrecte();
+                            Log.d(TAG, "fallada " + error);
+
                         }
                     }
 
                     @Override
-                    public void onFailure(Call<Comment> call, Throwable t) {
+                    public void onFailure(Call<com.example.bcnet_app.models.Comment> call, Throwable t) {
                         commentResponseLiveData.postValue(null);
                     }
                 });
     }
 
+
     public LiveData<CommentResponse> getcomments() {
-        Log.d(TAG, "onClick: clicked on: " + commentResponseLiveData.getValue());
 
         return commentResponseLiveData;
+    }
+
+    public boolean correcte() {
+        if (error.equals("true")) return true;
+        else return false;
     }
 
 }

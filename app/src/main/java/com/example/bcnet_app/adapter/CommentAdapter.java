@@ -52,6 +52,7 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.CommentV
     }
 
     public void setResults(CommentResponse c) {
+        result.clear();
         //Log.d(TAG, "onClick: clicked on: " + result.get(0).getContent());
         for (int i = 0; i < c.getnumelements(); ++i) {
             result.add(c.getelemi(i));
