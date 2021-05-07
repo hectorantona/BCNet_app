@@ -1,5 +1,6 @@
 package com.example.bcnet_app.repositories;
 
+import android.content.Context;
 import android.util.Log;
 
 import androidx.lifecycle.MutableLiveData;
@@ -15,10 +16,12 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+
+
 public class UserRepository {
 
     private static final String USER_SERVICE_BASE_URL = "https://us-central1-bcnet-backend.cloudfunctions.net/";
-    private static final String TAG = "REPO";
+    private static final String TAG = "UserREPO";
     //Singleton patern
     private static UserRepository instance;
 
@@ -31,16 +34,23 @@ public class UserRepository {
 
     private UserService userService;
     private MutableLiveData<String> loginLiveData;
+    private MutableLiveData<String> signupLiveData;
+
     private MutableLiveData<User> userLiveData;
+
+
+
 
     public UserRepository() {
         loginLiveData = new MutableLiveData<>();
         userLiveData = new MutableLiveData<>();
+        signupLiveData = new MutableLiveData<>();
 
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         //per fer debug
         interceptor.level(HttpLoggingInterceptor.Level.BODY);
         OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor).build();
+
 
         userService = new Retrofit.Builder()
                 .baseUrl(USER_SERVICE_BASE_URL)
@@ -53,23 +63,47 @@ public class UserRepository {
     //crida a l'api
     public void login(String username, String password) {
         userService.loginUser(username, password)
-                .enqueue(new Callback<String>() {
+                .enqueue(new Callback<User>() {
                     @Override
-                    public void onResponse(Call<String> call, Response<String> response) {
-                        if (response.body() != null) {
-                            String s = response.body();
-
-                            Log.d(TAG, "CORRECTE: " + response.body());
-                            Log.d(TAG, "Loging: " + s);
-                            loginLiveData.setValue(response.body());
+                    public void onResponse(Call<User> call, Response<User> response) {
+                        if (response.isSuccessful()) {
+                            Log.d(TAG, "LoginOK: " + response.body());
+                            //loginLiveData.setValue(response.body());
+                        }
+                        else{
+                            Log.d(TAG, "RespOKLoginBAD " + response.message());
                         }
                     }
 
                     @Override
-                    public void onFailure(Call<String> call, Throwable t) {
+                    public void onFailure(Call<User> call, Throwable t) {
                         loginLiveData.postValue(null);
+                        Log.d(TAG, "Login CACA: " + t.getLocalizedMessage());
+
                     }
                 });
+    }
+
+    //crida a l'api crear user
+    public void signup(String email, String username, String password) {
+        userService.createUser(email, username, password).enqueue(new Callback<User>() {
+            @Override
+            public void onResponse(Call<User> call, Response<User> response) {
+                if (response.body() != null) {
+                    Log.d(TAG, "SignupOK: " + response.body());
+                    //signupLiveData.setValue(response.body());
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<User> call, Throwable t) {
+                signupLiveData.postValue(null);
+                Log.d(TAG, "SignupCACA: ");
+
+
+            }
+        });
     }
 
     //Crida de l'usuari

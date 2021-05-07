@@ -1,8 +1,11 @@
 package com.example.bcnet_app;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -10,10 +13,12 @@ import android.widget.EditText;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.bcnet_app.repositories.UserRepository;
 import com.example.bcnet_app.viewmodels.LoginViewModel;
 import com.google.android.material.textfield.TextInputLayout;
 
 public class MainActivity extends AppCompatActivity{
+    private static final String TAG = "MAIN ACTIVITY";
 
     //private UserLoginTask mAuthTask = null;
 
@@ -28,6 +33,13 @@ public class MainActivity extends AppCompatActivity{
     //private View mLoginFormView;
 
     private LoginViewModel loginViewModel;
+
+    private SharedPreferences mPreferences;
+    private String sharedPrefFile =
+            "com.example.android.hellosharedprefs";
+    private final String USERNAME_KEY = "username";
+    private final String PASSWORD_KEY = "password";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,12 +60,17 @@ public class MainActivity extends AppCompatActivity{
         loginViewModel = new ViewModelProvider(this).get(LoginViewModel.class);
         loginViewModel.init();
 
+        mPreferences = getSharedPreferences(sharedPrefFile, MODE_PRIVATE);
+
+
 
         //click login
         LoginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 attemptLogin();
+
             }
         });
 
@@ -117,6 +134,13 @@ public class MainActivity extends AppCompatActivity{
         } else {
             //Login
             loginViewModel.login(useri, passwordi);
+            SharedPreferences.Editor sharedpreferences = mPreferences.edit();
+            sharedpreferences.putString(USERNAME_KEY, useri);
+            sharedpreferences.putString(PASSWORD_KEY, passwordi);
+            sharedpreferences.apply();
+
+            //SharedPreferences sharedpreferences = getSharedPreferences(UserRepository.MyPREFERENCES, Context.MODE_PRIVATE);//Commit de dades de l'user
+            Log.d(TAG, "USERNAME: " + mPreferences.getString("username", null)); //PROVES FUNCIONAMENT sharedPreferences
             Intent startIntent = new Intent(getApplicationContext(), MainActivity2.class);
             startActivity(startIntent);
         }

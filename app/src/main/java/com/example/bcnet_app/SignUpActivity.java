@@ -1,18 +1,25 @@
 package com.example.bcnet_app;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModel;
+import androidx.lifecycle.ViewModelProvider;
 
+import com.example.bcnet_app.viewmodels.LoginViewModel;
+import com.example.bcnet_app.viewmodels.SignUpViewModel;
 import com.google.android.material.textfield.TextInputLayout;
 
 public class SignUpActivity extends AppCompatActivity {
 
+    private static final String TAG = "SIGNUP ACTIVITY";
     private EditText username;
     private EditText email;
     private EditText pass;
@@ -24,6 +31,14 @@ public class SignUpActivity extends AppCompatActivity {
     private TextInputLayout mFloatLabelNewEmail;
     private TextInputLayout mFloatLabelNewPassword;
     private TextInputLayout mFloatLabelRepPassword;
+
+    private SignUpViewModel signUpViewModel;
+
+    private SharedPreferences mPreferences;
+    private String sharedPrefFile =
+            "com.example.android.hellosharedprefs";
+    private final String USERNAME_KEY = "username";
+    private final String PASSWORD_KEY = "password";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +54,11 @@ public class SignUpActivity extends AppCompatActivity {
         mFloatLabelNewEmail = (TextInputLayout) findViewById(R.id.float_label_new_email);
         mFloatLabelNewPassword = (TextInputLayout) findViewById(R.id.float_label_new_password);
         mFloatLabelRepPassword = (TextInputLayout) findViewById(R.id.float_label_rep_password);
+
+        signUpViewModel = new ViewModelProvider(this).get(SignUpViewModel.class);
+        signUpViewModel.init();
+
+        mPreferences = getSharedPreferences(sharedPrefFile, MODE_PRIVATE);
 
         BtnSignUp = (Button)findViewById(R.id.SignUpBtn);
         BtnSignUp.setOnClickListener(new View.OnClickListener() {
@@ -127,6 +147,12 @@ public class SignUpActivity extends AppCompatActivity {
         } else {
             //Login
             //Create user : loginViewModel.login(useri, emaili, passwordi);
+            signUpViewModel.signup(emaili, useri, passi);
+            SharedPreferences.Editor sharedpreferences = mPreferences.edit();
+            sharedpreferences.putString(USERNAME_KEY, useri);
+            sharedpreferences.putString(PASSWORD_KEY, passi);
+            sharedpreferences.apply();
+            Log.d(TAG, "USERNAME: " + mPreferences.getString("username", null)); //PROVES FUNCIONAMENT sharedPreferences
             Intent startIntent = new Intent(getApplicationContext(), MainActivity2.class);
             startActivity(startIntent);
         }
