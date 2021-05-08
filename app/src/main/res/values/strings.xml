@@ -32,5 +32,8 @@
     <string name="createAccount">Create Account</string>
     <string name="unmatched_passwords">Passwords must match</string>
     <string name="error_invalid_email">E-mail not valid</string>
+    <string name="createLocal">Crea una nova localització</string>
+    <string name="local_name">Nom localització</string>
+    <string name="local_adreca">Driecció de la localització</string>
 
 </resources>
