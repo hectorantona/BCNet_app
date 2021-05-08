@@ -40,5 +40,15 @@
         android:textSize="20sp"
         android:layout_marginStart="15dp" />
 
+    <Button
+        android:id="@+id/GotoCreateLocalBtn"
+        style="?android:textAppearanceSmall"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="10dp"
+        android:text="@string/createLocal"
+        android:textStyle="bold" />
+
 
 </RelativeLayout>
