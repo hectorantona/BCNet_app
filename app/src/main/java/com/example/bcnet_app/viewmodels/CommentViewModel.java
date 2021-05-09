@@ -50,4 +50,5 @@ public class CommentViewModel extends ViewModel {
         ComentariRepository.getInstance().newComment(id, nomuser, comment);
         return ComentariRepository.getInstance().correcte();
     }
+
 }
