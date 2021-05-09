@@ -36,7 +36,7 @@ public class LocalitzacioRespository {
     private MutableLiveData<Localitzacio> localitzacioLiveData;
 
 
-//ha de ser privat
+    //ha de ser privat
     private LocalitzacioRespository() {
         localitzacionsSearchLiveData = new MutableLiveData<>();
         localitzacioLiveData = new MutableLiveData<>();
@@ -86,6 +86,26 @@ public class LocalitzacioRespository {
                             localitzacionsSearchLiveData.postValue(response.body());
 
 
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<LocalitzacionsSearch> call, Throwable t) {
+                        Log.d(TAG, "Fail: " + localitzacioLiveData.getValue());
+                        localitzacionsSearchLiveData.postValue(null);
+                    }
+                });
+    }
+
+    public void afegeixpuntuacio(String id, String nomuser, String puntuacio) {
+        localitzacioSearchService.allLocalitzacions()
+                .enqueue(new Callback<LocalitzacionsSearch>() {
+                    @Override
+                    public void onResponse(Call<LocalitzacionsSearch> call, Response<LocalitzacionsSearch> response) {
+                        if (response.body() != null) {
+                            //LocalitzacioResponse l = response.body();
+                            localitzacionsSearchLiveData.postValue(response.body());
+
 
                         }
                     }
@@ -98,6 +118,7 @@ public class LocalitzacioRespository {
                 });
     }
 
+
     public LiveData<LocalitzacionsSearch> getlocalitzacions() {
 
         return localitzacionsSearchLiveData;
@@ -109,4 +130,5 @@ public class LocalitzacioRespository {
         return localitzacioLiveData;
     }
 }
+
 

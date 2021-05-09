@@ -12,10 +12,12 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.bcnet_app.Factory.MyViewModelFactory;
 import com.example.bcnet_app.viewmodels.CommentViewModel;
+import com.example.bcnet_app.viewmodels.MainActivity2ViewModel;
 
 public class FormValoracio extends AppCompatActivity {
     private static final String TAG = "FormValoracio";
     private CommentViewModel commentViewModel;
+    private MainActivity2ViewModel localitzacioViewModel;
     private String nom_localitzacio;
     private Button commentButton;
     private EditText comentari;
@@ -33,6 +35,9 @@ public class FormValoracio extends AppCompatActivity {
         commentViewModel = new ViewModelProvider(this, new MyViewModelFactory(nom_localitzacio)).get(CommentViewModel.class);
         commentViewModel.init();
 
+        localitzacioViewModel = new ViewModelProvider(this).get(MainActivity2ViewModel.class);
+        localitzacioViewModel.init();
+
         puntuacio = findViewById(R.id.puntuacioIndividual);
         comentari = findViewById(R.id.editTextComentari);
         commentButton = findViewById(R.id.BtnComentar);
@@ -42,6 +47,7 @@ public class FormValoracio extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 newcomment();
+                afegeixpuntuacio();
                 finish();
             }
         });
@@ -59,7 +65,9 @@ public class FormValoracio extends AppCompatActivity {
         }
     }
 
-    private void puntuacio() {
+    private void afegeixpuntuacio() {
+        Integer punts = puntuacio.getNumStars();
+        localitzacioViewModel.afegeixpuntuacio (nom_localitzacio, "Maria", punts.toString());
 
     }
 
