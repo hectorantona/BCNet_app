@@ -26,6 +26,9 @@ public class LocalitzacioSearchFrag extends Fragment {
 
     private EditText nameEditText;
     private Button searchButton;
+    private Button categButton;
+    private Button prefButton;
+    private Button resetButton;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -58,6 +61,9 @@ public class LocalitzacioSearchFrag extends Fragment {
 
         nameEditText = view.findViewById(R.id.fragment_localitzacio_name);
         searchButton = view.findViewById(R.id.fragment_localitzacio_search);
+        categButton = view.findViewById(R.id.fragment_localitzacio_category);
+        prefButton = view.findViewById(R.id.fragment_localitzacio_favoritos);
+        resetButton = view.findViewById(R.id.fragment_localitzacio_refresh);
 
         viewModel.searchAllLocalitzacions();
 
@@ -67,6 +73,15 @@ public class LocalitzacioSearchFrag extends Fragment {
                 performSearch();
             }
         });
+
+        categButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                
+            }
+        });
+
+
         return view;
     }
 
