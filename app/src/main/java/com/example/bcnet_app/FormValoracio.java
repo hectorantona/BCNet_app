@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.bcnet_app.Factory.MyViewModelFactory;
+import com.example.bcnet_app.repositories.newCommentResponse;
 import com.example.bcnet_app.viewmodels.CommentViewModel;
 import com.example.bcnet_app.viewmodels.MainActivity2ViewModel;
 
@@ -48,7 +49,7 @@ public class FormValoracio extends AppCompatActivity {
             public void onClick(View v) {
                 newcomment();
                 afegeixpuntuacio();
-                finish();
+                //finish();
             }
         });
     }
@@ -58,11 +59,19 @@ public class FormValoracio extends AppCompatActivity {
         //PREGUNTAR AL PROFE COM FER QUE LA FUNCIO DE DEMANAR ERROR S'ESPERI A QUE RETRORIFT HAGI ACABAT
         String comment = comentari.getText().toString();
         //Canviar Adria per userlogged.name()
-        Boolean error = commentViewModel.newComment(nom_localitzacio, "Maria", comment);
-        //No s'ha pogut crear be. S'ha de fer perque l'user ho vegi
-        if (!error)  {
-           //Avisar de l'error
-        }
+        commentViewModel.newComment(nom_localitzacio, "Maria", comment, new newCommentResponse() {
+            @Override
+            public void updatecomments(Boolean error) {
+                //No es pot fer el comentari
+                if (!error) {
+
+                }
+                //El comentari s'ha pogut fer
+                else {
+                   finish();
+                }
+            }
+        });
     }
 
     private void afegeixpuntuacio() {

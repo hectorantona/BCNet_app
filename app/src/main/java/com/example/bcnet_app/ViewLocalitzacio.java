@@ -48,6 +48,21 @@ public class ViewLocalitzacio extends AppCompatActivity {
         });*/
     }
 
+    public void updateComments() {
+        onResume();
+        Log.d(TAG, "fem update dels comments ");
+        commentViewModel.searchComments();
+        /*commentViewModel.getComentaris().observe(this, new Observer<CommentResponse>() {
+            @Override
+            public void onChanged(CommentResponse comentaris) {
+                if (comentaris != null) {
+                    mAdapter.setResults(comentaris);
+                }
+
+            }
+        });*/
+    }
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
