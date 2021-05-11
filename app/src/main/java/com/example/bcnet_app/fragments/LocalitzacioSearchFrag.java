@@ -47,7 +47,22 @@ public class LocalitzacioSearchFrag extends Fragment {
                 }
             }
         });
+    }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        viewModel.searchAllLocalitzacions();
+
+        viewModel.getLocalitzacions().observe(this, new Observer<LocalitzacionsSearch>() {
+            @Override
+            public void onChanged(LocalitzacionsSearch l) {
+                if (l != null) {
+                    adapter.setResults(l);
+                }
+            }
+        });
     }
 
     @Nullable
@@ -70,14 +85,14 @@ public class LocalitzacioSearchFrag extends Fragment {
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                performSearch();
+                performSearchByName();
             }
         });
 
         categButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                
+                performSearchByCategory();
             }
         });
 
@@ -85,9 +100,17 @@ public class LocalitzacioSearchFrag extends Fragment {
         return view;
     }
 
-    public void performSearch() {
+    public void performSearchByName() {
         String name = nameEditText.getText().toString();
+        LocalitzacionsSearch LS = new LocalitzacionsSearch(viewModel.getLocalitzacions().getValue().getLocalitzacions());
+        LS.filterByName(name);
+        adapter.setResults(LS);
+    }
 
-        viewModel.searchLocalitzacions(name);
+    private void performSearchByCategory() {
+        String name = nameEditText.getText().toString();
+        LocalitzacionsSearch LS = new LocalitzacionsSearch(viewModel.getLocalitzacions().getValue().getLocalitzacions());
+        LS.filterByCategory(name);
+        adapter.setResults(LS);
     }
 }

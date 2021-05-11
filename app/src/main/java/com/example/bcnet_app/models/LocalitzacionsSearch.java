@@ -16,6 +16,10 @@ public class LocalitzacionsSearch {
     public LocalitzacionsSearch (){
         localitzacions = new ArrayList<>();
     }
+
+    public LocalitzacionsSearch (ArrayList<Localitzacio> l){
+        localitzacions = l;
+    }
     public ArrayList<Localitzacio> getLocalitzacions() {
         return localitzacions;
     }
@@ -25,5 +29,25 @@ public class LocalitzacionsSearch {
     }
     public Integer getnumelements() {
         return localitzacions.size();
+    }
+
+    public void filterByName(String name) {
+        ArrayList<Localitzacio> reduced = new ArrayList<>();
+        for (Localitzacio l : localitzacions) {
+            if (l.getName().contains(name)) {
+                reduced.add(l);
+            }
+        }
+        localitzacions = reduced;
+    }
+
+    public void filterByCategory(String name) {
+        ArrayList<Localitzacio> reduced = new ArrayList<>();
+        for (Localitzacio l : localitzacions) {
+            if (l.getCategory().contains(name)) {
+                reduced.add(l);
+            }
+        }
+        localitzacions = reduced;
     }
 }
