@@ -55,29 +55,6 @@ public class LocalitzacioRespository {
                 .create(LocalitzacioSearchService.class);
     }
 
-    //crida a l'api
-    public void searchLocalitzacio(String name) {
-        localitzacioSearchService.searchLocalitzacio(name)
-                .enqueue(new Callback<Localitzacio>() {
-                    @Override
-                    public void onResponse(Call<Localitzacio> call, Response<Localitzacio> response) {
-                        if (response.body() != null) {
-                            Localitzacio l = response.body();
-
-                            Log.d(TAG, "CORRECTE: " + response.body());
-                            Log.d(TAG, "Localitzacio: " + l.getName());
-                            localitzacioLiveData.setValue(response.body());
-                        }
-                    }
-
-                    @Override
-                    public void onFailure(Call<Localitzacio> call, Throwable t) {
-                        Log.d(TAG, "Fail: " + localitzacioLiveData.getValue());
-                        localitzacioLiveData.postValue(null);
-                    }
-                });
-    }
-
     public void searchAllLocalitzacio() {
         localitzacioSearchService.allLocalitzacions()
                 .enqueue(new Callback<LocalitzacionsSearch>() {
