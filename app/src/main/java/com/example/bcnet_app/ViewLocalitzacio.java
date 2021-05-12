@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -21,6 +22,8 @@ import com.bumptech.glide.request.RequestOptions;
 import com.example.bcnet_app.Factory.MyViewModelFactory;
 import com.example.bcnet_app.adapter.CommentAdapter;
 import com.example.bcnet_app.models.CommentResponse;
+import com.example.bcnet_app.models.LocalitzacionsSearch;
+import com.example.bcnet_app.repositories.LocalitzacioRespository;
 import com.example.bcnet_app.viewmodels.CommentViewModel;
 
 public class ViewLocalitzacio extends AppCompatActivity {
@@ -37,15 +40,7 @@ public class ViewLocalitzacio extends AppCompatActivity {
         super.onResume();
         Log.d(TAG, "Tornem a buscar els comentaris");
         commentViewModel.searchComments();
-        /*commentViewModel.getComentaris().observe(this, new Observer<CommentResponse>() {
-            @Override
-            public void onChanged(CommentResponse comentaris) {
-                if (comentaris != null) {
-                    mAdapter.setResults(comentaris);
-                }
 
-            }
-        });*/
     }
 
     public void updateComments() {
@@ -70,10 +65,9 @@ public class ViewLocalitzacio extends AppCompatActivity {
 
         setContentView(R.layout.activity_view_localitzacio);
 
+        getIncomingIntent();
 
         initRecycleView();
-
-        getIncomingIntent();
 
         commentViewModel = new ViewModelProvider(this, new MyViewModelFactory(nom_localitzacio)).get(CommentViewModel.class);
         commentViewModel.init();
@@ -117,7 +111,13 @@ public class ViewLocalitzacio extends AppCompatActivity {
     }
 
     private void initRecycleView() {
-        mAdapter = new CommentAdapter(this);
+        //Si ho podem fer amb l'id del comment millor que amb aixo
+        LiveData<LocalitzacionsSearch> l = LocalitzacioRespository.getInstance().getlocalitzacions();
+        //Agafem l'id de la localització per crear el comment
+        Log.d(TAG, "nom localitzacio: " + nom_localitzacio);
+        String idlocalitzacio = l.getValue().getelembyname(nom_localitzacio).getId();
+
+        mAdapter = new CommentAdapter(this, idlocalitzacio);
         mRecyclerView = findViewById(R.id.llista_comentari);
         RecyclerView.LayoutManager linearLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(linearLayoutManager);
