@@ -51,4 +51,13 @@
         app:layout_constraintHorizontal_bias="1.0"
         android:layout_toRightOf="@id/comment_username"
         android:layout_margin="8dp"/>
+
+    <Button
+       android:layout_alignParentRight="true"
+        android:layout_marginRight="10dp"
+        android:id="@+id/delete"
+        android:layout_width="30dp"
+        android:layout_height="32dp"
+        android:text="Esborrar"
+        android:textSize="20dp" />
 </RelativeLayout>

@@ -18,7 +18,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class ComentariRepository {
+ public class ComentariRepository {
     private static final String COMMENT_SEARCH_SERVICE_BASE_URL = "https://us-central1-bcnet-backend.cloudfunctions.net/";
     private static final String TAG = "REPO COMMENTS";
     //Singleton patern
@@ -73,6 +73,21 @@ public class ComentariRepository {
                     @Override
                     public void onFailure(Call<CommentResponse> call, Throwable t) {
                         commentResponseLiveData.postValue(null);
+                    }
+                });
+    }
+
+    public void deletecomment (String nomuser, String idlocalitzacio) {
+        commentService.deletecomment(nomuser, idlocalitzacio)
+                .enqueue(new Callback<CommentResponse>() {
+                    @Override
+                    public void onResponse(Call<CommentResponse> call, Response<CommentResponse> response) {
+
+                    }
+
+                    @Override
+                    public void onFailure(Call<CommentResponse> call, Throwable t) {
+
                     }
                 });
     }
