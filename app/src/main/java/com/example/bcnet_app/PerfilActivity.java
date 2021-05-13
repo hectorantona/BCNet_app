@@ -67,7 +67,6 @@ public class PerfilActivity extends AppCompatActivity {
             }
         });
 
-
         NewLocalBtn.setOnClickListener(new View.OnClickListener() {
                @Override
                public void onClick(View v) {
