@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.bcnet_app.models.User;
+import com.example.bcnet_app.repositories.ChangeEmailResponse;
 import com.example.bcnet_app.repositories.ChangePswdResponse;
 import com.example.bcnet_app.repositories.InfoUserResponse;
 import com.example.bcnet_app.repositories.LoginResponse;
@@ -46,6 +47,10 @@ public class UserViewModel extends ViewModel {
 
     public void changePassword (String username, String oldPassword, String newPassword, ChangePswdResponse callback){
         Repo.changePassword(username, oldPassword, newPassword, callback);
+    }
+
+    public void changeEmail (String username, String Password, String newEmail, ChangeEmailResponse callback){
+        Repo.changeEmail(username, Password, newEmail, callback);
     }
 
 }
