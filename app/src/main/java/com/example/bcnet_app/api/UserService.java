@@ -35,4 +35,11 @@ public interface UserService {
             @Query("oldpassword") String qoldpassword,
             @Query("newpassword") String qnewpassword
     );
+
+    @POST("changeEmailDB")
+    Call<User> changeEMail(
+            @Query("username") String qusername,
+            @Query("password") String qpassword,
+            @Query("email") String qemail
+    );
 }

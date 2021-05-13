@@ -146,4 +146,26 @@ public class UserRepository {
             }
         });
     }
+
+    public void changeEmail(String username, String password, String email, ChangeEmailResponse callback) {
+        userService.changeEMail(username, password, email).enqueue(new Callback<User>() {
+            @Override
+            public void onResponse(Call<User> call, Response<User> response) {
+                if (response.isSuccessful()) {
+                    Log.d(TAG, "ChangeEmailOK: " + response.body());
+                    //loginLiveData.setValue(response.body().getPassword());
+                    callback.changeEmail(response.body().getUsername(), response.body().getEmail(), response.body().getMessage().equals("true"), response.body().getErrormsg());
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<User> call, Throwable t) {
+                //loginLiveData.postValue(null);
+                Log.d(TAG, "ChangeEmailCACA: ");
+
+
+            }
+        });
+    }
 }
