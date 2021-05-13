@@ -6,6 +6,7 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 
 public class LocalitzacionsSearch {
     @SerializedName("result")
@@ -64,9 +65,19 @@ public class LocalitzacionsSearch {
     }
 
     public void orderPuntuacioGlobal() {
-
-
+        //por implementar
     }
+
+    class SortByPG implements Comparator<Localitzacio>
+    {
+        // Used for sorting in descending order
+        public int compare(Localitzacio a, Localitzacio b)
+        {
+            return (int) ((b.getPG() - a.getPG())*10);
+        }
+    }
+
+
 
     public Localitzacio getelembyname (String name) {
         for (int i = 0; i < localitzacions.size(); ++i) {

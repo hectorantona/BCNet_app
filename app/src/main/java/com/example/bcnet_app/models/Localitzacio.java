@@ -93,6 +93,11 @@ public class Localitzacio {
         return "4.2";
     }
 
+    public Float getPG () {
+        //return calcularPuntuacioGlobal().toString();
+        return Float.parseFloat("4.2");
+    }
+
     public String getDireccio() {
         return direccio;
     }
@@ -104,6 +109,7 @@ public class Localitzacio {
     public Float getPuntuacioCOVID() { return puntuacioCOVID; }
     public void setPuntuacioCOVID(Float puntuacioCOVID) { this.puntuacioCOVID = puntuacioCOVID; }
 
-
 }
+
+
 
