@@ -59,6 +59,7 @@ public class FormValoracio extends AppCompatActivity {
         //PREGUNTAR AL PROFE COM FER QUE LA FUNCIO DE DEMANAR ERROR S'ESPERI A QUE RETRORIFT HAGI ACABAT
         String comment = comentari.getText().toString();
         //Canviar Adria per userlogged.name()
+        amagarUI();
         commentViewModel.newComment(nom_localitzacio, "Maria", comment, new newCommentResponse() {
             @Override
             public void updatecomments(Boolean error) {
@@ -68,10 +69,20 @@ public class FormValoracio extends AppCompatActivity {
                 }
                 //El comentari s'ha pogut fer
                 else {
-                   finish();
+                    findViewById(R.id.loadingPanel).setVisibility(View.GONE);
+                    finish();
                 }
             }
         });
+    }
+
+    private void amagarUI () {
+        comentari.setVisibility(View.GONE);
+        findViewById(R.id.Nom_Localitzacio).setVisibility(View.GONE);
+        puntuacio.setVisibility(View.GONE);
+        commentButton.setVisibility(View.GONE);
+        comentari.setVisibility(View.GONE);
+        findViewById(R.id.loadingPanel).setVisibility(View.VISIBLE);
     }
 
     private void afegeixpuntuacio() {
