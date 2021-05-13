@@ -64,9 +64,6 @@ public class FormNewPswd extends AppCompatActivity {
             }
         });
     }
-    private boolean isPasswordValid(String password) {
-        return password.length() >= 4;
-    }
 
     private boolean doPasswordMatch(String newpass, String rep_pass) { return newpass.equals(rep_pass); }
 

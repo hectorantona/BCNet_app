@@ -17,6 +17,8 @@ import androidx.appcompat.app.AppCompatActivity;
 public class PerfilActivity extends AppCompatActivity {
 
     private Button BtnModifyPswd;
+    private Button BtnModifyEmail;
+
     private Button NewLocalBtn;
 
     private SharedPreferences mPreferences;
@@ -63,6 +65,15 @@ public class PerfilActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent startIntent = new Intent(getApplicationContext(), FormNewPswd.class);
+                startActivity(startIntent);
+            }
+        });
+
+        BtnModifyEmail = (Button)findViewById(R.id.BtnChangeEmail);
+        BtnModifyEmail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent startIntent = new Intent(getApplicationContext(), FormNewEmail.class);
                 startActivity(startIntent);
             }
         });
