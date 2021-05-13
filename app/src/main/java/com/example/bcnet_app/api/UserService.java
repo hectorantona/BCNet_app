@@ -26,7 +26,13 @@ public interface UserService {
 
     @GET("infoUserDB")
     Call<User> infoUser(
-        @Query("username") String qusername
+            @Query("username") String qusername
     );
 
+    @POST("changePasswordDB")
+    Call<User> changePassword(
+            @Query("username") String qusername,
+            @Query("oldpassword") String qoldpassword,
+            @Query("newpassword") String qnewpassword
+    );
 }

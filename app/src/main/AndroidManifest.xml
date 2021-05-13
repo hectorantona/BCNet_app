@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.BCNet_app">
-        <activity android:name=".NewLocalActivity"></activity>
+        <activity android:name=".FormNewPswd"></activity>
+        <activity android:name=".NewLocalActivity" />
         <activity android:name=".PerfilActivity" />
         <activity android:name=".FormCovid" />
         <activity android:name=".FormValoracio" />

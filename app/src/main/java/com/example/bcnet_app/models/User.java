@@ -3,6 +3,8 @@ package com.example.bcnet_app.models;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.ArrayList;
+
 public class User {
 
     @SerializedName("username")
@@ -24,6 +26,10 @@ public class User {
     @SerializedName("ErrorMessage")
     @Expose
     private String errormsg;
+
+    @SerializedName("value")
+    @Expose
+    private ArrayList<String> infoUser;
 
     public String getMessage() {
         return message;
