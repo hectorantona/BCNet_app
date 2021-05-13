@@ -1,18 +1,24 @@
 package com.example.bcnet_app;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 
+import com.example.bcnet_app.repositories.SignUpResponse;
+import com.example.bcnet_app.viewmodels.UserViewModel;
 import com.google.android.material.textfield.TextInputLayout;
 
 public class SignUpActivity extends AppCompatActivity {
 
+    private static final String TAG = "SIGNUP ACTIVITY";
     private EditText username;
     private EditText email;
     private EditText pass;
@@ -24,6 +30,14 @@ public class SignUpActivity extends AppCompatActivity {
     private TextInputLayout mFloatLabelNewEmail;
     private TextInputLayout mFloatLabelNewPassword;
     private TextInputLayout mFloatLabelRepPassword;
+
+    private UserViewModel userViewModel;
+
+    private SharedPreferences mPreferences;
+    private String sharedPrefFile =
+            "com.example.android.hellosharedprefs";
+    private final String USERNAME_KEY = "username";
+    private final String PASSWORD_KEY = "password";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +53,11 @@ public class SignUpActivity extends AppCompatActivity {
         mFloatLabelNewEmail = (TextInputLayout) findViewById(R.id.float_label_new_email);
         mFloatLabelNewPassword = (TextInputLayout) findViewById(R.id.float_label_new_password);
         mFloatLabelRepPassword = (TextInputLayout) findViewById(R.id.float_label_rep_password);
+
+        userViewModel = new ViewModelProvider(this).get(UserViewModel.class);
+        userViewModel.init();
+
+        mPreferences = getSharedPreferences(sharedPrefFile, MODE_PRIVATE);
 
         BtnSignUp = (Button)findViewById(R.id.SignUpBtn);
         BtnSignUp.setOnClickListener(new View.OnClickListener() {
@@ -127,8 +146,23 @@ public class SignUpActivity extends AppCompatActivity {
         } else {
             //Login
             //Create user : loginViewModel.login(useri, emaili, passwordi);
-            Intent startIntent = new Intent(getApplicationContext(), MainActivity2.class);
-            startActivity(startIntent);
+            userViewModel.signup(emaili, useri, passi, new SignUpResponse() {
+
+                @Override
+                public void signup(String Username, Boolean message, String errormsg) {
+                    if (message) {
+                        SharedPreferences.Editor sharedpreferenceseditor = mPreferences.edit();
+                        sharedpreferenceseditor.putString(USERNAME_KEY, useri);
+                        sharedpreferenceseditor.apply();
+                        Log.d(TAG, "USERNAME: " + mPreferences.getString("username", null)); //PROVES FUNCIONAMENT sharedPreferences
+                        Intent startIntent = new Intent(getApplicationContext(), MainActivity2.class);
+                        startActivity(startIntent);
+                    } else {
+                        mFloatLabelNewUser.setError(getString(R.string.error_user_already_exists));
+
+                    }
+                }
+            });
         }
     }
 }

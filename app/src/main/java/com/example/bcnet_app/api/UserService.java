@@ -19,9 +19,14 @@ public interface UserService {
     );
 
     @GET("loginUser")
-    Call<String> loginUser(
+    Call<User> loginUser(
             @Query("username") String qusername,
             @Query("password") String qpassword
+    );
+
+    @GET("infoUserDB")
+    Call<User> infoUser(
+        @Query("username") String qusername
     );
 
 }

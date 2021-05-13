@@ -1,8 +1,10 @@
 package com.example.bcnet_app;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -10,10 +12,12 @@ import android.widget.EditText;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.bcnet_app.viewmodels.LoginViewModel;
+import com.example.bcnet_app.repositories.LoginResponse;
+import com.example.bcnet_app.viewmodels.UserViewModel;
 import com.google.android.material.textfield.TextInputLayout;
 
 public class MainActivity extends AppCompatActivity{
+    private static final String TAG = "MAIN ACTIVITY";
 
     //private UserLoginTask mAuthTask = null;
 
@@ -27,7 +31,14 @@ public class MainActivity extends AppCompatActivity{
     private TextInputLayout mFloatLabelPassword;
     //private View mLoginFormView;
 
-    private LoginViewModel loginViewModel;
+    private UserViewModel userViewModel;
+
+    private SharedPreferences mPreferences;
+    private String sharedPrefFile =
+            "com.example.android.hellosharedprefs";
+    private final String USERNAME_KEY = "username";
+    private final String PASSWORD_KEY = "password";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,15 +56,20 @@ public class MainActivity extends AppCompatActivity{
         LoginBtn = (Button)findViewById(R.id.LoginBtn);
         SignupBtn = (Button)findViewById(R.id.SignupBtn);
 
-        loginViewModel = new ViewModelProvider(this).get(LoginViewModel.class);
-        loginViewModel.init();
+        userViewModel = new ViewModelProvider(this).get(UserViewModel.class);
+        userViewModel.init();
+
+        mPreferences = getSharedPreferences(sharedPrefFile, MODE_PRIVATE);
+
 
 
         //click login
         LoginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 attemptLogin();
+
             }
         });
 
@@ -116,9 +132,31 @@ public class MainActivity extends AppCompatActivity{
             focusView.requestFocus();
         } else {
             //Login
-            //loginViewModel.login(useri, passwordi);
-            Intent startIntent = new Intent(getApplicationContext(), MainActivity2.class);
-            startActivity(startIntent);
+
+            userViewModel.login(useri, passwordi, new LoginResponse(){
+
+                @Override
+                public void login(String Username, Boolean message, String errormsg) {
+                    if (message) {
+                        SharedPreferences.Editor sharedpreferenceseditor = mPreferences.edit();
+                        sharedpreferenceseditor.putString(USERNAME_KEY, useri);
+                        sharedpreferenceseditor.apply();
+                        Log.d(TAG, "USERNAME: " + mPreferences.getString("username", null)); //PROVES FUNCIONAMENT sharedPreferences
+                        Intent startIntent = new Intent(getApplicationContext(), MainActivity2.class);
+                        startActivity(startIntent);
+                    } else {
+                        if (errormsg.equals("WrongPassword!")) {
+                            Log.d(TAG, "ERRORMESSAGE: " + errormsg); //PROVES FUNCIONAMENT sharedPreferences
+                            mFloatLabelPassword.setError(getString(R.string.error_invalid_password));
+                        }
+                        else{
+                            mFloatLabelUserId.setError(getString(R.string.error_invalid_user));
+
+                        }
+                    }
+                }
+            });
+
         }
     }
 }
