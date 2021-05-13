@@ -14,6 +14,7 @@ import com.example.bcnet_app.Factory.MyViewModelFactory;
 import com.example.bcnet_app.repositories.newCommentResponse;
 import com.example.bcnet_app.viewmodels.CommentViewModel;
 import com.example.bcnet_app.viewmodels.MainActivity2ViewModel;
+import com.google.android.material.textfield.TextInputLayout;
 
 public class FormValoracio extends AppCompatActivity {
     private static final String TAG = "FormValoracio";
@@ -24,7 +25,7 @@ public class FormValoracio extends AppCompatActivity {
     private EditText comentari;
     private RatingBar puntuacio;
 
-
+    private TextInputLayout mFloatLabelTextComm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +45,8 @@ public class FormValoracio extends AppCompatActivity {
         commentButton = findViewById(R.id.BtnComentar);
         puntuacio.setNumStars(5);
 
+        mFloatLabelTextComm = (TextInputLayout) findViewById(R.id.float_label_text_comment);
+
         commentButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -59,17 +62,17 @@ public class FormValoracio extends AppCompatActivity {
         //PREGUNTAR AL PROFE COM FER QUE LA FUNCIO DE DEMANAR ERROR S'ESPERI A QUE RETRORIFT HAGI ACABAT
         String comment = comentari.getText().toString();
         //Canviar Adria per userlogged.name()
-        amagarUI();
+        //amagarUI();
         commentViewModel.newComment(nom_localitzacio, "Maria", comment, new newCommentResponse() {
             @Override
-            public void updatecomments(Boolean error) {
+            public void updatecomments(Boolean correcte) {
                 //No es pot fer el comentari
-                if (!error) {
-
+                if (!correcte) {
+                    mFloatLabelTextComm.setError(getString(R.string.error_ja_te_comment));
                 }
                 //El comentari s'ha pogut fer
                 else {
-                    findViewById(R.id.loadingPanel).setVisibility(View.GONE);
+                    //findViewById(R.id.loadingPanel).setVisibility(View.GONE);
                     finish();
                 }
             }

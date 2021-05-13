@@ -53,11 +53,13 @@
         android:layout_margin="8dp"/>
 
     <Button
-       android:layout_alignParentRight="true"
-        android:layout_marginRight="10dp"
         android:id="@+id/delete"
-        android:layout_width="30dp"
-        android:layout_height="32dp"
-        android:text="Esborrar"
-        android:textSize="20dp" />
+        android:layout_width="39dp"
+        android:layout_height="31dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="3dp"
+        android:backgroundTint="@color/eliminate"
+        android:text="X"
+        android:textColor="@color/white"
+        android:textSize="10dp" />
 </RelativeLayout>

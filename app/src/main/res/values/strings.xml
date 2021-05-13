@@ -37,5 +37,6 @@
     <string name="createLocal">Crea una nova localització</string>
     <string name="local_name">Nom localització</string>
     <string name="local_adreca">Driecció de la localització</string>
+    <string name="error_ja_te_comment">Ja has creat un commentari en aquesta localització</string>
 
 </resources>
