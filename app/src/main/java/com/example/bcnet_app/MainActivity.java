@@ -61,7 +61,6 @@ public class MainActivity extends AppCompatActivity{
 
         mPreferences = getSharedPreferences(sharedPrefFile, MODE_PRIVATE);
 
-
         //click login
         LoginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
