@@ -105,12 +105,14 @@ public class LocalitzacioSearchFrag extends Fragment {
                         break;
 
                     case "Més puntuació":
+                        orderByPuntuacioGlobal();
                         break;
 
                     case "Puntuació COVID":
                         break;
 
                     case "Adreça":
+                        performSearchByAdreca();
                         break;
 
                     case "Preferits":
@@ -125,6 +127,19 @@ public class LocalitzacioSearchFrag extends Fragment {
         return view;
     }
 
+    private void orderByPuntuacioGlobal() {
+        LocalitzacionsSearch LS = viewModel.getLocalitzacions().getValue();
+        LS.orderPuntuacioGlobal();
+        adapter.setResults(LS);
+    }
+
+    private void performSearchByAdreca() {
+        String adreca = nameEditText.getText().toString();
+        LocalitzacionsSearch LS = new LocalitzacionsSearch(viewModel.getLocalitzacions().getValue().getLocalitzacions());
+        LS.filterByAdreca(adreca);
+        adapter.setResults(LS);
+    }
+
     public void performSearchByName() {
         String name = nameEditText.getText().toString();
         LocalitzacionsSearch LS = new LocalitzacionsSearch(viewModel.getLocalitzacions().getValue().getLocalitzacions());
@@ -133,9 +148,9 @@ public class LocalitzacioSearchFrag extends Fragment {
     }
 
     private void performSearchByCategory() {
-        String name = nameEditText.getText().toString();
+        String categ = nameEditText.getText().toString();
         LocalitzacionsSearch LS = new LocalitzacionsSearch(viewModel.getLocalitzacions().getValue().getLocalitzacions());
-        LS.filterByCategory(name);
+        LS.filterByCategory(categ);
         adapter.setResults(LS);
     }
 }

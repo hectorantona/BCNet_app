@@ -29,6 +29,11 @@ public class Localitzacio {
     @Expose
     private String id;
 
+    @SerializedName("direccio")
+    @Expose
+    private String direccio;
+
+
     private String content;
     private Float puntuacioGlobal;
     private ArrayList<Comment> valoracions;
@@ -36,12 +41,12 @@ public class Localitzacio {
 
     private String semaforUrl;
 
-    public Localitzacio(String imageUrl, String name, String content, String category, String semaforUrl) {
+    public Localitzacio(String imageUrl, String name, String content, String category, String direccio) {
         this.nom = name;
         this.imageUrl = imageUrl;
         this.content = content;
         this.category = category;
-        this.semaforUrl = semaforUrl;
+        this.direccio = direccio;
 
     }
 
@@ -88,7 +93,17 @@ public class Localitzacio {
         return "4.2";
     }
 
+    public String getDireccio() {
+        return direccio;
+    }
+
+    public void setDireccio(String direccio) {
+        this.direccio = direccio;
+    }
+
     public Float getPuntuacioCOVID() { return puntuacioCOVID; }
     public void setPuntuacioCOVID(Float puntuacioCOVID) { this.puntuacioCOVID = puntuacioCOVID; }
+
+
 }
 
