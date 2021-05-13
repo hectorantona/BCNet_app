@@ -7,48 +7,79 @@
     android:id="@+id/parent_layout"
     >
 
-    <ImageView
-        android:id="@+id/imatge_perfil"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="250dp"
-        android:layout_weight="70"
-        android:contentDescription="TODO"
-        android:scaleType="center"
-        android:src="@mipmap/ic_launcher_round" />
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/Nom_Usuari"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/imatge_perfil"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="16dp"
-        android:text="Addis Abeba"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        android:layout_marginStart="15dp" />
+        <ImageView
+            android:id="@+id/imatge_perfil"
+            android:layout_width="match_parent"
+            android:layout_height="276dp"
+            android:layout_weight="70"
+            android:contentDescription="TODO"
+            android:scaleType="center"
+            android:src="@mipmap/ic_launcher_round" />
 
-    <TextView
-        android:id="@+id/Email_Usuari"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/Nom_Usuari"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="16dp"
-        android:text="Addis.Abeba@upc.edu"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        android:layout_marginStart="15dp" />
+        <TextView
+            android:id="@+id/Nom_Usuari"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="16dp"
+            android:text="Addis Abeba"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
 
-    <Button
-        android:id="@+id/GotoCreateLocalBtn"
-        style="?android:textAppearanceSmall"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="10dp"
-        android:text="@string/createLocal"
-        android:textStyle="bold" />
+        <TextView
+            android:id="@+id/Email_Usuari"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="16dp"
+            android:text="Addis.Abeba@upc.edu"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/Dades_Personals"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="16dp"
+            android:text="Dades Personals"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="70" >
+
+            <Button
+                android:id="@+id/BtnChangePwd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="16dp"
+                android:text="Modificar Contrassenya"
+                android:backgroundTint="@color/gray"
+                android:textColor="@color/white"/>
+        </androidx.cardview.widget.CardView>
+
+        <Button
+            android:id="@+id/GotoCreateLocalBtn"
+            style="?android:textAppearanceSmall"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="@string/createLocal"
+            android:textStyle="bold" />
+    </LinearLayout>
 
 
 </RelativeLayout>

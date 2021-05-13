@@ -140,6 +140,7 @@ public class MainActivity extends AppCompatActivity{
                     if (message) {
                         SharedPreferences.Editor sharedpreferenceseditor = mPreferences.edit();
                         sharedpreferenceseditor.putString(USERNAME_KEY, useri);
+                        sharedpreferenceseditor.putString(PASSWORD_KEY, passwordi);
                         sharedpreferenceseditor.apply();
                         Log.d(TAG, "USERNAME: " + mPreferences.getString("username", null)); //PROVES FUNCIONAMENT sharedPreferences
                         Intent startIntent = new Intent(getApplicationContext(), MainActivity2.class);

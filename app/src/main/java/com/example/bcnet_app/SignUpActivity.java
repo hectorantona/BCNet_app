@@ -153,6 +153,7 @@ public class SignUpActivity extends AppCompatActivity {
                     if (message) {
                         SharedPreferences.Editor sharedpreferenceseditor = mPreferences.edit();
                         sharedpreferenceseditor.putString(USERNAME_KEY, useri);
+                        sharedpreferenceseditor.putString(PASSWORD_KEY, passi);
                         sharedpreferenceseditor.apply();
                         Log.d(TAG, "USERNAME: " + mPreferences.getString("username", null)); //PROVES FUNCIONAMENT sharedPreferences
                         Intent startIntent = new Intent(getApplicationContext(), MainActivity2.class);

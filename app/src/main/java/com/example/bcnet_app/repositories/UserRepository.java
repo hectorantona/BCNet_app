@@ -103,21 +103,44 @@ public class UserRepository {
     }
 
     //Crida l'api info user
-    public void infouser(String username) {
+    public void infouser(String username, InfoUserResponse callback) {
         userService.infoUser(username).enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
-                if (response.body() != null) {
+                if (response.isSuccessful()) {
                     Log.d(TAG, "InfoUserOK: " + response.body());
-                    userLiveData.setValue(response.body());
+                    //loginLiveData.setValue(response.body().getEmail());
+                    callback.infouser(response.body().getUsername(), response.body().getEmail(), response.body().getMessage().equals("true"), response.body().getErrormsg());
 
                 }
             }
 
             @Override
             public void onFailure(Call<User> call, Throwable t) {
-                userLiveData.postValue(null);
+                //loginLiveData.postValue(null);
                 Log.d(TAG, "InfoUserCACA: ");
+
+
+            }
+        });
+    }
+
+    public void changePassword(String username, String oldpassword, String newpassword, ChangePswdResponse callback) {
+        userService.changePassword(username, oldpassword, newpassword).enqueue(new Callback<User>() {
+            @Override
+            public void onResponse(Call<User> call, Response<User> response) {
+                if (response.isSuccessful()) {
+                    Log.d(TAG, "ChangePasswordOK: " + response.body());
+                    //loginLiveData.setValue(response.body().getPassword());
+                    callback.changePassword(response.body().getUsername(), response.body().getPassword(), response.body().getMessage().equals("true"), response.body().getErrormsg());
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<User> call, Throwable t) {
+                //loginLiveData.postValue(null);
+                Log.d(TAG, "ChangePasswordCACA: ");
 
 
             }
