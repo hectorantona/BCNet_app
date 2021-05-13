@@ -1,15 +1,29 @@
 package com.example.bcnet_app.models;
 //import com.google.firebase.database.ServerValue;
 
-public class Comentari {
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
+public class Comment {
+    @SerializedName("result")
+    @Expose
+    private String correcte;
+    @SerializedName("error")
+    @Expose
+    private String msg;
+
+    @SerializedName("user")
+    @Expose
     private String usuari;
+    @SerializedName("text")
+    @Expose
     private String comentari;
     private Float puntuacio;
     private Integer likes;
     private String id;
     private Object timestamp;
 
-    public Comentari(String usuari, String comentari, Float puntuacio, String id) {
+    public Comment(String usuari, String comentari, Float puntuacio, String id) {
         this.usuari = usuari;
         this.comentari = comentari;
         this.puntuacio = puntuacio;
@@ -18,13 +32,21 @@ public class Comentari {
         //this.timestamp = ServerValue.TIMESTAMP;
     }
 
-    public Comentari(String usuari, String comentari, Float puntuacio, String id, Object timestamp) {
+    public Comment(String usuari, String comentari, Float puntuacio, String id, Object timestamp) {
         this.usuari = usuari;
         this.comentari = comentari;
         this.puntuacio = puntuacio;
         this.id = id;
         this.likes = 0;
         //this.timestamp = timestamp;
+    }
+
+    public String getCorrecte() {
+        return correcte;
+    }
+
+    public String getMsg() {
+        return msg;
     }
 
     public void setUsuari(String usuari) {

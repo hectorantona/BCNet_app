@@ -116,7 +116,7 @@ public class MainActivity extends AppCompatActivity{
             focusView.requestFocus();
         } else {
             //Login
-            loginViewModel.login(useri, passwordi);
+            //loginViewModel.login(useri, passwordi);
             Intent startIntent = new Intent(getApplicationContext(), MainActivity2.class);
             startActivity(startIntent);
         }

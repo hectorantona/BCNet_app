@@ -38,6 +38,7 @@
         android:layout_toRightOf="@id/comment_user_img"
         android:layout_margin="8dp"
         android:text="Text Comment Goes Here"
+        android:textSize="15dp"
         android:textColor="#969595" />
 
     <TextView
@@ -50,4 +51,15 @@
         app:layout_constraintHorizontal_bias="1.0"
         android:layout_toRightOf="@id/comment_username"
         android:layout_margin="8dp"/>
+
+    <Button
+        android:id="@+id/delete"
+        android:layout_width="39dp"
+        android:layout_height="31dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="3dp"
+        android:backgroundTint="@color/eliminate"
+        android:text="X"
+        android:textColor="@color/white"
+        android:textSize="10dp" />
 </RelativeLayout>

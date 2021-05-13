@@ -11,17 +11,20 @@ import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.Observer;import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.example.bcnet_app.Factory.MyViewModelFactory;
 import com.example.bcnet_app.adapter.CommentAdapter;
-import com.example.bcnet_app.models.Comentari;
+import com.example.bcnet_app.models.CommentResponse;
+import com.example.bcnet_app.models.LocalitzacionsSearch;
+import com.example.bcnet_app.repositories.LocalitzacioRespository;
 import com.example.bcnet_app.viewmodels.CommentViewModel;
-
-import java.util.List;
 
 public class ViewLocalitzacio extends AppCompatActivity {
     private static final String TAG = "ViewLocalitzacio";
@@ -33,25 +36,53 @@ public class ViewLocalitzacio extends AppCompatActivity {
 
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        Log.d(TAG, "Tornem a buscar els comentaris");
+        commentViewModel.searchComments();
+
+    }
+
+    public void updateComments() {
+        onResume();
+        Log.d(TAG, "fem update dels comments ");
+        commentViewModel.searchComments();
+        /*commentViewModel.getComentaris().observe(this, new Observer<CommentResponse>() {
+            @Override
+            public void onChanged(CommentResponse comentaris) {
+                if (comentaris != null) {
+                    mAdapter.setResults(comentaris);
+                }
+
+            }
+        });*/
+    }
+
+
+    @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_view_localitzacio);
-        Log.d(TAG, "onCreate: started. ");
 
-        mRecyclerView = findViewById(R.id.llista_comentari);
-        commentViewModel = new ViewModelProvider(this).get(CommentViewModel.class);
-        commentViewModel.init();
-
-        commentViewModel.getComentaris().observe(this, new Observer<List<Comentari>>() {
-            @Override
-            public void onChanged(List<Comentari> comentaris) {
-                mAdapter.notifyDataSetChanged();
-            }
-        });
+        getIncomingIntent();
 
         initRecycleView();
 
-        getIncomingIntent();
+        commentViewModel = new ViewModelProvider(this, new MyViewModelFactory(nom_localitzacio)).get(CommentViewModel.class);
+        commentViewModel.init();
+
+        commentViewModel.searchComments();
+
+        commentViewModel.getComentaris().observe(this, new Observer<CommentResponse>() {
+            @Override
+            public void onChanged(CommentResponse comentaris) {
+                if (comentaris != null) {
+                    mAdapter.setResults(comentaris);
+                }
+
+            }
+        });
 
         Button BtnValorar = (Button)findViewById(R.id.BtnValorar);
         BtnValorar.setOnClickListener(new View.OnClickListener() {
@@ -59,9 +90,9 @@ public class ViewLocalitzacio extends AppCompatActivity {
             public void onClick(View v) {
                 Intent startIntent = new Intent(getApplicationContext(), FormValoracio.class);
                 //
-
                 startIntent.putExtra("nom_localitzacio", getIntent().getStringExtra("nom_localitzacio"));
                 startActivity(startIntent);
+                onPause();
             }
         });
         Button BtnCovid = (Button)findViewById(R.id.BtnCovid);
@@ -73,24 +104,31 @@ public class ViewLocalitzacio extends AppCompatActivity {
 
                 startIntent.putExtra("nom_localitzacio", getIntent().getStringExtra("nom_localitzacio"));
                 startActivity(startIntent);
+                onPause();
             }
         });
+
     }
 
     private void initRecycleView() {
-        mAdapter = new CommentAdapter(this, commentViewModel.getComentaris().getValue());
+        //Si ho podem fer amb l'id del comment millor que amb aixo
+        LiveData<LocalitzacionsSearch> l = LocalitzacioRespository.getInstance().getlocalitzacions();
+        //Agafem l'id de la localització per crear el comment
+        Log.d(TAG, "nom localitzacio: " + nom_localitzacio);
+        String idlocalitzacio = l.getValue().getelembyname(nom_localitzacio).getId();
+
+        mAdapter = new CommentAdapter(this, idlocalitzacio);
+        mRecyclerView = findViewById(R.id.llista_comentari);
         RecyclerView.LayoutManager linearLayoutManager = new LinearLayoutManager(this);
-        mRecyclerView.setAdapter(mAdapter);
         mRecyclerView.setLayoutManager(linearLayoutManager);
+        mRecyclerView.setAdapter(mAdapter);
     }
 
     private void getIncomingIntent (){
-        Log.d(TAG, "getIncomingIntent: check for incoming intents (Localitzacions)");
         if(getIntent().hasExtra("imatge")&& getIntent().hasExtra("nom_localitzacio")) {
-            Log.d(TAG, "getIncomingIntent: ha trobat tots els extres");
 
             String imageUrl = getIntent().getStringExtra("imatge");
-            String nom_localitzacio = getIntent().getStringExtra("nom_localitzacio");
+            nom_localitzacio = getIntent().getStringExtra("nom_localitzacio");
             String content = getIntent().getStringExtra("content");
             Float puntuacio_global = Float.parseFloat(getIntent().getStringExtra("puntuacio_global"));
             String puntuacio_Covid = getIntent().getStringExtra("puntuacioCovid");
@@ -105,7 +143,6 @@ public class ViewLocalitzacio extends AppCompatActivity {
         }
     }
     private void setImage (String imageUrl, String nom_localitzacio, String content){
-        Log.d(TAG, "setImage: setting nom, descripcio i imatge als widgets");
 
         TextView name = findViewById(R.id.Nom_Localitzacio);
         name.setText(nom_localitzacio);

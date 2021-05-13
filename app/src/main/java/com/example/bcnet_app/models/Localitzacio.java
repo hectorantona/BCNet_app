@@ -25,19 +25,17 @@ public class Localitzacio {
     @Expose
     private String imageUrl;
 
+    @SerializedName("id")
+    @Expose
+    private String id;
+
     private String content;
     private Float puntuacioGlobal;
-    private ArrayList<Comentari> valoracions;
+    private ArrayList<Comment> valoracions;
     private Float puntuacioCOVID;
 
     private String semaforUrl;
 
-
-
-    //public String getText() {
-    //    return text;
-    //}
-    //Fi exemple retrofit
     public Localitzacio(String imageUrl, String name, String content, String category, String semaforUrl) {
         this.nom = name;
         this.imageUrl = imageUrl;
@@ -49,7 +47,7 @@ public class Localitzacio {
 
     private Float calcularPuntuacioGlobal() {
         Float suma = (float)0;
-        for (Comentari c : valoracions) {
+        for (Comment c : valoracions) {
             suma += c.getPuntuacio();
         }
         Float avg = (float)-1;
@@ -61,6 +59,15 @@ public class Localitzacio {
 
     public Localitzacio() {
     }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
     public String getName() {return nom;}
     public void setName(String title) {this.nom=title;}
 
