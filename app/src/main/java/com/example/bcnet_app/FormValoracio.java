@@ -1,6 +1,9 @@
 package com.example.bcnet_app;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -25,6 +28,11 @@ public class FormValoracio extends AppCompatActivity {
     private EditText comentari;
     private RatingBar puntuacio;
 
+    private SharedPreferences mPreferences;
+    private String sharedPrefFile =
+            "com.example.android.hellosharedprefs";
+    private final String USERNAME_KEY = "username";
+
     private TextInputLayout mFloatLabelTextComm;
 
     @Override
@@ -45,7 +53,11 @@ public class FormValoracio extends AppCompatActivity {
         commentButton = findViewById(R.id.BtnComentar);
         puntuacio.setNumStars(5);
 
+        mPreferences = getSharedPreferences(sharedPrefFile, MODE_PRIVATE);
+
         mFloatLabelTextComm = (TextInputLayout) findViewById(R.id.float_label_text_comment);
+        Log.d(TAG, "USERNAME: " + mPreferences.getString("username", null)); //PROVES FUNCIONAMENT sharedPreferences
+
 
         commentButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,7 +75,7 @@ public class FormValoracio extends AppCompatActivity {
         String comment = comentari.getText().toString();
         //Canviar Adria per userlogged.name()
         //amagarUI();
-        commentViewModel.newComment(nom_localitzacio, "Maria", comment, new newCommentResponse() {
+        commentViewModel.newComment(nom_localitzacio, mPreferences.getString("username", null), comment, new newCommentResponse() {
             @Override
             public void updatecomments(Boolean correcte) {
                 //No es pot fer el comentari

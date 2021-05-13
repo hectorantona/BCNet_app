@@ -1,6 +1,7 @@
 package com.example.bcnet_app;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -34,6 +35,10 @@ public class ViewLocalitzacio extends AppCompatActivity {
     private CommentViewModel commentViewModel;
     private String nom_localitzacio;
 
+    private SharedPreferences mPreferences;
+    private String sharedPrefFile =
+            "com.example.android.hellosharedprefs";
+    private final String USERNAME_KEY = "username";
 
     @Override
     protected void onResume() {
@@ -68,6 +73,8 @@ public class ViewLocalitzacio extends AppCompatActivity {
         getIncomingIntent();
 
         initRecycleView();
+
+        mPreferences = getSharedPreferences(sharedPrefFile, MODE_PRIVATE);
 
         commentViewModel = new ViewModelProvider(this, new MyViewModelFactory(nom_localitzacio)).get(CommentViewModel.class);
         commentViewModel.init();
