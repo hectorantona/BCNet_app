@@ -13,15 +13,15 @@ public class LocalitzacionsSearch {
     private boolean error;
     @SerializedName("value")
     @Expose
-    public ArrayList<Localitzacio> localitzacions;
+    private ArrayList<Localitzacio> localitzacions;
 
     public LocalitzacionsSearch (){
         localitzacions = new ArrayList<>();
     }
-
     public LocalitzacionsSearch (ArrayList<Localitzacio> l){
         localitzacions = l;
     }
+
     public ArrayList<Localitzacio> getLocalitzacions() {
         return localitzacions;
     }
@@ -29,21 +29,6 @@ public class LocalitzacionsSearch {
     //search/sorting
     public Localitzacio getelemi (Integer i) {
        return localitzacions.get(i);
-    }
-    public Localitzacio getelembyname (String name) {
-        for (int i = 0; i < localitzacions.size(); ++i) {
-            Log.d("Searchloc", "localitzacio" + i + " " + localitzacions.get(i).getName());
-            if (localitzacions.get(i).getName().equals(name)) {
-
-                return localitzacions.get(i);
-            }
-
-        }
-        Log.d("Searchloc", "FAILL");
-        return null;
-    }
-    public Integer getnumelements() {
-        return localitzacions.size();
     }
 
     public void filterByName(String name) {
@@ -64,5 +49,21 @@ public class LocalitzacionsSearch {
             }
         }
         localitzacions = reduced;
+    }
+
+    public Localitzacio getelembyname (String name) {
+        for (int i = 0; i < localitzacions.size(); ++i) {
+            Log.d("Searchloc", "localitzacio" + i + " " + localitzacions.get(i).getName());
+            if (localitzacions.get(i).getName().equals(name)) {
+
+                return localitzacions.get(i);
+            }
+
+        }
+        Log.d("Searchloc", "FAILL");
+        return null;
+    }
+    public Integer getnumelements() {
+        return localitzacions.size();
     }
 }
