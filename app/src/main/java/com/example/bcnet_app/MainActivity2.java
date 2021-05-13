@@ -1,7 +1,9 @@
 package com.example.bcnet_app;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -11,6 +13,12 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity2 extends AppCompatActivity {
+
+    private static final String TAG = "MAINPAGE";
+    private SharedPreferences mPreferences;
+    private final String USERNAME_KEY = "username";
+    private String sharedPrefFile =
+            "com.example.android.hellosharedprefs";
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -38,6 +46,10 @@ public class MainActivity2 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
+        mPreferences = getSharedPreferences(sharedPrefFile, MODE_PRIVATE);
+
+        Log.d(TAG, "USERNAME: " + mPreferences.getString("username", null)); //PROVES FUNCIONAMENT sharedPreferences
+
 
 
 

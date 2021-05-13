@@ -10,11 +10,10 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.bcnet_app.viewmodels.LoginViewModel;
-import com.example.bcnet_app.viewmodels.SignUpViewModel;
+import com.example.bcnet_app.repositories.SignUpResponse;
+import com.example.bcnet_app.viewmodels.UserViewModel;
 import com.google.android.material.textfield.TextInputLayout;
 
 public class SignUpActivity extends AppCompatActivity {
@@ -32,7 +31,7 @@ public class SignUpActivity extends AppCompatActivity {
     private TextInputLayout mFloatLabelNewPassword;
     private TextInputLayout mFloatLabelRepPassword;
 
-    private SignUpViewModel signUpViewModel;
+    private UserViewModel userViewModel;
 
     private SharedPreferences mPreferences;
     private String sharedPrefFile =
@@ -55,8 +54,8 @@ public class SignUpActivity extends AppCompatActivity {
         mFloatLabelNewPassword = (TextInputLayout) findViewById(R.id.float_label_new_password);
         mFloatLabelRepPassword = (TextInputLayout) findViewById(R.id.float_label_rep_password);
 
-        signUpViewModel = new ViewModelProvider(this).get(SignUpViewModel.class);
-        signUpViewModel.init();
+        userViewModel = new ViewModelProvider(this).get(UserViewModel.class);
+        userViewModel.init();
 
         mPreferences = getSharedPreferences(sharedPrefFile, MODE_PRIVATE);
 
@@ -147,14 +146,23 @@ public class SignUpActivity extends AppCompatActivity {
         } else {
             //Login
             //Create user : loginViewModel.login(useri, emaili, passwordi);
-            signUpViewModel.signup(emaili, useri, passi);
-            SharedPreferences.Editor sharedpreferences = mPreferences.edit();
-            sharedpreferences.putString(USERNAME_KEY, useri);
-            sharedpreferences.putString(PASSWORD_KEY, passi);
-            sharedpreferences.apply();
-            Log.d(TAG, "USERNAME: " + mPreferences.getString("username", null)); //PROVES FUNCIONAMENT sharedPreferences
-            Intent startIntent = new Intent(getApplicationContext(), MainActivity2.class);
-            startActivity(startIntent);
+            userViewModel.signup(emaili, useri, passi, new SignUpResponse() {
+
+                @Override
+                public void signup(String Username, Boolean message, String errormsg) {
+                    if (message) {
+                        SharedPreferences.Editor sharedpreferenceseditor = mPreferences.edit();
+                        sharedpreferenceseditor.putString(USERNAME_KEY, useri);
+                        sharedpreferenceseditor.apply();
+                        Log.d(TAG, "USERNAME: " + mPreferences.getString("username", null)); //PROVES FUNCIONAMENT sharedPreferences
+                        Intent startIntent = new Intent(getApplicationContext(), MainActivity2.class);
+                        startActivity(startIntent);
+                    } else {
+                        mFloatLabelNewUser.setError(getString(R.string.error_user_already_exists));
+
+                    }
+                }
+            });
         }
     }
 }

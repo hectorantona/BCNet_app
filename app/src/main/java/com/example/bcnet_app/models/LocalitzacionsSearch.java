@@ -9,7 +9,7 @@ public class LocalitzacionsSearch {
     @SerializedName("result")
     @Expose
     public boolean error;
-    @SerializedName("valor")
+    @SerializedName("value")
     @Expose
     public ArrayList<Localitzacio> localitzacions;
 

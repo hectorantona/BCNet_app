@@ -20,9 +20,11 @@
     <string name="no_tens_compte">No tens compte?</string>
     <string name="_5_estrelles">5 estrelles</string>
 
-    <string name="error_field_required">error_field_required</string>
-    <string name="error_invalid_password">error_invalid_password</string>
-    <string name="error_invalid_user">error_invalid_user</string>
+    <string name="error_field_required"> Camp necessari</string>
+    <string name="error_invalid_password">Password incorrecte</string>
+    <string name="error_invalid_user">Usuari incorrecte</string>
+    <string name="error_user_already_exists">Usuari ja existeix</string>
+
 
 
     <!-- TODO: Remove or change this placeholder text -->

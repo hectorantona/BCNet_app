@@ -17,6 +17,22 @@ public class User {
     @Expose
     private String password;
 
+    @SerializedName("result")
+    @Expose
+    private String message;
+
+    @SerializedName("ErrorMessage")
+    @Expose
+    private String errormsg;
+
+    public String getMessage() {
+        return message;
+    }
+
+    public String getErrormsg() {
+        return errormsg;
+    }
+
     public User(String username, String email, String password) {
         this.username = username;
         this.email = email;

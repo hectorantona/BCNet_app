@@ -1,6 +1,5 @@
 package com.example.bcnet_app.repositories;
 
-import android.content.Context;
 import android.util.Log;
 
 import androidx.lifecycle.MutableLiveData;
@@ -37,6 +36,7 @@ public class UserRepository {
     private MutableLiveData<String> signupLiveData;
 
     private MutableLiveData<User> userLiveData;
+    private String loginusername;
 
 
 
@@ -61,38 +61,34 @@ public class UserRepository {
     }
 
     //crida a l'api
-    public void login(String username, String password) {
+    public void login(String username, String password, LoginResponse callback) {
         userService.loginUser(username, password)
                 .enqueue(new Callback<User>() {
                     @Override
                     public void onResponse(Call<User> call, Response<User> response) {
                         if (response.isSuccessful()) {
                             Log.d(TAG, "LoginOK: " + response.body());
-                            //loginLiveData.setValue(response.body());
-                        }
-                        else{
-                            Log.d(TAG, "RespOKLoginBAD " + response.message());
+                            loginusername = response.body().getUsername();
+                            callback.login(response.body().getUsername(), response.body().getMessage().equals("true"), response.body().getErrormsg());
                         }
                     }
-
                     @Override
                     public void onFailure(Call<User> call, Throwable t) {
-                        loginLiveData.postValue(null);
                         Log.d(TAG, "Login CACA: " + t.getLocalizedMessage());
-
+                        loginusername = null;
                     }
                 });
     }
 
     //crida a l'api crear user
-    public void signup(String email, String username, String password) {
+    public void signup(String email, String username, String password, SignUpResponse callback) {
         userService.createUser(email, username, password).enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
-                if (response.body() != null) {
+                if (response.isSuccessful()) {
                     Log.d(TAG, "SignupOK: " + response.body());
-                    //signupLiveData.setValue(response.body());
-
+                    signupLiveData.setValue(response.body().getUsername());
+                    callback.signup(response.body().getUsername(), response.body().getMessage().equals("true"), response.body().getErrormsg());
                 }
             }
 
@@ -106,5 +102,25 @@ public class UserRepository {
         });
     }
 
-    //Crida de l'usuari
+    //Crida l'api info user
+    public void infouser(String username) {
+        userService.infoUser(username).enqueue(new Callback<User>() {
+            @Override
+            public void onResponse(Call<User> call, Response<User> response) {
+                if (response.body() != null) {
+                    Log.d(TAG, "InfoUserOK: " + response.body());
+                    userLiveData.setValue(response.body());
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<User> call, Throwable t) {
+                userLiveData.postValue(null);
+                Log.d(TAG, "InfoUserCACA: ");
+
+
+            }
+        });
+    }
 }
