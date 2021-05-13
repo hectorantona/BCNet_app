@@ -19,36 +19,18 @@
         android:layout_width="match_parent"
         android:orientation="horizontal"
         android:layout_gravity="center">
+
+        <Spinner
+            android:id="@+id/search_spinner"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content" />
+
         <Button
             android:id="@+id/fragment_localitzacio_search"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="Nom"/>
-
-        <Button
-            android:id="@+id/fragment_localitzacio_category"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="10dp"
-            android:text="Categ" />
-
-        <Button
-            android:id="@+id/fragment_localitzacio_favoritos"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="10dp"
-            android:text="Fav" />
-
-        <Button
-            android:id="@+id/fragment_localitzacio_refresh"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="10dp"
-            android:text="Reset" />
+            android:layout_gravity="right"
+            android:text="Cerca"/>
     </LinearLayout>
 
 

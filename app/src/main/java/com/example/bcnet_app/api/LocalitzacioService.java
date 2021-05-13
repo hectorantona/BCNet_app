@@ -8,7 +8,7 @@ import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
 
-public interface LocalitzacioSearchService {
+public interface LocalitzacioService {
     @GET("existsEstablimentDB")
     Call<Localitzacio> searchLocalitzacio(
             @Query("nom") String name

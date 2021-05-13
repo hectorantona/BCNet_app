@@ -5,7 +5,7 @@ import android.util.Log;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import com.example.bcnet_app.api.LocalitzacioSearchService;
+import com.example.bcnet_app.api.LocalitzacioService;
 import com.example.bcnet_app.models.Localitzacio;
 import com.example.bcnet_app.models.LocalitzacionsSearch;
 
@@ -31,7 +31,7 @@ public class LocalitzacioRespository {
         return instance;
     }
 
-    private LocalitzacioSearchService localitzacioSearchService;
+    private LocalitzacioService localitzacioService;
     private MutableLiveData<LocalitzacionsSearch> localitzacionsSearchLiveData;
     private MutableLiveData<Localitzacio> localitzacioLiveData;
 
@@ -47,17 +47,17 @@ public class LocalitzacioRespository {
         interceptor.level(HttpLoggingInterceptor.Level.BODY);
         OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor).build();
 
-        localitzacioSearchService = new Retrofit.Builder()
+        localitzacioService = new Retrofit.Builder()
                 .baseUrl(LOCALITZACIO_SEARCH_SERVICE_BASE_URL)
                 .client(client)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
-                .create(LocalitzacioSearchService.class);
+                .create(LocalitzacioService.class);
     }
 
     //crida a l'api
     public void searchLocalitzacio(String name) {
-        localitzacioSearchService.searchLocalitzacio(name)
+        localitzacioService.searchLocalitzacio(name)
                 .enqueue(new Callback<Localitzacio>() {
                     @Override
                     public void onResponse(Call<Localitzacio> call, Response<Localitzacio> response) {
@@ -77,7 +77,7 @@ public class LocalitzacioRespository {
     }
 
     public void searchAllLocalitzacio() {
-        localitzacioSearchService.allLocalitzacions()
+        localitzacioService.allLocalitzacions()
                 .enqueue(new Callback<LocalitzacionsSearch>() {
                     @Override
                     public void onResponse(Call<LocalitzacionsSearch> call, Response<LocalitzacionsSearch> response) {
@@ -98,7 +98,7 @@ public class LocalitzacioRespository {
     }
 
     public void afegeixpuntuacio(String id, String nomuser, String puntuacio) {
-        localitzacioSearchService.allLocalitzacions()
+        localitzacioService.allLocalitzacions()
                 .enqueue(new Callback<LocalitzacionsSearch>() {
                     @Override
                     public void onResponse(Call<LocalitzacionsSearch> call, Response<LocalitzacionsSearch> response) {
