@@ -1,12 +1,14 @@
 package com.example.bcnet_app;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -14,7 +16,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class PerfilActivity extends AppCompatActivity {
 
+    private Button BtnModifyPswd;
     private Button NewLocalBtn;
+
+    private SharedPreferences mPreferences;
+    private String sharedPrefFile =
+            "com.example.android.hellosharedprefs";
+    private final String USERNAME_KEY = "username";
+    private final String PASSWORD_KEY = "password";
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -45,6 +54,20 @@ public class PerfilActivity extends AppCompatActivity {
 
         NewLocalBtn = (Button)findViewById(R.id.GotoCreateLocalBtn);
 
+        mPreferences = getSharedPreferences(sharedPrefFile, MODE_PRIVATE);
+
+        getIncomingIntent();
+
+        BtnModifyPswd = (Button)findViewById(R.id.BtnChangePwd);
+        BtnModifyPswd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent startIntent = new Intent(getApplicationContext(), FormNewPswd.class);
+                startActivity(startIntent);
+            }
+        });
+
+
         NewLocalBtn.setOnClickListener(new View.OnClickListener() {
                @Override
                public void onClick(View v) {
@@ -53,5 +76,13 @@ public class PerfilActivity extends AppCompatActivity {
                }
            }
         );
+    }
+
+    private void getIncomingIntent() {
+        TextView username = findViewById(R.id.Nom_Usuari);
+        username.setText(mPreferences.getString("username", null));
+
+        TextView email = findViewById(R.id.Email_Usuari);
+        email.setText(mPreferences.getString("email", null));
     }
 }
