@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="search_array">
+        <item>Nom</item>
+        <item>Categoria</item>
+        <item>Més puntuació</item>
+        <item>Puntuació COVID</item>
+        <item>Adreça</item>
+        <item>Preferits</item>
+    </string-array>
+</resources>

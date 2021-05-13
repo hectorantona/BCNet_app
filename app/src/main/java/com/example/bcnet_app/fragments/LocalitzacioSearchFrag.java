@@ -5,8 +5,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -26,10 +28,9 @@ public class LocalitzacioSearchFrag extends Fragment {
     private RecyclerViewAdapter adapter;
 
     private EditText nameEditText;
+    private Spinner searchSpinner;
     private Button searchButton;
-    private Button categButton;
-    private Button prefButton;
-    private Button resetButton;
+
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -78,27 +79,48 @@ public class LocalitzacioSearchFrag extends Fragment {
         recyclerView.setAdapter(adapter);
 
         nameEditText = view.findViewById(R.id.fragment_localitzacio_name);
+
+        searchSpinner = view.findViewById(R.id.search_spinner);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getContext(),
+                R.array.search_array, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        searchSpinner.setAdapter(adapter);
+
         searchButton = view.findViewById(R.id.fragment_localitzacio_search);
-        categButton = view.findViewById(R.id.fragment_localitzacio_category);
-        prefButton = view.findViewById(R.id.fragment_localitzacio_favoritos);
-        resetButton = view.findViewById(R.id.fragment_localitzacio_refresh);
+
 
         viewModel.searchAllLocalitzacions();
 
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                performSearchByName();
+                String opt = searchSpinner.getSelectedItem().toString();
+                switch (opt) {
+                    case "Nom":
+                        performSearchByName();
+                        break;
+
+                    case "Categoria":
+                        performSearchByCategory();
+                        break;
+
+                    case "Més puntuació":
+                        break;
+
+                    case "Puntuació COVID":
+                        break;
+
+                    case "Adreça":
+                        break;
+
+                    case "Preferits":
+                        break;
+
+                    default:
+                        break;
+                }
             }
         });
-
-        categButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                performSearchByCategory();
-            }
-        });
-
 
         return view;
     }

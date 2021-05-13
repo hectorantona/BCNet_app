@@ -151,7 +151,6 @@ public class MainActivity extends AppCompatActivity{
                         }
                         else{
                             mFloatLabelUserId.setError(getString(R.string.error_invalid_user));
-
                         }
                     }
                 }

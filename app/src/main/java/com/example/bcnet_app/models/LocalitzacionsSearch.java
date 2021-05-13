@@ -10,25 +10,27 @@ import java.util.ArrayList;
 public class LocalitzacionsSearch {
     @SerializedName("result")
     @Expose
-    private boolean error;
+    public boolean error;
     @SerializedName("value")
     @Expose
-    private ArrayList<Localitzacio> localitzacions;
+    public ArrayList<Localitzacio> localitzacions;
 
     public LocalitzacionsSearch (){
         localitzacions = new ArrayList<>();
     }
+
     public LocalitzacionsSearch (ArrayList<Localitzacio> l){
         localitzacions = l;
     }
-
     public ArrayList<Localitzacio> getLocalitzacions() {
         return localitzacions;
     }
 
-    //search/sorting
     public Localitzacio getelemi (Integer i) {
-       return localitzacions.get(i);
+        return localitzacions.get(i);
+    }
+    public Integer getnumelements() {
+        return localitzacions.size();
     }
 
     public void filterByName(String name) {
@@ -60,10 +62,7 @@ public class LocalitzacionsSearch {
             }
 
         }
-        Log.d("Searchloc", "FAILL");
+        Log.d("Searchloc", "FAIL");
         return null;
-    }
-    public Integer getnumelements() {
-        return localitzacions.size();
     }
 }
