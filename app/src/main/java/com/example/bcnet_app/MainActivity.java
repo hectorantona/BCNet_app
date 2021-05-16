@@ -34,8 +34,6 @@ public class MainActivity extends AppCompatActivity{
     private UserViewModel userViewModel;
 
     private SharedPreferences mPreferences;
-    private String sharedPrefFile =
-            "com.example.android.hellosharedprefs";
     private final String USERNAME_KEY = "username";
     private final String PASSWORD_KEY = "password";
 
@@ -59,7 +57,8 @@ public class MainActivity extends AppCompatActivity{
         userViewModel = new ViewModelProvider(this).get(UserViewModel.class);
         userViewModel.init();
 
-        mPreferences = getSharedPreferences(sharedPrefFile, MODE_PRIVATE);
+        mPreferences = getApplicationContext().getSharedPreferences("User", 0);
+
 
         //click login
         LoginBtn.setOnClickListener(new View.OnClickListener() {

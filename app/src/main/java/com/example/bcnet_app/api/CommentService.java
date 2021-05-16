@@ -14,7 +14,8 @@ public interface CommentService {
     Call<com.example.bcnet_app.models.Comment> newComment(
             @Query("username") String qusername,
             @Query("key") String qkey,
-            @Query("comentari") String qcomentari
+            @Query("comentari") String qcomentari,
+            @Query("puntuacio") String qpuntuacio
     );
 
     @GET("allCommentsEstablimentDB")

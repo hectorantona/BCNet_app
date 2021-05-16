@@ -92,9 +92,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
                 });
     }
 
-    public void newComment (String idlocalitzacio, String nomuser, String comment, newCommentResponse callback) {
+    public void newComment (String idlocalitzacio, String nomuser, String comment, String valoracio, newCommentResponse callback) {
         //Canviar establiment2 per nom localitzacio
-        commentService.newComment(nomuser, idlocalitzacio, comment)
+        commentService.newComment(nomuser, idlocalitzacio, comment, valoracio)
                 .enqueue(new Callback<com.example.bcnet_app.models.Comment>() {
                     @Override
                     public void onResponse(Call<Comment> call, Response<Comment> response) {

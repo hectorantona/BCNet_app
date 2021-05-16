@@ -44,14 +44,13 @@ public class CommentViewModel extends ViewModel {
 
     }
 
-    public boolean newComment (String nomlocalitzacio, String nomuser, String comment, newCommentResponse callback) {
+    public void newComment (String nomlocalitzacio, String nomuser, String comment, String valoracio, newCommentResponse callback) {
         //apliquem el patró singleton
 
         LiveData<LocalitzacionsSearch> l = LocalitzacioRespository.getInstance().getlocalitzacions();
         //Agafem l'id de la localització per crear el comment
         String id = l.getValue().getelembyname(nomlocalitzacio).getId();
-        ComentariRepository.getInstance().newComment(id, nomuser, comment, callback);
-        return ComentariRepository.getInstance().correcte();
+        ComentariRepository.getInstance().newComment(id, nomuser, comment, valoracio, callback);
     }
 
 }
