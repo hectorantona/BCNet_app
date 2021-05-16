@@ -1,5 +1,6 @@
 package com.example.bcnet_app;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -24,7 +25,7 @@ public class FormValoracio extends AppCompatActivity {
     private Button commentButton;
     private EditText comentari;
     private RatingBar puntuacio;
-
+   private SharedPreferences mPreferences;
     private TextInputLayout mFloatLabelTextComm;
 
     @Override
@@ -61,9 +62,12 @@ public class FormValoracio extends AppCompatActivity {
     private void newcomment() {
         //PREGUNTAR AL PROFE COM FER QUE LA FUNCIO DE DEMANAR ERROR S'ESPERI A QUE RETRORIFT HAGI ACABAT
         String comment = comentari.getText().toString();
-        //Canviar Adria per userlogged.name()
+        Integer valoracio = puntuacio.getNumStars();
+        mPreferences = getSharedPreferences("User", 0);
+        //String pref = this.getPreferenceManager().getSharedPreferencesName();
+        String nomuser = mPreferences.getString("username", null);
         //amagarUI();
-        commentViewModel.newComment(nom_localitzacio, "Maria", comment, new newCommentResponse() {
+        commentViewModel.newComment(nom_localitzacio, nomuser, comment, valoracio.toString(), new newCommentResponse() {
             @Override
             public void updatecomments(Boolean correcte) {
                 //No es pot fer el comentari
