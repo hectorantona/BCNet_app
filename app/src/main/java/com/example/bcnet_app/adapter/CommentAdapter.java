@@ -2,6 +2,7 @@ package com.example.bcnet_app.adapter;
 
 import android.content.Context;
 import android.text.format.DateFormat;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,11 +27,13 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.CommentV
     private Context mContext;
     private String establimentkey;
     private List<Comment> result = new ArrayList<>();
+    private String nomuser;
 
 
-    public CommentAdapter(Context mContext, String establimentkey) {
+    public CommentAdapter(Context mContext, String establimentkey, String loggeduser) {
         this.mContext = mContext;
         this.establimentkey = establimentkey;
+        nomuser = loggeduser;
     }
 
     @NonNull
@@ -44,16 +47,25 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.CommentV
     @Override
     public void onBindViewHolder(@NonNull CommentViewHolder holder, int position) {
         Comment c = result.get(position);
+        Log.d("Comment adapter", "Comentari de" + c.getUsuari());
         //Glide.with(mContext).load(mData.get(position).getUimg()).into(holder.img_user);
         holder.name.setText(c.getUsuari());
         holder.content.setText(c.getComentari());
-        //holder.date.setText(timestampToString((Long)mData.get(position).getTimestamp()));
-        holder.delete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                deletecomment(c);
-            }
-        });
+
+        if (!c.getUsuari().equals(nomuser)) {
+            Log.d("Comment adapter", "El nom no coicideix" + c.getUsuari() + "" + nomuser);
+            holder.delete.setVisibility(View.GONE);
+        }
+        else {
+            Log.d("Comment adapter", "Esborrar Comentari de" + c.getUsuari());
+            holder.delete.setVisibility(View.VISIBLE);
+            holder.delete.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    deletecomment(c);
+                }
+            });
+        }
     }
 
     private void deletecomment(Comment c) {
