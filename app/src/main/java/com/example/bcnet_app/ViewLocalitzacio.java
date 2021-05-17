@@ -1,6 +1,7 @@
 package com.example.bcnet_app;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -33,11 +34,13 @@ public class ViewLocalitzacio extends AppCompatActivity {
     private CommentAdapter mAdapter;
     private CommentViewModel commentViewModel;
     private String nom_localitzacio;
+    private SharedPreferences mPreferences;
+
 
 
     @Override
-    protected void onResume() {
-        super.onResume();
+    protected void onRestart() {
+        super.onRestart();
         Log.d(TAG, "Tornem a buscar els comentaris");
         commentViewModel.searchComments();
 
@@ -117,7 +120,10 @@ public class ViewLocalitzacio extends AppCompatActivity {
         Log.d(TAG, "nom localitzacio: " + nom_localitzacio);
         String idlocalitzacio = l.getValue().getelembyname(nom_localitzacio).getId();
 
-        mAdapter = new CommentAdapter(this, idlocalitzacio);
+        mPreferences = getSharedPreferences("User", 0);
+        String nomuser = mPreferences.getString("username", null);
+
+        mAdapter = new CommentAdapter(this, idlocalitzacio, nomuser);
         mRecyclerView = findViewById(R.id.llista_comentari);
         RecyclerView.LayoutManager linearLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(linearLayoutManager);

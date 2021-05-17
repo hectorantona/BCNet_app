@@ -25,7 +25,7 @@ public class FormValoracio extends AppCompatActivity {
     private Button commentButton;
     private EditText comentari;
     private RatingBar puntuacio;
-   private SharedPreferences mPreferences;
+    private SharedPreferences mPreferences;
     private TextInputLayout mFloatLabelTextComm;
 
     @Override
