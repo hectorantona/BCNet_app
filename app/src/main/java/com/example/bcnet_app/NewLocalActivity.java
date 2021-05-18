@@ -1,12 +1,12 @@
 package com.example.bcnet_app;
 
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
+import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -20,40 +20,42 @@ public class NewLocalActivity extends AppCompatActivity implements OnMapReadyCal
 
     private GoogleMap mapa;
     private EditText nomloc;
-    private String categoria;
+    private Spinner categoria_spiner;
+    private CustomScrollView scroll;
+    private Button crearloc;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_local);
 
+        scroll= (CustomScrollView) findViewById(R.id.scroll);
         nomloc = findViewById(R.id.local_name);
+        crearloc = findViewById(R.id.CreateLocalBtn);
+
+        //Set spiner
+        categoria_spiner = findViewById(R.id.categoria_spinner);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.categoria_array, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        categoria_spiner.setAdapter(adapter);
 
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+
+        crearloc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                newlocalitzacio();
+                //finish();
+            }
+        });
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater menuInflater = getMenuInflater();
-        menuInflater.inflate(R.menu.categoria_menu, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()){
-            case R.id.museu:
-                    categoria = "museu";
-                return true;
-
-            case R.id.restaurant:
-                    categoria = "restaurant";
-                return true;
-
-        }
-        return super.onOptionsItemSelected(item);
+    private void newlocalitzacio() {
+        //Agafem els parametres introduits anteriorment i fem la crida a back
+        //Faltaria veure que tots els camps estan omplerts i que sigui correcte...
+        String categoria = categoria_spiner.getSelectedItem().toString();
     }
 
     @Override
@@ -61,7 +63,7 @@ public class NewLocalActivity extends AppCompatActivity implements OnMapReadyCal
         mapa = googleMap;
         //Es fa autozoom a les co
         LatLng origen = new LatLng(41.3890927,2.1575136);
-        mapa.animateCamera(CameraUpdateFactory.newLatLngZoom(origen, 20));
+        mapa.animateCamera(CameraUpdateFactory.newLatLngZoom(origen, 13));
 
         mapa.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
             @Override
