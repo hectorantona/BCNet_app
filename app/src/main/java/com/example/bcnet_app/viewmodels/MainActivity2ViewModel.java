@@ -5,9 +5,7 @@ import android.util.Log;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.example.bcnet_app.models.Localitzacio;
 import com.example.bcnet_app.models.LocalitzacionsSearch;
-import com.example.bcnet_app.repositories.ComentariRepository;
 import com.example.bcnet_app.repositories.LocalitzacioRespository;
 
 public class MainActivity2ViewModel extends ViewModel {
@@ -48,6 +46,11 @@ public class MainActivity2ViewModel extends ViewModel {
     public void searchAllLocalitzacions () {
         LocalitzacioRespository.getInstance().searchAllLocalitzacio();
     }
+
+    public void searchPrefLocalitzacions (String name) {
+        LocalitzacioRespository.getInstance().searchPrefLocalitzacio(name);
+    }
+
     public void afegeixpuntuacio(String nomlocalitzacio, String nomuser, String puntuacio) {
         LiveData<LocalitzacionsSearch> l = LocalitzacioRespository.getInstance().getlocalitzacions();
         //Agafem l'id de la localització per crear el comment

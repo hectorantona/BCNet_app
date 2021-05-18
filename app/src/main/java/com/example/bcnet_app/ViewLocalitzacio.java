@@ -26,6 +26,8 @@ import com.example.bcnet_app.models.CommentResponse;
 import com.example.bcnet_app.models.LocalitzacionsSearch;
 import com.example.bcnet_app.repositories.LocalitzacioRespository;
 import com.example.bcnet_app.viewmodels.CommentViewModel;
+import com.like.LikeButton;
+import com.like.OnLikeListener;
 
 public class ViewLocalitzacio extends AppCompatActivity {
     private static final String TAG = "ViewLocalitzacio";
@@ -34,9 +36,11 @@ public class ViewLocalitzacio extends AppCompatActivity {
     private CommentAdapter mAdapter;
     private CommentViewModel commentViewModel;
     private String nom_localitzacio;
+    private String nomuser;
     private SharedPreferences mPreferences;
 
-
+    private Button BtnValorar;
+    private LikeButton heartBtn;
 
     @Override
     protected void onRestart() {
@@ -87,7 +91,7 @@ public class ViewLocalitzacio extends AppCompatActivity {
             }
         });
 
-        Button BtnValorar = (Button)findViewById(R.id.BtnValorar);
+        BtnValorar = (Button)findViewById(R.id.BtnValorar);
         BtnValorar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -111,6 +115,21 @@ public class ViewLocalitzacio extends AppCompatActivity {
             }
         });
 
+
+        heartBtn = (LikeButton)findViewById(R.id.heart_button);
+        heartBtn.setOnLikeListener(new OnLikeListener() {
+            @Override
+            public void liked(LikeButton likeButton) {
+                //Afegir a preferits
+                Log.d(TAG, "LIKE DE: " + mPreferences.getString("username", null)); //PROVES FUNCIONAMENT sharedPreferences
+            }
+
+            @Override
+            public void unLiked(LikeButton likeButton) {
+
+            }
+        });
+
     }
 
     private void initRecycleView() {
@@ -121,7 +140,7 @@ public class ViewLocalitzacio extends AppCompatActivity {
         String idlocalitzacio = l.getValue().getelembyname(nom_localitzacio).getId();
 
         mPreferences = getSharedPreferences("User", 0);
-        String nomuser = mPreferences.getString("username", null);
+        nomuser = mPreferences.getString("username", null);
 
         mAdapter = new CommentAdapter(this, idlocalitzacio, nomuser);
         mRecyclerView = findViewById(R.id.llista_comentari);

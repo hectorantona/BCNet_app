@@ -1,5 +1,7 @@
 package com.example.bcnet_app.fragments;
 
+
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -31,6 +33,9 @@ public class LocalitzacioSearchFrag extends Fragment {
     private Spinner searchSpinner;
     private Button searchButton;
 
+    private SharedPreferences mPreferences;
+    private String nomuser;
+
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -51,6 +56,10 @@ public class LocalitzacioSearchFrag extends Fragment {
                 }
             }
         });
+
+        //mPreferences = getSharedPreferences("User", 0);
+        //nomuser = mPreferences.getString("username", null);
+        //Log.d("TAG", "Check: " + nomuser);
     }
 
     @Override
@@ -88,8 +97,9 @@ public class LocalitzacioSearchFrag extends Fragment {
 
         searchButton = view.findViewById(R.id.fragment_localitzacio_search);
 
-
         viewModel.searchAllLocalitzacions();
+
+
 
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -116,6 +126,8 @@ public class LocalitzacioSearchFrag extends Fragment {
                         break;
 
                     case "Preferits":
+
+                        //viewModel.searchPrefLocalitzacions(nomuser);
                         break;
 
                     default:

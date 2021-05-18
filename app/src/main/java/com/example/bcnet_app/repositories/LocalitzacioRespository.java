@@ -84,8 +84,6 @@ public class LocalitzacioRespository {
                         if (response.body() != null) {
                             //LocalitzacioResponse l = response.body();
                             localitzacionsSearchLiveData.postValue(response.body());
-
-
                         }
                     }
 
@@ -96,6 +94,30 @@ public class LocalitzacioRespository {
                     }
                 });
     }
+
+    public void searchPrefLocalitzacio(String name) {
+        localitzacioService.prefLocalitzacions(name)
+                .enqueue(new Callback<LocalitzacionsSearch>() {
+                    @Override
+                    public void onResponse(Call<LocalitzacionsSearch> call, Response<LocalitzacionsSearch> response) {
+                        if (response.body() != null) {
+                            //LocalitzacioResponse l = response.body();
+                            localitzacionsSearchLiveData.postValue(response.body());
+                        }
+                    }
+                    @Override
+                    public void onFailure(Call<LocalitzacionsSearch> call, Throwable t) {
+                        Log.d(TAG, "Fail: " + localitzacioLiveData.getValue());
+                        localitzacionsSearchLiveData.postValue(null);
+                    }
+                });
+    }
+
+
+
+
+
+
 
     public void afegeixpuntuacio(String id, String nomuser, String puntuacio) {
         localitzacioService.allLocalitzacions()
