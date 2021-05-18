@@ -5,9 +5,8 @@ import android.util.Log;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.example.bcnet_app.models.Localitzacio;
 import com.example.bcnet_app.models.LocalitzacionsSearch;
-import com.example.bcnet_app.repositories.ComentariRepository;
+import com.example.bcnet_app.repositories.ActualitzarPuntuacio;
 import com.example.bcnet_app.repositories.LocalitzacioRespository;
 
 public class MainActivity2ViewModel extends ViewModel {
@@ -42,8 +41,8 @@ public class MainActivity2ViewModel extends ViewModel {
 
 
 
-    public void searchLocalitzacions (String name) {
-        LocalitzacioRespository.getInstance().searchLocalitzacio(name);
+    public void searchLocalitzaciobykey (String key, ActualitzarPuntuacio callback) {
+        LocalitzacioRespository.getInstance().searchLocalitzaciobykey(key, callback);
     }
     public void searchAllLocalitzacions () {
         LocalitzacioRespository.getInstance().searchAllLocalitzacio();

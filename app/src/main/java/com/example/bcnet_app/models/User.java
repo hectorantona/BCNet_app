@@ -23,6 +23,10 @@ public class User {
     @Expose
     private String message;
 
+    @SerializedName("picture")
+    @Expose
+    private String profileimg;
+
     @SerializedName("ErrorMessage")
     @Expose
     private String errormsg;
@@ -43,6 +47,10 @@ public class User {
         this.username = username;
         this.email = email;
         this.password = password;
+    }
+
+    public String getProfileimg() {
+        return profileimg;
     }
 
     public String getUsername() {

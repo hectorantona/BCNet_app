@@ -35,7 +35,11 @@ public class Localitzacio {
 
 
     private String content;
-    private Float puntuacioGlobal;
+
+    @SerializedName("puntuacio")
+    @Expose
+    private String puntuacioGlobal;
+
     private ArrayList<Comment> valoracions;
     private Float puntuacioCOVID;
 
@@ -90,7 +94,7 @@ public class Localitzacio {
 
     public String getPuntuacioGlobal () {
         //return calcularPuntuacioGlobal().toString();
-        return "4.2";
+        return puntuacioGlobal;
     }
 
     public Float getPG () {

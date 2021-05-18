@@ -55,21 +55,18 @@ public class LocalitzacioRespository {
                 .create(LocalitzacioService.class);
     }
 
-    //crida a l'api
-    public void searchLocalitzacio(String name) {
-        localitzacioService.searchLocalitzacio(name)
-                .enqueue(new Callback<Localitzacio>() {
+    public void searchLocalitzaciobykey(String key, ActualitzarPuntuacio callback) {
+        localitzacioService.searchLocalitzaciobykey(key)
+                .enqueue(new Callback<LocalitzacionsSearch>() {
                     @Override
-                    public void onResponse(Call<Localitzacio> call, Response<Localitzacio> response) {
+                    public void onResponse(Call<LocalitzacionsSearch> call, Response<LocalitzacionsSearch> response) {
                         if (response.body() != null) {
-                            Localitzacio l = response.body();
-
-                            localitzacioLiveData.setValue(response.body());
+                            callback.actualitzarpuntuacio(response.body().getelemi(0).getPuntuacioGlobal());
                         }
                     }
 
                     @Override
-                    public void onFailure(Call<Localitzacio> call, Throwable t) {
+                    public void onFailure(Call<LocalitzacionsSearch> call, Throwable t) {
                         Log.d(TAG, "Fail: " + localitzacioLiveData.getValue());
                         localitzacioLiveData.postValue(null);
                     }

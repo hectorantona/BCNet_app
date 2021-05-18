@@ -1,6 +1,5 @@
 package com.example.bcnet_app.api;
 
-import com.example.bcnet_app.models.Localitzacio;
 import com.example.bcnet_app.models.LocalitzacionsSearch;
 
 import retrofit2.Call;
@@ -9,9 +8,9 @@ import retrofit2.http.POST;
 import retrofit2.http.Query;
 
 public interface LocalitzacioService {
-    @GET("existsEstablimentDB")
-    Call<Localitzacio> searchLocalitzacio(
-            @Query("nom") String name
+    @GET("existsEstablimentkeyDB")
+    Call<LocalitzacionsSearch> searchLocalitzaciobykey(
+            @Query("key") String qkey
     );
 
     @GET("allEstablimentsDB")

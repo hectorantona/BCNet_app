@@ -24,8 +24,10 @@ import com.example.bcnet_app.Factory.MyViewModelFactory;
 import com.example.bcnet_app.adapter.CommentAdapter;
 import com.example.bcnet_app.models.CommentResponse;
 import com.example.bcnet_app.models.LocalitzacionsSearch;
+import com.example.bcnet_app.repositories.ActualitzarPuntuacio;
 import com.example.bcnet_app.repositories.LocalitzacioRespository;
 import com.example.bcnet_app.viewmodels.CommentViewModel;
+import com.example.bcnet_app.viewmodels.MainActivity2ViewModel;
 
 public class ViewLocalitzacio extends AppCompatActivity {
     private static final String TAG = "ViewLocalitzacio";
@@ -35,7 +37,8 @@ public class ViewLocalitzacio extends AppCompatActivity {
     private CommentViewModel commentViewModel;
     private String nom_localitzacio;
     private SharedPreferences mPreferences;
-
+    private MainActivity2ViewModel localitzacioViewModel;
+    private RatingBar puntuacioGlobal;
 
 
     @Override
@@ -44,21 +47,20 @@ public class ViewLocalitzacio extends AppCompatActivity {
         Log.d(TAG, "Tornem a buscar els comentaris");
         commentViewModel.searchComments();
 
+        actualitzarpuntuacio();
     }
 
-    public void updateComments() {
-        onResume();
-        Log.d(TAG, "fem update dels comments ");
-        commentViewModel.searchComments();
-        /*commentViewModel.getComentaris().observe(this, new Observer<CommentResponse>() {
-            @Override
-            public void onChanged(CommentResponse comentaris) {
-                if (comentaris != null) {
-                    mAdapter.setResults(comentaris);
-                }
+    private void actualitzarpuntuacio() {
+        LiveData<LocalitzacionsSearch> l = LocalitzacioRespository.getInstance().getlocalitzacions();
+        String idlocalitzacio = l.getValue().getelembyname(nom_localitzacio).getId();
 
+        localitzacioViewModel.searchLocalitzaciobykey(idlocalitzacio, new ActualitzarPuntuacio() {
+            @Override
+            public void actualitzarpuntuacio(String puntuacio) {
+                Float valoracio = Float.parseFloat(puntuacio);
+                puntuacioGlobal.setRating(valoracio);
             }
-        });*/
+        });
     }
 
 
@@ -74,8 +76,12 @@ public class ViewLocalitzacio extends AppCompatActivity {
 
         commentViewModel = new ViewModelProvider(this, new MyViewModelFactory(nom_localitzacio)).get(CommentViewModel.class);
         commentViewModel.init();
+        localitzacioViewModel = new ViewModelProvider(this).get(MainActivity2ViewModel.class);
+        localitzacioViewModel.init();
 
         commentViewModel.searchComments();
+
+       // actualitzarpuntuacio();
 
         commentViewModel.getComentaris().observe(this, new Observer<CommentResponse>() {
             @Override
@@ -141,7 +147,7 @@ public class ViewLocalitzacio extends AppCompatActivity {
 
             setImage(imageUrl, nom_localitzacio, content);
 
-            RatingBar puntuacioGlobal = findViewById(R.id.puntuacioGlobal);
+            puntuacioGlobal = findViewById(R.id.puntuacioGlobal);
             puntuacioGlobal.setRating(puntuacio_global);
 
             TextView puntuacioCovid = findViewById(R.id.puntuacioCovid);

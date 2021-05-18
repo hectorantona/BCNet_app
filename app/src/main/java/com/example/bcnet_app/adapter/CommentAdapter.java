@@ -13,6 +13,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.bcnet_app.R;
 import com.example.bcnet_app.models.Comment;
 import com.example.bcnet_app.models.CommentResponse;
@@ -51,6 +52,10 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.CommentV
         //Glide.with(mContext).load(mData.get(position).getUimg()).into(holder.img_user);
         holder.name.setText(c.getUsuari());
         holder.content.setText(c.getComentari());
+
+        Glide.with(holder.itemView)
+                .load(c.getUserimg())
+                .into((holder).comment_user_img);
 
         if (!c.getUsuari().equals(nomuser)) {
             Log.d("Comment adapter", "El nom no coicideix" + c.getUsuari() + "" + nomuser);

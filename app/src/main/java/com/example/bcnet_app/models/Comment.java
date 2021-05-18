@@ -18,25 +18,26 @@ public class Comment {
     @SerializedName("text")
     @Expose
     private String comentari;
+
+    private String userimg;
+
     private Float puntuacio;
     private Integer likes;
-    private String id;
     private Object timestamp;
 
-    public Comment(String usuari, String comentari, Float puntuacio, String id) {
+    public Comment(String usuari, String comentari, Float puntuacio) {
         this.usuari = usuari;
         this.comentari = comentari;
         this.puntuacio = puntuacio;
-        this.id = id;
+
         this.likes = 0;
         //this.timestamp = ServerValue.TIMESTAMP;
     }
 
-    public Comment(String usuari, String comentari, Float puntuacio, String id, Object timestamp) {
+    public Comment(String usuari, String comentari, Float puntuacio, Object timestamp) {
         this.usuari = usuari;
         this.comentari = comentari;
         this.puntuacio = puntuacio;
-        this.id = id;
         this.likes = 0;
         //this.timestamp = timestamp;
     }
@@ -47,6 +48,10 @@ public class Comment {
 
     public String getMsg() {
         return msg;
+    }
+
+    public String getUserimg() {
+        return userimg;
     }
 
     public void setUsuari(String usuari) {
