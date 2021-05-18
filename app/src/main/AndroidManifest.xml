@@ -3,6 +3,14 @@
     package="com.example.bcnet_app">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="string"
+        android:maxSdkVersion="30" />
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <meta-data
+        android:name="com.google.android.geo.API_KEY"
+        android:value="${MAPS_API_KEY}" />
+
 
     <application
         android:allowBackup="true"
@@ -11,6 +19,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.BCNet_app">
+
+        <meta-data
+            android:name="com.google.android.maps.v2.API_KEY"
+            android:value="${MAPS_API_KEY}"/>
+
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+
         <activity android:name=".FormNewEmail"></activity>
         <activity android:name=".FormNewPswd" />
         <activity android:name=".NewLocalActivity" />
