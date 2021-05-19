@@ -9,6 +9,7 @@ import com.example.bcnet_app.ViewLocalitzacio;
 import com.example.bcnet_app.api.CommentService;
 import com.example.bcnet_app.models.Comment;
 import com.example.bcnet_app.models.CommentResponse;
+import com.example.bcnet_app.response.newCommentResponse;
 
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;

@@ -13,7 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.bcnet_app.repositories.InfoUserResponse;
+import com.example.bcnet_app.response.InfoUserResponse;
 import com.example.bcnet_app.viewmodels.UserViewModel;
 
 public class MainActivity2 extends AppCompatActivity {

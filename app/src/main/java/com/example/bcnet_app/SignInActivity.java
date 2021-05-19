@@ -12,11 +12,11 @@ import android.widget.EditText;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.bcnet_app.repositories.LoginResponse;
+import com.example.bcnet_app.response.LoginResponse;
 import com.example.bcnet_app.viewmodels.UserViewModel;
 import com.google.android.material.textfield.TextInputLayout;
 
-public class SignIn extends AppCompatActivity{
+public class SignInActivity extends AppCompatActivity{
     private static final String TAG = "MAIN ACTIVITY";
 
     //private UserLoginTask mAuthTask = null;

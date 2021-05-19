@@ -12,7 +12,7 @@ import android.widget.EditText;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.bcnet_app.repositories.SignUpResponse;
+import com.example.bcnet_app.response.SignUpResponse;
 import com.example.bcnet_app.viewmodels.UserViewModel;
 import com.google.android.material.textfield.TextInputLayout;
 

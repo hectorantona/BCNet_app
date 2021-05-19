@@ -8,7 +8,7 @@ import com.example.bcnet_app.models.CommentResponse;
 import com.example.bcnet_app.models.LocalitzacionsSearch;
 import com.example.bcnet_app.repositories.ComentariRepository;
 import com.example.bcnet_app.repositories.LocalitzacioRespository;
-import com.example.bcnet_app.repositories.newCommentResponse;
+import com.example.bcnet_app.response.newCommentResponse;
 
 public class CommentViewModel extends ViewModel {
     //es mutable perque es pugui modificar, sino nomes es podria mirar pero no canviar
