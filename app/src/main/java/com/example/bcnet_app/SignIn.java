@@ -16,7 +16,7 @@ import com.example.bcnet_app.repositories.LoginResponse;
 import com.example.bcnet_app.viewmodels.UserViewModel;
 import com.google.android.material.textfield.TextInputLayout;
 
-public class MainActivity extends AppCompatActivity{
+public class SignIn extends AppCompatActivity{
     private static final String TAG = "MAIN ACTIVITY";
 
     //private UserLoginTask mAuthTask = null;
