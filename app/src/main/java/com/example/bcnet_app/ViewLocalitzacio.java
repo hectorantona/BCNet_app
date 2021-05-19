@@ -12,20 +12,24 @@ import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager2.widget.ViewPager2;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.bcnet_app.Factory.MyViewModelFactory;
+import com.example.bcnet_app.TabbedMenu.FragmentAdapter;
 import com.example.bcnet_app.adapter.CommentAdapter;
 import com.example.bcnet_app.models.CommentResponse;
 import com.example.bcnet_app.models.LocalitzacionsSearch;
 import com.example.bcnet_app.repositories.LocalitzacioRespository;
 import com.example.bcnet_app.viewmodels.CommentViewModel;
+import com.google.android.material.tabs.TabLayout;
 
 public class ViewLocalitzacio extends AppCompatActivity {
     private static final String TAG = "ViewLocalitzacio";
@@ -35,7 +39,11 @@ public class ViewLocalitzacio extends AppCompatActivity {
     private CommentViewModel commentViewModel;
     private String nom_localitzacio;
     private SharedPreferences mPreferences;
-
+    private String latitud;
+    private String longitud;
+    private TabLayout tabLayout;
+    private ViewPager2 viewpager;
+    private FragmentAdapter adapter;
 
 
     @Override
@@ -61,7 +69,6 @@ public class ViewLocalitzacio extends AppCompatActivity {
         });*/
     }
 
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -84,6 +91,35 @@ public class ViewLocalitzacio extends AppCompatActivity {
                     mAdapter.setResults(comentaris);
                 }
 
+            }
+        });
+
+        //TabLayout
+        tabLayout = findViewById(R.id.tablayout);
+        viewpager = findViewById(R.id.viewpager);
+
+        FragmentManager fm = getSupportFragmentManager();
+        adapter = new FragmentAdapter(fm, getLifecycle());
+        viewpager.setAdapter(adapter);
+
+        tabLayout.addTab(tabLayout.newTab().setText("Comentaris"));
+        tabLayout.addTab(tabLayout.newTab().setText("Mapa"));
+
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                 viewpager.setCurrentItem(tab.getPosition());
+            }
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) { }
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {}
+        });
+
+        viewpager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+            @Override
+            public void onPageSelected(int position) {
+                tabLayout.selectTab(tabLayout.getTabAt(position));
             }
         });
 
@@ -138,6 +174,8 @@ public class ViewLocalitzacio extends AppCompatActivity {
             String content = getIntent().getStringExtra("content");
             Float puntuacio_global = Float.parseFloat(getIntent().getStringExtra("puntuacio_global"));
             String puntuacio_Covid = getIntent().getStringExtra("puntuacioCovid");
+            latitud = getIntent().getStringExtra("latitud");
+            longitud = getIntent().getStringExtra("longitud");
 
             setImage(imageUrl, nom_localitzacio, content);
 

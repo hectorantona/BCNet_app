@@ -77,6 +77,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         intent.putExtra("nom_localitzacio", localitzacio.getName());
         intent.putExtra("content", localitzacio.getContent());
         intent.putExtra("puntuacio_global", localitzacio.getPuntuacioGlobal());
+        //A latitud i longituid haurem d'agafar els de la localitzacio aixó son valors per defecte
+        intent.putExtra("latitud", 42);
+        intent.putExtra("longitud", 42);
 
         context.startActivity(intent);
     }
