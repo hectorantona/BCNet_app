@@ -7,8 +7,14 @@ import androidx.lifecycle.Lifecycle;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 public class FragmentAdapter extends FragmentStateAdapter {
-    public FragmentAdapter(@NonNull FragmentManager fragmentManager, @NonNull Lifecycle lifecycle) {
+    private String nomlocalitzacio;
+    private String latitud;
+    private String longitud;
+    public FragmentAdapter(@NonNull FragmentManager fragmentManager, @NonNull Lifecycle lifecycle, String nomlocalitzacio, String latitud, String longitud) {
         super(fragmentManager, lifecycle);
+        this.nomlocalitzacio = nomlocalitzacio;
+        this.latitud = latitud;
+        this.longitud = longitud;
     }
 
     @NonNull
@@ -16,9 +22,9 @@ public class FragmentAdapter extends FragmentStateAdapter {
     public Fragment createFragment(int position) {
         switch (position) {
             case 1:
-                return new Fragment_Mapa();
+                return new Fragment_Mapa(nomlocalitzacio, latitud, longitud);
         }
-        return new ComentarisFragment();
+        return new ComentarisFragment(nomlocalitzacio);
     }
 
     @Override
