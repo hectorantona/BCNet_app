@@ -1,7 +1,5 @@
 package com.example.bcnet_app.viewmodels;
 
-import android.util.Log;
-
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
@@ -12,32 +10,28 @@ public class MainActivity2ViewModel extends ViewModel {
 
     private static final String TAG = "MainActivity2ViewModel";
     private LiveData<LocalitzacionsSearch> localitzacionsSearchLiveData;
+    private LiveData<LocalitzacionsSearch> localitzacionsPrefSearchLiveData;
     private LocalitzacioRespository Repo;
-
 
     /*public MainActivity2ViewModel(@NonNull Application application) {
         super(application);
     }*/
 
     public void init () {
-        /*if (localitzacioResponseLiveData != null) {
-            return;
-        }
-        if (localitzacioLiveData != null) {
-            return;
-        }*/
-
         localitzacionsSearchLiveData = LocalitzacioRespository.getInstance().getlocalitzacions();
-        Log.d(TAG, "OKEYY: " );
+    }
 
+    public void initPref() {
+        localitzacionsPrefSearchLiveData = LocalitzacioRespository.getInstance().getpreflocalitzacions();
     }
 
     public LiveData<LocalitzacionsSearch> getLocalitzacions () {
-        return localitzacionsSearchLiveData;}
+        return localitzacionsSearchLiveData;
+    }
 
-   /* public LiveData<Localitzacio> getLocalitzacions () {
-        return localitzacioLiveData;}*/
-
+    public LiveData<LocalitzacionsSearch> getPrefLocalitzacions () {
+        return localitzacionsPrefSearchLiveData;
+    }
 
 
     public void searchLocalitzacions (String name) {
@@ -51,11 +45,13 @@ public class MainActivity2ViewModel extends ViewModel {
         LocalitzacioRespository.getInstance().searchPrefLocalitzacio(name);
     }
 
+
     public void afegeixpuntuacio(String nomlocalitzacio, String nomuser, String puntuacio) {
         LiveData<LocalitzacionsSearch> l = LocalitzacioRespository.getInstance().getlocalitzacions();
         //Agafem l'id de la localització per crear el comment
         String id = l.getValue().getelembyname(nomlocalitzacio).getId();
         LocalitzacioRespository.getInstance().afegeixpuntuacio(id, nomuser, puntuacio);
     }
+
 
 }

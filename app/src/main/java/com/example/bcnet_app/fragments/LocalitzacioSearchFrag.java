@@ -45,6 +45,7 @@ public class LocalitzacioSearchFrag extends Fragment {
 
         viewModel = new ViewModelProvider(this).get(MainActivity2ViewModel.class);
         viewModel.init();
+        viewModel.initPref();
         //fero tmb per el response per ara no esta
         viewModel.getLocalitzacions().observe(this, new Observer<LocalitzacionsSearch>() {
             @Override
@@ -99,6 +100,10 @@ public class LocalitzacioSearchFrag extends Fragment {
 
         viewModel.searchAllLocalitzacions();
 
+        mPreferences = this.getActivity().getSharedPreferences("User", 0);
+        String nomUsuari = mPreferences.getString("username", null);
+        viewModel.searchPrefLocalitzacions(nomUsuari);
+
 
 
         searchButton.setOnClickListener(new View.OnClickListener() {
@@ -126,8 +131,7 @@ public class LocalitzacioSearchFrag extends Fragment {
                         break;
 
                     case "Preferits":
-
-                        //viewModel.searchPrefLocalitzacions(nomuser);
+                        performSetPref();
                         break;
 
                     default:
@@ -137,6 +141,21 @@ public class LocalitzacioSearchFrag extends Fragment {
         });
 
         return view;
+    }
+
+    private void performSetPref() {
+        try {
+            if (viewModel.getPrefLocalitzacions().getValue().getnumelements() != 0) {
+                LocalitzacionsSearch LS = new LocalitzacionsSearch(viewModel.getPrefLocalitzacions().getValue().getLocalitzacions());
+                adapter.setResults(LS);
+            } else {
+                Log.d("TAG", "No tens cap establiment preferit");
+            }
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
     private void orderByPuntuacioGlobal() {
