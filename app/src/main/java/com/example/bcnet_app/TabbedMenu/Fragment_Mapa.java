@@ -49,7 +49,7 @@ public class Fragment_Mapa extends Fragment implements OnMapReadyCallback {
         LatLng ubicacio = new LatLng(41.3890927,2.1575136);
         googleMap.addMarker(new MarkerOptions()
                 .position(new LatLng(ubicacio.latitude, ubicacio.longitude))
-                .title("Marker in Sydney"));
+                .title(nomlocalitzacio));
 
         mapa.animateCamera(CameraUpdateFactory.newLatLngZoom(ubicacio, 15));
     }
