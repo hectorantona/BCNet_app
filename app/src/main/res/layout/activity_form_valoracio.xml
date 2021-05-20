@@ -68,6 +68,7 @@
                 android:layout_margin="8dp"
                 android:background="@drawable/btn_back"
                 android:text="Comenta"
+                android:textSize="12dp"
                 android:textColor="@color/white" />
 
             <RelativeLayout
