@@ -31,6 +31,10 @@ public class User {
     @Expose
     private ArrayList<String> infoUser;
 
+    @SerializedName("picture")
+    @Expose
+    private String profileimg;
+
     public String getMessage() {
         return message;
     }
@@ -67,5 +71,9 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getProfileimg() {
+        return profileimg;
     }
 }
