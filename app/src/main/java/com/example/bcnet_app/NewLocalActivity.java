@@ -96,7 +96,7 @@ public class NewLocalActivity extends AppCompatActivity implements OnMapReadyCal
             String latitud = String.valueOf(coordenades.latitude);
             String longitud = String.valueOf(coordenades.longitude);
 
-            viewModel.newLocalitzacio(nom_loc, null, null, longitud, latitud, descripcio_text, web_text, img_text, null, categoria);
+            viewModel.newLocalitzacio(nom_loc, "bcn", "2", longitud, latitud, descripcio_text, web_text, img_text, "9", categoria);
 
             //new localitzacio
         }
@@ -107,23 +107,28 @@ public class NewLocalActivity extends AppCompatActivity implements OnMapReadyCal
         View focusview = null;
         Boolean correcte = true;
 
-        if (nomloc.getText().equals("")) {
+        if (nomloc.getText().toString().equals("")) {
+            correcte = false;
             mFloatLabelnomloc.setError(getString(R.string.error_field_required));
             focusview = mFloatLabelnomloc;
         }
-        if (descripcio.getText().equals("")) {
+        if (descripcio.getText().toString().equals("")) {
+            correcte = false;
             mFloatLabeldescripcio.setError(getString(R.string.error_field_required));
             focusview = mFloatLabeldescripcio;
         }
-        if (web.getText().equals("")) {
+        if (web.getText().toString().equals("")) {
+            correcte = false;
             mFloatLabelweb.setError(getString(R.string.error_field_required));
             focusview = mFloatLabelweb;
         }
-        if (img.getText().equals("")) {
+        if (img.getText().toString().equals("")) {
+            correcte = false;
             mFloatLabelimg.setError(getString(R.string.error_field_required));
             focusview = mFloatLabelimg;
         }
         if (coordenades==null) {
+            correcte = false;
             mFloatLabelmapa.setError(getString(R.string.error_field_required));
             focusview = mFloatLabelmapa;
         }
