@@ -72,12 +72,32 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/float_label_img"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            <EditText
+                android:layout_marginTop="20dp"
+                android:id="@+id/img"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/local_img"
+                android:maxLines="1"
+                android:textColor="@android:color/black"
+                android:textColorHint="@android:color/black" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
             <Spinner
                 android:layout_marginTop="20dp"
                 android:id="@+id/categoria_spinner"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content" />
 
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/float_label_mapa"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
             <fragment
                 android:layout_marginTop="20dp"
                 android:id="@+id/map"
@@ -86,6 +106,7 @@
                 android:layout_height="500dp"
                 android:clickable="true"
                 />
+            </com.google.android.material.textfield.TextInputLayout>
 
             <Button
                 android:id="@+id/CreateLocalBtn"

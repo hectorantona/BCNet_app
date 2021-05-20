@@ -8,29 +8,61 @@ import android.widget.EditText;
 import android.widget.Spinner;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 
+import com.example.bcnet_app.viewmodels.MainActivity2ViewModel;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.material.textfield.TextInputLayout;
 
 public class NewLocalActivity extends AppCompatActivity implements OnMapReadyCallback  {
 
     private GoogleMap mapa;
+    private MainActivity2ViewModel viewModel;
+
     private EditText nomloc;
+    private EditText descripcio;
+    private EditText web;
+    private EditText img;
+
+    private TextInputLayout mFloatLabelnomloc;
+    private TextInputLayout mFloatLabeldescripcio;
+    private TextInputLayout mFloatLabelweb;
+    private TextInputLayout mFloatLabelimg;
+    private TextInputLayout mFloatLabelmapa;
+
     private Spinner categoria_spiner;
     private CustomScrollView scroll;
     private Button crearloc;
+    private LatLng coordenades;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_local);
 
+        viewModel = new ViewModelProvider(this).get(MainActivity2ViewModel.class);
+        viewModel.init();
+
         scroll= (CustomScrollView) findViewById(R.id.scroll);
+
         nomloc = findViewById(R.id.local_name);
+        descripcio = findViewById(R.id.descripcio);
+        web = findViewById(R.id.link);
+        nomloc = findViewById(R.id.local_name);
+        img = findViewById(R.id.img);
+
+        mFloatLabelnomloc = findViewById(R.id.float_label_local_name);
+        mFloatLabeldescripcio = findViewById(R.id.float_label_descripcio);
+        mFloatLabelweb = findViewById(R.id.float_label_link);
+        mFloatLabelimg = findViewById(R.id.float_label_img);
+        mFloatLabelmapa = findViewById(R.id.float_label_mapa);
+
+
         crearloc = findViewById(R.id.CreateLocalBtn);
 
         //Set spiner
@@ -55,9 +87,49 @@ public class NewLocalActivity extends AppCompatActivity implements OnMapReadyCal
     private void newlocalitzacio() {
         //Agafem els parametres introduits anteriorment i fem la crida a back
         //Faltaria veure que tots els camps estan omplerts i que sigui correcte...
-        String categoria = categoria_spiner.getSelectedItem().toString();
+        if (comprovarcamps()) {
+            String nom_loc =  nomloc.getText().toString();
+            String categoria = categoria_spiner.getSelectedItem().toString();
+            String descripcio_text = descripcio.getText().toString();
+            String web_text = web.getText().toString();
+            String img_text = img.getText().toString();
+            String latitud = String.valueOf(coordenades.latitude);
+            String longitud = String.valueOf(coordenades.longitude);
+
+            viewModel.newLocalitzacio(nom_loc, null, null, longitud, latitud, descripcio_text, web_text, img_text, null, categoria);
+
+            //new localitzacio
+        }
+
     }
 
+    private Boolean comprovarcamps () {
+        View focusview = null;
+        Boolean correcte = true;
+
+        if (nomloc.getText().equals("")) {
+            mFloatLabelnomloc.setError(getString(R.string.error_field_required));
+            focusview = mFloatLabelnomloc;
+        }
+        if (descripcio.getText().equals("")) {
+            mFloatLabeldescripcio.setError(getString(R.string.error_field_required));
+            focusview = mFloatLabeldescripcio;
+        }
+        if (web.getText().equals("")) {
+            mFloatLabelweb.setError(getString(R.string.error_field_required));
+            focusview = mFloatLabelweb;
+        }
+        if (img.getText().equals("")) {
+            mFloatLabelimg.setError(getString(R.string.error_field_required));
+            focusview = mFloatLabelimg;
+        }
+        if (coordenades==null) {
+            mFloatLabelmapa.setError(getString(R.string.error_field_required));
+            focusview = mFloatLabelmapa;
+        }
+        if (!correcte) focusview.requestFocus();
+        return correcte;
+    }
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mapa = googleMap;
@@ -79,6 +151,7 @@ public class NewLocalActivity extends AppCompatActivity implements OnMapReadyCal
                 mapa.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 10));
                 //add marker on map
                 mapa.addMarker(markerOptions);
+                coordenades = latLng;
             }
         });
 

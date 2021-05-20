@@ -40,6 +40,7 @@
     <string name="local_name">Nom localització</string>
     <string name="local_descripció">Descripció de la localització</string>
     <string name="local_link">Enllaç Web</string>
+    <string name="local_img">Enllaç imatge localització</string>
     <string name="error_ja_te_comment">Ja has comentat en aquesta localització</string>
     <string name="title_activity_form_new_pswd">FormNewPswd</string>
     <!-- Strings used for fragments for navigation -->

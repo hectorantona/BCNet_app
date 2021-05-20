@@ -28,4 +28,17 @@ public interface LocalitzacioService {
             @Query("nom") String name
     );
 
+    @POST("createEstablimentDB")
+    Call<LocalitzacionsSearch> newLocalitzacio (
+            @Query("nom") String qnom,
+            @Query("direccio") String qdireccio,
+            @Query("barri") String qbarri,
+            @Query("longitud") String qlongitud,
+            @Query("latitud") String qlatitud,
+            @Query("descripcio") String qdescripcio,
+            @Query("link") String qlink,
+            @Query("fotografia") String qfotografia,
+            @Query("horari") String qhorari,
+            @Query("categoria") String qcategoria
+    );
 }
