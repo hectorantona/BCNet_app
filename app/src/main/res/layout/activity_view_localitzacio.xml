@@ -2,7 +2,6 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/parent_layout"
@@ -12,105 +11,93 @@
         android:id="@+id/imatge"
         android:layout_width="match_parent"
         android:layout_height="250dp"
-        android:layout_gravity="center"
+        android:layout_weight="70"
         android:contentDescription="TODO"
         android:scaleType="center"
         android:src="@mipmap/ic_launcher_round" />
 
     <TextView
-        android:id="@+id/nom_localitzacio"
+        android:id="@+id/Nom_Localitzacio"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/imatge"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="16dp"
         android:text="Addis Abeba"
         android:textColor="@color/black"
-        android:textSize="20sp" />
-
-    <TextView
-        android:id="@+id/categoria_localitzacio"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/nom_localitzacio"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:text="Museu"
-        android:textColor="@android:color/tertiary_text_light"
-        android:textSize="14sp" />
+        android:textSize="20sp"
+        android:layout_marginStart="15dp" />
 
     <RatingBar
         android:id="@+id/puntuacioGlobal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/categoria_localitzacio"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="8dp"
+        android:layout_below="@+id/Nom_Localitzacio"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="16dp"
         android:isIndicator="true"
         android:numStars="5"
         android:progressTint="@color/app_color"
-        android:stepSize="0.5"
-        android:rating="3.5" />
+        android:rating="3"
+        android:stepSize="0.5" />
 
-    <TextView
-        android:id="@+id/descripcio_localitzacio"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/puntuacioGlobal"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="14dp"
-        android:layout_marginRight="20dp"
-        android:text="Descripcio" />
-
-    <ImageView
-        android:id="@+id/semafor"
-        android:layout_width="68dp"
-        android:layout_height="87dp"
-        android:layout_below="@+id/imatge"
-        android:layout_marginLeft="87dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginBottom="40dp"
-        android:layout_marginTop="60dp"
-        android:layout_toEndOf="@+id/puntuacioGlobal"
-        android:layout_toRightOf="@+id/puntuacioGlobal"
-        tools:srcCompat="@tools:sample/avatars" />
 
     <Button
         android:id="@+id/BtnValorar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/imatge"
         android:layout_marginStart="28dp"
         android:layout_marginLeft="28dp"
-        android:layout_marginTop="3dp"
+        android:layout_marginTop="64dp"
+        android:layout_toEndOf="@+id/puntuacioGlobal"
+        android:layout_toRightOf="@+id/puntuacioGlobal"
         android:text="Valora" />
+
+    <TextView
+        android:id="@+id/puntuacioCovid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/puntuacioGlobal"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="20dp"
+        android:text="PuntuacióCovid [1-3]" />
 
     <Button
         android:id="@+id/BtnCovid"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/BtnValorar"
         android:layout_marginStart="137dp"
         android:layout_marginLeft="133dp"
         android:layout_marginTop="3dp"
+        android:layout_toEndOf="@+id/puntuacioCovid"
+        android:layout_toRightOf="@+id/puntuacioCovid"
         android:text="Covid"
         app:backgroundTint="#81D4FA" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/llista_comentari"
+    <TextView
+        android:id="@+id/descripcio"
         android:layout_width="match_parent"
-        android:layout_height="75dp"
-        android:layout_below="@+id/descripcio_localitzacio"
-        android:layout_marginTop="8dp">
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/puntuacioCovid"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginRight="20dp"
+        android:text="Descripcio" />
 
-    </androidx.recyclerview.widget.RecyclerView>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/llista_Covidcomentari"
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tablayout"
+        android:layout_below="@id/descripcio"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/llista_comentari"
-        android:layout_marginTop="8dp" />
+        android:layout_height="wrap_content">
+    </com.google.android.material.tabs.TabLayout>
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:layout_below="@+id/tablayout"
+        android:id="@+id/viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
 
 </RelativeLayout>

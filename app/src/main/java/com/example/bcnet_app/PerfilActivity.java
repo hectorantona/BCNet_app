@@ -8,6 +8,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,7 +19,7 @@ public class PerfilActivity extends AppCompatActivity {
 
     private Button BtnModifyPswd;
     private Button BtnModifyEmail;
-
+    private ImageView userimg;
     private Button NewLocalBtn;
 
     private SharedPreferences mPreferences;
@@ -55,7 +56,7 @@ public class PerfilActivity extends AppCompatActivity {
         setContentView(R.layout.activity_perfil);
 
         NewLocalBtn = (Button)findViewById(R.id.GotoCreateLocalBtn);
-
+        userimg = findViewById(R.id.imatge_perfil);
         mPreferences = getSharedPreferences(sharedPrefFile, MODE_PRIVATE);
 
         getIncomingIntent();
@@ -89,6 +90,7 @@ public class PerfilActivity extends AppCompatActivity {
     }
 
     private void getIncomingIntent() {
+        //Fer aixó o un get de bd amb tota la info i així ja tenim la foto
         TextView username = findViewById(R.id.Nom_Usuari);
         username.setText(mPreferences.getString("username", null));
 
