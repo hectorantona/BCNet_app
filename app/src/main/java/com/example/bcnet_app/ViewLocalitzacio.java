@@ -8,7 +8,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RatingBar;
-import android.widget.Switch;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -21,7 +20,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
-import com.example.bcnet_app.Factory.MyViewModelFactory;
+import com.example.bcnet_app.Factory.ValoracioViewModelFactory;
 import com.example.bcnet_app.adapter.CommentAdapter;
 import com.example.bcnet_app.adapter.CovidCommentAdapter;
 import com.example.bcnet_app.models.CommentResponse;
@@ -78,7 +77,7 @@ public class ViewLocalitzacio extends AppCompatActivity {
 
         initCovidRecycleView();
 
-        commentViewModel = new ViewModelProvider(this, new MyViewModelFactory(nom_localitzacio)).get(CommentViewModel.class);
+        commentViewModel = new ViewModelProvider(this, new ValoracioViewModelFactory(nom_localitzacio)).get(CommentViewModel.class);
         commentViewModel.init();
 
         commentViewModel.searchComments();
@@ -161,7 +160,7 @@ public class ViewLocalitzacio extends AppCompatActivity {
             String content = getIntent().getStringExtra("content");
             String categoria = getIntent().getStringExtra("categoria"); //CANVIAR
             Float puntuacio_global = Float.parseFloat(getIntent().getStringExtra("puntuacio_global"));
-            String puntuacio_Covid = getIntent().getStringExtra("puntuacioCovid");
+            //String puntuacio_Covid = getIntent().getStringExtra("puntuacioCovid");
 
             setImage(imageUrl, nom_localitzacio, content);
 
@@ -171,8 +170,15 @@ public class ViewLocalitzacio extends AppCompatActivity {
             TextView category = findViewById(R.id.categoria_localitzacio);
             category.setText(categoria);
 
-            TextView puntuacioCovid = findViewById(R.id.puntuacioCovid);
-            puntuacioCovid.setText(puntuacio_Covid);
+            /*ImageView puntuacioCovid = findViewById(R.id.semafor);
+            RequestOptions defaultOptions = new RequestOptions()
+                    .error(R.drawable.ic_launcher_background); //aixo possiblement s'haura de canviar
+            Glide.with(this)
+                    .setDefaultRequestOptions(defaultOptions)
+                    .load(imageUrl)
+                    .into(imatge);
+
+             */
         }
     }
     private void setImage (String imageUrl, String nom_localitzacio, String content){

@@ -78,7 +78,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         intent.putExtra("content", localitzacio.getContent());
         intent.putExtra("puntuacio_global", localitzacio.getPuntuacioGlobal());
         intent.putExtra("categoria", localitzacio.getCategory());
-
+        intent.putExtra("puntuacioCovid", localitzacio.getPuntuacioCOVID());
 
         context.startActivity(intent);
     }

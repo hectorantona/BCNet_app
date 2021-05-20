@@ -49,6 +49,7 @@ public class CovidCommentAdapter extends RecyclerView.Adapter<CovidCommentAdapte
 
         holder.name.setText(dc.getUsuari());
         holder.content.setText(dc.getComentari());
+        holder.date.setText(dc.getDate());
 
         if (!dc.getUsuari().equals(nomuser)) {
             Log.d("Comment adapter", "El nom no coicideix" + dc.getUsuari() + "" + nomuser);

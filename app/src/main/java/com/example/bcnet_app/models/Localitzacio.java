@@ -37,7 +37,7 @@ public class Localitzacio {
     private String content;
     private Float puntuacioGlobal;
     private ArrayList<Comment> valoracions;
-    private Float puntuacioCOVID;
+    private Integer puntuacioCOVID;
 
     private String semaforUrl;
 
@@ -68,7 +68,6 @@ public class Localitzacio {
     public String getId() {
         return id;
     }
-
     public void setId(String id) {
         this.id = id;
     }
@@ -106,8 +105,8 @@ public class Localitzacio {
         this.direccio = direccio;
     }
 
-    public Float getPuntuacioCOVID() { return puntuacioCOVID; }
-    public void setPuntuacioCOVID(Float puntuacioCOVID) { this.puntuacioCOVID = puntuacioCOVID; }
+    public Integer getPuntuacioCOVID() { return puntuacioCOVID; }
+    public void setPuntuacioCOVID(Integer puntuacioCOVID) { this.puntuacioCOVID = puntuacioCOVID; }
 
 }
 

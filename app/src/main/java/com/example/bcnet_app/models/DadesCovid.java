@@ -5,13 +5,22 @@ import com.google.gson.annotations.SerializedName;
 
 public class DadesCovid {
     private String puntuacioCovid;
+    @SerializedName("result")
+    @Expose
+    private String correcte;
+    @SerializedName("error")
+    @Expose
+    private String msg;
     @SerializedName("user")
     @Expose
     private String usuari;
-
     @SerializedName("text")
     @Expose
     private String comentari;
+    @SerializedName("data")
+    @Expose
+    private String date;
+
     private boolean gelHidroalcoholic;
     private boolean distanciaSeguretat;
     private boolean termometre;
@@ -77,4 +86,9 @@ public class DadesCovid {
     public String getUsuari() { return usuari; }
 
     public String getComentari() { return comentari; }
+
+    public String getCorrecte() { return correcte; }
+
+    public String getDate() { return date; }
+
 }
