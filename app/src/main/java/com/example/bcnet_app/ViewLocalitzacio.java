@@ -3,6 +3,7 @@ package com.example.bcnet_app;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -12,6 +13,8 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
+import androidx.lifecycle.LiveData;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
 
@@ -19,8 +22,13 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.bcnet_app.TabbedMenu.FragmentAdapter;
 import com.example.bcnet_app.adapter.CommentAdapter;
+import com.example.bcnet_app.models.LocalitzacionsSearch;
+import com.example.bcnet_app.repositories.LocalitzacioRespository;
 import com.example.bcnet_app.viewmodels.CommentViewModel;
 import com.google.android.material.tabs.TabLayout;
+import com.like.LikeButton;
+import com.like.OnLikeListener;
+
 
 public class ViewLocalitzacio extends AppCompatActivity {
     private static final String TAG = "ViewLocalitzacio";
@@ -29,13 +37,40 @@ public class ViewLocalitzacio extends AppCompatActivity {
     private CommentAdapter mAdapter;
     private CommentViewModel commentViewModel;
     private String nom_localitzacio;
+    private String nomuser;
     private SharedPreferences mPreferences;
     private String latitud;
     private String longitud;
     private TabLayout tabLayout;
     private ViewPager2 viewpager;
     private FragmentAdapter adapter;
-    
+
+
+    private Button BtnValorar;
+    private LikeButton heartBtn;
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        Log.d(TAG, "Tornem a buscar els comentaris");
+        commentViewModel.searchComments();
+
+    }
+
+    public void updateComments() {
+        onResume();
+        Log.d(TAG, "fem update dels comments ");
+        commentViewModel.searchComments();
+        /*commentViewModel.getComentaris().observe(this, new Observer<CommentResponse>() {
+            @Override
+            public void onChanged(CommentResponse comentaris) {
+                if (comentaris != null) {
+                    mAdapter.setResults(comentaris);
+                }
+
+            }
+        });*/
+    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -74,7 +109,7 @@ public class ViewLocalitzacio extends AppCompatActivity {
             }
         });
 
-        Button BtnValorar = (Button)findViewById(R.id.BtnValorar);
+        BtnValorar = (Button)findViewById(R.id.BtnValorar);
         BtnValorar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -98,8 +133,40 @@ public class ViewLocalitzacio extends AppCompatActivity {
             }
         });
 
+
+        heartBtn = (LikeButton)findViewById(R.id.heart_button);
+        heartBtn.setOnLikeListener(new OnLikeListener() {
+            @Override
+            public void liked(LikeButton likeButton) {
+                //Afegir a preferits
+                Log.d(TAG, "LIKE DE: " + nomuser); //PROVES FUNCIONAMENT sharedPreferences
+            }
+
+            @Override
+            public void unLiked(LikeButton likeButton) {
+
+            }
+        });
+
     }
 
+
+    private void initRecycleView() {
+        //Si ho podem fer amb l'id del comment millor que amb aixo
+        LiveData<LocalitzacionsSearch> l = LocalitzacioRespository.getInstance().getlocalitzacions();
+        //Agafem l'id de la localització per crear el comment
+        Log.d(TAG, "nom localitzacio: " + nom_localitzacio);
+        String idlocalitzacio = l.getValue().getelembyname(nom_localitzacio).getId();
+
+        mPreferences = getSharedPreferences("User", 0);
+        nomuser = mPreferences.getString("username", null);
+
+        mAdapter = new CommentAdapter(this, idlocalitzacio, nomuser);
+        mRecyclerView = findViewById(R.id.llista_comentari);
+        RecyclerView.LayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        mRecyclerView.setLayoutManager(linearLayoutManager);
+        mRecyclerView.setAdapter(mAdapter);
+    }
 
     private void getIncomingIntent (){
         if(getIntent().hasExtra("imatge")&& getIntent().hasExtra("nom_localitzacio")) {

@@ -1,6 +1,9 @@
 package com.example.bcnet_app.fragments;
 
+
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,6 +33,9 @@ public class LocalitzacioSearchFrag extends Fragment {
     private Spinner searchSpinner;
     private Button searchButton;
 
+    private SharedPreferences mPreferences;
+    private String nomuser;
+
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -39,6 +45,7 @@ public class LocalitzacioSearchFrag extends Fragment {
 
         viewModel = new ViewModelProvider(this).get(MainActivity2ViewModel.class);
         viewModel.init();
+        viewModel.initPref();
         //fero tmb per el response per ara no esta
         viewModel.getLocalitzacions().observe(this, new Observer<LocalitzacionsSearch>() {
             @Override
@@ -48,6 +55,10 @@ public class LocalitzacioSearchFrag extends Fragment {
                 }
             }
         });
+
+        //mPreferences = getSharedPreferences("User", 0);
+        //nomuser = mPreferences.getString("username", null);
+        //Log.d("TAG", "Check: " + nomuser);
     }
 
     @Override
@@ -85,8 +96,13 @@ public class LocalitzacioSearchFrag extends Fragment {
 
         searchButton = view.findViewById(R.id.fragment_localitzacio_search);
 
-
         viewModel.searchAllLocalitzacions();
+
+        mPreferences = this.getActivity().getSharedPreferences("User", 0);
+        String nomUsuari = mPreferences.getString("username", null);
+        viewModel.searchPrefLocalitzacions(nomUsuari);
+
+
 
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -113,6 +129,7 @@ public class LocalitzacioSearchFrag extends Fragment {
                         break;
 
                     case "Preferits":
+                        performSetPref();
                         break;
 
                     default:
@@ -122,6 +139,21 @@ public class LocalitzacioSearchFrag extends Fragment {
         });
 
         return view;
+    }
+
+    private void performSetPref() {
+        try {
+            if (viewModel.getPrefLocalitzacions().getValue().getnumelements() != 0) {
+                LocalitzacionsSearch LS = new LocalitzacionsSearch(viewModel.getPrefLocalitzacions().getValue().getLocalitzacions());
+                adapter.setResults(LS);
+            } else {
+                Log.d("TAG", "No tens cap establiment preferit");
+            }
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
     private void orderByPuntuacioGlobal() {

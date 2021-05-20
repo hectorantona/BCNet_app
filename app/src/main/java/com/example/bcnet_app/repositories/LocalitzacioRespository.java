@@ -33,6 +33,7 @@ public class LocalitzacioRespository {
 
     private LocalitzacioService localitzacioService;
     private MutableLiveData<LocalitzacionsSearch> localitzacionsSearchLiveData;
+    private MutableLiveData<LocalitzacionsSearch> localitzacionsPrefSearchLiveData;
     private MutableLiveData<Localitzacio> localitzacioLiveData;
 
 
@@ -84,8 +85,6 @@ public class LocalitzacioRespository {
                         if (response.body() != null) {
                             //LocalitzacioResponse l = response.body();
                             localitzacionsSearchLiveData.postValue(response.body());
-
-
                         }
                     }
 
@@ -93,6 +92,24 @@ public class LocalitzacioRespository {
                     public void onFailure(Call<LocalitzacionsSearch> call, Throwable t) {
                         Log.d(TAG, "Fail: " + localitzacioLiveData.getValue());
                         localitzacionsSearchLiveData.postValue(null);
+                    }
+                });
+    }
+
+    public void searchPrefLocalitzacio(String name) {
+        localitzacioService.prefLocalitzacions(name)
+                .enqueue(new Callback<LocalitzacionsSearch>() {
+                    @Override
+                    public void onResponse(Call<LocalitzacionsSearch> call, Response<LocalitzacionsSearch> response) {
+                        if (response.body() != null) {
+                            //LocalitzacioResponse l = response.body();
+                            localitzacionsPrefSearchLiveData.postValue(response.body());
+                        }
+                    }
+                    @Override
+                    public void onFailure(Call<LocalitzacionsSearch> call, Throwable t) {
+                        Log.d(TAG, "Fail: " + localitzacioLiveData.getValue());
+                        localitzacionsPrefSearchLiveData.postValue(null);
                     }
                 });
     }
@@ -120,8 +137,11 @@ public class LocalitzacioRespository {
 
 
     public LiveData<LocalitzacionsSearch> getlocalitzacions() {
-
         return localitzacionsSearchLiveData;
+    }
+
+    public LiveData<LocalitzacionsSearch> getpreflocalitzacions() {
+        return localitzacionsPrefSearchLiveData;
     }
 
     public LiveData<Localitzacio> getLocalitzacioLiveData() {

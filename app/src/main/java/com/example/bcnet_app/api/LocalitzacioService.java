@@ -23,4 +23,9 @@ public interface LocalitzacioService {
     Call<LocalitzacionsSearch> afegirpuntuacio(
     );
 
+    @GET("viewPreferitsDB")
+    Call<LocalitzacionsSearch> prefLocalitzacions(
+            @Query("nom") String name
+    );
+
 }
