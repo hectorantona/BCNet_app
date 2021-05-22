@@ -73,6 +73,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     private void viewlocalitzacio (Localitzacio localitzacio) {
         Intent intent = new Intent(context, ViewLocalitzacio.class);
+        intent.putExtra("id", localitzacio.getId());
         intent.putExtra("imatge", localitzacio.getImageUrl());
         intent.putExtra("nom_localitzacio", localitzacio.getName());
         intent.putExtra("content", localitzacio.getContent());

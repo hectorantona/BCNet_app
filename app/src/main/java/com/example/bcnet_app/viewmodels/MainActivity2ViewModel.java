@@ -34,8 +34,14 @@ public class MainActivity2ViewModel extends ViewModel {
         return localitzacionsPrefSearchLiveData;
     }
 
-    public void newLocalitzacio(String nomloc, String direccio, String barri, String descripcio, String web, String img, String horari, String categoria, String longitud, String latitud, NewLocalitzacioResponse callback) {
-        LocalitzacioRespository.getInstance().newlocalitzacio(nomloc, direccio, barri, descripcio, web, img, horari, categoria, longitud, latitud, callback);
+    public void setLocalitzacioPref(String nom, String id) {
+        LocalitzacioRespository.getInstance().afegirPreferits(nom, id);
+    }
+
+
+
+    public void newLocalitzacio(String nomloc, String direccio, String barri, String longitud, String latitud, String descripcio, String web, String img, String horari, String categoria) {
+        LocalitzacioRespository.getInstance().newlocalitzacio(nomloc, direccio, barri, longitud, latitud, descripcio, web, img, horari, categoria);
     }
 
     public void searchLocalitzacions (String name) {

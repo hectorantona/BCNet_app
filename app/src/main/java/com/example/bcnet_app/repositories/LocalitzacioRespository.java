@@ -65,7 +65,6 @@ public class LocalitzacioRespository {
                     public void onResponse(Call<Localitzacio> call, Response<Localitzacio> response) {
                         if (response.body() != null) {
                             Localitzacio l = response.body();
-
                             localitzacioLiveData.setValue(response.body());
                         }
                     }
@@ -131,6 +130,24 @@ public class LocalitzacioRespository {
                 });
     }
 
+    public void afegirPreferits(String name, String id) {
+        localitzacioService.setPreferit(name, id).enqueue(new Callback<Localitzacio>() {
+            @Override
+            public void onResponse(Call<Localitzacio> call, Response<Localitzacio> response) {
+                Log.d(TAG, "Liked OK: " + response.body());
+            }
+
+            @Override
+            public void onFailure(Call<Localitzacio> call, Throwable t) {
+                Log.d(TAG, "Liked Not-OK");
+            }
+        });
+    }
+
+
+
+
+
     public void afegeixpuntuacio(String id, String nomuser, String puntuacio) {
         localitzacioService.allLocalitzacions()
                 .enqueue(new Callback<LocalitzacionsSearch>() {
@@ -139,8 +156,6 @@ public class LocalitzacioRespository {
                         if (response.body() != null) {
                             //LocalitzacioResponse l = response.body();
                             localitzacionsSearchLiveData.postValue(response.body());
-
-
                         }
                     }
 
