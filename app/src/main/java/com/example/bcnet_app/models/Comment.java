@@ -15,9 +15,15 @@ public class Comment {
     @SerializedName("user")
     @Expose
     private String usuari;
+
+    @SerializedName("picture")
+    @Expose
+    private String usuariimg;
+
     @SerializedName("text")
     @Expose
     private String comentari;
+
     private Float puntuacio;
     private Integer likes;
     private String id;
@@ -40,6 +46,8 @@ public class Comment {
         this.likes = 0;
         //this.timestamp = timestamp;
     }
+
+    public String getUsuariimg() {return usuariimg; }
 
     public String getCorrecte() {
         return correcte;

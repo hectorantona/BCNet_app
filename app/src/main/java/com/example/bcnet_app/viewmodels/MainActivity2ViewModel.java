@@ -54,7 +54,6 @@ public class MainActivity2ViewModel extends ViewModel {
         LocalitzacioRespository.getInstance().searchPrefLocalitzacio(name);
     }
 
-
     public void afegeixpuntuacio(String nomlocalitzacio, String nomuser, String puntuacio) {
         LiveData<LocalitzacionsSearch> l = LocalitzacioRespository.getInstance().getlocalitzacions();
         //Agafem l'id de la localització per crear el comment

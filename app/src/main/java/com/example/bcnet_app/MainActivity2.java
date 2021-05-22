@@ -46,7 +46,7 @@ public class MainActivity2 extends AppCompatActivity {
             case R.id.perfil:
                 userViewModel.infouser(mPreferences.getString("username", null), new InfoUserResponse() {
                     @Override
-                    public void infouser(String Username, String email, Boolean message, String errormsg) {
+                    public void infouser(String Username, String email, Boolean message, String errormsg, String userimg) {
                         if (message) {
                             SharedPreferences.Editor sharedpreferenceseditor = mPreferences.edit();
                             sharedpreferenceseditor.putString(EMAIL_KEY, email);

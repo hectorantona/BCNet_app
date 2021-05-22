@@ -115,7 +115,7 @@ public class UserRepository {
                 if (response.isSuccessful()) {
                     Log.d(TAG, "InfoUserOK: " + response.body());
                     //loginLiveData.setValue(response.body().getEmail());
-                    callback.infouser(response.body().getUsername(), response.body().getEmail(), response.body().getMessage().equals("true"), response.body().getErrormsg());
+                    callback.infouser(response.body().getUsername(), response.body().getEmail(), response.body().getMessage().equals("true"), response.body().getErrormsg(), response.body().getProfileimg());
 
                 }
             }
