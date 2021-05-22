@@ -10,6 +10,7 @@ import android.widget.Spinner;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.bcnet_app.response.NewLocalitzacioResponse;
 import com.example.bcnet_app.viewmodels.MainActivity2ViewModel;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -34,6 +35,7 @@ public class NewLocalActivity extends AppCompatActivity implements OnMapReadyCal
     private TextInputLayout mFloatLabelweb;
     private TextInputLayout mFloatLabelimg;
     private TextInputLayout mFloatLabelmapa;
+    private TextInputLayout mFloatLabelerror;
 
     private Spinner categoria_spiner;
     private CustomScrollView scroll;
@@ -61,6 +63,7 @@ public class NewLocalActivity extends AppCompatActivity implements OnMapReadyCal
         mFloatLabelweb = findViewById(R.id.float_label_link);
         mFloatLabelimg = findViewById(R.id.float_label_img);
         mFloatLabelmapa = findViewById(R.id.float_label_mapa);
+        mFloatLabelerror = findViewById(R.id.float_error);
 
 
         crearloc = findViewById(R.id.CreateLocalBtn);
@@ -96,9 +99,19 @@ public class NewLocalActivity extends AppCompatActivity implements OnMapReadyCal
             String latitud = String.valueOf(coordenades.latitude);
             String longitud = String.valueOf(coordenades.longitude);
 
-            viewModel.newLocalitzacio(nom_loc, "bcn", "2", longitud, latitud, descripcio_text, web_text, img_text, "9", categoria);
-
-            //new localitzacio
+            viewModel.newLocalitzacio(nom_loc, "bcn", "2", descripcio_text, web_text, img_text, "11", categoria, latitud, longitud, new NewLocalitzacioResponse() {
+                @Override
+                public void newlocalitzacio(Boolean correcte) {
+                    //No es pot fer el comentari
+                    if (!correcte) {
+                        mFloatLabelerror.setError(getString(R.string.error_existeix_local));
+                    }
+                    //El comentari s'ha pogut fer
+                    else {
+                        finish();
+                    }
+                }
+            });
         }
 
     }

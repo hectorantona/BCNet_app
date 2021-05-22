@@ -8,6 +8,7 @@ import androidx.lifecycle.MutableLiveData;
 import com.example.bcnet_app.api.LocalitzacioService;
 import com.example.bcnet_app.models.Localitzacio;
 import com.example.bcnet_app.models.LocalitzacionsSearch;
+import com.example.bcnet_app.response.NewLocalitzacioResponse;
 
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -76,13 +77,13 @@ public class LocalitzacioRespository {
                     }
                 });
     }
-    public void newlocalitzacio(String nomloc, String direccio, String barri, String longitud, String latitud, String descripcio, String web, String img, String horari, String categoria) {
-        localitzacioService.newLocalitzacio(nomloc, direccio, barri, longitud, latitud, descripcio, web, img, horari,categoria)
+    public void newlocalitzacio(String nomloc, String direccio, String barri, String descripcio, String web, String img, String horari, String categoria, String longitud, String latitud, NewLocalitzacioResponse callback) {
+        localitzacioService.newLocalitzacio(nomloc, direccio, barri, descripcio, web, img, horari,categoria, longitud, latitud)
                 .enqueue(new Callback<LocalitzacionsSearch>() {
                     @Override
                     public void onResponse(Call<LocalitzacionsSearch> call, Response<LocalitzacionsSearch> response) {
                         if (response.body() != null) {
-
+                            callback.newlocalitzacio(response.body().error);
                         }
                     }
 

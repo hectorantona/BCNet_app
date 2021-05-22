@@ -44,6 +44,9 @@ public class MainActivity2 extends AppCompatActivity {
                 return true;
 
             case R.id.perfil:
+                Intent startIntent = new Intent(getApplicationContext(), PerfilActivity.class);
+                startActivity(startIntent);
+                mPreferences = getSharedPreferences("User", 0);
                 userViewModel.infouser(mPreferences.getString("username", null), new InfoUserResponse() {
                     @Override
                     public void infouser(String Username, String email, Boolean message, String errormsg, String userimg) {

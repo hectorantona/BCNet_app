@@ -124,8 +124,6 @@ public class UserRepository {
             public void onFailure(Call<User> call, Throwable t) {
                 //loginLiveData.postValue(null);
                 Log.d(TAG, "InfoUserCACA: ");
-
-
             }
         });
     }

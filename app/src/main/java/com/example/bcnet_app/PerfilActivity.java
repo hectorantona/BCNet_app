@@ -3,6 +3,7 @@ package com.example.bcnet_app;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -16,6 +17,9 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
+import com.example.bcnet_app.response.InfoUserResponse;
 import com.example.bcnet_app.viewmodels.UserViewModel;
 
 public class PerfilActivity extends AppCompatActivity {
@@ -68,9 +72,12 @@ public class PerfilActivity extends AppCompatActivity {
         viewModel = new ViewModelProvider(this).get(UserViewModel.class);
         viewModel.init();
 
-        /*viewModel.infouser(mPreferences.getString("username", null), new InfoUserResponse() {
+        mPreferences = getSharedPreferences("User", 0);
+
+        viewModel.infouser(mPreferences.getString("username", null), new InfoUserResponse() {
             @Override
             public void infouser(String Username, String email, Boolean message, String errormsg, String profileimg) {
+                Log.d("perfil", "img: " + profileimg);
                 RequestOptions defaultOptions = new RequestOptions()
                         .error(R.drawable.ic_launcher_background); //aixo possiblement s'haura de canviar
                 Glide.with(getApplicationContext())
@@ -78,7 +85,7 @@ public class PerfilActivity extends AppCompatActivity {
                         .load(profileimg)
                         .into(userimg);
             }
-        });*/
+        });
 
         BtnModifyPswd = (Button)findViewById(R.id.BtnChangePwd);
         BtnModifyPswd.setOnClickListener(new View.OnClickListener() {
@@ -110,6 +117,7 @@ public class PerfilActivity extends AppCompatActivity {
 
     private void getIncomingIntent() {
         TextView username = findViewById(R.id.Nom_Usuari);
+        mPreferences = getSharedPreferences("User", 0);
         username.setText(mPreferences.getString("username", null));
 
         TextView email = findViewById(R.id.Email_Usuari);
