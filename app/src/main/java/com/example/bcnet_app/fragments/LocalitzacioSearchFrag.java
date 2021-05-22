@@ -3,7 +3,6 @@ package com.example.bcnet_app.fragments;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -56,9 +55,6 @@ public class LocalitzacioSearchFrag extends Fragment {
             }
         });
 
-        //mPreferences = getSharedPreferences("User", 0);
-        //nomuser = mPreferences.getString("username", null);
-        //Log.d("TAG", "Check: " + nomuser);
     }
 
     @Override
@@ -142,17 +138,16 @@ public class LocalitzacioSearchFrag extends Fragment {
     }
 
     private void performSetPref() {
-        try {
-            if (viewModel.getPrefLocalitzacions().getValue().getnumelements() != 0) {
-                LocalitzacionsSearch LS = new LocalitzacionsSearch(viewModel.getPrefLocalitzacions().getValue().getLocalitzacions());
-                adapter.setResults(LS);
-            } else {
-                Log.d("TAG", "No tens cap establiment preferit");
+        /*
+        viewModel.getLocalitzacions().observe(this, new Observer<LocalitzacionsSearch>() {
+            @Override
+            public void onChanged(LocalitzacionsSearch l) {
+                if (l != null) {
+                    adapter.setResults(l);
+                }
             }
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-        }
+        });
+         */
 
     }
 

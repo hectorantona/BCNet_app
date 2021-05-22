@@ -13,6 +13,7 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
 
@@ -21,6 +22,7 @@ import com.bumptech.glide.request.RequestOptions;
 import com.example.bcnet_app.TabbedMenu.FragmentAdapter;
 import com.example.bcnet_app.adapter.CommentAdapter;
 import com.example.bcnet_app.viewmodels.CommentViewModel;
+import com.example.bcnet_app.viewmodels.MainActivity2ViewModel;
 import com.google.android.material.tabs.TabLayout;
 import com.like.LikeButton;
 import com.like.OnLikeListener;
@@ -33,14 +35,15 @@ public class ViewLocalitzacio extends AppCompatActivity {
     private CommentAdapter mAdapter;
     private CommentViewModel commentViewModel;
     private String nom_localitzacio;
-    private String nomuser;
     private SharedPreferences mPreferences;
+    private String loc_id;
     private String latitud;
     private String longitud;
     private TabLayout tabLayout;
     private ViewPager2 viewpager;
     private FragmentAdapter adapter;
 
+    private MainActivity2ViewModel viewModel;
 
     private Button BtnValorar;
     private LikeButton heartBtn;
@@ -52,6 +55,10 @@ public class ViewLocalitzacio extends AppCompatActivity {
         setContentView(R.layout.activity_view_localitzacio);
 
         getIncomingIntent();
+
+        viewModel = new ViewModelProvider(this).get(MainActivity2ViewModel.class);
+        viewModel.init();
+        viewModel.initPref();
 
         //TabLayout
         tabLayout = findViewById(R.id.tablayout);
@@ -111,8 +118,11 @@ public class ViewLocalitzacio extends AppCompatActivity {
         heartBtn.setOnLikeListener(new OnLikeListener() {
             @Override
             public void liked(LikeButton likeButton) {
+                mPreferences = getSharedPreferences("User", 0);
+                String nomUsuari = mPreferences.getString("username", null);
+                viewModel.setLocalitzacioPref(nomUsuari, loc_id);
                 //Afegir a preferits
-                Log.d(TAG, "LIKE DE: " + nomuser); //PROVES FUNCIONAMENT sharedPreferences
+                Log.d(TAG, "LIKE DE: " + nomUsuari); //PROVES FUNCIONAMENT sharedPreferences
             }
 
             @Override
@@ -129,6 +139,7 @@ public class ViewLocalitzacio extends AppCompatActivity {
 
             String imageUrl = getIntent().getStringExtra("imatge");
             nom_localitzacio = getIntent().getStringExtra("nom_localitzacio");
+            loc_id =getIntent().getStringExtra("id");
             String content = getIntent().getStringExtra("content");
             Float puntuacio_global = Float.parseFloat(getIntent().getStringExtra("puntuacio_global"));
             String puntuacio_Covid = getIntent().getStringExtra("puntuacioCovid");

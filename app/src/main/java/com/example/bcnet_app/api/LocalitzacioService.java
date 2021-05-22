@@ -28,6 +28,18 @@ public interface LocalitzacioService {
             @Query("nom") String name
     );
 
+    @POST("createPreferitDB")
+    Call<Localitzacio> setPreferit(
+            @Query("nom") String name,
+            @Query("id") String id
+    );
+
+    @POST("deletePreferitDB")
+    Call<Localitzacio> unsetPreferit(
+            @Query("nom") String name,
+            @Query("id") String id
+    );
+
     @POST("createEstablimentDB")
     Call<LocalitzacionsSearch> newLocalitzacio (
             @Query("nom") String qnom,
