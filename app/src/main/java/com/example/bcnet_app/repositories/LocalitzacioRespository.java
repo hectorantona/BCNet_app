@@ -77,7 +77,7 @@ public class LocalitzacioRespository {
                 });
     }
     public void newlocalitzacio(String nomloc, String direccio, String barri, String longitud, String latitud, String descripcio, String web, String img, String horari, String categoria) {
-        localitzacioService.newLocalitzacio(nomloc, direccio, barri, /*longitud, latitud,*/ descripcio, web, img, horari,categoria)
+        localitzacioService.newLocalitzacio(nomloc, direccio, barri, longitud, latitud, descripcio, web, img, horari,categoria)
                 .enqueue(new Callback<LocalitzacionsSearch>() {
                     @Override
                     public void onResponse(Call<LocalitzacionsSearch> call, Response<LocalitzacionsSearch> response) {
@@ -92,7 +92,6 @@ public class LocalitzacioRespository {
                         localitzacionsSearchLiveData.postValue(null);
                     }
                 });
-
     }
     public void searchAllLocalitzacio() {
         localitzacioService.allLocalitzacions()

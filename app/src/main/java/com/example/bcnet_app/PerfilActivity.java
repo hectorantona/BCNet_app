@@ -14,6 +14,9 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
+
+import com.example.bcnet_app.viewmodels.UserViewModel;
 
 public class PerfilActivity extends AppCompatActivity {
 
@@ -21,6 +24,7 @@ public class PerfilActivity extends AppCompatActivity {
     private Button BtnModifyEmail;
     private ImageView userimg;
     private Button NewLocalBtn;
+    private UserViewModel viewModel;
 
     private SharedPreferences mPreferences;
     private String sharedPrefFile =
@@ -61,6 +65,21 @@ public class PerfilActivity extends AppCompatActivity {
 
         getIncomingIntent();
 
+        viewModel = new ViewModelProvider(this).get(UserViewModel.class);
+        viewModel.init();
+
+        /*viewModel.infouser(mPreferences.getString("username", null), new InfoUserResponse() {
+            @Override
+            public void infouser(String Username, String email, Boolean message, String errormsg, String profileimg) {
+                RequestOptions defaultOptions = new RequestOptions()
+                        .error(R.drawable.ic_launcher_background); //aixo possiblement s'haura de canviar
+                Glide.with(getApplicationContext())
+                        .setDefaultRequestOptions(defaultOptions)
+                        .load(profileimg)
+                        .into(userimg);
+            }
+        });*/
+
         BtnModifyPswd = (Button)findViewById(R.id.BtnChangePwd);
         BtnModifyPswd.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -90,7 +109,6 @@ public class PerfilActivity extends AppCompatActivity {
     }
 
     private void getIncomingIntent() {
-        //Fer aixó o un get de bd amb tota la info i així ja tenim la foto
         TextView username = findViewById(R.id.Nom_Usuari);
         username.setText(mPreferences.getString("username", null));
 
