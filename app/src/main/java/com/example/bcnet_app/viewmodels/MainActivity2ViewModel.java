@@ -40,8 +40,8 @@ public class MainActivity2ViewModel extends ViewModel {
 
 
 
-    public void newLocalitzacio(String nomloc, String direccio, String barri, String longitud, String latitud, String descripcio, String web, String img, String horari, String categoria) {
-        LocalitzacioRespository.getInstance().newlocalitzacio(nomloc, direccio, barri, longitud, latitud, descripcio, web, img, horari, categoria);
+    public void newLocalitzacio(String nomloc, String direccio, String barri, String longitud, String latitud, String descripcio, String web, String img, String horari, String categoria, NewLocalitzacioResponse callback) {
+        LocalitzacioRespository.getInstance().newlocalitzacio(nomloc, direccio, barri, longitud, latitud, descripcio, web, img, horari, categoria, callback);
     }
 
     public void searchLocalitzacions (String name) {

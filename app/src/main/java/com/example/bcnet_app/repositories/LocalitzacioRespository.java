@@ -7,6 +7,7 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.example.bcnet_app.api.LocalitzacioService;
 import com.example.bcnet_app.models.Localitzacio;
+import com.example.bcnet_app.models.LocalitzacioResponse;
 import com.example.bcnet_app.models.LocalitzacionsSearch;
 import com.example.bcnet_app.response.NewLocalitzacioResponse;
 
@@ -78,16 +79,16 @@ public class LocalitzacioRespository {
     }
     public void newlocalitzacio(String nomloc, String direccio, String barri, String descripcio, String web, String img, String horari, String categoria, String longitud, String latitud, NewLocalitzacioResponse callback) {
         localitzacioService.newLocalitzacio(nomloc, direccio, barri, descripcio, web, img, horari,categoria, longitud, latitud)
-                .enqueue(new Callback<LocalitzacionsSearch>() {
+                .enqueue(new Callback<LocalitzacioResponse>() {
                     @Override
-                    public void onResponse(Call<LocalitzacionsSearch> call, Response<LocalitzacionsSearch> response) {
+                    public void onResponse(Call<LocalitzacioResponse> call, Response<LocalitzacioResponse> response) {
                         if (response.body() != null) {
-                            callback.newlocalitzacio(response.body().error);
+                            callback.newlocalitzacio(response.body().getError().equals("true"));
                         }
                     }
 
                     @Override
-                    public void onFailure(Call<LocalitzacionsSearch> call, Throwable t) {
+                    public void onFailure(Call<LocalitzacioResponse> call, Throwable t) {
                         Log.d(TAG, "Fail: " + localitzacioLiveData.getValue());
                         localitzacionsSearchLiveData.postValue(null);
                     }

@@ -11,7 +11,7 @@ import java.util.Comparator;
 public class LocalitzacionsSearch {
     @SerializedName("result")
     @Expose
-    public boolean error;
+    private boolean error;
     @SerializedName("value")
     @Expose
     public ArrayList<Localitzacio> localitzacions;
@@ -25,6 +25,10 @@ public class LocalitzacionsSearch {
     }
     public ArrayList<Localitzacio> getLocalitzacions() {
         return localitzacions;
+    }
+
+    public boolean geterror() {
+        return error;
     }
 
     public Localitzacio getelemi (Integer i) {

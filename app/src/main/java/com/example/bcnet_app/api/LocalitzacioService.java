@@ -1,6 +1,7 @@
 package com.example.bcnet_app.api;
 
 import com.example.bcnet_app.models.Localitzacio;
+import com.example.bcnet_app.models.LocalitzacioResponse;
 import com.example.bcnet_app.models.LocalitzacionsSearch;
 
 import retrofit2.Call;
@@ -41,7 +42,7 @@ public interface LocalitzacioService {
     );
 
     @POST("createEstablimentDB")
-    Call<LocalitzacionsSearch> newLocalitzacio (
+    Call<LocalitzacioResponse> newLocalitzacio (
             @Query("nom") String qnom,
             @Query("direccio") String qdireccio,
             @Query("barri") String qbarri,
