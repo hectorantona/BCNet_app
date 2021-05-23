@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 
 import androidx.annotation.NonNull;
@@ -28,10 +29,12 @@ public class LocalitzacioSearchFrag extends Fragment {
     private MainActivity2ViewModel viewModel;
     private RecyclerViewAdapter adapter;
 
+    private RecyclerView recyclerView;
     private EditText nameEditText;
     private Spinner searchSpinner;
     private Button searchButton;
 
+    private ProgressBar progessBar;
     private SharedPreferences mPreferences;
     private String nomuser;
 
@@ -45,16 +48,29 @@ public class LocalitzacioSearchFrag extends Fragment {
         viewModel = new ViewModelProvider(this).get(MainActivity2ViewModel.class);
         viewModel.init();
         viewModel.initPref();
+
+
         //fero tmb per el response per ara no esta
         viewModel.getLocalitzacions().observe(this, new Observer<LocalitzacionsSearch>() {
             @Override
             public void onChanged(LocalitzacionsSearch l) {
                 if (l != null) {
                     adapter.setResults(l);
+                    showUI();
                 }
             }
         });
 
+    }
+
+    private void amagarUI () {
+        recyclerView.setVisibility(View.GONE);
+        progessBar.setVisibility(View.VISIBLE);
+    }
+
+    private void showUI() {
+        progessBar.setVisibility(View.GONE);
+        recyclerView.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -78,7 +94,11 @@ public class LocalitzacioSearchFrag extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_localitzacio_search, container, false);
 
-        RecyclerView recyclerView = view.findViewById(R.id.recycler_view);
+        progessBar = view.findViewById(R.id.progress_bar);
+        progessBar.setVisibility(View.GONE);
+
+
+        recyclerView = view.findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(adapter);
 
@@ -98,7 +118,7 @@ public class LocalitzacioSearchFrag extends Fragment {
         String nomUsuari = mPreferences.getString("username", null);
         viewModel.searchPrefLocalitzacions(nomUsuari);
 
-
+        amagarUI();
 
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel;
 
 import com.example.bcnet_app.models.LocalitzacionsSearch;
 import com.example.bcnet_app.repositories.LocalitzacioRespository;
+import com.example.bcnet_app.response.InfoLocalitzacioResponse;
 import com.example.bcnet_app.response.NewLocalitzacioResponse;
 
 public class MainActivity2ViewModel extends ViewModel {
@@ -46,8 +47,8 @@ public class MainActivity2ViewModel extends ViewModel {
         LocalitzacioRespository.getInstance().newlocalitzacio(nomloc, direccio, barri, longitud, latitud, descripcio, web, img, horari, categoria, callback);
     }
 
-    public void searchLocalitzacions (String name) {
-        LocalitzacioRespository.getInstance().searchLocalitzacio(name);
+    public void searchLocalitzacio (String key, InfoLocalitzacioResponse callback) {
+        LocalitzacioRespository.getInstance().searchLocalitzacio(key, callback);
     }
     public void searchAllLocalitzacions () {
         LocalitzacioRespository.getInstance().searchAllLocalitzacio();

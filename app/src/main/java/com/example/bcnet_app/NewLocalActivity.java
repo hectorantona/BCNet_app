@@ -166,7 +166,7 @@ public class NewLocalActivity extends AppCompatActivity implements OnMapReadyCal
                 //Clear the previous click
                 mapa.clear();
                 //zoom the marker
-                mapa.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 10));
+                mapa.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 13));
                 //add marker on map
                 mapa.addMarker(markerOptions);
                 coordenades = latLng;

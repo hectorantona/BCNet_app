@@ -10,9 +10,9 @@ import retrofit2.http.POST;
 import retrofit2.http.Query;
 
 public interface LocalitzacioService {
-    @GET("existsEstablimentDB")
-    Call<Localitzacio> searchLocalitzacio(
-            @Query("nom") String name
+    @GET("existsEstablimentkeyDB")
+    Call<LocalitzacionsSearch> searchLocalitzacio(
+            @Query("key") String qkey
     );
 
     @GET("allEstablimentsDB")
@@ -41,7 +41,7 @@ public interface LocalitzacioService {
             @Query("id") String id
     );
 
-    @POST("createEstablimentDB")
+    @POST("createSugerenciaEstablimentDB")
     Call<LocalitzacioResponse> newLocalitzacio (
             @Query("nom") String qnom,
             @Query("direccio") String qdireccio,

@@ -4,21 +4,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F7ECFF"
-    tools:context=".FormValoracio">
+    tools:context=".FormValoracio"
+    >
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:layout_editor_absoluteX="12dp">
 
         <LinearLayout
+            android:id="@+id/linear_layout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="10dp"
-            android:background="#F7ECFF">
+            android:padding="10dp">
 
             <TextView
                 android:id="@+id/Nom_Localitzacio"
@@ -26,9 +26,9 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_margin="8dp"
-                android:textSize="20sp"
+                android:text="Addis Abeba"
                 android:textColor="@color/black"
-                android:text="Addis Abeba" />
+                android:textSize="20sp" />
 
             <RatingBar
                 android:id="@+id/puntuacioIndividual"
@@ -38,16 +38,17 @@
                 android:layout_margin="8dp"
                 android:layout_marginLeft="30dp"
                 android:layout_marginRight="30dp"
-                android:isIndicator="false"
                 android:gravity="start|top"
+                android:isIndicator="false"
                 android:numStars="5"
-                android:stepSize="0.5"
-                android:progressTint="@color/app_color"/>
+                android:progressTint="@color/app_color"
+                android:stepSize="0.5" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/float_label_text_comment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
+
                 <EditText
                     android:id="@+id/editTextComentari"
                     android:layout_width="match_parent"
@@ -68,21 +69,16 @@
                 android:layout_margin="8dp"
                 android:background="@drawable/btn_back"
                 android:text="Comenta"
-                android:textSize="12dp"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+                android:textSize="12dp" />
 
-            <RelativeLayout
-                android:id="@+id/loadingPanel"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center" >
-
-                <ProgressBar
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:indeterminate="true" />
-            </RelativeLayout>
         </LinearLayout>
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:indeterminate="true" />
 
     </androidx.cardview.widget.CardView>
 

@@ -14,14 +14,12 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.bcnet_app.TabbedMenu.FragmentAdapter;
-import com.example.bcnet_app.adapter.CommentAdapter;
-import com.example.bcnet_app.viewmodels.CommentViewModel;
+import com.example.bcnet_app.response.InfoLocalitzacioResponse;
 import com.example.bcnet_app.viewmodels.MainActivity2ViewModel;
 import com.google.android.material.tabs.TabLayout;
 import com.like.LikeButton;
@@ -31,17 +29,15 @@ import com.like.OnLikeListener;
 public class ViewLocalitzacio extends AppCompatActivity {
     private static final String TAG = "ViewLocalitzacio";
 
-    private RecyclerView mRecyclerView;
-    private CommentAdapter mAdapter;
-    private CommentViewModel commentViewModel;
     private String nom_localitzacio;
     private SharedPreferences mPreferences;
     private String loc_id;
-    private String latitud;
-    private String longitud;
+    private float latitud;
+    private float longitud;
     private TabLayout tabLayout;
     private ViewPager2 viewpager;
     private FragmentAdapter adapter;
+    private RatingBar puntuacioGlobal;
 
     private MainActivity2ViewModel viewModel;
 
@@ -62,7 +58,9 @@ public class ViewLocalitzacio extends AppCompatActivity {
 
         //TabLayout
         tabLayout = findViewById(R.id.tablayout);
+        tabLayout.setTabMode(TabLayout.MODE_FIXED);
         viewpager = findViewById(R.id.viewpager);
+        viewpager.setUserInputEnabled(false);
 
         FragmentManager fm = getSupportFragmentManager();
         adapter = new FragmentAdapter(fm, getLifecycle(), nom_localitzacio, latitud, longitud);
@@ -74,20 +72,20 @@ public class ViewLocalitzacio extends AppCompatActivity {
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
-                 viewpager.setCurrentItem(tab.getPosition());
+                 viewpager.setCurrentItem(tab.getPosition(), false);
             }
             @Override
             public void onTabUnselected(TabLayout.Tab tab) { }
             @Override
             public void onTabReselected(TabLayout.Tab tab) {}
         });
-
+/*
         viewpager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
             public void onPageSelected(int position) {
-                tabLayout.selectTab(tabLayout.getTabAt(position));
+                tabLayout.selectTab(tabLayout.getTabAt(0));
             }
-        });
+        });*/
 
         BtnValorar = (Button)findViewById(R.id.BtnValorar);
         BtnValorar.setOnClickListener(new View.OnClickListener() {
@@ -135,6 +133,18 @@ public class ViewLocalitzacio extends AppCompatActivity {
 
     }
 
+    public void onResume() {
+        super.onResume();
+        //Log.d(TAG, "Tornem a buscar els comentaris");
+        viewModel.searchLocalitzacio(loc_id, new InfoLocalitzacioResponse() {
+            @Override
+            public void infolocalitzacio (Float puntuacio) {
+                puntuacioGlobal.setRating(puntuacio);
+            }
+        });
+
+    }
+
 
     private void getIncomingIntent (){
         if(getIntent().hasExtra("imatge")&& getIntent().hasExtra("nom_localitzacio")) {
@@ -143,14 +153,14 @@ public class ViewLocalitzacio extends AppCompatActivity {
             nom_localitzacio = getIntent().getStringExtra("nom_localitzacio");
             loc_id =getIntent().getStringExtra("id");
             String content = getIntent().getStringExtra("content");
-            Float puntuacio_global = Float.parseFloat(getIntent().getStringExtra("puntuacio_global"));
+            Float puntuacio_global = getIntent().getFloatExtra("puntuacio_global", 0);
             String puntuacio_Covid = getIntent().getStringExtra("puntuacioCovid");
-            latitud = getIntent().getStringExtra("latitud");
-            longitud = getIntent().getStringExtra("longitud");
+            latitud = getIntent().getFloatExtra("latitud", 0);
+            longitud = getIntent().getFloatExtra("longitud", 0);
 
             setImage(imageUrl, nom_localitzacio, content);
 
-            RatingBar puntuacioGlobal = findViewById(R.id.puntuacioGlobal);
+            puntuacioGlobal = findViewById(R.id.puntuacioGlobal);
             puntuacioGlobal.setRating(puntuacio_global);
 
             TextView puntuacioCovid = findViewById(R.id.puntuacioCovid);

@@ -7,7 +7,6 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -40,13 +39,10 @@ public class MainActivity2 extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
             case R.id.home:
-                Toast.makeText(this, "Esta es la página principal", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(this, "Esta es la página principal", Toast.LENGTH_SHORT).show();
                 return true;
 
             case R.id.perfil:
-                Intent startIntent = new Intent(getApplicationContext(), PerfilActivity.class);
-                startActivity(startIntent);
-                mPreferences = getSharedPreferences("User", 0);
                 userViewModel.infouser(mPreferences.getString("username", null), new InfoUserResponse() {
                     @Override
                     public void infouser(String Username, String email, Boolean message, String errormsg, String userimg) {

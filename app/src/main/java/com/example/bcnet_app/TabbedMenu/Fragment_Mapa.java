@@ -21,9 +21,9 @@ public class Fragment_Mapa extends Fragment implements OnMapReadyCallback {
     private String nomlocalitzacio;
     private GoogleMap mapa;
 
-    public Fragment_Mapa(String nomlocalitzacio, String latitud, String longitud) {
-        //this.latitud = Float.parseFloat(latitud);
-        //this.longitud =  Float.parseFloat(longitud);
+    public Fragment_Mapa(String nomlocalitzacio, Float latitud, Float longitud) {
+        this.latitud = latitud;
+        this.longitud =  longitud;
         this.nomlocalitzacio = nomlocalitzacio;
     }
 
@@ -46,11 +46,11 @@ public class Fragment_Mapa extends Fragment implements OnMapReadyCallback {
 
     public void onMapReady(GoogleMap googleMap) {
         mapa = googleMap;
-        LatLng ubicacio = new LatLng(41.3890927,2.1575136);
+        LatLng ubicacio = new LatLng(latitud,longitud);
         googleMap.addMarker(new MarkerOptions()
                 .position(new LatLng(ubicacio.latitude, ubicacio.longitude))
                 .title(nomlocalitzacio));
 
-        mapa.animateCamera(CameraUpdateFactory.newLatLngZoom(ubicacio, 15));
+        mapa.animateCamera(CameraUpdateFactory.newLatLngZoom(ubicacio, 13));
     }
 }

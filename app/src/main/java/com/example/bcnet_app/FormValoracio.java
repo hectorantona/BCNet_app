@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
@@ -27,12 +28,14 @@ public class FormValoracio extends AppCompatActivity {
     private RatingBar puntuacio;
     private SharedPreferences mPreferences;
     private TextInputLayout mFloatLabelTextComm;
+    private ProgressBar progessBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_form_valoracio);
-
+        progessBar = findViewById(R.id.progress_bar);
+        progessBar.setVisibility(View.GONE);
         getIncomingIntent();
 
         commentViewModel = new ViewModelProvider(this, new MyViewModelFactory(nom_localitzacio)).get(CommentViewModel.class);
@@ -52,7 +55,7 @@ public class FormValoracio extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 newcomment();
-                afegeixpuntuacio();
+                //afegeixpuntuacio();
                 //finish();
             }
         });
@@ -66,7 +69,7 @@ public class FormValoracio extends AppCompatActivity {
         mPreferences = getSharedPreferences("User", 0);
         //String pref = this.getPreferenceManager().getSharedPreferencesName();
         String nomuser = mPreferences.getString("username", null);
-        //amagarUI();
+        amagarUI();
         commentViewModel.newComment(nom_localitzacio, nomuser, comment, valoracio.toString(), new newCommentResponse() {
             @Override
             public void updatecomments(Boolean correcte) {
@@ -84,12 +87,8 @@ public class FormValoracio extends AppCompatActivity {
     }
 
     private void amagarUI () {
-        comentari.setVisibility(View.GONE);
-        findViewById(R.id.Nom_Localitzacio).setVisibility(View.GONE);
-        puntuacio.setVisibility(View.GONE);
-        commentButton.setVisibility(View.GONE);
-        comentari.setVisibility(View.GONE);
-        findViewById(R.id.loadingPanel).setVisibility(View.VISIBLE);
+        findViewById(R.id.linear_layout).setVisibility(View.GONE);
+        progessBar.setVisibility(View.VISIBLE);
     }
 
     private void afegeixpuntuacio() {

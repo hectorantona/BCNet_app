@@ -8,9 +8,9 @@ import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 public class FragmentAdapter extends FragmentStateAdapter {
     private String nomlocalitzacio;
-    private String latitud;
-    private String longitud;
-    public FragmentAdapter(@NonNull FragmentManager fragmentManager, @NonNull Lifecycle lifecycle, String nomlocalitzacio, String latitud, String longitud) {
+    private Float latitud;
+    private Float longitud;
+    public FragmentAdapter(@NonNull FragmentManager fragmentManager, @NonNull Lifecycle lifecycle, String nomlocalitzacio, Float latitud, Float longitud) {
         super(fragmentManager, lifecycle);
         this.nomlocalitzacio = nomlocalitzacio;
         this.latitud = latitud;

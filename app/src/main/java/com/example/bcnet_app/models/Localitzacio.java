@@ -33,9 +33,20 @@ public class Localitzacio {
     @Expose
     private String direccio;
 
+    @SerializedName("latitud")
+    @Expose
+    private Float latitud;
+
+    @SerializedName("longitud")
+    @Expose
+    private Float longitud;
 
     private String content;
-    private Float puntuacioGlobal;
+
+    @SerializedName("puntuacio")
+    @Expose
+    private Float puntuacio;
+
     private ArrayList<Comment> valoracions;
     private Float puntuacioCOVID;
 
@@ -50,19 +61,15 @@ public class Localitzacio {
 
     }
 
-    private Float calcularPuntuacioGlobal() {
-        Float suma = (float)0;
-        for (Comment c : valoracions) {
-            suma += c.getPuntuacio();
-        }
-        Float avg = (float)-1;
-        if (valoracions.size() > 0) {
-            avg = suma / valoracions.size();
-        }
-        return avg;
+    public Localitzacio() {
     }
 
-    public Localitzacio() {
+    public Float getLatitud() {
+        return latitud;
+    }
+
+    public Float getLongitud() {
+        return longitud;
     }
 
     public String getId() {
@@ -88,9 +95,9 @@ public class Localitzacio {
     public String getSemaforUrl () { return semaforUrl;}
     public void setSemaforUrl (String content) {this.semaforUrl = semaforUrl;}
 
-    public String getPuntuacioGlobal () {
+    public Float getPuntuacioGlobal () {
         //return calcularPuntuacioGlobal().toString();
-        return "4.2";
+        return puntuacio;
     }
 
     public Float getPG () {

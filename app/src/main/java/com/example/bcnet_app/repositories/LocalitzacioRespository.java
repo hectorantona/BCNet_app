@@ -9,6 +9,7 @@ import com.example.bcnet_app.api.LocalitzacioService;
 import com.example.bcnet_app.models.Localitzacio;
 import com.example.bcnet_app.models.LocalitzacioResponse;
 import com.example.bcnet_app.models.LocalitzacionsSearch;
+import com.example.bcnet_app.response.InfoLocalitzacioResponse;
 import com.example.bcnet_app.response.NewLocalitzacioResponse;
 
 import okhttp3.OkHttpClient;
@@ -59,19 +60,19 @@ public class LocalitzacioRespository {
     }
 
     //crida a l'api
-    public void searchLocalitzacio(String name) {
-        localitzacioService.searchLocalitzacio(name)
-                .enqueue(new Callback<Localitzacio>() {
+    public void searchLocalitzacio(String key, InfoLocalitzacioResponse callback) {
+        localitzacioService.searchLocalitzacio(key)
+                .enqueue(new Callback<LocalitzacionsSearch>() {
                     @Override
-                    public void onResponse(Call<Localitzacio> call, Response<Localitzacio> response) {
+                    public void onResponse(Call<LocalitzacionsSearch> call, Response<LocalitzacionsSearch> response) {
                         if (response.body() != null) {
-                            Localitzacio l = response.body();
-                            localitzacioLiveData.setValue(response.body());
+                            Log.d(TAG, "Fail: " + response.body().getelemi(0).getName());
+                            callback.infolocalitzacio(response.body().getelemi(0).getPuntuacioGlobal());
                         }
                     }
 
                     @Override
-                    public void onFailure(Call<Localitzacio> call, Throwable t) {
+                    public void onFailure(Call<LocalitzacionsSearch> call, Throwable t) {
                         Log.d(TAG, "Fail: " + localitzacioLiveData.getValue());
                         localitzacioLiveData.postValue(null);
                     }
