@@ -22,7 +22,7 @@ import com.google.android.material.textfield.TextInputLayout;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-public class FormCovid extends AppCompatActivity {
+public class FormCommentCovid extends AppCompatActivity {
     private static final String TAG = "FormValoracio ";
     private CovidCommentsViewModel covidCommentsViewModel;
     private MainActivity2ViewModel localitzacioViewModel;
@@ -82,7 +82,7 @@ public class FormCovid extends AppCompatActivity {
         String nomuser = mPreferences.getString("username", null);
         date = dateFormat.format(calendar.getTime());
         //amagarUI();
-        covidCommentsViewModel.newComment(nom_localitzacio, nomuser, puntuacio.toString(), date, new newCovidCommentResponse() {
+        covidCommentsViewModel.newComment(nom_localitzacio, nomuser, puntuacio.toString(), comment, new newCovidCommentResponse() {
             @Override
             public void updateCovidcomments(Boolean correcte) {
                 if (!correcte) {
@@ -110,7 +110,7 @@ public class FormCovid extends AppCompatActivity {
         if(distanciaSeguretat) aux = aux + 1;
         if(termometre) aux = aux + 1;
         if(mascareta) aux = aux + 1;
-        Integer puntuacio = (aux*3)/4;
+        Integer puntuacio = (aux*10)/4; //Per donar el valor que necessiti back
         if (puntuacio == 0) puntuacio = 1;
         return puntuacio;
     }

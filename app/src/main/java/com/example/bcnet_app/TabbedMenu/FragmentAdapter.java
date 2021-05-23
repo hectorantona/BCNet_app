@@ -22,6 +22,8 @@ public class FragmentAdapter extends FragmentStateAdapter {
     public Fragment createFragment(int position) {
         switch (position) {
             case 1:
+                return new FragmentCovidComments(nomlocalitzacio); //FER CREADORA
+            case 2:
                 return new Fragment_Mapa(nomlocalitzacio, latitud, longitud);
         }
         return new ComentarisFragment(nomlocalitzacio);

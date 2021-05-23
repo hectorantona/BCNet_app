@@ -65,14 +65,17 @@ public class DadesCovidRepository {
                 .build()
                 .create(DadesCovidService.class);
     }
-    public void newCovidComment (String idlocalitzacio, String nomuser, String puntuacio, String data, newCovidCommentResponse callback) {
-        dadesCovidService.newCovidComment(idlocalitzacio, nomuser, puntuacio, data)
+    public void newCovidComment (String idlocalitzacio, String nomuser, String puntuacio, String comentari, newCovidCommentResponse callback) {
+        dadesCovidService.newCovidComment(idlocalitzacio, nomuser, puntuacio, comentari)
                 .enqueue(new Callback<com.example.bcnet_app.models.DadesCovid>() {
                     @Override
                     public void onResponse(Call<DadesCovid> call, Response<DadesCovid> response) {
-                        error = response.body().getCorrecte();
-                        Log.d(TAG, "fallada " + error);
-                        callback.updateCovidcomments(error.equals("true"));
+                        if (response.body() != null) {
+
+                            error = response.body().getCorrecte();
+                            Log.d(TAG, "fallada " + error);
+                            callback.updateCovidcomments(error.equals("true"));
+                        }
                     }
 
                     @Override
@@ -124,6 +127,9 @@ public class DadesCovidRepository {
     public LiveData<DadesCovidResponse> getcovidcomments() {
 
         return covidCommentResponseLiveData;
+    }
+
+    public void searchComments(String idlocalitzacio) {
     }
     /*
     public void deletecomment (String nomuser, String idlocalitzacio) {

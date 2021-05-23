@@ -22,6 +22,6 @@ public interface DadesCovidService {
             @Query("key") String qkey,
             @Query("username") String qusername,
             @Query("puntuacio") String qpuntuacio,
-            @Query("data") String qdata
+            @Query("covidComment") String qcovidcomment
     );
 }
