@@ -145,6 +145,20 @@ public class LocalitzacioRespository {
         });
     }
 
+    public void eliminarPreferits(String nom, String id) {
+        localitzacioService.unsetPreferit(nom, id).enqueue(new Callback<Localitzacio>() {
+            @Override
+            public void onResponse(Call<Localitzacio> call, Response<Localitzacio> response) {
+                Log.d(TAG, "Unliked OK: " + response.body());
+            }
+
+            @Override
+            public void onFailure(Call<Localitzacio> call, Throwable t) {
+
+            }
+        });
+    }
+
 
 
 
@@ -182,7 +196,6 @@ public class LocalitzacioRespository {
         //localitzacioLiveData.postValue(l);
         return localitzacioLiveData;
     }
-
 
 }
 

@@ -127,7 +127,9 @@ public class ViewLocalitzacio extends AppCompatActivity {
 
             @Override
             public void unLiked(LikeButton likeButton) {
-
+                mPreferences = getSharedPreferences("User", 0);
+                String nomUsuari = mPreferences.getString("username", null);
+                viewModel.setLocalitzacioUnpref(nomUsuari, loc_id);
             }
         });
 

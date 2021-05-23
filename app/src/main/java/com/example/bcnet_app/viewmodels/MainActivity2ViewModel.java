@@ -38,7 +38,9 @@ public class MainActivity2ViewModel extends ViewModel {
         LocalitzacioRespository.getInstance().afegirPreferits(nom, id);
     }
 
-
+    public void setLocalitzacioUnpref(String nom, String id) {
+        LocalitzacioRespository.getInstance().eliminarPreferits(nom, id);
+    }
 
     public void newLocalitzacio(String nomloc, String direccio, String barri, String longitud, String latitud, String descripcio, String web, String img, String horari, String categoria, NewLocalitzacioResponse callback) {
         LocalitzacioRespository.getInstance().newlocalitzacio(nomloc, direccio, barri, longitud, latitud, descripcio, web, img, horari, categoria, callback);
@@ -61,6 +63,7 @@ public class MainActivity2ViewModel extends ViewModel {
         String id = l.getValue().getelembyname(nomlocalitzacio).getId();
         LocalitzacioRespository.getInstance().afegeixpuntuacio(id, nomuser, puntuacio);
     }
+
 
 
 }
