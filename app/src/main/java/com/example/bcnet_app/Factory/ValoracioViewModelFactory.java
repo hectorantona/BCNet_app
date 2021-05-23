@@ -5,11 +5,11 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.bcnet_app.viewmodels.CommentViewModel;
 
-public class MyViewModelFactory implements ViewModelProvider.Factory {
+public class ValoracioViewModelFactory implements ViewModelProvider.Factory {
 
         private String mParam;
 
-        public MyViewModelFactory(String param) {
+        public ValoracioViewModelFactory(String param) {
             mParam = param;
         }
 

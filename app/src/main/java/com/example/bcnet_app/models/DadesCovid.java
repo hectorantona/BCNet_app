@@ -1,8 +1,31 @@
 package com.example.bcnet_app.models;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 public class DadesCovid {
     private String puntuacioCovid;
-    private String comentaris;
+
+    @SerializedName("result")
+    @Expose
+    private String correcte;
+
+    @SerializedName("error")
+    @Expose
+    private String msg;
+
+    @SerializedName("user")
+    @Expose
+    private String usuari;
+
+    @SerializedName("text")
+    @Expose
+    private String comentari;
+
+    @SerializedName("data")
+    @Expose
+    private String date;
+
     private boolean gelHidroalcoholic;
     private boolean distanciaSeguretat;
     private boolean termometre;
@@ -10,7 +33,7 @@ public class DadesCovid {
 
     public DadesCovid(String puntuacioCovid, String comentaris, boolean gelHidroalcoholic, boolean distanciaSeguretat, boolean termometre, boolean mascareta) {
         this.puntuacioCovid = puntuacioCovid;
-        this.comentaris = comentaris;
+        this.comentari = comentaris;
         this.gelHidroalcoholic = gelHidroalcoholic;
         this.distanciaSeguretat = distanciaSeguretat;
         this.termometre = termometre;
@@ -64,4 +87,13 @@ public class DadesCovid {
     public void setMascareta(boolean mascareta) {
         this.mascareta = mascareta;
     }
+
+    public String getUsuari() { return usuari; }
+
+    public String getComentari() { return comentari; }
+
+    public String getCorrecte() { return correcte; }
+
+    public String getDate() { return date; }
+
 }

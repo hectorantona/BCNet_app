@@ -12,7 +12,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.bcnet_app.Factory.MyViewModelFactory;
+import com.example.bcnet_app.Factory.ValoracioViewModelFactory;
 import com.example.bcnet_app.response.newCommentResponse;
 import com.example.bcnet_app.viewmodels.CommentViewModel;
 import com.example.bcnet_app.viewmodels.MainActivity2ViewModel;
@@ -38,7 +38,7 @@ public class FormValoracio extends AppCompatActivity {
         progessBar.setVisibility(View.GONE);
         getIncomingIntent();
 
-        commentViewModel = new ViewModelProvider(this, new MyViewModelFactory(nom_localitzacio)).get(CommentViewModel.class);
+        commentViewModel = new ViewModelProvider(this, new ValoracioViewModelFactory(nom_localitzacio)).get(CommentViewModel.class);
         commentViewModel.init();
 
         localitzacioViewModel = new ViewModelProvider(this).get(MainActivity2ViewModel.class);

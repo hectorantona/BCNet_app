@@ -68,6 +68,8 @@ public class ViewLocalitzacio extends AppCompatActivity {
 
         tabLayout.addTab(tabLayout.newTab().setText("Comentaris"));
         tabLayout.addTab(tabLayout.newTab().setText("Mapa"));
+        tabLayout.addTab(tabLayout.newTab().setText("Covid"));
+
 
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
@@ -102,7 +104,7 @@ public class ViewLocalitzacio extends AppCompatActivity {
         BtnCovid.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent startIntent = new Intent(getApplicationContext(), FormCovid.class);
+                Intent startIntent = new Intent(getApplicationContext(), FormCommentCovid.class);
                 //
 
                 startIntent.putExtra("nom_localitzacio", getIntent().getStringExtra("nom_localitzacio"));
