@@ -84,6 +84,25 @@ public class DadesCovidRepository {
                     }
         });
     }
+
+    public void searchCovidComments(String localitzaciokey) {
+        dadesCovidService.searchcovidcomments(localitzaciokey)
+                .enqueue(new Callback<DadesCovidResponse>() {
+                    @Override
+                    public void onResponse(Call<DadesCovidResponse> call, Response<DadesCovidResponse> response) {
+                        if (response.body() != null) {
+                            //LocalitzacioResponse l = response.body();
+                            //Log.d(TAG, "CORRECTE: " + l.getTotalItems());
+                            covidCommentResponseLiveData.postValue(response.body());
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<DadesCovidResponse> call, Throwable t) {
+                        covidCommentResponseLiveData.postValue(null);
+                    }
+                });
+    }
     /*
 
     //crida a l'api
@@ -110,19 +129,9 @@ public class DadesCovidRepository {
 
     private ArrayList<DadesCovid> dataSet = new ArrayList<>();
 
-    public MutableLiveData<List<DadesCovid>> getDadesCovid () {
-        setDadesCovid();
 
-        MutableLiveData<List<DadesCovid>> data = new MutableLiveData<>();
-        data.setValue(dataSet);
-        return data;
-    }
 
-    private void setDadesCovid() {
-        dataSet = new ArrayList<>();
-        DadesCovid d = new DadesCovid("2", "Molt Higiènic ;), M'he sentit molt segur", true, true ,true, true);
-        dataSet.add(d);
-    }
+
 
     public LiveData<DadesCovidResponse> getcovidcomments() {
 
@@ -131,9 +140,9 @@ public class DadesCovidRepository {
 
     public void searchComments(String idlocalitzacio) {
     }
-    /*
-    public void deletecomment (String nomuser, String idlocalitzacio) {
-        DadesCovidService.deletecomment(nomuser, idlocalitzacio) //FALTA QUE BACK IMPLEMENTI AQUESTA FUNCIO
+
+    public void deleteCovidComment (String nomuser, String idlocalitzacio) {
+        dadesCovidService.deleteCovidComment(nomuser, idlocalitzacio) //FALTA QUE BACK IMPLEMENTI AQUESTA FUNCIO
                 .enqueue(new Callback<DadesCovidResponse>() {
                     @Override
                     public void onResponse(Call<DadesCovidResponse> call, Response<DadesCovidResponse> response) {
@@ -147,7 +156,7 @@ public class DadesCovidRepository {
                 });
 
 
-    }*/
+    }
 }
 
 

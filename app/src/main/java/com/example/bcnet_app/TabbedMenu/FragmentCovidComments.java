@@ -16,15 +16,11 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.bcnet_app.Factory.CovidViewModelFactory;
-import com.example.bcnet_app.Factory.ValoracioViewModelFactory;
 import com.example.bcnet_app.R;
-import com.example.bcnet_app.adapter.CommentAdapter;
 import com.example.bcnet_app.adapter.CovidCommentAdapter;
-import com.example.bcnet_app.models.CommentResponse;
 import com.example.bcnet_app.models.DadesCovidResponse;
 import com.example.bcnet_app.models.LocalitzacionsSearch;
 import com.example.bcnet_app.repositories.LocalitzacioRespository;
-import com.example.bcnet_app.viewmodels.CommentViewModel;
 import com.example.bcnet_app.viewmodels.CovidCommentsViewModel;
 
 
@@ -50,7 +46,7 @@ public class FragmentCovidComments extends Fragment {
         covidCommentViewModel = new ViewModelProvider(this, new CovidViewModelFactory(nom_localitzacio)).get(CovidCommentsViewModel.class);
         covidCommentViewModel.init();
 
-        covidCommentViewModel.searchComments();
+        covidCommentViewModel.searchCovidComments();
 
         covidCommentViewModel.getComentaris().observe(this, new Observer<DadesCovidResponse>() {
             @Override
@@ -64,8 +60,7 @@ public class FragmentCovidComments extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_covid_comments, container, false);
 
         //Si ho podem fer amb l'id del comment millor que amb aixo
@@ -85,11 +80,12 @@ public class FragmentCovidComments extends Fragment {
 
         return view;
     }
+
     @Override
     public void onResume() {
         super.onResume();
         //Log.d(TAG, "Tornem a buscar els comentaris");
-        covidCommentViewModel.searchComments();
+        covidCommentViewModel.searchCovidComments();
 
     }
 }

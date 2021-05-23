@@ -4,7 +4,6 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class DadesCovid {
-    private String puntuacioCovid;
 
     @SerializedName("result")
     @Expose
@@ -14,24 +13,29 @@ public class DadesCovid {
     @Expose
     private String msg;
 
-    @SerializedName("user")
+    @SerializedName("username")
     @Expose
     private String usuari;
 
-    @SerializedName("text")
+    @SerializedName("comentari")
     @Expose
     private String comentari;
 
-    @SerializedName("data")
+    @SerializedName("date")
     @Expose
     private String date;
+
+    @SerializedName("puntuacio")
+    @Expose
+    private String puntuacioCovid;
 
     private boolean gelHidroalcoholic;
     private boolean distanciaSeguretat;
     private boolean termometre;
     private boolean mascareta;
 
-    public DadesCovid(String puntuacioCovid, String comentaris, boolean gelHidroalcoholic, boolean distanciaSeguretat, boolean termometre, boolean mascareta) {
+    public DadesCovid(String usuari, String puntuacioCovid, String comentaris, boolean gelHidroalcoholic, boolean distanciaSeguretat, boolean termometre, boolean mascareta) {
+        this.usuari = usuari;
         this.puntuacioCovid = puntuacioCovid;
         this.comentari = comentaris;
         this.gelHidroalcoholic = gelHidroalcoholic;

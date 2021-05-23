@@ -35,12 +35,7 @@ public class CovidCommentsViewModel extends ViewModel {
         mComentari = DadesCovidRepository.getInstance().getcovidcomments();
     }
     public LiveData<DadesCovidResponse> getComentaris () { return mComentari;}
-/*
-    public void searchComments () {
-        DadesCovidRepository.getInstance().searchComments(idlocalitzacio);
 
-    }
- */
     public void newComment (String nomlocalitzacio, String nomuser, String comment, String comentari, newCovidCommentResponse callback) {
         //apliquem el patró singleton
 
@@ -50,8 +45,8 @@ public class CovidCommentsViewModel extends ViewModel {
         DadesCovidRepository.getInstance().newCovidComment(id, nomuser, comment, comentari, callback);
     }
 
-    public void searchComments () {
-        DadesCovidRepository.getInstance().searchComments(idlocalitzacio);
+    public void searchCovidComments() {
+        DadesCovidRepository.getInstance().searchCovidComments(idlocalitzacio);
 
     }
 

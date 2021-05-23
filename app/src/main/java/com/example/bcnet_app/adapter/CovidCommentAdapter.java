@@ -61,18 +61,18 @@ public class CovidCommentAdapter extends RecyclerView.Adapter<CovidCommentAdapte
             holder.delete.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    //deletecovidcomment(dc);
+                    deletecovidcomment(dc);
                 }
             });
         }
 
     }
-/*
+
     private void deletecovidcomment(DadesCovid dc) {
-        DadesCovidRepository.getInstance().deletecomment(dc.getUsuari(), establimentkey); //FALTA QUE BACK CREI FUNCIO DELETE COVIDCOMMENT
+        DadesCovidRepository.getInstance().deleteCovidComment(dc.getUsuari(), establimentkey); //FALTA QUE BACK CREI FUNCIO DELETE COVIDCOMMENT
         result.remove(dc);
         notifyDataSetChanged();
-    }*/
+    }
 
     @Override
     public int getItemCount() {

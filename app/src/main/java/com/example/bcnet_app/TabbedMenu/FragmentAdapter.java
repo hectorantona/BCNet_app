@@ -22,15 +22,17 @@ public class FragmentAdapter extends FragmentStateAdapter {
     public Fragment createFragment(int position) {
         switch (position) {
             case 1:
-                return new FragmentCovidComments(nomlocalitzacio); //FER CREADORA
-            case 2:
                 return new Fragment_Mapa(nomlocalitzacio, latitud, longitud);
+
+            case 2:
+                return new FragmentCovidComments(nomlocalitzacio);
+
         }
         return new ComentarisFragment(nomlocalitzacio);
     }
 
     @Override
     public int getItemCount() {
-        return 2;
+        return 3;
     }
 }

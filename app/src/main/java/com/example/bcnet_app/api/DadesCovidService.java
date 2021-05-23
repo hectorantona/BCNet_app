@@ -6,13 +6,14 @@ import com.example.bcnet_app.models.DadesCovidResponse;
 
 import retrofit2.Call;
 import retrofit2.http.DELETE;
+import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
 
 public interface DadesCovidService {
 
-    @DELETE("deleteDComentariDB") //PER FER MIRAR COMMENT FIREBASE NO ESTA IMPLEMENTADA!!!!!
-    Call<DadesCovidResponse> deletecomment(
+    @DELETE("deleteCovidComentariDB")
+    Call<DadesCovidResponse> deleteCovidComment(
             @Query("username") String qusername,
             @Query("key") String qkey
     );
@@ -23,5 +24,10 @@ public interface DadesCovidService {
             @Query("username") String qusername,
             @Query("puntuacio") String qpuntuacio,
             @Query("covidComment") String qcovidcomment
+    );
+
+    @GET("allCovidCommentsEstablimentDB")
+    Call<DadesCovidResponse> searchcovidcomments(
+            @Query("key") String qkey
     );
 }
