@@ -47,7 +47,6 @@ public class FormValoracio extends AppCompatActivity {
         puntuacio = findViewById(R.id.puntuacioIndividual);
         comentari = findViewById(R.id.editTextComentari);
         commentButton = findViewById(R.id.BtnComentar);
-        puntuacio.setNumStars(5);
 
         mFloatLabelTextComm = (TextInputLayout) findViewById(R.id.float_label_text_comment);
 
@@ -65,7 +64,7 @@ public class FormValoracio extends AppCompatActivity {
     private void newcomment() {
         //PREGUNTAR AL PROFE COM FER QUE LA FUNCIO DE DEMANAR ERROR S'ESPERI A QUE RETRORIFT HAGI ACABAT
         String comment = comentari.getText().toString();
-        Integer valoracio = puntuacio.getNumStars();
+        Float valoracio = puntuacio.getRating();
         mPreferences = getSharedPreferences("User", 0);
         //String pref = this.getPreferenceManager().getSharedPreferencesName();
         String nomuser = mPreferences.getString("username", null);
