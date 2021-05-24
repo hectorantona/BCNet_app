@@ -7,6 +7,7 @@ import androidx.lifecycle.MutableLiveData;
 import com.example.bcnet_app.api.UserService;
 import com.example.bcnet_app.models.User;
 import com.example.bcnet_app.response.ChangeEmailResponse;
+import com.example.bcnet_app.response.ChangeProfilePictureResponse;
 import com.example.bcnet_app.response.ChangePswdResponse;
 import com.example.bcnet_app.response.InfoUserResponse;
 import com.example.bcnet_app.response.LoginResponse;
@@ -166,6 +167,28 @@ public class UserRepository {
             public void onFailure(Call<User> call, Throwable t) {
                 //loginLiveData.postValue(null);
                 Log.d(TAG, "ChangeEmailCACA: ");
+
+
+            }
+        });
+    }
+
+    public void changeProfilePicture(String username, String password, String picture, ChangeProfilePictureResponse callback) {
+        userService.changeProfilePicture(username, password, picture).enqueue(new Callback<User>() {
+            @Override
+            public void onResponse(Call<User> call, Response<User> response) {
+                if (response.isSuccessful()) {
+                    Log.d(TAG, "ChangeProfilePIctureOK: " + response.body());
+                    //loginLiveData.setValue(response.body().getPassword());
+                    callback.changeProfilePicture(response.body().getUsername(), response.body().getProfileimg(), response.body().getMessage().equals("true"), response.body().getErrormsg());
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<User> call, Throwable t) {
+                //loginLiveData.postValue(null);
+                Log.d(TAG, "ChangeProfilePictureCACA: ");
 
 
             }

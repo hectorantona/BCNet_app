@@ -42,4 +42,11 @@ public interface UserService {
             @Query("password") String qpassword,
             @Query("email") String qemail
     );
+
+    @POST ("changeProfilePictureDB")
+    Call<User> changeProfilePicture(
+            @Query("username") String qusername,
+            @Query("password") String qpassword,
+            @Query("picture") String qpicture
+    );
 }
