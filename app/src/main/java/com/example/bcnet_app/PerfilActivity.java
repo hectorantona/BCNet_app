@@ -31,10 +31,10 @@ public class PerfilActivity extends AppCompatActivity {
     private UserViewModel viewModel;
 
     private SharedPreferences mPreferences;
-    private String sharedPrefFile =
-            "com.example.android.hellosharedprefs";
     private final String USERNAME_KEY = "username";
     private final String PASSWORD_KEY = "password";
+    private final String EMAIL_KEY = "email";
+    private final String USERIMAGE_KEY = "userimage";
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -64,8 +64,7 @@ public class PerfilActivity extends AppCompatActivity {
         setContentView(R.layout.activity_perfil);
 
         NewLocalBtn = (Button)findViewById(R.id.GotoCreateLocalBtn);
-        userimg = findViewById(R.id.imatge_perfil);
-        mPreferences = getSharedPreferences(sharedPrefFile, MODE_PRIVATE);
+        mPreferences = getSharedPreferences("User", 0);
 
         getIncomingIntent();
 
@@ -74,6 +73,7 @@ public class PerfilActivity extends AppCompatActivity {
 
         mPreferences = getSharedPreferences("User", 0);
 
+        /*
         viewModel.infouser(mPreferences.getString("username", null), new InfoUserResponse() {
             @Override
             public void infouser(String Username, String email, Boolean message, String errormsg, String profileimg) {
@@ -85,7 +85,7 @@ public class PerfilActivity extends AppCompatActivity {
                         .load(profileimg)
                         .into(userimg);
             }
-        });
+        });*/
 
         BtnModifyPswd = (Button)findViewById(R.id.BtnChangePwd);
         BtnModifyPswd.setOnClickListener(new View.OnClickListener() {
@@ -121,6 +121,17 @@ public class PerfilActivity extends AppCompatActivity {
         username.setText(mPreferences.getString("username", null));
 
         TextView email = findViewById(R.id.Email_Usuari);
+        mPreferences = getSharedPreferences("User", 0);
         email.setText(mPreferences.getString("email", null));
+
+        userimg = findViewById(R.id.imatge_perfil);
+        mPreferences = getSharedPreferences("User", 0);
+        String profileimgUrl = mPreferences.getString(USERIMAGE_KEY, null);
+        RequestOptions defaultOptions = new RequestOptions()
+                .error(R.drawable.ic_launcher_background); //aixo possiblement s'haura de canviar
+        Glide.with(this)
+                .setDefaultRequestOptions(defaultOptions)
+                .load(profileimgUrl)
+                .into(userimg);
     }
 }

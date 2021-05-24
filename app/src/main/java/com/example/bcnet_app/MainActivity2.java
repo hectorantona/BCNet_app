@@ -21,6 +21,9 @@ public class MainActivity2 extends AppCompatActivity {
     private SharedPreferences mPreferences;
     private final String USERNAME_KEY = "username";
     private final String EMAIL_KEY = "email";
+    private final String USERIMAGE_KEY = "userimage";
+    private final String PASSWORD_KEY = "password";
+
 
     private String sharedPrefFile =
             "com.example.android.hellosharedprefs";
@@ -45,10 +48,12 @@ public class MainActivity2 extends AppCompatActivity {
             case R.id.perfil:
                 userViewModel.infouser(mPreferences.getString("username", null), new InfoUserResponse() {
                     @Override
-                    public void infouser(String Username, String email, Boolean message, String errormsg, String userimg) {
+                    public void infouser(String Username, String email, String password, String profilepicture, Boolean message, String errormsg) {
                         if (message) {
                             SharedPreferences.Editor sharedpreferenceseditor = mPreferences.edit();
                             sharedpreferenceseditor.putString(EMAIL_KEY, email);
+                            sharedpreferenceseditor.putString(PASSWORD_KEY, password);
+                            sharedpreferenceseditor.putString(USERIMAGE_KEY, profilepicture);
                             sharedpreferenceseditor.apply();
                             Log.d(TAG, "EMAIL: " + mPreferences.getString("email", null)); //PROVES FUNCIONAMENT sharedPreferences
                             Intent startIntent = new Intent(getApplicationContext(), PerfilActivity.class);
@@ -66,7 +71,7 @@ public class MainActivity2 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
-        mPreferences = getSharedPreferences(sharedPrefFile, MODE_PRIVATE);
+        mPreferences = getSharedPreferences("User", 0);
 
         userViewModel = new ViewModelProvider(this).get(UserViewModel.class);
         userViewModel.init();

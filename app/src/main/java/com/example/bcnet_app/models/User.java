@@ -43,10 +43,11 @@ public class  User {
         return errormsg;
     }
 
-    public User(String username, String email, String password) {
+    public User(String username, String email, String password, String profileimg) {
         this.username = username;
         this.email = email;
         this.password = password;
+        this.profileimg = profileimg;
     }
 
     public String getUsername() {
