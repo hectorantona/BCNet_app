@@ -66,14 +66,15 @@ public class LocalitzacioRespository {
                     @Override
                     public void onResponse(Call<LocalitzacionsSearch> call, Response<LocalitzacionsSearch> response) {
                         if (response.body() != null) {
-                            Log.d(TAG, "Fail: " + response.body().getelemi(0).getName());
+                            //Log.d(TAG, "Fail: " + response.body().getelemi(0).getName());
                             callback.infolocalitzacio(response.body().getelemi(0).getPuntuacioGlobal());
                         }
                     }
 
                     @Override
                     public void onFailure(Call<LocalitzacionsSearch> call, Throwable t) {
-                        Log.d(TAG, "Fail: " + localitzacioLiveData.getValue());
+                        t.getCause();
+                        Log.d(TAG, "Fail: " + t);
                         localitzacioLiveData.postValue(null);
                     }
                 });

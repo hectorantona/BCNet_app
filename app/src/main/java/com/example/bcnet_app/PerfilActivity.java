@@ -3,7 +3,6 @@ package com.example.bcnet_app;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -19,7 +18,6 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
-import com.example.bcnet_app.response.InfoUserResponse;
 import com.example.bcnet_app.viewmodels.UserViewModel;
 
 public class PerfilActivity extends AppCompatActivity {
