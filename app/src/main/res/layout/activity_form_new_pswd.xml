@@ -20,7 +20,7 @@
             android:layout_marginTop="16dp"
             android:textSize="20sp"
             android:textColor="@color/black"
-            android:text="Modificar Contrassenya"/>
+            android:text="@string/ModificarContrassenya"/>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/float_label_old_password"
@@ -92,7 +92,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
 
-            android:text="Modificar" />
+            android:text="@string/Modificar" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

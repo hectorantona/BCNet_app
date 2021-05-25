@@ -8,7 +8,7 @@
    <EditText
        android:layout_width="match_parent"
        android:layout_height="wrap_content"
-       android:hint="Cerca per..."
+       android:hint="@string/Cerca_per"
        android:id="@+id/fragment_localitzacio_name"
        />
 
@@ -30,7 +30,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
-            android:text="Cerca"/>
+            android:text="@string/Cerca"/>
     </LinearLayout>
 
 

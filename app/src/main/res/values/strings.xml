@@ -4,7 +4,7 @@
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
     <string name="title_activity_login">LoginActivity</string>
-    <string name="prompt_email">Email</string>
+    <string name="prompt_email">E-mail</string>
     <string name="prompt_password">Password</string>
     <string name="action_sign_in">Sign in or register</string>
     <string name="action_sign_in_short">Sign in</string>
@@ -12,37 +12,35 @@
     <string name="invalid_username">Not a valid username</string>
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
-    <string name="tens_compte"> Ja tens un compte? </string>
+    <string name="tens_compte"> Already have an account? </string>
     <string name="login">Login</string>
-    <string name="user">Usuari</string>
-    <string name="password">Contrassenya</string>
-    <string name="oldpassword">Constrassenya antiga</string>
+    <string name="user">User</string>
+    <string name="password">Password</string>
+    <string name="oldpassword">Last Password</string>
 
     <string name="sign_up">Sign up</string>
-    <string name="no_tens_compte">No tens compte?</string>
-    <string name="_5_estrelles">5 estrelles</string>
+    <string name="no_tens_compte">Dont have an account?</string>
+    <string name="_5_estrelles">5 stars</string>
 
-    <string name="error_field_required"> Camp necessari</string>
-    <string name="error_invalid_password">Contrassenya incorrecte</string>
-    <string name="error_invalid_user">Usuari incorrecte</string>
-    <string name="error_user_already_exists">Usuari ja existeix</string>
+    <string name="error_field_required"> Required field</string>
+    <string name="error_invalid_password">Wrong password</string>
+    <string name="error_invalid_user">Wrong user</string>
+    <string name="error_user_already_exists">User already exists</string>
 
-
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="email">e-mail</string>
-    <string name="new_email">Nou e-mail</string>
-    <string name="rep_password">Repetir contrassenya</string>
+    <string name="new_email">New e-mail</string>
+    <string name="rep_password">Repeat password</string>
     <string name="createAccount">Create Account</string>
-    <string name="unmatched_passwords">Contrassenyes han de coincidir</string>
-    <string name="error_invalid_email">E-mail no vàlid</string>
-    <string name="createLocal">Crea una nova localització</string>
-    <string name="local_name">Nom localització</string>
-    <string name="local_descripció">Descripció de la localització</string>
-    <string name="local_link">Enllaç Web</string>
-    <string name="local_img">Enllaç imatge localització</string>
-    <string name="error_ja_te_comment">Ja has comentat en aquesta localització</string>
-    <string name="error_existeix_local">Ja existeix una localització amb aquest nom</string>
+    <string name="unmatched_passwords">Passwords must match</string>
+    <string name="error_invalid_email">Non-valid e-mail</string>
+    <string name="createLocal">Create new place</string>
+    <string name="local_name">Place name</string>
+    <string name="local_descripció">Place description</string>
+    <string name="local_link">Web link</string>
+    <string name="local_img">Local image link</string>
+    <string name="error_ja_te_comment">Already commented this place</string>
+    <string name="error_existeix_local">Already exists a place with this name</string>
     <string name="title_activity_form_new_pswd">FormNewPswd</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
@@ -52,5 +50,20 @@
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="english">English</string>
+    <string name="spanish">Spanish</string>
+    <string name="Cerca_per">Search by...</string>
+    <string name="Cerca">Search</string>
+    <string name="Valora">Rate</string>
+    <string name="LogOut">Log Out</string>
+    <string name="Perfil">My account</string>
+    <string name="DadesPersonals">Personal data</string>
+    <string name="ModificarEmail">Change e-mail</string>
+    <string name="Modificar">Modify</string>
+    <string name="ModificarContrassenya">Modify password</string>
+    <string name="Comenta">Add comment</string>
+    <string name="Comentari">Comments</string>
+    <string name="Mapa">Map</string>
+    <string name="Create_account">Create an account</string>
 
 </resources>

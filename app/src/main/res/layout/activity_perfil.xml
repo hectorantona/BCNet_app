@@ -50,7 +50,7 @@
             android:layout_marginStart="15dp"
             android:layout_marginLeft="15dp"
             android:layout_marginTop="16dp"
-            android:text="Dades Personals"
+            android:text="@string/DadesPersonals"
             android:textColor="@color/black"
             android:textSize="20sp" />
 

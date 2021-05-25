@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">BCNet_app</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notificaciones</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="prompt_email">E-mail</string>
+    <string name="prompt_password">Contrasenya</string>
+    <string name="action_sign_in">Regístrate</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">Bienvenido !</string>
+    <string name="invalid_username">Nombre no válido</string>
+    <string name="invalid_password">La contrasenya debe tener +5 caracteres</string>
+    <string name="login_failed">Fallo de inicio de sesión</string>
+    <string name="tens_compte"> ya tienes una cuenta? </string>
+    <string name="login">Inicio de sesión</string>
+    <string name="user">Usuario</string>
+    <string name="password">Contraseña</string>
+    <string name="oldpassword">Contraseña antigua</string>
+
+    <string name="sign_up">Crea una cuenta</string>
+    <string name="no_tens_compte">No tienes una cuenta?</string>
+    <string name="_5_estrelles">5 estrellas</string>
+
+    <string name="error_field_required">Campo requerido</string>
+    <string name="error_invalid_password">Contraseña incorrecta</string>
+    <string name="error_invalid_user">Nombre de usuario incorrecto</string>
+    <string name="error_user_already_exists">El usuario ya existe</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="email">e-mail</string>
+    <string name="new_email">Nuevo e-mail</string>
+    <string name="rep_password">Repite la contraseña</string>
+    <string name="createAccount">Crea una cuenta</string>
+    <string name="unmatched_passwords">Las contraseñas deben coincidir</string>
+    <string name="error_invalid_email">E-mail inválido</string>
+    <string name="createLocal">Crea una nueva localización</string>
+    <string name="local_name">Nombre de localización</string>
+    <string name="local_descripció">Descripción de localización</string>
+    <string name="local_link">Link web</string>
+    <string name="local_img">Link de imagen de la localizacion</string>
+    <string name="error_ja_te_comment">Ya has comentado esta localización</string>
+    <string name="error_existeix_local">Ya existe una localización con este nombre</string>
+    <string name="title_activity_form_new_pswd">FormNewPswd</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Siguiente</string>
+    <string name="previous">Anterior</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="english">Inglés</string>
+    <string name="spanish">Castellano</string>
+    <string name="Cerca_per">Buscar por...</string>
+    <string name="Cerca">Busca</string>
+    <string name="Valora">Valora</string>
+    <string name="LogOut">Cierra sesión</string>
+    <string name="Perfil">Mi perfil</string>
+    <string name="DadesPersonals">Datos personales</string>
+    <string name="ModificarEmail">Cambiar e-mail</string>
+    <string name="Modificar">Modifica</string>
+    <string name="ModificarContrassenya">Modificar contraseña</string>
+    <string name="Comenta">Crea comentario</string>
+    <string name="Comentari">Comentarios</string>
+    <string name="Mapa">Mapa</string>
+    <string name="Create_account">Crea una cuenta</string>
+
+</resources>

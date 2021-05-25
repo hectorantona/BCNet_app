@@ -66,8 +66,8 @@ public class ViewLocalitzacio extends AppCompatActivity {
         adapter = new FragmentAdapter(fm, getLifecycle(), nom_localitzacio, latitud, longitud);
         viewpager.setAdapter(adapter);
 
-        tabLayout.addTab(tabLayout.newTab().setText("Comentaris"));
-        tabLayout.addTab(tabLayout.newTab().setText("Mapa"));
+        tabLayout.addTab(tabLayout.newTab().setText(getString(R.string.Comentari)));
+        tabLayout.addTab(tabLayout.newTab().setText(getString(R.string.Mapa)));
         tabLayout.addTab(tabLayout.newTab().setText("Covid"));
 
 

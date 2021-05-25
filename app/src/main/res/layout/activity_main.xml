@@ -67,10 +67,35 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="Create an account"
+            android:text="@string/Create_account"
             android:backgroundTint="@color/gray"
             android:textColor="@color/white" />
 
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/language_form"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/EngBtn"
+            style="?android:textAppearanceSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/english"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/SpnBtn"
+            style="?android:textAppearanceSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:text="@string/spanish"
+            android:textStyle="bold" />
     </LinearLayout>
 
 </LinearLayout>

@@ -9,11 +9,11 @@
         never és per la barra lateral-->
 
     <item android:id="@+id/perfil"
-        android:title="Perfil"
+        android:title="@string/Perfil"
         app:showAsAction="never"/>
 
     <item android:id="@+id/logout"
-        android:title="LogOut"
+        android:title="@string/LogOut"
         app:showAsAction="never"/>
 
 

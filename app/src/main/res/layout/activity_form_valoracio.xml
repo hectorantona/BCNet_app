@@ -68,7 +68,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
                 android:background="@drawable/btn_back"
-                android:text="Comenta"
+                android:text="@string/Comenta"
                 android:textColor="@color/white"
                 android:textSize="12dp" />
 
