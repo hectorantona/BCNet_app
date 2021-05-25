@@ -122,7 +122,7 @@ public class ViewLocalitzacio extends AppCompatActivity {
                 String nomUsuari = mPreferences.getString("username", null);
                 viewModel.setLocalitzacioPref(nomUsuari, loc_id);
                 //Afegir a preferits
-                Log.d(TAG, "LIKE DE: " + nomUsuari); //PROVES FUNCIONAMENT sharedPreferences
+                Log.d(TAG, "LIKE DE: " + nomUsuari);
             }
 
             @Override

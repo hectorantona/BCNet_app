@@ -43,6 +43,7 @@ public class LocalitzacioRespository {
     //ha de ser privat
     private LocalitzacioRespository() {
         localitzacionsSearchLiveData = new MutableLiveData<>();
+        localitzacionsPrefSearchLiveData = new MutableLiveData<>();
         localitzacioLiveData = new MutableLiveData<>();
 
 

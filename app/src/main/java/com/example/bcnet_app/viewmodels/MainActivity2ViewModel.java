@@ -1,5 +1,7 @@
 package com.example.bcnet_app.viewmodels;
 
+import android.util.Log;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
@@ -37,6 +39,7 @@ public class MainActivity2ViewModel extends ViewModel {
 
     public void setLocalitzacioPref(String nom, String id) {
         LocalitzacioRespository.getInstance().afegirPreferits(nom, id);
+        Log.d(TAG, "LIKES: " + localitzacionsPrefSearchLiveData.getValue().getnumelements());
     }
 
     public void setLocalitzacioUnpref(String nom, String id) {
