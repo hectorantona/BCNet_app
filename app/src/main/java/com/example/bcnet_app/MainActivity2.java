@@ -67,7 +67,6 @@ public class MainActivity2 extends AppCompatActivity {
                 //Intent finishIntent = new Intent(getApplicationContext(),SignInActivity.class);
                 //startActivity(finishIntent);
         }
-
         return super.onOptionsItemSelected(item);
     }
 
