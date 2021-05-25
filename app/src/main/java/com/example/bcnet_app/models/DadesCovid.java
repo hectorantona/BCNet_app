@@ -3,6 +3,9 @@ package com.example.bcnet_app.models;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 public class DadesCovid {
 
     @SerializedName("result")
@@ -29,10 +32,20 @@ public class DadesCovid {
     @Expose
     private String puntuacioCovid;
 
+    @SerializedName("picture")
+    @Expose
+    private String usuariimg;
+
+    @SerializedName("semafor")
+    @Expose
+    private String semaforcoment;
+
     private boolean gelHidroalcoholic;
     private boolean distanciaSeguretat;
     private boolean termometre;
     private boolean mascareta;
+    private static String dateFormat = "dd-MM-yyyy hh:mm";
+    private static SimpleDateFormat simpleDateFormat = new SimpleDateFormat(dateFormat);
 
     public DadesCovid(String usuari, String puntuacioCovid, String comentaris, boolean gelHidroalcoholic, boolean distanciaSeguretat, boolean termometre, boolean mascareta) {
         this.usuari = usuari;
@@ -55,6 +68,14 @@ public class DadesCovid {
         aux = (aux * 10)/4;
         return aux;
     }
+
+    public String ConvertMilliSecondsToFormattedDate(){
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(Long.parseLong(date));
+        return simpleDateFormat.format(calendar.getTime());
+    }
+
+
 
     public String getPuntuacioGlobal () {
         return calcularPuntuacioCovid().toString();
@@ -98,6 +119,11 @@ public class DadesCovid {
 
     public String getCorrecte() { return correcte; }
 
-    public String getDate() { return date; }
+    public String getDate() { return ConvertMilliSecondsToFormattedDate(); }
+
+    public String getUsuariimg() {return usuariimg; }
+
+    public String getUsuarisemafor(){return semaforcoment;}
+
 
 }

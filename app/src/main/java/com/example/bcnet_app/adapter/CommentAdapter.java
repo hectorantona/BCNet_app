@@ -52,6 +52,7 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.CommentV
         //Glide.with(mContext).load(mData.get(position).getUimg()).into(holder.img_user);
         holder.name.setText(c.getUsuari());
         holder.content.setText(c.getComentari());
+        holder.date.setText(c.getDate());
         Glide.with(holder.itemView)
                 .load(c.getUsuariimg())
                 .into((holder).comment_user_img);

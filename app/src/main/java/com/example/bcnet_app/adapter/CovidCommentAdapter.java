@@ -12,11 +12,13 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.bcnet_app.R;
 import com.example.bcnet_app.models.Comment;
 import com.example.bcnet_app.models.CommentResponse;
 import com.example.bcnet_app.models.DadesCovid;
 import com.example.bcnet_app.models.DadesCovidResponse;
+import com.example.bcnet_app.models.User;
 import com.example.bcnet_app.repositories.ComentariRepository;
 import com.example.bcnet_app.repositories.DadesCovidRepository;
 
@@ -50,6 +52,14 @@ public class CovidCommentAdapter extends RecyclerView.Adapter<CovidCommentAdapte
         holder.name.setText(dc.getUsuari());
         holder.content.setText(dc.getComentari());
         holder.date.setText(dc.getDate());
+
+        Glide.with(holder.itemView)
+                .load(dc.getUsuariimg())
+                .into((holder).comment_user_img);
+
+        Glide.with(holder.itemView)
+                .load(dc.getUsuarisemafor())
+                .into((holder).comment_user_semafor);
 
         if (!dc.getUsuari().equals(nomuser)) {
             Log.d("Comment adapter", "El nom no coicideix" + dc.getUsuari() + "" + nomuser);
