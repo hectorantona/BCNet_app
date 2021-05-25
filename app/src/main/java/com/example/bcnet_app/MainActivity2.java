@@ -64,8 +64,8 @@ public class MainActivity2 extends AppCompatActivity {
             case R.id.logout:
                 SharedPreferences.Editor sharedpreferenceseditor = mPreferences.edit();
                 sharedpreferenceseditor.clear();
-                Intent finishIntent = new Intent(getApplicationContext(),SignInActivity.class);
-                startActivity(finishIntent);
+                //Intent finishIntent = new Intent(getApplicationContext(),SignInActivity.class);
+                //startActivity(finishIntent);
         }
 
         return super.onOptionsItemSelected(item);
