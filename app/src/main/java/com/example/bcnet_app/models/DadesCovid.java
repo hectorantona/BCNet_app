@@ -36,6 +36,10 @@ public class DadesCovid {
     @Expose
     private String usuariimg;
 
+    @SerializedName("semafor")
+    @Expose
+    private String semaforcoment;
+
     private boolean gelHidroalcoholic;
     private boolean distanciaSeguretat;
     private boolean termometre;
@@ -118,6 +122,8 @@ public class DadesCovid {
     public String getDate() { return ConvertMilliSecondsToFormattedDate(); }
 
     public String getUsuariimg() {return usuariimg; }
+
+    public String getUsuarisemafor(){return semaforcoment;}
 
 
 }

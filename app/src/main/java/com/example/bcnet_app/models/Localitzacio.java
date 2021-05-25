@@ -47,10 +47,12 @@ public class Localitzacio {
     @Expose
     private Float puntuacio;
 
+    @SerializedName("semafor")
+    @Expose
+    private String semaforUrl;
+
     private ArrayList<Comment> valoracions;
     private Integer puntuacioCOVID;
-
-    private String semaforUrl;
 
     public Localitzacio(String imageUrl, String name, String content, String category, String direccio) {
         this.nom = name;

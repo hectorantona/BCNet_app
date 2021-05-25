@@ -57,6 +57,10 @@ public class CovidCommentAdapter extends RecyclerView.Adapter<CovidCommentAdapte
                 .load(dc.getUsuariimg())
                 .into((holder).comment_user_img);
 
+        Glide.with(holder.itemView)
+                .load(dc.getUsuarisemafor())
+                .into((holder).comment_user_semafor);
+
         if (!dc.getUsuari().equals(nomuser)) {
             Log.d("Comment adapter", "El nom no coicideix" + dc.getUsuari() + "" + nomuser);
             holder.delete.setVisibility(View.GONE);
