@@ -11,80 +11,112 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-
-        <ImageView
-            android:id="@+id/imatge_perfil"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="276dp"
-            android:layout_weight="70"
-            android:contentDescription="TODO"
-            android:scaleType="center"
-            android:src="@mipmap/ic_launcher_round" />
+            android:layout_height="wrap_content"
+            android:background="@drawable/grad">
+        <RelativeLayout
+            android:id="@+id/img_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/img_border"
+            android:layout_centerHorizontal="true">
+            <ImageView
+                android:id="@+id/imatge_perfil"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_marginTop="20dp"
+
+                android:layout_weight="70"
+                android:contentDescription="TODO"
+                android:background="@drawable/circle"
+                android:scaleType="center"
+                android:src="@mipmap/ic_launcher"/>
+        </RelativeLayout>
 
         <TextView
             android:id="@+id/Nom_Usuari"
+            android:layout_below="@id/img_layout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="16dp"
+           android:layout_margin="15dp"
+            android:layout_centerHorizontal="true"
             android:text="Addis Abeba"
             android:textColor="@color/black"
             android:textSize="20sp" />
+        </RelativeLayout>
 
+
+
+        <TextView
+            android:id="@+id/Email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="15dp"
+            android:text="Email"
+            android:textColor="@color/grey"
+            android:textSize="13sp"
+            android:layout_weight="0"/>
         <TextView
             android:id="@+id/Email_Usuari"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
             android:layout_marginLeft="15dp"
-            android:layout_marginTop="16dp"
             android:text="Addis.Abeba@upc.edu"
             android:textColor="@color/black"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:layout_weight="0"/>
 
         <TextView
-            android:id="@+id/Dades_Personals"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="150dp"
             android:layout_marginStart="15dp"
             android:layout_marginLeft="15dp"
-            android:layout_marginTop="16dp"
-            android:text="@string/DadesPersonals"
+            android:text=""
             android:textColor="@color/black"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:layout_weight="0"/>
 
-        <Button
-            android:id="@+id/BtnChangePwd"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="16dp"
-            android:backgroundTint="@color/gray"
-            android:text="Modificar Contrassenya"
-            android:textColor="@color/white" />
 
-        <Button
-            android:id="@+id/BtnChangeEmail"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="8dp"
-            android:backgroundTint="@color/gray"
-            android:text="Modificar Email"
-            android:textColor="@color/white" />
 
-        <Button
-            android:id="@+id/GotoCreateLocalBtn"
-            style="?android:textAppearanceSmall"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:text="@string/createLocal"
-            android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/BtnChangePwd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="15dp"
+                android:backgroundTint="@color/gray"
+                android:text="Modificar Contrassenya"
+                android:textColor="@color/white"
+                android:layout_gravity="bottom"/>
+
+            <Button
+                android:id="@+id/BtnChangeEmail"
+                android:layout_gravity="bottom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="8dp"
+                android:backgroundTint="@color/gray"
+                android:text="Modificar Email"
+                android:textColor="@color/white"
+                android:gravity="bottom"/>
+
+            <Button
+                android:id="@+id/GotoCreateLocalBtn"
+                style="?android:textAppearanceSmall"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginHorizontal="15dp"
+                android:text="@string/createLocal"
+                android:textStyle="bold" />
+
     </LinearLayout>
-
 
 </RelativeLayout>
