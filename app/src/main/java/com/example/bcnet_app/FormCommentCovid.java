@@ -1,8 +1,5 @@
 package com.example.bcnet_app;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.ViewModelProvider;
-
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,8 +9,10 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
+
 import com.example.bcnet_app.Factory.CovidViewModelFactory;
-import com.example.bcnet_app.Factory.ValoracioViewModelFactory;
 import com.example.bcnet_app.response.newCovidCommentResponse;
 import com.example.bcnet_app.viewmodels.CovidCommentsViewModel;
 import com.example.bcnet_app.viewmodels.MainActivity2ViewModel;
@@ -38,7 +37,6 @@ public class FormCommentCovid extends AppCompatActivity {
     private Calendar calendar;
     private SimpleDateFormat dateFormat;
     private String date;
-
 
 
     @Override

@@ -1,8 +1,5 @@
 package com.example.bcnet_app;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.ViewModelProvider;
-
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -11,6 +8,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.example.bcnet_app.response.ChangeEmailResponse;
 import com.example.bcnet_app.viewmodels.UserViewModel;
@@ -33,6 +33,7 @@ public class FormNewEmail extends AppCompatActivity {
     private String sharedPrefFile =
             "com.example.android.hellosharedprefs";
     private final String EMAIL_KEY = "email";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

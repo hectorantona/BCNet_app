@@ -43,7 +43,6 @@ public class MainActivity2 extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
             case R.id.home:
-                //Toast.makeText(this, "Esta es la página principal", Toast.LENGTH_SHORT).show();
                 return true;
 
             case R.id.perfil:
@@ -64,6 +63,7 @@ public class MainActivity2 extends AppCompatActivity {
                 });
 
             case R.id.mapa:
+                Log.d(TAG, "nos vamos pal mapa");
                 Intent intent = new Intent(getApplicationContext(), SearchMapaActivity.class);
                 startActivity(intent);
 
@@ -84,8 +84,6 @@ public class MainActivity2 extends AppCompatActivity {
 
         userViewModel = new ViewModelProvider(this).get(UserViewModel.class);
         userViewModel.init();
-
-        Log.d(TAG, "USERNAME: " + mPreferences.getString("username", null)); //PROVES FUNCIONAMENT sharedPreferences
 
     }
 }

@@ -30,6 +30,7 @@ public class FormValoracio extends AppCompatActivity {
     private TextInputLayout mFloatLabelTextComm;
     private ProgressBar progessBar;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
