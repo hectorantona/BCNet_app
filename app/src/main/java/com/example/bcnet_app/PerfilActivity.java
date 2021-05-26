@@ -56,7 +56,6 @@ public class PerfilActivity extends AppCompatActivity {
                 Toast.makeText(this, "Este es tu perfil", Toast.LENGTH_SHORT).show();
                 return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 
