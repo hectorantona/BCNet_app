@@ -11,6 +11,7 @@ import com.example.bcnet_app.models.LocalitzacioResponse;
 import com.example.bcnet_app.models.LocalitzacionsSearch;
 import com.example.bcnet_app.response.InfoLocalitzacioResponse;
 import com.example.bcnet_app.response.NewLocalitzacioResponse;
+import com.example.bcnet_app.response.allLocalitzacionsResponse;
 
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -97,7 +98,7 @@ public class LocalitzacioRespository {
                     }
                 });
     }
-    public void searchAllLocalitzacio() {
+    public void searchAllLocalitzacio(allLocalitzacionsResponse callback) {
         localitzacioService.allLocalitzacions()
                 .enqueue(new Callback<LocalitzacionsSearch>() {
                     @Override
@@ -105,6 +106,7 @@ public class LocalitzacioRespository {
                         if (response.body() != null) {
                             //LocalitzacioResponse l = response.body();
                             localitzacionsSearchLiveData.postValue(response.body());
+                            callback.allLocalitzacions(localitzacionsSearchLiveData.getValue());
                         }
                     }
 

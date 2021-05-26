@@ -9,6 +9,7 @@ import com.example.bcnet_app.models.LocalitzacionsSearch;
 import com.example.bcnet_app.repositories.LocalitzacioRespository;
 import com.example.bcnet_app.response.InfoLocalitzacioResponse;
 import com.example.bcnet_app.response.NewLocalitzacioResponse;
+import com.example.bcnet_app.response.allLocalitzacionsResponse;
 
 public class MainActivity2ViewModel extends ViewModel {
 
@@ -53,8 +54,8 @@ public class MainActivity2ViewModel extends ViewModel {
     public void searchLocalitzacio (String key, InfoLocalitzacioResponse callback) {
         LocalitzacioRespository.getInstance().searchLocalitzacio(key, callback);
     }
-    public void searchAllLocalitzacions () {
-        LocalitzacioRespository.getInstance().searchAllLocalitzacio();
+    public void searchAllLocalitzacions (allLocalitzacionsResponse callback) {
+        LocalitzacioRespository.getInstance().searchAllLocalitzacio(callback);
     }
 
     public void searchPrefLocalitzacions (String name) {

@@ -23,12 +23,13 @@ public class MainActivity2 extends AppCompatActivity {
     private final String EMAIL_KEY = "email";
     private final String USERIMAGE_KEY = "userimage";
     private final String PASSWORD_KEY = "password";
+    private UserViewModel userViewModel;
 
 
     private String sharedPrefFile =
             "com.example.android.hellosharedprefs";
 
-    private UserViewModel userViewModel;
+
 
 
     @Override
@@ -61,6 +62,11 @@ public class MainActivity2 extends AppCompatActivity {
                         }
                     }
                 });
+
+            case R.id.mapa:
+                Intent intent = new Intent(getApplicationContext(), SearchMapaActivity.class);
+                startActivity(intent);
+
             case R.id.logout:
                 SharedPreferences.Editor sharedpreferenceseditor = mPreferences.edit();
                 sharedpreferenceseditor.clear();

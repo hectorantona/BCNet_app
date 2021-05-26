@@ -23,6 +23,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.bcnet_app.R;
 import com.example.bcnet_app.adapter.RecyclerViewAdapter;
 import com.example.bcnet_app.models.LocalitzacionsSearch;
+import com.example.bcnet_app.response.allLocalitzacionsResponse;
 import com.example.bcnet_app.viewmodels.MainActivity2ViewModel;
 
 public class LocalitzacioSearchFrag extends Fragment {
@@ -77,7 +78,10 @@ public class LocalitzacioSearchFrag extends Fragment {
     public void onResume() {
         super.onResume();
 
-        viewModel.searchAllLocalitzacions();
+        viewModel.searchAllLocalitzacions(new allLocalitzacionsResponse() {
+            @Override
+            public void allLocalitzacions(LocalitzacionsSearch l) {}
+        });
 
         viewModel.getLocalitzacions().observe(this, new Observer<LocalitzacionsSearch>() {
             @Override
@@ -112,7 +116,10 @@ public class LocalitzacioSearchFrag extends Fragment {
 
         searchButton = view.findViewById(R.id.fragment_localitzacio_search);
 
-        viewModel.searchAllLocalitzacions();
+        viewModel.searchAllLocalitzacions(new allLocalitzacionsResponse() {
+            @Override
+            public void allLocalitzacions(LocalitzacionsSearch l) {}
+        });
 
         mPreferences = this.getActivity().getSharedPreferences("User", 0);
         String nomUsuari = mPreferences.getString("username", null);

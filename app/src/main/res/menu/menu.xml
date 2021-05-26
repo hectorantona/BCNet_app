@@ -8,6 +8,13 @@
         <!--ifRoom és a la barra superior
         never és per la barra lateral-->
 
+    <item android:id="@+id/mapa"
+        android:icon="@drawable/ic_map"
+        android:title="Home"
+        app:showAsAction="ifRoom"/>
+    <!--ifRoom és a la barra superior
+    never és per la barra lateral-->
+
     <item android:id="@+id/perfil"
         android:title="@string/Perfil"
         app:showAsAction="never"/>

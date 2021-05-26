@@ -82,7 +82,7 @@ public class NewLocalActivity extends AppCompatActivity implements OnMapReadyCal
             @Override
             public void onClick(View v) {
                 newlocalitzacio();
-                //finish();
+                finish();
             }
         });
     }
