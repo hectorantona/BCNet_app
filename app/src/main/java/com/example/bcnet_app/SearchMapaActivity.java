@@ -121,6 +121,7 @@ public class SearchMapaActivity extends AppCompatActivity implements OnMapReadyC
             case R.id.home:
                 Intent homeintent = new Intent(getApplicationContext(), MainActivity2.class);
                 startActivity(homeintent);
+                break;
 
             case R.id.perfil:
                 userViewModel.infouser(mPreferences.getString("username", null), new InfoUserResponse() {
@@ -137,16 +138,17 @@ public class SearchMapaActivity extends AppCompatActivity implements OnMapReadyC
                         }
                     }
                 });
+                break;
 
             case R.id.mapa:
-                Intent intent = new Intent(getApplicationContext(), SearchMapaActivity.class);
-                startActivity(intent);
+                return true;
 
             case R.id.logout:
                 SharedPreferences.Editor sharedpreferenceseditor = mPreferences.edit();
                 sharedpreferenceseditor.clear();
-                //Intent finishIntent = new Intent(getApplicationContext(),SignInActivity.class);
-                //startActivity(finishIntent);
+                Intent finishIntent = new Intent(getApplicationContext(),SignInActivity.class);
+                startActivity(finishIntent);
+                break;
         }
         return super.onOptionsItemSelected(item);
     }

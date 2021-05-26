@@ -47,9 +47,11 @@ public class PerfilActivity extends AppCompatActivity {
             case R.id.home:
                 Intent startIntent = new Intent(getApplicationContext(), MainActivity2.class);
                 startActivity(startIntent);
+                break;
             case R.id.mapa:
                 Intent intent = new Intent(getApplicationContext(), SearchMapaActivity.class);
                 startActivity(intent);
+                break;
             case R.id.perfil:
                 Toast.makeText(this, "Este es tu perfil", Toast.LENGTH_SHORT).show();
                 return true;

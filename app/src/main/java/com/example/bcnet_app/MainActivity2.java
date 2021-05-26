@@ -61,17 +61,20 @@ public class MainActivity2 extends AppCompatActivity {
                         }
                     }
                 });
+                break;
 
             case R.id.mapa:
                 Log.d(TAG, "nos vamos pal mapa");
                 Intent intent = new Intent(getApplicationContext(), SearchMapaActivity.class);
                 startActivity(intent);
+                break;
 
             case R.id.logout:
                 SharedPreferences.Editor sharedpreferenceseditor = mPreferences.edit();
                 sharedpreferenceseditor.clear();
-                //Intent finishIntent = new Intent(getApplicationContext(),SignInActivity.class);
-                //startActivity(finishIntent);
+                Intent finishIntent = new Intent(getApplicationContext(),SignInActivity.class);
+                startActivity(finishIntent);
+                break;
         }
         return super.onOptionsItemSelected(item);
     }
