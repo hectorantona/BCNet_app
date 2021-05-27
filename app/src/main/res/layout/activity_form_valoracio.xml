@@ -42,7 +42,7 @@
                 android:isIndicator="false"
                 android:numStars="5"
                 android:progressTint="@color/app_color"
-                android:stepSize="0.5" />
+                android:stepSize="1" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/float_label_text_comment"

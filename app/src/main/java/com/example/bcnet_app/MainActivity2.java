@@ -43,7 +43,8 @@ public class MainActivity2 extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
             case R.id.home:
-                return true;
+                Intent startintent = new Intent(getApplicationContext(), MainActivity2.class);
+                startActivity(startintent);
 
             case R.id.perfil:
                 userViewModel.infouser(mPreferences.getString("username", null), new InfoUserResponse() {

@@ -4,12 +4,16 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
@@ -20,7 +24,9 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.bcnet_app.TabbedMenu.FragmentAdapter;
 import com.example.bcnet_app.response.InfoLocalitzacioResponse;
+import com.example.bcnet_app.response.InfoUserResponse;
 import com.example.bcnet_app.viewmodels.MainActivity2ViewModel;
+import com.example.bcnet_app.viewmodels.UserViewModel;
 import com.google.android.material.tabs.TabLayout;
 import com.like.LikeButton;
 import com.like.OnLikeListener;
@@ -38,6 +44,12 @@ public class ViewLocalitzacio extends AppCompatActivity {
     private ViewPager2 viewpager;
     private FragmentAdapter adapter;
     private RatingBar puntuacioGlobal;
+    //MENÚ
+    private final String USERNAME_KEY = "username";
+    private final String EMAIL_KEY = "email";
+    private final String USERIMAGE_KEY = "userimage";
+    private final String PASSWORD_KEY = "password";
+    private UserViewModel userViewModel;
 
     private MainActivity2ViewModel viewModel;
 
@@ -52,9 +64,13 @@ public class ViewLocalitzacio extends AppCompatActivity {
 
         getIncomingIntent();
 
+        mPreferences = getSharedPreferences("User", 0);
         viewModel = new ViewModelProvider(this).get(MainActivity2ViewModel.class);
         viewModel.init();
         viewModel.initPref();
+
+        userViewModel = new ViewModelProvider(this).get(UserViewModel.class);
+        userViewModel.init();
 
         //TabLayout
         tabLayout = findViewById(R.id.tablayout);
@@ -141,6 +157,7 @@ public class ViewLocalitzacio extends AppCompatActivity {
         viewModel.searchLocalitzacio(loc_id, new InfoLocalitzacioResponse() {
             @Override
             public void infolocalitzacio (Float puntuacio) {
+                Log.d(TAG, "la puntuacio és" + puntuacio);
                 puntuacioGlobal.setRating(puntuacio);
             }
         });
@@ -184,5 +201,48 @@ public class ViewLocalitzacio extends AppCompatActivity {
                 .setDefaultRequestOptions(defaultOptions)
                 .load(imageUrl)
                 .into(imatge);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.home:
+                Intent homeintent = new Intent(getApplicationContext(), MainActivity2.class);
+                startActivity(homeintent);
+
+            case R.id.perfil:
+                userViewModel.infouser(mPreferences.getString("username", null), new InfoUserResponse() {
+                    @Override
+                    public void infouser(String Username, String email, String password, String profilepicture, Boolean message, String errormsg) {
+                        if (message) {
+                            SharedPreferences.Editor sharedpreferenceseditor = mPreferences.edit();
+                            sharedpreferenceseditor.putString(EMAIL_KEY, email);
+                            sharedpreferenceseditor.putString(PASSWORD_KEY, password);
+                            sharedpreferenceseditor.putString(USERIMAGE_KEY, profilepicture);
+                            sharedpreferenceseditor.apply();
+                            Intent startIntent = new Intent(getApplicationContext(), PerfilActivity.class);
+                            startActivity(startIntent);
+                        }
+                    }
+                });
+
+            case R.id.mapa:
+                Intent intent = new Intent(getApplicationContext(), SearchMapaActivity.class);
+                startActivity(intent);
+
+            case R.id.logout:
+                SharedPreferences.Editor sharedpreferenceseditor = mPreferences.edit();
+                sharedpreferenceseditor.clear();
+                //Intent finishIntent = new Intent(getApplicationContext(),SignInActivity.class);
+                //startActivity(finishIntent);
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

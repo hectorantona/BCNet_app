@@ -10,7 +10,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -53,8 +52,8 @@ public class PerfilActivity extends AppCompatActivity {
                 startActivity(intent);
                 break;
             case R.id.perfil:
-                Toast.makeText(this, "Este es tu perfil", Toast.LENGTH_SHORT).show();
-                return true;
+                Intent perfilintent = new Intent(getApplicationContext(), PerfilActivity.class);
+                startActivity(perfilintent);
         }
         return super.onOptionsItemSelected(item);
     }
