@@ -90,7 +90,7 @@
                 android:layout_marginLeft="15dp"
                 android:layout_marginTop="15dp"
                 android:backgroundTint="@color/gray"
-                android:text="Modificar Contrassenya"
+                android:text="@string/ModificarContrassenya"
                 android:textColor="@color/white"
                 android:layout_gravity="bottom"/>
 
@@ -103,7 +103,7 @@
                 android:layout_marginLeft="15dp"
                 android:layout_marginTop="8dp"
                 android:backgroundTint="@color/gray"
-                android:text="Modificar Email"
+                android:text="@string/ModificarEmail"
                 android:textColor="@color/white"
                 android:gravity="bottom"/>
 
