@@ -216,6 +216,7 @@ public class ViewLocalitzacio extends AppCompatActivity {
             case R.id.home:
                 Intent homeintent = new Intent(getApplicationContext(), MainActivity2.class);
                 startActivity(homeintent);
+                break;
 
             case R.id.perfil:
                 userViewModel.infouser(mPreferences.getString("username", null), new InfoUserResponse() {
@@ -232,10 +233,12 @@ public class ViewLocalitzacio extends AppCompatActivity {
                         }
                     }
                 });
+                break;
 
             case R.id.mapa:
                 Intent intent = new Intent(getApplicationContext(), SearchMapaActivity.class);
                 startActivity(intent);
+                break;
 
             case R.id.logout:
                 SharedPreferences.Editor sharedpreferenceseditor = mPreferences.edit();
