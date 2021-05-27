@@ -11,7 +11,7 @@
     <ImageView
         android:id="@+id/imatge"
         android:layout_width="match_parent"
-        android:layout_height="250dp"
+        android:layout_height="200dp"
         android:layout_weight="70"
         android:contentDescription="TODO"
         android:scaleType="center"
@@ -35,7 +35,7 @@
         android:layout_height="wrap_content"
 
         android:layout_below="@+id/Nom_Localitzacio"
-        android:layout_marginLeft="15dp"
+        android:layout_marginLeft="10dp"
         android:layout_marginTop="16dp"
         android:isIndicator="true"
         android:numStars="5"
@@ -82,27 +82,34 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/BtnValorar"
-        android:layout_marginStart="137dp"
         android:layout_marginLeft="133dp"
         android:layout_marginTop="3dp"
         android:layout_toEndOf="@+id/puntuacioCovid"
         android:layout_toRightOf="@+id/puntuacioCovid"
         android:text="Covid"
         app:backgroundTint="#81D4FA" />
+    <com.example.bcnet_app.CustomScrollView
+        android:id="@+id/scrollview"
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
+        android:layout_below="@id/puntuacioCovid"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginVertical="20dp"
+        >
 
-    <TextView
-        android:id="@+id/descripcio"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/puntuacioCovid"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginRight="20dp"
-        android:text="Descripcio" />
+        <TextView
+            android:id="@+id/descripcio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginRight="20dp"
+            android:text="Descripcio" />
+    </com.example.bcnet_app.CustomScrollView>
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tablayout"
-        android:layout_below="@id/descripcio"
+        android:layout_below="@id/scrollview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:tabMode="fixed"
