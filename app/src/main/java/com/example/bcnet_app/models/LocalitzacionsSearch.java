@@ -6,7 +6,6 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 
 public class LocalitzacionsSearch {
     @SerializedName("result")
@@ -69,19 +68,40 @@ public class LocalitzacionsSearch {
     }
 
     public void orderPuntuacioGlobal() {
-        //por implementar
-    }
-
-    class SortByPG implements Comparator<Localitzacio>
-    {
-        // Used for sorting in descending order
-        public int compare(Localitzacio a, Localitzacio b)
-        {
-            return (int) ((b.getPG() - a.getPG())*10);
+        ArrayList<Localitzacio> ordered = new ArrayList<>();
+        while (localitzacions.size() > 0) {
+            Float max = 0.0f;
+            int ind_max = 0;
+            for(int i = 0; i < localitzacions.size(); i++) {
+                if (localitzacions.get(i).getPuntuacioGlobal() >= max) {
+                    ind_max = i;
+                    max = localitzacions.get(i).getPuntuacioGlobal();
+                }
+            }
+            ordered.add(localitzacions.get(ind_max));
+            localitzacions.remove(ind_max);
         }
+        localitzacions = ordered;
     }
 
-
+    public void orderPuntuacioCovid() {
+        ArrayList<Localitzacio> ordered = new ArrayList<>();
+        int num_it = 0, size_of_loc = localitzacions.size();
+        while (localitzacions.size() > 0 || num_it > size_of_loc) {
+            num_it = num_it + 1;
+            int max = 0;
+            int ind_max = 0;
+            for(int i = 0; i < localitzacions.size(); i++) {
+                if (localitzacions.get(i).getPuntuacioCOVID() != null && localitzacions.get(i).getPuntuacioCOVID() >= max) {
+                    ind_max = i;
+                    max = localitzacions.get(i).getPuntuacioCOVID();
+                }
+            }
+            ordered.add(localitzacions.get(ind_max));
+            localitzacions.remove(ind_max);
+        }
+        localitzacions = ordered;
+    }
 
     public Localitzacio getelembyname (String name) {
         for (int i = 0; i < localitzacions.size(); ++i) {

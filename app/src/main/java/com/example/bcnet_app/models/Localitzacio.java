@@ -117,6 +117,9 @@ public class Localitzacio {
     public Integer getPuntuacioCOVID() { return puntuacioCOVID; }
     public void setPuntuacioCOVID(Integer puntuacioCOVID) { this.puntuacioCOVID = puntuacioCOVID; }
 
+    public boolean hasPCov() {
+        return puntuacioCOVID != null;
+    }
 }
 
 
