@@ -104,7 +104,6 @@ public class FormNewProfilePictureActivity extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(), "ProfilePicture modificada CORRECTAMENT", Toast.LENGTH_SHORT).show();
                         Intent startIntent = new Intent(getApplicationContext(), PerfilActivity.class);
                         startActivity(startIntent);
-
                     }
                     else{
                         mFloatLabelPassword.setError(getString(R.string.error_invalid_password));
