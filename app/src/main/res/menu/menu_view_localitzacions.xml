@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:id="@+id/home"
+        android:icon="@drawable/ic_home"
+        android:title="Home"
+        app:showAsAction="ifRoom"/>
+    <!--ifRoom és a la barra superior
+    never és per la barra lateral-->
+
+    <item android:id="@+id/share"
+        android:icon="@drawable/baseline_share_24"
+        android:title="Home"
+        app:showAsAction="ifRoom"/>
+
+    <item android:id="@+id/mapa"
+        android:icon="@drawable/ic_map"
+        android:title="Home"
+        app:showAsAction="ifRoom"/>
+    <!--ifRoom és a la barra superior
+    never és per la barra lateral-->
+
+    <item android:id="@+id/perfil"
+        android:title="@string/Perfil"
+        app:showAsAction="never"/>
+
+    <item android:id="@+id/logout"
+        android:title="@string/LogOut"
+        app:showAsAction="never"/>
+</menu>
