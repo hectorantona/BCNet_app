@@ -30,8 +30,7 @@ public class FormNewEmail extends AppCompatActivity {
     private UserViewModel userViewModel;
 
     private SharedPreferences mPreferences;
-    private String sharedPrefFile =
-            "com.example.android.hellosharedprefs";
+
     private final String EMAIL_KEY = "email";
 
 
@@ -49,7 +48,7 @@ public class FormNewEmail extends AppCompatActivity {
         userViewModel = new ViewModelProvider(this).get(UserViewModel.class);
         userViewModel.init();
 
-        mPreferences = getSharedPreferences(sharedPrefFile, MODE_PRIVATE);
+        mPreferences = getSharedPreferences("User", 0);
 
         BtnModify = (Button) findViewById(R.id.BtnModifyEmail);
         BtnModify.setOnClickListener(new View.OnClickListener() {

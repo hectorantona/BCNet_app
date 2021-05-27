@@ -66,5 +66,8 @@
     <string name="Comentari">Comentarios</string>
     <string name="Mapa">Mapa</string>
     <string name="Create_account">Crea una cuenta</string>
+    <string name="ModificarProfilePicture">Modificar foto de perfil</string>
+    <string name="InstruccionsCanviProfilePicture">Introduce tu contraseña y una nueva url para tu nueva foto de perfil</string>
+    <string name="new_profilepictureurl">Nueva foto (formato url) </string>
 
 </resources>

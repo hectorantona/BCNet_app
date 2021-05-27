@@ -8,6 +8,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -23,6 +24,7 @@ public class PerfilActivity extends AppCompatActivity {
 
     private Button BtnModifyPswd;
     private Button BtnModifyEmail;
+    private Button BtnModifyProfilePicture;
     private ImageView userimg;
     private Button NewLocalBtn;
     private UserViewModel viewModel;
@@ -72,19 +74,14 @@ public class PerfilActivity extends AppCompatActivity {
 
         mPreferences = getSharedPreferences("User", 0);
 
-        /*
-        viewModel.infouser(mPreferences.getString("username", null), new InfoUserResponse() {
+        BtnModifyProfilePicture = (Button)findViewById(R.id.BtnChangeProfilePicture);
+        BtnModifyProfilePicture.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void infouser(String Username, String email, Boolean message, String errormsg, String profileimg) {
-                Log.d("perfil", "img: " + profileimg);
-                RequestOptions defaultOptions = new RequestOptions()
-                        .error(R.drawable.ic_launcher_background); //aixo possiblement s'haura de canviar
-                Glide.with(getApplicationContext())
-                        .setDefaultRequestOptions(defaultOptions)
-                        .load(profileimg)
-                        .into(userimg);
+            public void onClick(View v) {
+                Intent startIntent = new Intent(getApplicationContext(), FormNewProfilePictureActivity.class);
+                startActivity(startIntent);
             }
-        });*/
+        });
 
         BtnModifyPswd = (Button)findViewById(R.id.BtnChangePwd);
         BtnModifyPswd.setOnClickListener(new View.OnClickListener() {
@@ -132,5 +129,7 @@ public class PerfilActivity extends AppCompatActivity {
                 .setDefaultRequestOptions(defaultOptions)
                 .load(profileimgUrl)
                 .into(userimg);
+
+
     }
 }
