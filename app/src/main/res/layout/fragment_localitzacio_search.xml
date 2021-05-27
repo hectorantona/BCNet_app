@@ -22,7 +22,7 @@
 
         <Spinner
             android:id="@+id/search_spinner"
-            android:layout_width="300dp"
+            android:layout_width="280dp"
             android:layout_height="wrap_content" />
 
         <Button

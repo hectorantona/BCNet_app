@@ -41,6 +41,8 @@ public class Localitzacio {
     @Expose
     private Float longitud;
 
+    @SerializedName("descripcio")
+    @Expose
     private String content;
 
     @SerializedName("puntuacio")

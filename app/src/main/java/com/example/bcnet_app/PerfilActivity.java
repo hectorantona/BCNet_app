@@ -52,8 +52,7 @@ public class PerfilActivity extends AppCompatActivity {
                 startActivity(intent);
                 break;
             case R.id.perfil:
-                Intent perfilintent = new Intent(getApplicationContext(), PerfilActivity.class);
-                startActivity(perfilintent);
+                return true;
         }
         return super.onOptionsItemSelected(item);
     }
