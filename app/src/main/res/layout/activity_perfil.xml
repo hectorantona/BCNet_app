@@ -69,20 +69,20 @@
             android:textSize="20sp"
             android:layout_weight="0"/>
 
-        <TextView
+
+        <Button
+            android:id="@+id/BtnChangeProfilePicture"
             android:layout_width="wrap_content"
-            android:layout_height="150dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
             android:layout_marginStart="15dp"
             android:layout_marginLeft="15dp"
-            android:text=""
-            android:textColor="@color/black"
-            android:textSize="20sp"
-            android:layout_weight="0"/>
+            android:layout_marginTop="15dp"
+            android:backgroundTint="@color/gray"
+            android:text="@string/ModificarProfilePicture"
+            android:textColor="@color/white" />
 
-
-
-
-            <Button
+        <Button
                 android:id="@+id/BtnChangePwd"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
