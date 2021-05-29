@@ -80,7 +80,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         intent.putExtra("puntuacio_global", localitzacio.getPuntuacioGlobal());
         intent.putExtra("latitud", localitzacio.getLatitud());
         intent.putExtra("longitud", localitzacio.getLongitud());
-
+        intent.putExtra("horari", localitzacio.getHorari());
+        intent.putExtra("semafor", localitzacio.getSemaforUrl());
 
         context.startActivity(intent);
     }

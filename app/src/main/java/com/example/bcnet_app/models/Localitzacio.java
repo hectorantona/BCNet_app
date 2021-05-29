@@ -47,10 +47,16 @@ public class Localitzacio {
     @Expose
     private Float puntuacio;
 
-    private ArrayList<Comment> valoracions;
-    private Float puntuacioCOVID;
+    @SerializedName("horari")
+    @Expose
+    private String horari;
 
+    @SerializedName("semafor")
+    @Expose
     private String semaforUrl;
+
+    private ArrayList<Comment> valoracions;
+
 
     public Localitzacio(String imageUrl, String name, String content, String category, String direccio) {
         this.nom = name;
@@ -90,15 +96,18 @@ public class Localitzacio {
     public void setContent (String content) {this.content = content;}
 
     public String getCategory () { return category;}
-    public void setCategory (String content) {this.category = category;}
+    public void setCategory (String category) {this.category = category;}
 
     public String getSemaforUrl () { return semaforUrl;}
-    public void setSemaforUrl (String content) {this.semaforUrl = semaforUrl;}
+    public void setSemaforUrl (String semaforUrl) {this.semaforUrl = semaforUrl;}
 
     public Float getPuntuacioGlobal () {
         //return calcularPuntuacioGlobal().toString();
         return puntuacio;
     }
+
+    public String getHorari () { return horari;}
+    public void setHorari (String horari) {this.horari = horari;}
 
     public Float getPG () {
         //return calcularPuntuacioGlobal().toString();
@@ -108,13 +117,10 @@ public class Localitzacio {
     public String getDireccio() {
         return direccio;
     }
-
     public void setDireccio(String direccio) {
         this.direccio = direccio;
     }
 
-    public Float getPuntuacioCOVID() { return puntuacioCOVID; }
-    public void setPuntuacioCOVID(Float puntuacioCOVID) { this.puntuacioCOVID = puntuacioCOVID; }
 
 }
 

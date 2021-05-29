@@ -39,6 +39,8 @@ public class ViewLocalitzacio extends AppCompatActivity {
     private FragmentAdapter adapter;
     private RatingBar puntuacioGlobal;
 
+
+
     private MainActivity2ViewModel viewModel;
 
     private Button BtnValorar;
@@ -157,14 +159,29 @@ public class ViewLocalitzacio extends AppCompatActivity {
             String puntuacio_Covid = getIntent().getStringExtra("puntuacioCovid");
             latitud = getIntent().getFloatExtra("latitud", 0);
             longitud = getIntent().getFloatExtra("longitud", 0);
+            String horari_loc = getIntent().getStringExtra("horari");
+            String imageSemaforUrl = getIntent().getStringExtra("semafor");
+
+
+
 
             setImage(imageUrl, nom_localitzacio, content);
 
             puntuacioGlobal = findViewById(R.id.puntuacioGlobal);
             puntuacioGlobal.setRating(puntuacio_global);
 
-            TextView puntuacioCovid = findViewById(R.id.puntuacioCovid);
-            puntuacioCovid.setText(puntuacio_Covid);
+            TextView horari = findViewById(R.id.horari);
+            horari.setText(horari_loc);
+
+            ImageView imatge_semafor = findViewById(R.id.semaforCovid);
+            RequestOptions defaultOptions = new RequestOptions()
+                    .error(R.drawable.ic_launcher_background); //aixo possiblement s'haura de canviar
+            Glide.with(this)
+                    .setDefaultRequestOptions(defaultOptions)
+                    .load(imageSemaforUrl)
+                    .into(imatge_semafor);
+
+
         }
     }
     private void setImage (String imageUrl, String nom_localitzacio, String content){

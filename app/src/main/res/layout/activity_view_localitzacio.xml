@@ -68,14 +68,6 @@
         android:layout_toRightOf="@+id/puntuacioGlobal"
         android:text="Valora" />
 
-    <TextView
-        android:id="@+id/puntuacioCovid"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/puntuacioGlobal"
-        android:layout_marginTop="16dp"
-        android:layout_marginLeft="20dp"
-        android:text="PuntuacióCovid [1-3]" />
 
     <Button
         android:id="@+id/BtnCovid"
@@ -85,8 +77,8 @@
         android:layout_marginStart="137dp"
         android:layout_marginLeft="133dp"
         android:layout_marginTop="3dp"
-        android:layout_toEndOf="@+id/puntuacioCovid"
-        android:layout_toRightOf="@+id/puntuacioCovid"
+        android:layout_toEndOf="@+id/semaforCovid"
+        android:layout_toRightOf="@+id/semaforCovid"
         android:text="Covid"
         app:backgroundTint="#81D4FA" />
 
@@ -94,15 +86,36 @@
         android:id="@+id/descripcio"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/puntuacioCovid"
+        android:layout_below="@+id/semaforCovid"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="16dp"
         android:layout_marginRight="20dp"
         android:text="Descripcio" />
 
+    <TextView
+        android:id="@+id/horarititol"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/descripcio"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginRight="20dp"
+        android:textColor="@color/black"
+        android:text="@string/Horari" />
+
+    <TextView
+        android:id="@+id/horari"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/horarititol"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginRight="20dp"
+        android:text="Dilluns.... " />
+
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tablayout"
-        android:layout_below="@id/descripcio"
+        android:layout_below="@id/horari"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:tabMode="fixed"
@@ -115,6 +128,16 @@
         android:id="@+id/viewpager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
+
+    <ImageView
+        android:id="@+id/semaforCovid"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/puntuacioGlobal"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="16dp"
+
+        tools:srcCompat="@tools:sample/avatars" />
 
 
 </RelativeLayout>
