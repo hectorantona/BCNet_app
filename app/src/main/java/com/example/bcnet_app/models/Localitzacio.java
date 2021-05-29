@@ -49,6 +49,10 @@ public class Localitzacio {
     @Expose
     private Float puntuacio;
 
+    @SerializedName("horari")
+    @Expose
+    private String horari;
+
     @SerializedName("semafor")
     @Expose
     private String semaforUrl;
@@ -102,6 +106,9 @@ public class Localitzacio {
         //return calcularPuntuacioGlobal().toString();
         return puntuacio;
     }
+
+    public String getHorari () { return horari;}
+    public void setHorari (String horari) {this.horari = horari;}
 
     public Float getPG () {
         //return calcularPuntuacioGlobal().toString();

@@ -69,5 +69,7 @@
     <string name="ModificarProfilePicture">Modificar foto de perfil</string>
     <string name="InstruccionsCanviProfilePicture">Introduce tu contraseña y una nueva url para tu nueva foto de perfil</string>
     <string name="new_profilepictureurl">Nueva foto (formato url) </string>
+    <string name="Horari">Horario </string>
+    <string name="titoldescripcio">Descripción </string>
 
 </resources>

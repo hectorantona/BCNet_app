@@ -68,5 +68,8 @@
     <string name="ModificarProfilePicture">Modify profile picture</string>
     <string name="InstruccionsCanviProfilePicture">Introduce your password and a new url for your new profile picture </string>
     <string name="new_profilepictureurl">New Url Picture</string>
+    <string name="Horari">Timetable</string>
+    <string name="titoldescripcio">Description</string>
+
 
 </resources>

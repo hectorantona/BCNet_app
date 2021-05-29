@@ -81,7 +81,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         intent.putExtra("latitud", localitzacio.getLatitud());
         intent.putExtra("longitud", localitzacio.getLongitud());
         intent.putExtra("categoria", localitzacio.getCategory());
-        intent.putExtra("puntuacioCovid", localitzacio.getPuntuacioCOVID());
+        intent.putExtra("horari", localitzacio.getHorari());
+        intent.putExtra("semafor", localitzacio.getSemaforUrl());
 
 
         context.startActivity(intent);
