@@ -42,7 +42,7 @@
                 android:layout_marginLeft="32dp"
                 android:layout_marginRight="32dp"
                 android:textColor="@color/black"
-                android:text="Marca quines mesures de seguretat hi ha a l'establiment:" />
+                android:text="@string/instruccions_comment_covid" />
 
             <CheckBox
                 android:id="@+id/checkBox_gelHidroalcoholic"
@@ -53,7 +53,7 @@
                 android:layout_marginLeft="30dp"
                 android:layout_marginRight="30dp"
                 android:button="@drawable/btn_checkbox_gel_hidro"
-                android:text="Gel Hidroalcohòlic"
+                android:text="@string/Gel_Hidroalcohòlic"
                 android:textSize="18sp" />
 
             <CheckBox
@@ -65,7 +65,7 @@
                 android:layout_marginLeft="30dp"
                 android:layout_marginRight="30dp"
                 android:button="@drawable/btn_checkbox_distancia"
-                android:text="Distància de Seguretat"
+                android:text="@string/distancia_social"
                 android:textSize="18sp" />
 
             <CheckBox
@@ -77,7 +77,7 @@
                 android:layout_marginLeft="30dp"
                 android:layout_marginRight="30dp"
                 android:button="@drawable/btn_checkbox_termometre"
-                android:text="Termòmetre"
+                android:text="@string/termometre"
                 android:textSize="18sp" />
 
             <CheckBox
@@ -89,7 +89,7 @@
                 android:layout_marginLeft="30dp"
                 android:layout_marginRight="30dp"
                 android:button="@drawable/btn_checkbox_mask"
-                android:text="Mascareta"
+                android:text="@string/mascareta"
                 android:textSize="18sp" />
 
             <EditText
@@ -100,7 +100,7 @@
                 android:background="@drawable/edit_back"
                 android:ems="10"
                 android:gravity="start|top"
-                android:hint="Introdueix un comentari"
+                android:hint="@string/Comentaopcional"
                 android:inputType="textMultiLine"
                 android:padding="8dp" />
 

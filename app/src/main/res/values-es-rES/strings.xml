@@ -71,5 +71,11 @@
     <string name="new_profilepictureurl">Nueva foto (formato url) </string>
     <string name="Horari">Horario </string>
     <string name="titoldescripcio">Descripción </string>
+    <string name="instruccions_comment_covid" >Marca qué medidas de seguridad hay en el establecimiento: </string>
+    <string name="Gel_Hidroalcohòlic" >Gel Hidroalcohólico </string>
+    <string name="distancia_social" >Distancia social </string>
+    <string name="termometre">Termómetro </string>
+    <string name="mascareta">Mascarilla </string>
+    <string name="Comentaopcional">Crea comentario (opcional)</string>
 
 </resources>

@@ -70,6 +70,12 @@
     <string name="new_profilepictureurl">New Url Picture</string>
     <string name="Horari">Timetable</string>
     <string name="titoldescripcio">Description</string>
+    <string name="instruccions_comment_covid">Mark what security measures are in place:</string>
+    <string name="Gel_Hidroalcohòlic">Hydroalcoholic gel</string>
+    <string name="distancia_social">Social Distance</string>
+    <string name="termometre">Thermometer</string>
+    <string name="mascareta">Mask</string>
+    <string name="Comentaopcional">Add comment (optional)</string>
 
 
 </resources>
