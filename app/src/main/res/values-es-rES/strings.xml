@@ -63,6 +63,7 @@
     <string name="Modificar">Modifica</string>
     <string name="ModificarContrassenya">Modificar contraseña</string>
     <string name="Comenta">Crea comentario</string>
+    <string name="Comentaopcional">Crea comentario (opcional)</string>
     <string name="Comentari">Comentarios</string>
     <string name="Mapa">Mapa</string>
     <string name="Create_account">Crea una cuenta</string>
@@ -76,6 +77,5 @@
     <string name="distancia_social" >Distancia social </string>
     <string name="termometre">Termómetro </string>
     <string name="mascareta">Mascarilla </string>
-    <string name="Comentaopcional">Crea comentario (opcional)</string>
 
 </resources>
