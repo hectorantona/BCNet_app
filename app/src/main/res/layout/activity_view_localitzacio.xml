@@ -142,8 +142,7 @@
         android:layout_width="match_parent"
         android:layout_height="fill_parent"
         app:tabMode="fixed"
-        xmlns:app="schemas.android.com.apk.res-auto"
-        >
+        xmlns:app="schemas.android.com.apk.res-auto">
     </com.google.android.material.tabs.TabLayout>
 
     <androidx.viewpager2.widget.ViewPager2
