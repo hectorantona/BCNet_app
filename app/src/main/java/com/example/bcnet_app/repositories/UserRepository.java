@@ -2,9 +2,11 @@ package com.example.bcnet_app.repositories;
 
 import android.util.Log;
 
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.bcnet_app.api.UserService;
+import com.example.bcnet_app.models.CommentResponse;
 import com.example.bcnet_app.models.User;
 import com.example.bcnet_app.response.ChangeEmailResponse;
 import com.example.bcnet_app.response.ChangeProfilePictureResponse;
@@ -45,9 +47,7 @@ public class UserRepository {
     private String loginusername;
 
 
-
-
-    public UserRepository() {
+    private UserRepository() {
         loginLiveData = new MutableLiveData<>();
         userLiveData = new MutableLiveData<>();
         signupLiveData = new MutableLiveData<>();
@@ -64,6 +64,11 @@ public class UserRepository {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
                 .create(UserService.class);
+    }
+
+    public LiveData<User> getuser() {
+
+        return userLiveData;
     }
 
     //crida a l'api
@@ -115,7 +120,7 @@ public class UserRepository {
             public void onResponse(Call<User> call, Response<User> response) {
                 if (response.isSuccessful()) {
                     Log.d(TAG, "InfoUserOK: " + response.body());
-                    //loginLiveData.setValue(response.body().getEmail());
+                    userLiveData.setValue(response.body());
                     callback.infouser(response.body().getUsername(), response.body().getEmail(), response.body().getPassword(), response.body().getProfileimg(),response.body().getMessage().equals("true"), response.body().getErrormsg());
 
                 }

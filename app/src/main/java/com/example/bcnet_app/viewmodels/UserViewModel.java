@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.bcnet_app.models.User;
+import com.example.bcnet_app.repositories.ComentariRepository;
 import com.example.bcnet_app.response.ChangeEmailResponse;
 import com.example.bcnet_app.response.ChangeProfilePictureResponse;
 import com.example.bcnet_app.response.ChangePswdResponse;
@@ -22,7 +23,8 @@ public class UserViewModel extends ViewModel {
     private UserRepository Repo;
 
     public void init () {
-        Repo = new UserRepository();
+        //Repo = new UserRepository();
+        UserLiveData = UserRepository.getInstance().getuser();
     }
 
     public LiveData<User> getUser () {
@@ -35,27 +37,27 @@ public class UserViewModel extends ViewModel {
 
 
     public void login (String username, String password, LoginResponse callback) {
-        Repo.login(username, password, callback);
+        UserRepository.getInstance().login(username, password, callback);
     }
 
     public void signup (String username, String password, String email, SignUpResponse callback){
-        Repo.signup(username, password, email, callback);
+        UserRepository.getInstance().signup(username, password, email, callback);
     }
 
     public void infouser (String username, InfoUserResponse callback){
-        Repo.infouser(username, callback);
+        UserRepository.getInstance().infouser(username, callback);
     }
 
     public void changePassword (String username, String oldPassword, String newPassword, ChangePswdResponse callback){
-        Repo.changePassword(username, oldPassword, newPassword, callback);
+        UserRepository.getInstance().changePassword(username, oldPassword, newPassword, callback);
     }
 
     public void changeEmail (String username, String Password, String newEmail, ChangeEmailResponse callback){
-        Repo.changeEmail(username, Password, newEmail, callback);
+        UserRepository.getInstance().changeEmail(username, Password, newEmail, callback);
     }
 
     public void changeProfilePicture (String username, String Password, String newPicture, ChangeProfilePictureResponse callback){
-        Repo.changeProfilePicture(username, Password, newPicture, callback);
+        UserRepository.getInstance().changeProfilePicture(username, Password, newPicture, callback);
     }
 
 }
