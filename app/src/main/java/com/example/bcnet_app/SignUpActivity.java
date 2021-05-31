@@ -34,8 +34,6 @@ public class SignUpActivity extends AppCompatActivity {
     private UserViewModel userViewModel;
 
     private SharedPreferences mPreferences;
-    private String sharedPrefFile =
-            "com.example.android.hellosharedprefs";
     private final String USERNAME_KEY = "username";
     private final String PASSWORD_KEY = "password";
 
@@ -57,7 +55,7 @@ public class SignUpActivity extends AppCompatActivity {
         userViewModel = new ViewModelProvider(this).get(UserViewModel.class);
         userViewModel.init();
 
-        mPreferences = getSharedPreferences(sharedPrefFile, MODE_PRIVATE);
+        mPreferences = getApplicationContext().getSharedPreferences("User", 0);
 
         BtnSignUp = (Button)findViewById(R.id.SignUpBtn);
         BtnSignUp.setOnClickListener(new View.OnClickListener() {
@@ -123,7 +121,7 @@ public class SignUpActivity extends AppCompatActivity {
             focusView = mFloatLabelNewPassword;
             cancel = true;
         } else if (!isPasswordValid(passi)) {
-            mFloatLabelNewPassword.setError(getString(R.string.error_invalid_password));
+            mFloatLabelNewPassword.setError(getString(R.string.invalid_password));
             focusView = mFloatLabelNewPassword;
             cancel = true;
         }

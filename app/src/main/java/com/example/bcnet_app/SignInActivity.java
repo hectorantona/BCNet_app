@@ -143,7 +143,7 @@ public class SignInActivity extends AppCompatActivity{
             focusView = mFloatLabelPassword;
             cancel = true;
         } else if (!isPasswordValid(passwordi)) {
-            mFloatLabelPassword.setError(getString(R.string.error_invalid_password));
+            mFloatLabelPassword.setError(getString(R.string.invalid_password));
             focusView = mFloatLabelPassword;
             cancel = true;
         }
