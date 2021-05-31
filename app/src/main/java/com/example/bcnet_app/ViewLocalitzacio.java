@@ -25,6 +25,7 @@ import com.bumptech.glide.request.RequestOptions;
 import com.example.bcnet_app.TabbedMenu.FragmentAdapter;
 import com.example.bcnet_app.response.InfoLocalitzacioResponse;
 import com.example.bcnet_app.response.InfoUserResponse;
+import com.example.bcnet_app.viewmodels.CommentViewModel;
 import com.example.bcnet_app.viewmodels.MainActivity2ViewModel;
 import com.example.bcnet_app.viewmodels.UserViewModel;
 import com.google.android.material.tabs.TabLayout;
@@ -44,6 +45,7 @@ public class ViewLocalitzacio extends AppCompatActivity {
     private ViewPager2 viewpager;
     private FragmentAdapter adapter;
     private RatingBar puntuacioGlobal;
+    private CommentViewModel commentViewModel;
     //MENÚ
     private final String USERNAME_KEY = "username";
     private final String EMAIL_KEY = "email";
@@ -156,9 +158,9 @@ public class ViewLocalitzacio extends AppCompatActivity {
         //Log.d(TAG, "Tornem a buscar els comentaris");
         viewModel.searchLocalitzacio(loc_id, new InfoLocalitzacioResponse() {
             @Override
-            public void infolocalitzacio (Float puntuacio) {
+            public void infolocalitzacio (Integer puntuacio) {
                 Log.d(TAG, "la puntuacio és" + puntuacio);
-                puntuacioGlobal.setRating(puntuacio);
+                puntuacioGlobal.setRating((float)puntuacio);
             }
         });
 
@@ -172,7 +174,7 @@ public class ViewLocalitzacio extends AppCompatActivity {
             nom_localitzacio = getIntent().getStringExtra("nom_localitzacio");
             loc_id =getIntent().getStringExtra("id");
             String content = getIntent().getStringExtra("content");
-            Float puntuacio_global = getIntent().getFloatExtra("puntuacio_global", 0);
+            Integer puntuacio_global = getIntent().getIntExtra("puntuacio_global", 0);
             String puntuacio_Covid = getIntent().getStringExtra("puntuacioCovid");
             latitud = getIntent().getFloatExtra("latitud", 0);
             longitud = getIntent().getFloatExtra("longitud", 0);
@@ -182,7 +184,7 @@ public class ViewLocalitzacio extends AppCompatActivity {
             setImage(imageUrl, nom_localitzacio, content);
 
             puntuacioGlobal = findViewById(R.id.puntuacioGlobal);
-            puntuacioGlobal.setRating(puntuacio_global);
+            puntuacioGlobal.setRating((float)puntuacio_global);
 
             TextView horari = findViewById(R.id.horari);
             horari.setText(horari_loc);

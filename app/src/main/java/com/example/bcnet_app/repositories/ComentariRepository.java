@@ -22,6 +22,11 @@ import retrofit2.converter.gson.GsonConverterFactory;
  public class ComentariRepository {
     private static final String COMMENT_SEARCH_SERVICE_BASE_URL = "https://us-central1-bcnet-backend.cloudfunctions.net/";
     private static final String TAG = "REPO COMMENTS";
+     private ViewLocalitzacio view;
+     private CommentService commentService;
+     private MutableLiveData<CommentResponse> commentResponseLiveData;
+     private MutableLiveData<com.example.bcnet_app.models.Comment> commentLiveData;
+     private String error = "true";
     //Singleton patern
     private static ComentariRepository instance;
 
@@ -32,14 +37,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
         return instance;
     }
 
-    private ViewLocalitzacio view;
-    private CommentService commentService;
-    private MutableLiveData<CommentResponse> commentResponseLiveData;
-    private MutableLiveData<com.example.bcnet_app.models.Comment> commentLiveData;
-    private String error = "true";
-
-
-    //ha de ser privat
     private ComentariRepository() {
 
         view = new ViewLocalitzacio();

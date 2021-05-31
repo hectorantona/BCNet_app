@@ -104,6 +104,7 @@ public class SearchMapaActivity extends AppCompatActivity implements OnMapReadyC
         intent.putExtra("longitud", localitzacio.getLongitud());
         intent.putExtra("categoria", localitzacio.getCategory());
         intent.putExtra("puntuacioCovid", localitzacio.getPuntuacioCOVID());
+        intent.putExtra("semafor", localitzacio.getSemaforUrl());
 
         startActivity(intent);
     }

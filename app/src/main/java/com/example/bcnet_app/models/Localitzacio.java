@@ -102,9 +102,9 @@ public class Localitzacio {
     public String getSemaforUrl () { return semaforUrl;}
     public void setSemaforUrl (String content) {this.semaforUrl = semaforUrl;}
 
-    public Float getPuntuacioGlobal () {
-        //return calcularPuntuacioGlobal().toString();
-        return puntuacio;
+    public Integer getPuntuacioGlobal () {
+        int r = Math.round(puntuacio);
+        return r;
     }
 
     public String getHorari () { return horari;}

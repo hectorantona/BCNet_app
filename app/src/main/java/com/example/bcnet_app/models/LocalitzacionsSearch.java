@@ -70,7 +70,7 @@ public class LocalitzacionsSearch {
     public void orderPuntuacioGlobal() {
         ArrayList<Localitzacio> ordered = new ArrayList<>();
         while (localitzacions.size() > 0) {
-            Float max = 0.0f;
+            Integer max =0;
             int ind_max = 0;
             for(int i = 0; i < localitzacions.size(); i++) {
                 if (localitzacions.get(i).getPuntuacioGlobal() >= max) {

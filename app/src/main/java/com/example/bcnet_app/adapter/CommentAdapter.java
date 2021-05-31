@@ -35,6 +35,7 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.CommentV
         this.mContext = mContext;
         this.establimentkey = establimentkey;
         nomuser = loggeduser;
+
     }
 
     @NonNull
