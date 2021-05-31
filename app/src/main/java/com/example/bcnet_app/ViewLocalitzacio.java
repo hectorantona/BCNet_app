@@ -123,7 +123,6 @@ public class ViewLocalitzacio extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent startIntent = new Intent(getApplicationContext(), FormCommentCovid.class);
-                //
 
                 startIntent.putExtra("nom_localitzacio", getIntent().getStringExtra("nom_localitzacio"));
                 startActivity(startIntent);
