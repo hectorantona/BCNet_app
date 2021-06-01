@@ -45,6 +45,8 @@ public class ViewLocalitzacio extends AppCompatActivity {
     private ViewPager2 viewpager;
     private FragmentAdapter adapter;
     private RatingBar puntuacioGlobal;
+    private TextView horari;
+    private String imageSemaforUrl;
     private CommentViewModel commentViewModel;
     //MENÚ
     private final String USERNAME_KEY = "username";
@@ -171,21 +173,21 @@ public class ViewLocalitzacio extends AppCompatActivity {
 
             String imageUrl = getIntent().getStringExtra("imatge");
             nom_localitzacio = getIntent().getStringExtra("nom_localitzacio");
-            loc_id =getIntent().getStringExtra("id");
+            loc_id = getIntent().getStringExtra("id");
             String content = getIntent().getStringExtra("content");
             Integer puntuacio_global = getIntent().getIntExtra("puntuacio_global", 0);
             String puntuacio_Covid = getIntent().getStringExtra("puntuacioCovid");
             latitud = getIntent().getFloatExtra("latitud", 0);
             longitud = getIntent().getFloatExtra("longitud", 0);
             String horari_loc = getIntent().getStringExtra("horari");
-            String imageSemaforUrl = getIntent().getStringExtra("semafor");
+            imageSemaforUrl = getIntent().getStringExtra("semafor");
 
             setImage(imageUrl, nom_localitzacio, content);
 
             puntuacioGlobal = findViewById(R.id.puntuacioGlobal);
             puntuacioGlobal.setRating((float)puntuacio_global);
 
-            TextView horari = findViewById(R.id.horari);
+            horari = findViewById(R.id.horari);
             horari.setText(horari_loc);
 
             ImageView imatge_semafor = findViewById(R.id.semaforCovid);
@@ -219,7 +221,7 @@ public class ViewLocalitzacio extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater = getMenuInflater();
-        menuInflater.inflate(R.menu.menu, menu);
+        menuInflater.inflate(R.menu.menu_view_localitzacions, menu);
         return true;
     }
 
@@ -256,8 +258,31 @@ public class ViewLocalitzacio extends AppCompatActivity {
             case R.id.logout:
                 SharedPreferences.Editor sharedpreferenceseditor = mPreferences.edit();
                 sharedpreferenceseditor.clear();
-                //Intent finishIntent = new Intent(getApplicationContext(),SignInActivity.class);
-                //startActivity(finishIntent);
+                sharedpreferenceseditor.commit();
+                Intent finishIntent = new Intent(getApplicationContext(),SignInActivity.class);
+                startActivity(finishIntent);
+                break;
+
+            case R.id.share:
+                Intent sharingIntent = new Intent(Intent.ACTION_SEND);
+                sharingIntent.setType("text/plain");
+                String shareBody = "BCNet"+ "\n" + "Aquest establiment et pot interessar: \n" + nom_localitzacio + "\n" + "Horari: " + horari.getText() + "\n" +
+                        "Valoració global: " + puntuacioGlobal.getRating() + "\n" + "Semàfor Covid-19: " +  imageSemaforUrl;
+                String shareSubject = "Your Subject here";
+
+                sharingIntent.putExtra(Intent.EXTRA_TEXT, shareBody);
+                sharingIntent.putExtra(Intent.EXTRA_SUBJECT, shareSubject);
+
+                startActivity(Intent.createChooser(sharingIntent, "Share a Location"));
+                break;
+                /*
+                SharedPreferences.Editor sharedpreferenceseditor = mPreferences.edit();
+                sharedpreferenceseditor.clear();
+                Intent finishIntent = new Intent(getApplicationContext(),SignInActivity.class);
+                startActivity(finishIntent);
+                break;
+
+                 */
         }
         return super.onOptionsItemSelected(item);
     }

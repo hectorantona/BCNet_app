@@ -58,6 +58,8 @@
     <string name="Valora">Valora</string>
     <string name="LogOut">Cierra sesión</string>
     <string name="Perfil">Mi perfil</string>
+    <string name="Share">Comparte</string>
+    <string name="ShareLocalitzacio">Comparte un Local</string>
     <string name="DadesPersonals">Datos personales</string>
     <string name="ModificarEmail">Cambiar e-mail</string>
     <string name="Modificar">Modifica</string>
