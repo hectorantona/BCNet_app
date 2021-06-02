@@ -163,8 +163,10 @@ public class LocalitzacioSearchFrag extends Fragment {
 
 
     private void performSetPref() {
-        /*
-        viewModel.getLocalitzacions().observe(this, new Observer<LocalitzacionsSearch>() {
+
+        LocalitzacionsSearch LS = new LocalitzacionsSearch(viewModel.getPrefLocalitzacions().getValue().getLocalitzacions());
+        adapter.setResults(LS);
+        viewModel.getPrefLocalitzacions().observe(this, new Observer<LocalitzacionsSearch>() {
             @Override
             public void onChanged(LocalitzacionsSearch l) {
                 if (l != null) {
@@ -172,7 +174,7 @@ public class LocalitzacioSearchFrag extends Fragment {
                 }
             }
         });
-         */
+
 
     }
 

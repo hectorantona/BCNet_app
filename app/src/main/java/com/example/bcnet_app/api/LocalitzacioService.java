@@ -26,19 +26,19 @@ public interface LocalitzacioService {
 
     @GET("viewPreferitsDB")
     Call<LocalitzacionsSearch> prefLocalitzacions(
-            @Query("nom") String name
+            @Query("username") String name
     );
 
     @POST("createPreferitDB")
     Call<Localitzacio> setPreferit(
-            @Query("nom") String name,
-            @Query("id") String id
+            @Query("username") String name,
+            @Query("key") String id
     );
 
     @POST("deletePreferitDB")
     Call<Localitzacio> unsetPreferit(
-            @Query("nom") String name,
-            @Query("id") String id
+            @Query("username") String name,
+            @Query("key") String id
     );
 
     @POST("createSugerenciaEstablimentDB")

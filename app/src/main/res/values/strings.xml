@@ -34,7 +34,7 @@
     <string name="createAccount">Create Account</string>
     <string name="unmatched_passwords">Passwords must match</string>
     <string name="error_invalid_email">Non-valid e-mail</string>
-    <string name="createLocal">Create new place</string>
+    <string name="createLocal">Create new place suggestion</string>
     <string name="local_name">Place name</string>
     <string name="local_descripció">Place description</string>
     <string name="local_link">Web link</string>

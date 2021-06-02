@@ -45,6 +45,7 @@ public class MainActivity2 extends AppCompatActivity {
             case R.id.home:
                 Intent startintent = new Intent(getApplicationContext(), MainActivity2.class);
                 startActivity(startintent);
+                break;
 
             case R.id.perfil:
                 userViewModel.infouser(mPreferences.getString("username", null), new InfoUserResponse() {

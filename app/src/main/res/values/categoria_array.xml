@@ -4,5 +4,8 @@
         <item>Museu</item>
         <item>Restaurant</item>
         <item>Monument</item>
+        <item>Galeria art</item>
+        <item>Estatua</item>
+        <item>Teatre</item>
     </string-array>
 </resources>

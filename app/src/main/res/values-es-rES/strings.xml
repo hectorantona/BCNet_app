@@ -35,7 +35,7 @@
     <string name="createAccount">Crea una cuenta</string>
     <string name="unmatched_passwords">Las contraseñas deben coincidir</string>
     <string name="error_invalid_email">E-mail inválido</string>
-    <string name="createLocal">Crea una nueva localización</string>
+    <string name="createLocal">Nueva sugerencia de localización</string>
     <string name="local_name">Nombre de localización</string>
     <string name="local_descripció">Descripción de localización</string>
     <string name="local_link">Link web</string>
