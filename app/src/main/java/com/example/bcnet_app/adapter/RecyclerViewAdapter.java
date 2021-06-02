@@ -60,6 +60,16 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 .into((holder).semafor);
 
         holder.puntuacioGlobal.setText(String.valueOf(localitzacio.getPuntuacioGlobal()));
+
+        if (localitzacio.isopen(localitzacio.getHorari())){
+            holder.tancat.setVisibility(View.GONE);
+            holder.obert.setVisibility(View.VISIBLE);
+
+        }
+        else{
+            holder.tancat.setVisibility(View.VISIBLE);
+            holder.obert.setVisibility(View.GONE);
+        }
         holder.parentLayout.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -155,10 +165,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
         CircleImageView image;
-        TextView mName;
-        TextView category;
-        //TextView imagecontent;
-        TextView puntuacioGlobal;
+        TextView mName, category, puntuacioGlobal, obert, tancat;
         ImageView semafor;
         RelativeLayout parentLayout;
 
@@ -174,6 +181,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             //imagecontent = itemView.findViewById(R.id.image_content);
             //puntuacioGlobal
             puntuacioGlobal = itemView.findViewById(R.id.puntuacio_Global);
+            obert = itemView.findViewById(R.id.obert);
+            tancat = itemView.findViewById(R.id.tancat);
             //semafor
             semafor = itemView.findViewById(R.id.semafor);
             parentLayout = itemView.findViewById(R.id.parent_layout);

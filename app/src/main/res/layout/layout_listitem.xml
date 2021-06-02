@@ -47,7 +47,7 @@
         android:layout_below="@id/semafor"
         android:layout_marginTop="10dp"
         android:textColor="#000"
-        android:layout_marginLeft="30dp"
+        android:layout_marginLeft="32dp"
         android:textSize="17sp"
         />
     <ImageView
@@ -58,5 +58,46 @@
         android:layout_toRightOf="@id/image_name"
         android:src= "@mipmap/ic_launcher"
         />
+
+    <ImageView
+        android:id="@+id/estrella"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/semafor"
+        android:layout_marginStart="1dp"
+        android:layout_marginLeft="1dp"
+        android:layout_marginTop="11dp"
+        android:layout_toEndOf="@+id/puntuacio_Global"
+        android:layout_toRightOf="@+id/puntuacio_Global"
+        app:srcCompat="@drawable/baseline_star_rate_black_24" />
+
+    <TextView
+
+        android:id="@+id/tancat"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="27dp"
+        android:layout_marginLeft="14dp"
+        android:layout_toRightOf="@+id/semafor"
+        android:text="@string/tancat"
+        android:textAlignment="center"
+        android:gravity="center_horizontal"
+        android:textColor="@color/white"
+        android:background="@color/close"
+        android:textSize="12sp" />
+    <TextView
+        android:id="@+id/obert"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="27dp"
+        android:layout_marginLeft="14dp"
+        android:layout_toRightOf="@+id/semafor"
+        android:text="@string/obert"
+        android:textAlignment="center"
+        android:gravity="center_horizontal"
+        android:textColor="@color/white"
+        android:background="@color/open"
+        android:textSize="14sp"
+         />
 
 </RelativeLayout>

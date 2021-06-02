@@ -1,9 +1,16 @@
 package com.example.bcnet_app.models;
 
+import android.util.Log;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 
 public class Localitzacio {
     /*Per fer la prova en retornaran el name i la categoria
@@ -128,6 +135,45 @@ public class Localitzacio {
 
     public boolean hasPCov() {
         return puntuacioCOVID != null;
+    }
+
+    private boolean isNowBetweenDateTime(final Date s, final Date e)
+    {
+        final Date now = new Date();
+        return now.after(s) && now.before(e);
+    }
+
+    private ArrayList<Date> dateFromHourMinSec(final String hhmmss)
+    {
+        if (hhmmss.matches("^[0-2][0-9]:[0-5][0-9]-[0-2][0-9]:[0-5][0-9]$"))
+        {
+            final String[] hm2 = hhmmss.split("-");
+            final String[] hm2open = hm2[0].split(":");
+            final GregorianCalendar gc1 = new GregorianCalendar();
+            gc1.set(Calendar.HOUR_OF_DAY, Integer.parseInt(hm2open[0]));
+            gc1.set(Calendar.MINUTE, Integer.parseInt(hm2open[1]));
+
+            final String[] hm2close = hm2[1].split(":");
+            final GregorianCalendar gc2 = new GregorianCalendar();
+            gc2.set(Calendar.HOUR_OF_DAY, Integer.parseInt(hm2close[0]));
+            gc2.set(Calendar.MINUTE, Integer.parseInt(hm2close[1]));
+
+            ArrayList<Date> dates =  new ArrayList<>();;
+            dates.add(gc1.getTime());
+            dates.add(gc2.getTime());
+
+            return dates;
+        }
+        else
+        {
+            throw new IllegalArgumentException(hhmmss + " is not a valid time, expecting HH:MM format");
+        }
+    }
+
+    public boolean isopen(String horariLoc) {
+        ArrayList<Date> dates =  dateFromHourMinSec(horariLoc);
+        Log.d("isOPEN", "date open: " + dates.get(0) + "date closed: " + dates.get(1));
+        return isNowBetweenDateTime(dates.get(0), dates.get(1));
     }
 }
 

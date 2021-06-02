@@ -78,6 +78,8 @@
     <string name="termometre">Thermometer</string>
     <string name="mascareta">Mask</string>
     <string name="Comentaopcional">Add comment (optional)</string>
+    <string name="tancat">CLOSE</string>
+    <string name="obert">OPEN</string>
 
 
 </resources>

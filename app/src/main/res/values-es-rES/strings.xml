@@ -79,5 +79,7 @@
     <string name="distancia_social" >Distancia social </string>
     <string name="termometre">Termómetro </string>
     <string name="mascareta">Mascarilla </string>
+    <string name="tancat">CERRADO</string>
+    <string name="obert">ABIERTO</string>
 
 </resources>
