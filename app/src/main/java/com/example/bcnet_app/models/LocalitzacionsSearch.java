@@ -57,20 +57,11 @@ public class LocalitzacionsSearch {
         localitzacions = reduced;
     }
 
-    public void filterByAdreca(String name) {
-        ArrayList<Localitzacio> reduced = new ArrayList<>();
-        for (Localitzacio l : localitzacions) {
-            if (l.getDireccio().contains(name)) {
-                reduced.add(l);
-            }
-        }
-        localitzacions = reduced;
-    }
 
     public void orderPuntuacioGlobal() {
         ArrayList<Localitzacio> ordered = new ArrayList<>();
         while (localitzacions.size() > 0) {
-            Integer max =0;
+            Integer max = 0;
             int ind_max = 0;
             for(int i = 0; i < localitzacions.size(); i++) {
                 if (localitzacions.get(i).getPuntuacioGlobal() >= max) {
@@ -116,4 +107,13 @@ public class LocalitzacionsSearch {
         return null;
     }
 
+    public void filterPref(ArrayList<Localitzacio> localitzacionsPref) {
+        ArrayList<Localitzacio> reduced = new ArrayList<>();
+        for (Localitzacio l : localitzacionsPref) {
+            for (Localitzacio l2 : localitzacions) {
+                if (l.getName().equals(l2.getName())) reduced.add(l2);
+            }
+        }
+        localitzacions = reduced;
+    }
 }

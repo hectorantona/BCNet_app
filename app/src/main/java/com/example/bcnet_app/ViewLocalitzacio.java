@@ -23,6 +23,7 @@ import androidx.viewpager2.widget.ViewPager2;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.bcnet_app.TabbedMenu.FragmentAdapter;
+import com.example.bcnet_app.models.Localitzacio;
 import com.example.bcnet_app.response.InfoLocalitzacioResponse;
 import com.example.bcnet_app.response.InfoUserResponse;
 import com.example.bcnet_app.viewmodels.CommentViewModel;
@@ -109,6 +110,7 @@ public class ViewLocalitzacio extends AppCompatActivity {
             }
         });*/
 
+
         BtnValorar = (Button)findViewById(R.id.BtnValorar);
         BtnValorar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -134,6 +136,14 @@ public class ViewLocalitzacio extends AppCompatActivity {
 
 
         heartBtn = (LikeButton)findViewById(R.id.heart_button);
+
+        for (Localitzacio l : viewModel.getPrefLocalitzacions().getValue().getLocalitzacions()) {
+            if (nom_localitzacio.equals(l.getName())) {
+                heartBtn.setLiked(true);
+                break;
+            }
+        }
+
         heartBtn.setOnLikeListener(new OnLikeListener() {
             @Override
             public void liked(LikeButton likeButton) {

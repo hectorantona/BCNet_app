@@ -164,7 +164,8 @@ public class LocalitzacioSearchFrag extends Fragment {
 
     private void performSetPref() {
 
-        LocalitzacionsSearch LS = new LocalitzacionsSearch(viewModel.getPrefLocalitzacions().getValue().getLocalitzacions());
+        LocalitzacionsSearch LS = new LocalitzacionsSearch(viewModel.getLocalitzacions().getValue().getLocalitzacions());
+        LS.filterPref(viewModel.getPrefLocalitzacions().getValue().getLocalitzacions());
         adapter.setResults(LS);
         viewModel.getPrefLocalitzacions().observe(this, new Observer<LocalitzacionsSearch>() {
             @Override
