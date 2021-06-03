@@ -102,14 +102,6 @@ public class ViewLocalitzacio extends AppCompatActivity {
             @Override
             public void onTabReselected(TabLayout.Tab tab) {}
         });
-/*
-        viewpager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
-            @Override
-            public void onPageSelected(int position) {
-                tabLayout.selectTab(tabLayout.getTabAt(0));
-            }
-        });*/
-
 
         BtnValorar = (Button)findViewById(R.id.BtnValorar);
         BtnValorar.setOnClickListener(new View.OnClickListener() {
@@ -166,7 +158,6 @@ public class ViewLocalitzacio extends AppCompatActivity {
 
     public void onResume() {
         super.onResume();
-        //Log.d(TAG, "Tornem a buscar els comentaris");
         viewModel.searchLocalitzacio(loc_id, new InfoLocalitzacioResponse() {
             @Override
             public void infolocalitzacio (Integer puntuacio) {
@@ -285,14 +276,6 @@ public class ViewLocalitzacio extends AppCompatActivity {
 
                 startActivity(Intent.createChooser(sharingIntent, "Share a Location"));
                 break;
-                /*
-                SharedPreferences.Editor sharedpreferenceseditor = mPreferences.edit();
-                sharedpreferenceseditor.clear();
-                Intent finishIntent = new Intent(getApplicationContext(),SignInActivity.class);
-                startActivity(finishIntent);
-                break;
-
-                 */
         }
         return super.onOptionsItemSelected(item);
     }

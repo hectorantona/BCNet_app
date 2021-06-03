@@ -73,7 +73,6 @@ public class SearchMapaActivity extends AppCompatActivity implements OnMapReadyC
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mapa = googleMap;
-        //Es fa autozoom a les co
         LatLng origen = new LatLng(41.3890927,2.1575136);
         mapa.animateCamera(CameraUpdateFactory.newLatLngZoom(origen, 13));
 

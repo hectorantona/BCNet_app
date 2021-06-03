@@ -31,7 +31,6 @@ public class DadesCovidRepository {
     private static final String DADES_COVID_SEARCH_SERVICE_BASE_URL = "https://us-central1-bcnet-backend.cloudfunctions.net/";
     private static final String TAG = "REPO COVID";
 
-    //Singleton patern
     private static DadesCovidRepository instance;
 
     public static DadesCovidRepository getInstance() {
@@ -54,7 +53,6 @@ public class DadesCovidRepository {
         dadesCovidCommentLiveData = new MutableLiveData<>();
 
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
-        //per fer debug
         interceptor.level(HttpLoggingInterceptor.Level.BODY);
         OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor).build();
 
@@ -71,9 +69,7 @@ public class DadesCovidRepository {
                     @Override
                     public void onResponse(Call<DadesCovid> call, Response<DadesCovid> response) {
                         if (response.body() != null) {
-
                             error = response.body().getCorrecte();
-                            Log.d(TAG, "fallada " + error);
                             callback.updateCovidcomments(error.equals("true"));
                         }
                     }
@@ -91,8 +87,6 @@ public class DadesCovidRepository {
                     @Override
                     public void onResponse(Call<DadesCovidResponse> call, Response<DadesCovidResponse> response) {
                         if (response.body() != null) {
-                            //LocalitzacioResponse l = response.body();
-                            //Log.d(TAG, "CORRECTE: " + l.getTotalItems());
                             covidCommentResponseLiveData.postValue(response.body());
                         }
                     }
@@ -103,59 +97,25 @@ public class DadesCovidRepository {
                     }
                 });
     }
-    /*
-
-    //crida a l'api
-    public void SearchLocalitzacio(String keyword, String name, String apiKey) {
-        localitzacioSearchService.searchLocalitzacio(keyword, name, apiKey)
-                .enqueue(new Callback<Localitzacio>() {
-                    @Override
-                    public void onResponse(Call<Localitzacio> call, Response<Localitzacio> response) {
-                        if (response.body() != null) {
-                            localitzacioLiveData.postValue(response.body());
-                        }
-                    }
-
-                    @Override
-                    public void onFailure(Call<Localitzacio> call, Throwable t) {
-                        localitzacioLiveData.postValue(null);
-                    }
-                });
-    }
-
-    public LiveData<Localitzacio> getLocalitzacioLiveData() {
-        return localitzacioLiveData;
-    }*/
 
     private ArrayList<DadesCovid> dataSet = new ArrayList<>();
-
-
-
-
 
     public LiveData<DadesCovidResponse> getcovidcomments() {
 
         return covidCommentResponseLiveData;
     }
 
-    public void searchComments(String idlocalitzacio) {
-    }
-
     public void deleteCovidComment (String nomuser, String idlocalitzacio) {
-        dadesCovidService.deleteCovidComment(nomuser, idlocalitzacio) //FALTA QUE BACK IMPLEMENTI AQUESTA FUNCIO
+        dadesCovidService.deleteCovidComment(nomuser, idlocalitzacio)
                 .enqueue(new Callback<DadesCovidResponse>() {
                     @Override
                     public void onResponse(Call<DadesCovidResponse> call, Response<DadesCovidResponse> response) {
-
                     }
 
                     @Override
                     public void onFailure(Call<DadesCovidResponse> call, Throwable t) {
-
                     }
                 });
-
-
     }
 }
 

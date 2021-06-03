@@ -47,7 +47,6 @@ public class Comment {
         this.puntuacio = puntuacio;
         this.id = id;
         this.likes = 0;
-        //this.timestamp = ServerValue.TIMESTAMP;
     }
 
     public Comment(String usuari, String comentari, Float puntuacio, String id, Object timestamp) {
@@ -56,7 +55,6 @@ public class Comment {
         this.puntuacio = puntuacio;
         this.id = id;
         this.likes = 0;
-        //this.timestamp = timestamp;
     }
 
     public String ConvertMilliSecondsToFormattedDate(){

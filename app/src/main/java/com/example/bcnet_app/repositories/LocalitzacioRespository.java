@@ -41,7 +41,6 @@ public class LocalitzacioRespository {
     private MutableLiveData<Localitzacio> localitzacioLiveData;
 
 
-    //ha de ser privat
     private LocalitzacioRespository() {
         localitzacionsSearchLiveData = new MutableLiveData<>();
         localitzacionsPrefSearchLiveData = new MutableLiveData<>();
@@ -49,7 +48,6 @@ public class LocalitzacioRespository {
 
 
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
-        //per fer debug
         interceptor.level(HttpLoggingInterceptor.Level.BODY);
         OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor).build();
 
@@ -61,14 +59,12 @@ public class LocalitzacioRespository {
                 .create(LocalitzacioService.class);
     }
 
-    //crida a l'api
     public void searchLocalitzacio(String key, InfoLocalitzacioResponse callback) {
         localitzacioService.searchLocalitzacio(key)
                 .enqueue(new Callback<LocalitzacionsSearch>() {
                     @Override
                     public void onResponse(Call<LocalitzacionsSearch> call, Response<LocalitzacionsSearch> response) {
                         if (response.body() != null) {
-                            //Log.d(TAG, "Fail: " + response.body().getelemi(0).getName());
                             callback.infolocalitzacio(response.body().getelemi(0).getPuntuacioGlobal());
                         }
                     }
@@ -76,7 +72,6 @@ public class LocalitzacioRespository {
                     @Override
                     public void onFailure(Call<LocalitzacionsSearch> call, Throwable t) {
                         t.getCause();
-                        Log.d(TAG, "Fail: " + t);
                         localitzacioLiveData.postValue(null);
                     }
                 });
@@ -93,7 +88,6 @@ public class LocalitzacioRespository {
 
                     @Override
                     public void onFailure(Call<LocalitzacioResponse> call, Throwable t) {
-                        Log.d(TAG, "Fail: " + localitzacioLiveData.getValue());
                         localitzacionsSearchLiveData.postValue(null);
                     }
                 });
@@ -104,7 +98,6 @@ public class LocalitzacioRespository {
                     @Override
                     public void onResponse(Call<LocalitzacionsSearch> call, Response<LocalitzacionsSearch> response) {
                         if (response.body() != null) {
-                            //LocalitzacioResponse l = response.body();
                             localitzacionsSearchLiveData.postValue(response.body());
                             callback.allLocalitzacions(localitzacionsSearchLiveData.getValue());
                         }
@@ -112,7 +105,6 @@ public class LocalitzacioRespository {
 
                     @Override
                     public void onFailure(Call<LocalitzacionsSearch> call, Throwable t) {
-                        Log.d(TAG, "Fail: " + localitzacioLiveData.getValue());
                         localitzacionsSearchLiveData.postValue(null);
                     }
                 });
@@ -124,13 +116,11 @@ public class LocalitzacioRespository {
                     @Override
                     public void onResponse(Call<LocalitzacionsSearch> call, Response<LocalitzacionsSearch> response) {
                         if (response.body() != null) {
-                            //LocalitzacioResponse l = response.body();
                             localitzacionsPrefSearchLiveData.postValue(response.body());
                         }
                     }
                     @Override
                     public void onFailure(Call<LocalitzacionsSearch> call, Throwable t) {
-                        Log.d(TAG, "Fail: " + localitzacioLiveData.getValue());
                         localitzacionsPrefSearchLiveData.postValue(null);
                     }
                 });
@@ -140,12 +130,10 @@ public class LocalitzacioRespository {
         localitzacioService.setPreferit(name, id).enqueue(new Callback<Localitzacio>() {
             @Override
             public void onResponse(Call<Localitzacio> call, Response<Localitzacio> response) {
-                Log.d(TAG, "Liked OK: " + response.body());
             }
 
             @Override
             public void onFailure(Call<Localitzacio> call, Throwable t) {
-                Log.d(TAG, "Liked Not-OK");
             }
         });
     }
@@ -154,7 +142,6 @@ public class LocalitzacioRespository {
         localitzacioService.unsetPreferit(nom, id).enqueue(new Callback<Localitzacio>() {
             @Override
             public void onResponse(Call<Localitzacio> call, Response<Localitzacio> response) {
-                Log.d(TAG, "Unliked OK: " + response.body());
             }
 
             @Override
@@ -164,24 +151,18 @@ public class LocalitzacioRespository {
         });
     }
 
-
-
-
-
     public void afegeixpuntuacio(String id, String nomuser, String puntuacio) {
         localitzacioService.allLocalitzacions()
                 .enqueue(new Callback<LocalitzacionsSearch>() {
                     @Override
                     public void onResponse(Call<LocalitzacionsSearch> call, Response<LocalitzacionsSearch> response) {
                         if (response.body() != null) {
-                            //LocalitzacioResponse l = response.body();
                             localitzacionsSearchLiveData.postValue(response.body());
                         }
                     }
 
                     @Override
                     public void onFailure(Call<LocalitzacionsSearch> call, Throwable t) {
-                        Log.d(TAG, "Fail: " + localitzacioLiveData.getValue());
                         localitzacionsSearchLiveData.postValue(null);
                     }
                 });
@@ -197,8 +178,6 @@ public class LocalitzacioRespository {
     }
 
     public LiveData<Localitzacio> getLocalitzacioLiveData() {
-        //Localitzacio l = new Localitzacio("a", "Museu", "aa", "a", "a");
-        //localitzacioLiveData.postValue(l);
         return localitzacioLiveData;
     }
 

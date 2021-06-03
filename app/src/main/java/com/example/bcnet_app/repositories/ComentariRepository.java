@@ -27,7 +27,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
      private MutableLiveData<CommentResponse> commentResponseLiveData;
      private MutableLiveData<com.example.bcnet_app.models.Comment> commentLiveData;
      private String error = "true";
-    //Singleton patern
     private static ComentariRepository instance;
 
     public static ComentariRepository getInstance() {
@@ -44,7 +43,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
         commentLiveData = new MutableLiveData<>();
 
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
-        //per fer debug
         interceptor.level(HttpLoggingInterceptor.Level.BODY);
         OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor).build();
 
@@ -62,8 +60,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
                     @Override
                     public void onResponse(Call<CommentResponse> call, Response<CommentResponse> response) {
                         if (response.body() != null) {
-                            //LocalitzacioResponse l = response.body();
-                            //Log.d(TAG, "CORRECTE: " + l.getTotalItems());
                             commentResponseLiveData.postValue(response.body());
                         }
                     }
@@ -91,16 +87,12 @@ import retrofit2.converter.gson.GsonConverterFactory;
     }
 
     public void newComment (String idlocalitzacio, String nomuser, String comment, String valoracio, newCommentResponse callback) {
-        //Canviar establiment2 per nom localitzacio
         commentService.newComment(nomuser, idlocalitzacio, comment, valoracio)
                 .enqueue(new Callback<com.example.bcnet_app.models.Comment>() {
                     @Override
                     public void onResponse(Call<Comment> call, Response<Comment> response) {
                         if (response.body() != null) {
-                            //LocalitzacioResponse l = response.body();
-                            //Log.d(TAG, "CORRECTE: " + l.getTotalItems());
                             error = response.body().getCorrecte();
-                            Log.d(TAG, "fallada " + error);
                             callback.updatecomments(error.equals("true"));
                         }
                     }

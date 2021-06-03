@@ -88,8 +88,6 @@ public class NewLocalActivity extends AppCompatActivity implements OnMapReadyCal
     }
 
     private void newlocalitzacio() {
-        //Agafem els parametres introduits anteriorment i fem la crida a back
-        //Faltaria veure que tots els camps estan omplerts i que sigui correcte...
         if (comprovarcamps()) {
             String nom_loc =  nomloc.getText().toString();
             String categoria = categoria_spiner.getSelectedItem().toString();

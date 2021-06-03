@@ -13,12 +13,6 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 
 public class Localitzacio {
-    /*Per fer la prova en retornaran el name i la categoria
-    {
-    "name" : "Bar Paco",
-    "category" : "restaurant"
-    }
-    */
 
     @SerializedName("nom")
     @Expose
@@ -118,7 +112,6 @@ public class Localitzacio {
     public void setHorari (String horari) {this.horari = horari;}
 
     public Float getPG () {
-        //return calcularPuntuacioGlobal().toString();
         return Float.parseFloat("4.2");
     }
 
@@ -172,7 +165,6 @@ public class Localitzacio {
 
     public boolean isopen(String horariLoc) {
         ArrayList<Date> dates =  dateFromHourMinSec(horariLoc);
-        Log.d("isOPEN", "date open: " + dates.get(0) + "date closed: " + dates.get(1));
         return isNowBetweenDateTime(dates.get(0), dates.get(1));
     }
 }

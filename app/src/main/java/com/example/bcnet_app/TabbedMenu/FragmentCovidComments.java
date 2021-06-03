@@ -36,7 +36,6 @@ public class FragmentCovidComments extends Fragment {
     public FragmentCovidComments(String nomlocalitzacio) {
         this.nom_localitzacio = nomlocalitzacio;
     }
-        // Required empty public constructor
 
 
     @Override
@@ -63,10 +62,7 @@ public class FragmentCovidComments extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_covid_comments, container, false);
 
-        //Si ho podem fer amb l'id del comment millor que amb aixo
         LiveData<LocalitzacionsSearch> l = LocalitzacioRespository.getInstance().getlocalitzacions();
-        //Agafem l'id de la localització per crear el comment
-        Log.d(TAG, "nom localitzacio: " + nom_localitzacio);
         String idlocalitzacio = l.getValue().getelembyname(nom_localitzacio).getId();
 
         mPreferences = this.getActivity().getSharedPreferences("User", 0);
@@ -84,7 +80,6 @@ public class FragmentCovidComments extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        //Log.d(TAG, "Tornem a buscar els comentaris");
         covidCommentViewModel.searchCovidComments();
 
     }

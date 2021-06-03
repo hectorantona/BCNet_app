@@ -124,7 +124,7 @@ public class PerfilActivity extends AppCompatActivity {
         mPreferences = getSharedPreferences("User", 0);
         String profileimgUrl = mPreferences.getString(USERIMAGE_KEY, null);
         RequestOptions defaultOptions = new RequestOptions()
-                .error(R.drawable.ic_launcher_background); //aixo possiblement s'haura de canviar
+                .error(R.drawable.ic_launcher_background);
         Glide.with(this)
                 .setDefaultRequestOptions(defaultOptions)
                 .load(profileimgUrl)

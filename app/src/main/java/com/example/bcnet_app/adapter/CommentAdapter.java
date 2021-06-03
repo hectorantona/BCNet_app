@@ -49,8 +49,6 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.CommentV
     @Override
     public void onBindViewHolder(@NonNull CommentViewHolder holder, int position) {
         Comment c = result.get(position);
-        Log.d("Comment adapter", "Comentari de" + c.getUsuari());
-        //Glide.with(mContext).load(mData.get(position).getUimg()).into(holder.img_user);
         holder.name.setText(c.getUsuari());
         holder.content.setText(c.getComentari());
         holder.date.setText(c.getDate());
@@ -59,11 +57,9 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.CommentV
                 .into((holder).comment_user_img);
 
         if (!c.getUsuari().equals(nomuser)) {
-            Log.d("Comment adapter", "El nom no coicideix" + c.getUsuari() + "" + nomuser);
             holder.delete.setVisibility(View.GONE);
         }
         else {
-            Log.d("Comment adapter", "Esborrar Comentari de" + c.getUsuari());
             holder.delete.setVisibility(View.VISIBLE);
             holder.delete.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -88,7 +84,6 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.CommentV
 
     public void setResults(CommentResponse c) {
         result.clear();
-        //Log.d(TAG, "onClick: clicked on: " + result.get(0).getContent());
         for (int i = 0; i < c.getnumelements(); ++i) {
             result.add(c.getelemi(i));
         }
@@ -110,16 +105,6 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.CommentV
             date = itemView.findViewById(R.id.comment_date);
             delete = itemView.findViewById(R.id.delete);
         }
-    }
-
-    private String timestampToString(long time) {
-
-        Calendar calendar = Calendar.getInstance(Locale.ENGLISH);
-        calendar.setTimeInMillis(time);
-        String date = DateFormat.format("hh:mm",calendar).toString();
-        return date;
-
-
     }
 
 }

@@ -53,7 +53,6 @@ public class UserRepository {
         signupLiveData = new MutableLiveData<>();
 
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
-        //per fer debug
         interceptor.level(HttpLoggingInterceptor.Level.BODY);
         OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor).build();
 
@@ -71,33 +70,28 @@ public class UserRepository {
         return userLiveData;
     }
 
-    //crida a l'api
     public void login(String username, String password, LoginResponse callback) {
         userService.loginUser(username, password)
                 .enqueue(new Callback<User>() {
                     @Override
                     public void onResponse(Call<User> call, Response<User> response) {
                         if (response.isSuccessful()) {
-                            Log.d(TAG, "LoginOK: " + response.body());
                             loginusername = response.body().getUsername();
                             callback.login(response.body().getUsername(), response.body().getMessage().equals("true"), response.body().getErrormsg());
                         }
                     }
                     @Override
                     public void onFailure(Call<User> call, Throwable t) {
-                        Log.d(TAG, "Login CACA: " + t.getLocalizedMessage());
                         loginusername = null;
                     }
                 });
     }
 
-    //crida a l'api crear user
     public void signup(String email, String username, String password, SignUpResponse callback) {
         userService.createUser(email, username, password).enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
                 if (response.isSuccessful()) {
-                    Log.d(TAG, "SignupOK: " + response.body());
                     signupLiveData.setValue(response.body().getUsername());
                     callback.signup(response.body().getUsername(), response.body().getMessage().equals("true"), response.body().getErrormsg());
                 }
@@ -106,20 +100,15 @@ public class UserRepository {
             @Override
             public void onFailure(Call<User> call, Throwable t) {
                 signupLiveData.postValue(null);
-                Log.d(TAG, "SignupCACA: ");
-
-
             }
         });
     }
 
-    //Crida l'api info user
     public void infouser(String username, InfoUserResponse callback) {
         userService.infoUser(username).enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
                 if (response.isSuccessful()) {
-                    Log.d(TAG, "InfoUserOK: " + response.body());
                     userLiveData.setValue(response.body());
                     callback.infouser(response.body().getUsername(), response.body().getEmail(), response.body().getPassword(), response.body().getProfileimg(),response.body().getMessage().equals("true"), response.body().getErrormsg());
 
@@ -128,8 +117,6 @@ public class UserRepository {
 
             @Override
             public void onFailure(Call<User> call, Throwable t) {
-                //loginLiveData.postValue(null);
-                Log.d(TAG, "InfoUserCACA: ");
             }
         });
     }
@@ -139,8 +126,6 @@ public class UserRepository {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
                 if (response.isSuccessful()) {
-                    Log.d(TAG, "ChangePasswordOK: " + response.body());
-                    //loginLiveData.setValue(response.body().getPassword());
                     callback.changePassword(response.body().getUsername(), response.body().getPassword(), response.body().getMessage().equals("true"), response.body().getErrormsg());
 
                 }
@@ -148,10 +133,6 @@ public class UserRepository {
 
             @Override
             public void onFailure(Call<User> call, Throwable t) {
-                //loginLiveData.postValue(null);
-                Log.d(TAG, "ChangePasswordCACA: ");
-
-
             }
         });
     }
@@ -161,19 +142,12 @@ public class UserRepository {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
                 if (response.isSuccessful()) {
-                    Log.d(TAG, "ChangeEmailOK: " + response.body());
-                    //loginLiveData.setValue(response.body().getPassword());
                     callback.changeEmail(response.body().getUsername(), response.body().getEmail(), response.body().getMessage().equals("true"), response.body().getErrormsg());
-
                 }
             }
 
             @Override
             public void onFailure(Call<User> call, Throwable t) {
-                //loginLiveData.postValue(null);
-                Log.d(TAG, "ChangeEmailCACA: ");
-
-
             }
         });
     }
@@ -183,19 +157,12 @@ public class UserRepository {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
                 if (response.isSuccessful()) {
-                    Log.d(TAG, "ChangeProfilePIctureOK: " + response.body());
-                    //loginLiveData.setValue(response.body().getPassword());
                     callback.changeProfilePicture(response.body().getUsername(), response.body().getProfileimg(), response.body().getMessage().equals("true"), response.body().getErrormsg());
-
                 }
             }
 
             @Override
             public void onFailure(Call<User> call, Throwable t) {
-                //loginLiveData.postValue(null);
-                Log.d(TAG, "ChangeProfilePictureCACA: ");
-
-
             }
         });
     }

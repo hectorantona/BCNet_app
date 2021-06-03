@@ -111,7 +111,6 @@ public class FormNewPswd extends AppCompatActivity {
                         SharedPreferences.Editor sharedpreferenceseditor = mPreferences.edit();
                         sharedpreferenceseditor.putString(PASSWORD_KEY, newpassi);
                         sharedpreferenceseditor.apply();
-                        Log.d(TAG, "NEW PASSWORD: " + mPreferences.getString("password", null)); //PROVES FUNCIONAMENT sharedPreferences
                         Toast.makeText(getApplicationContext(), "Contrassenya modificada CORRECTAMENT", Toast.LENGTH_SHORT).show();
 
                     }

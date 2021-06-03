@@ -96,14 +96,12 @@ public class LocalitzacionsSearch {
 
     public Localitzacio getelembyname (String name) {
         for (int i = 0; i < localitzacions.size(); ++i) {
-            Log.d("Searchloc", "localitzacio" + i + " " + localitzacions.get(i).getName());
             if (localitzacions.get(i).getName().equals(name)) {
 
                 return localitzacions.get(i);
             }
 
         }
-        Log.d("Searchloc", "FAIL");
         return null;
     }
 

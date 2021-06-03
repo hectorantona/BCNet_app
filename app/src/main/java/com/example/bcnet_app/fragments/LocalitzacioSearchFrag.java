@@ -51,7 +51,6 @@ public class LocalitzacioSearchFrag extends Fragment {
         viewModel.initPref();
 
 
-        //fero tmb per el response per ara no esta
         viewModel.getLocalitzacions().observe(this, new Observer<LocalitzacionsSearch>() {
             @Override
             public void onChanged(LocalitzacionsSearch l) {

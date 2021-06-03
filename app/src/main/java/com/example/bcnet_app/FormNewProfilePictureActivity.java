@@ -100,7 +100,6 @@ public class FormNewProfilePictureActivity extends AppCompatActivity {
                         SharedPreferences.Editor sharedpreferenceseditor = mPreferences.edit();
                         sharedpreferenceseditor.putString(USERIMAGE_KEY, newUrlProfilePicturi);
                         sharedpreferenceseditor.apply();
-                        Log.d(TAG, "NEW PROFILE PICTURE: " + mPreferences.getString(USERIMAGE_KEY, null)); //PROVES FUNCIONAMENT sharedPreferences
                         Toast.makeText(getApplicationContext(), "ProfilePicture modificada CORRECTAMENT", Toast.LENGTH_SHORT).show();
                         Intent startIntent = new Intent(getApplicationContext(), PerfilActivity.class);
                         startActivity(startIntent);

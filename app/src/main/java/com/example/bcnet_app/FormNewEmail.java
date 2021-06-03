@@ -90,7 +90,6 @@ public class FormNewEmail extends AppCompatActivity {
                         SharedPreferences.Editor sharedpreferenceseditor = mPreferences.edit();
                         sharedpreferenceseditor.putString(EMAIL_KEY, newemaili);
                         sharedpreferenceseditor.apply();
-                        Log.d(TAG, "NEW EMAIL: " + mPreferences.getString("email", null)); //PROVES FUNCIONAMENT sharedPreferences
                         Toast.makeText(getApplicationContext(), "Email modificat CORRECTAMENT", Toast.LENGTH_SHORT).show();
 
                     }

@@ -55,19 +55,15 @@ public class FormValoracio extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 newcomment();
-                //afegeixpuntuacio();
-                //finish();
             }
         });
     }
 
 
     private void newcomment() {
-        //PREGUNTAR AL PROFE COM FER QUE LA FUNCIO DE DEMANAR ERROR S'ESPERI A QUE RETRORIFT HAGI ACABAT
         String comment = comentari.getText().toString();
         Float valoracio = puntuacio.getRating();
         mPreferences = getSharedPreferences("User", 0);
-        //String pref = this.getPreferenceManager().getSharedPreferencesName();
         String nomuser = mPreferences.getString("username", null);
         amagarUI();
         commentViewModel.newComment(nom_localitzacio, nomuser, comment, valoracio.toString(), new newCommentResponse() {
@@ -79,7 +75,6 @@ public class FormValoracio extends AppCompatActivity {
                 }
                 //El comentari s'ha pogut fer
                 else {
-                    //findViewById(R.id.loadingPanel).setVisibility(View.GONE);
                     finish();
                 }
             }
@@ -89,12 +84,6 @@ public class FormValoracio extends AppCompatActivity {
     private void amagarUI () {
         findViewById(R.id.linear_layout).setVisibility(View.GONE);
         progessBar.setVisibility(View.VISIBLE);
-    }
-
-    private void afegeixpuntuacio() {
-        Integer punts = puntuacio.getNumStars();
-        localitzacioViewModel.afegeixpuntuacio (nom_localitzacio, "Maria", punts.toString());
-
     }
 
     private void getIncomingIntent (){

@@ -24,24 +24,20 @@ public class CustomScrollView extends ScrollView {
         final int action = ev.getAction();
         switch (action) {
             case MotionEvent.ACTION_DOWN:
-                //Log.i("CustomScrollView", "onInterceptTouchEvent: DOWN super false" );
                 super.onTouchEvent(ev);
                 break;
 
             case MotionEvent.ACTION_MOVE:
-                return false; // redirect MotionEvents to ourself
+                return false;
 
             case MotionEvent.ACTION_CANCEL:
-                // Log.i("CustomScrollView", "onInterceptTouchEvent: CANCEL super false" );
                 super.onTouchEvent(ev);
                 break;
 
             case MotionEvent.ACTION_UP:
-                //Log.i("CustomScrollView", "onInterceptTouchEvent: UP super false" );
                 return false;
 
             default:
-                //Log.i("CustomScrollView", "onInterceptTouchEvent: " + action );
                 break;
         }
 
@@ -51,7 +47,6 @@ public class CustomScrollView extends ScrollView {
     @Override
     public boolean onTouchEvent(MotionEvent ev) {
         super.onTouchEvent(ev);
-        //Log.i("CustomScrollView", "onTouchEvent. action: " + ev.getAction() );
         return true;
     }
 }

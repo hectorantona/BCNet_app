@@ -26,12 +26,6 @@ public class MainActivity2 extends AppCompatActivity {
     private UserViewModel userViewModel;
 
 
-    private String sharedPrefFile =
-            "com.example.android.hellosharedprefs";
-
-
-
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater = getMenuInflater();
@@ -57,7 +51,6 @@ public class MainActivity2 extends AppCompatActivity {
                             sharedpreferenceseditor.putString(PASSWORD_KEY, password);
                             sharedpreferenceseditor.putString(USERIMAGE_KEY, profilepicture);
                             sharedpreferenceseditor.apply();
-                            Log.d(TAG, "EMAIL: " + mPreferences.getString("email", null)); //PROVES FUNCIONAMENT sharedPreferences
                             Intent startIntent = new Intent(getApplicationContext(), PerfilActivity.class);
                             startActivity(startIntent);
                         }
@@ -66,7 +59,6 @@ public class MainActivity2 extends AppCompatActivity {
                 break;
 
             case R.id.mapa:
-                Log.d(TAG, "nos vamos pal mapa");
                 Intent intent = new Intent(getApplicationContext(), SearchMapaActivity.class);
                 startActivity(intent);
                 break;

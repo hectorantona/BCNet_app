@@ -18,9 +18,7 @@ public class MainActivity2ViewModel extends ViewModel {
     private LiveData<LocalitzacionsSearch> localitzacionsPrefSearchLiveData;
     private LocalitzacioRespository Repo;
 
-    /*public MainActivity2ViewModel(@NonNull Application application) {
-        super(application);
-    }*/
+
 
     public void init () {
         localitzacionsSearchLiveData = LocalitzacioRespository.getInstance().getlocalitzacions();

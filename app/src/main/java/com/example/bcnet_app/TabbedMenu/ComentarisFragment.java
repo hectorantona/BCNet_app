@@ -50,20 +50,15 @@ public class ComentarisFragment extends Fragment {
                 if (comentaris != null) {
                     adapter.setResults(comentaris);
                 }
-
             }
         });
-
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_comentaris, container, false);
 
-        //Si ho podem fer amb l'id del comment millor que amb aixo
         LiveData<LocalitzacionsSearch> l = LocalitzacioRespository.getInstance().getlocalitzacions();
-        //Agafem l'id de la localització per crear el comment
-        Log.d(TAG, "nom localitzacio: " + nom_localitzacio);
         String idlocalitzacio = l.getValue().getelembyname(nom_localitzacio).getId();
 
         mPreferences = this.getActivity().getSharedPreferences("User", 0);
@@ -81,7 +76,6 @@ public class ComentarisFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        //Log.d(TAG, "Tornem a buscar els comentaris");
         commentViewModel.searchComments();
 
     }

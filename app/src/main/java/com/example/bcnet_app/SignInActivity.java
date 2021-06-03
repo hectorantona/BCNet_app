@@ -24,7 +24,6 @@ import java.util.Locale;
 public class SignInActivity extends AppCompatActivity{
     private static final String TAG = "MAIN ACTIVITY";
 
-    //private UserLoginTask mAuthTask = null;
 
     private EditText user;
     private EditText password;
@@ -36,7 +35,6 @@ public class SignInActivity extends AppCompatActivity{
 
     private TextInputLayout mFloatLabelUserId;
     private TextInputLayout mFloatLabelPassword;
-    //private View mLoginFormView;
 
     private UserViewModel userViewModel;
 
@@ -56,7 +54,6 @@ public class SignInActivity extends AppCompatActivity{
         mFloatLabelUserId = (TextInputLayout) findViewById(R.id.float_label_user);
         mFloatLabelPassword = (TextInputLayout) findViewById(R.id.float_label_password);
 
-        //mLoginFormView = findViewById(R.id.login_form);
 
         LoginBtn = (Button)findViewById(R.id.LoginBtn);
         SignupBtn = (Button)findViewById(R.id.SignupBtn);
@@ -175,12 +172,10 @@ public class SignInActivity extends AppCompatActivity{
                         sharedpreferenceseditor.putString(USERNAME_KEY, useri);
                         sharedpreferenceseditor.putString(PASSWORD_KEY, passwordi);
                         sharedpreferenceseditor.apply();
-                        Log.d(TAG, "USERNAME: " + mPreferences.getString("username", null)); //PROVES FUNCIONAMENT sharedPreferences
                         Intent startIntent = new Intent(getApplicationContext(), MainActivity2.class);
                         startActivity(startIntent);
                     } else {
                         if (errormsg.equals("WrongPassword!")) {
-                            Log.d(TAG, "ERRORMESSAGE: " + errormsg); //PROVES FUNCIONAMENT sharedPreferences
                             mFloatLabelPassword.setError(getString(R.string.error_invalid_password));
                         }
                         else{

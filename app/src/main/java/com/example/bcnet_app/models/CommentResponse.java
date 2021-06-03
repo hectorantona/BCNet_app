@@ -23,7 +23,6 @@ public class CommentResponse {
         return comentaris;
     }
 
-    //search/sorting
     public Comment getelemi (Integer i) {
         return comentaris.get(i);
     }

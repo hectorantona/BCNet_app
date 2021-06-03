@@ -65,8 +65,6 @@ public class FormCommentCovid extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 newcovidcomment();
-                //afegeixpuntuaciocovid(); //FALTA FER MITJA DE SEMAFOR TOTAL
-                //finish();
             }
         });
     }
@@ -76,7 +74,6 @@ public class FormCommentCovid extends AppCompatActivity {
         Integer puntuacio = calcularpuntuacio();
         Log.d(TAG, "PUNTUACIO = " + puntuacio.toString());
         mPreferences = getSharedPreferences("User", 0);
-        //String pref = this.getPreferenceManager().getSharedPreferencesName();
         String nomuser = mPreferences.getString("username", null);
         date = dateFormat.format(calendar.getTime());
         //amagarUI();
@@ -87,7 +84,6 @@ public class FormCommentCovid extends AppCompatActivity {
                     mFloatLabelTextComm.setError(getString(R.string.error_ja_te_comment));
                 }
                 else {
-                    //findViewById(R.id.loadingPanel).setVisibility(View.GONE);
                     finish();
                 }
             }
@@ -108,7 +104,7 @@ public class FormCommentCovid extends AppCompatActivity {
         if(distanciaSeguretat) aux = aux + 1;
         if(termometre) aux = aux + 1;
         if(mascareta) aux = aux + 1;
-        Integer puntuacio = (aux*10)/4; //Per donar el valor que necessiti back
+        Integer puntuacio = (aux*10)/4;
         if (puntuacio == 0) puntuacio = 1;
         return puntuacio;
     }

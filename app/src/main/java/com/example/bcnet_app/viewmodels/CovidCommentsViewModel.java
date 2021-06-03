@@ -28,19 +28,15 @@ public class CovidCommentsViewModel extends ViewModel {
 
     public void init () {
         LiveData<LocalitzacionsSearch> l = LocalitzacioRespository.getInstance().getlocalitzacions();
-        //Agafem l'id de la localització per crear el comment
         idlocalitzacio = l.getValue().getelembyname(nomlocalitzacio).getId();
 
-        //localitzacioLiveData = Repo.getLocalitzacioLiveData();
         mComentari = DadesCovidRepository.getInstance().getcovidcomments();
     }
     public LiveData<DadesCovidResponse> getComentaris () { return mComentari;}
 
     public void newComment (String nomlocalitzacio, String nomuser, String comment, String comentari, newCovidCommentResponse callback) {
-        //apliquem el patró singleton
 
         LiveData<LocalitzacionsSearch> l = LocalitzacioRespository.getInstance().getlocalitzacions();
-        //Agafem l'id de la localització per crear el comment
         String id = l.getValue().getelembyname(nomlocalitzacio).getId();
         DadesCovidRepository.getInstance().newCovidComment(id, nomuser, comment, comentari, callback);
     }

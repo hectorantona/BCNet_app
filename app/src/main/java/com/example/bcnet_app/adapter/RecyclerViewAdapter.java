@@ -47,7 +47,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public void onBindViewHolder(@NonNull ViewHolder holder, int i) {
         Localitzacio localitzacio = result.get(i);
 
-        //Set name de localitzacio
         holder.mName.setText(localitzacio.getName());
         holder.category.setText(localitzacio.getCategory());
 
@@ -74,8 +73,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
             @Override
             public void onClick(View v) {
-                //Log.d(TAG, "onClick: clicked on: " + localitzacioList.get(i).getContent());
-                //Toast.makeText(mContext, localitzacioList.get(i).getContent(), Toast.LENGTH_SHORT).show();
                 viewlocalitzacio(localitzacio);
             }
         });
@@ -98,17 +95,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         context.startActivity(intent);
     }
 
-    //Canviar el nom d'aquesta
-   /* public void setResults(List<Localitzacio> results) {
-        //Log.d(TAG, "onClick: clicked on: " + result.get(0).getContent());
-        this.result = results;
-
-        notifyDataSetChanged();
-    }*/
-
     public void setResults(LocalitzacionsSearch l) {
         result.clear();
-        //Log.d(TAG, "onClick: clicked on: " + result.get(0).getContent());
         result.clear();
         for (int i = 0; i < l.getnumelements(); ++i) {
             result.add(l.getelemi(i));
@@ -121,46 +109,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public int getItemCount() {
         return result.size();
     }
-
-    /*@Override
-    public Filter getFilter() {
-        return FilterLocalitzacio;
-    }
-
-    private final Filter FilterLocalitzacio = new Filter() {
-        @Override
-        protected FilterResults performFiltering(CharSequence constraint) {
-            List<Localitzacio> filteredList = new ArrayList<>();
-
-            if(constraint == null || constraint.length() == 0){
-                filteredList.addAll(result);
-            } else {
-                String filterpattern = constraint.toString().toLowerCase().trim();
-                for(Localitzacio l : result) {
-                    if(l.getName().toLowerCase().contains(filterpattern)){
-                        filteredList.add(l);
-                    }
-                    else if(l.getCategory().toLowerCase().contains(filterpattern)){
-                        filteredList.add(l);
-                    }
-                }
-
-            }
-            FilterResults results = new FilterResults();
-            results.values = filteredList;
-
-            return results;
-        }
-
-        @Override
-        public void publishResults(CharSequence constraint, FilterResults results) {
-            localitzacioList.clear();
-            localitzacioList.addAll((List)results.values);
-            notifyDataSetChanged();
-        }
-    };*/
-
-
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
@@ -178,7 +126,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             //Nom de la localitzacio
             mName = itemView.findViewById(R.id.image_name);
             //context
-            //imagecontent = itemView.findViewById(R.id.image_content);
             //puntuacioGlobal
             puntuacioGlobal = itemView.findViewById(R.id.puntuacio_Global);
             obert = itemView.findViewById(R.id.obert);

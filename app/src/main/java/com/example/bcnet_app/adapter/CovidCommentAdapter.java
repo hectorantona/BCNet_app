@@ -47,7 +47,6 @@ public class CovidCommentAdapter extends RecyclerView.Adapter<CovidCommentAdapte
     @Override
     public void onBindViewHolder(@NonNull CovidCommentAdapter.CovidCommentViewHolder holder, int position) {
         DadesCovid dc = result.get(position);
-        Log.d("COVID Comment adapter", "Comentari de" + dc.getUsuari());
 
         holder.name.setText(dc.getUsuari());
         holder.content.setText(dc.getComentari());
@@ -62,11 +61,9 @@ public class CovidCommentAdapter extends RecyclerView.Adapter<CovidCommentAdapte
                 .into((holder).comment_user_semafor);
 
         if (!dc.getUsuari().equals(nomuser)) {
-            Log.d("Comment adapter", "El nom no coicideix" + dc.getUsuari() + "" + nomuser);
             holder.delete.setVisibility(View.GONE);
         }
         else {
-            Log.d("Comment adapter", "Esborrar Comentari de" + dc.getUsuari());
             holder.delete.setVisibility(View.VISIBLE);
             holder.delete.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -91,7 +88,6 @@ public class CovidCommentAdapter extends RecyclerView.Adapter<CovidCommentAdapte
 
     public void setResults(DadesCovidResponse dcr) {
         result.clear();
-        //Log.d(TAG, "onClick: clicked on: " + result.get(0).getContent());
         for (int i = 0; i < dcr.getnumelements(); ++i) {
             result.add(dcr.getelemi(i));
         }

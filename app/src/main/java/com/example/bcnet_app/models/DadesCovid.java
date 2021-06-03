@@ -77,10 +77,7 @@ public class DadesCovid {
 
 
 
-    public String getPuntuacioGlobal () {
-        return calcularPuntuacioCovid().toString();
-        //return "6.3";
-    }
+
     public void setPuntuacioCovid(String puntuacioCovid) {
         this.puntuacioCovid = puntuacioCovid;
     }
